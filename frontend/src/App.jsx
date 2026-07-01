@@ -15,7 +15,7 @@ function App() {
         <div className="App">
           <Navbar />
 
-          <div style={{ paddingTop: '100px' }}> {/* Padding to prevent content from hiding behind fixed navbar */}
+          <div>
             <Routes>
               <Route path="/" element={<div style={{ padding: '2rem', height: '200vh' }}>Welcome to the Home Page (Scroll to test Lenis)</div>} />
               <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
