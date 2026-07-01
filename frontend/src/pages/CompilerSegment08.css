@@ -35,7 +35,7 @@
   font-weight: 600;
   font-size: 150px;
   text-align: center;
-  white-space: nowrap;
+  white-space: pre-line;
   min-width: 800px;
   display: flex;
   justify-content: center;
