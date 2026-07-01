@@ -3,7 +3,7 @@ export const initialNodes = [
   { id: 'root', data: { label: 'Compiler Segment 08', status: 'neutral' } },
   
   // Level 1 Categories
-  { id: 'code-gen', data: { label: 'Code Generation', status: 'completed' } },
+  { id: 'code-gen', data: { label: 'Code Generation', status: 'done' } },
   { id: 'code-opt', data: { label: 'Code optimization', status: 'neutral' } },
 
   // --- Code Generation Children ---
