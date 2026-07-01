@@ -12,15 +12,30 @@ import { initialNodes, initialEdges, getLayoutedElements } from './roadmapData';
 import CustomNode from './CustomNode';
 import './CompilerSegment04.css';
 
-const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
-  initialNodes,
-  initialEdges,
-  'LR' // Left to right layout
-);
-
 const CompilerSegment04 = () => {
+  const [direction, setDirection] = React.useState(window.innerWidth <= 768 ? 'TB' : 'LR');
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setDirection(window.innerWidth <= 768 ? 'TB' : 'LR');
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const { layoutedNodes, layoutedEdges } = React.useMemo(() => {
+    const { nodes, edges } = getLayoutedElements(initialNodes, initialEdges, direction);
+    return { layoutedNodes: nodes, layoutedEdges: edges };
+  }, [direction]);
+
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
+
+  React.useEffect(() => {
+    setNodes(layoutedNodes);
+    setEdges(layoutedEdges);
+  }, [layoutedNodes, layoutedEdges, setNodes, setEdges]);
+
   const navigate = useNavigate();
 
   const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);
