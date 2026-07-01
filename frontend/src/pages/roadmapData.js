@@ -90,9 +90,13 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
     data: { ...node.data }
   }));
 
-  // Use uniform dimensions for nodes (horizontal boxes)
+  // Swap dimensions for vertical layout (mobile)
   clonedNodes.forEach((node) => {
-    dagreGraph.setNode(node.id, { width: 2500, height: 300 });
+    if (isHorizontal) {
+      dagreGraph.setNode(node.id, { width: 2500, height: 300 });
+    } else {
+      dagreGraph.setNode(node.id, { width: 300, height: 1000 });
+    }
   });
 
   edges.forEach((edge) => {
@@ -106,10 +110,15 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
     node.targetPosition = isHorizontal ? 'left' : 'top';
     node.sourcePosition = isHorizontal ? 'right' : 'bottom';
 
+    const nodeWidth = isHorizontal ? 2500 : 300;
+    const nodeHeight = isHorizontal ? 300 : 1000;
+
     node.position = {
-      x: nodeWithPosition.x - 2500 / 2,
-      y: nodeWithPosition.y - 300 / 2,
+      x: nodeWithPosition.x - nodeWidth / 2,
+      y: nodeWithPosition.y - nodeHeight / 2,
     };
+
+    node.data.isVertical = !isHorizontal;
 
     return node;
   });
