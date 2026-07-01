@@ -35,7 +35,7 @@
   font-weight: 600;
   font-size: 150px;
   text-align: center;
-  white-space: pre-line; /* Only wrap when a manual newline (\n) is added */
+  white-space: nowrap;
   min-width: 800px;
   display: flex;
   justify-content: center;
