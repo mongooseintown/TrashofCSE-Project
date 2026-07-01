@@ -1,8 +1,16 @@
 .roadmap-container {
   width: 100%;
-  height: calc(100vh - 100px); /* Adjust for navbar */
+  height: 100vh;
   background-color: #0b0b0b;
   position: relative;
+  padding-left: 120px; /* Offset for desktop vertical navbar */
+}
+
+@media (max-width: 768px) {
+  .roadmap-container {
+    padding-left: 0;
+    padding-bottom: 100px; /* Offset for mobile bottom navbar */
+  }
 }
 
 /* Hide default React Flow attribution if desired (optional but cleaner) */
