@@ -7,7 +7,7 @@ export const initialNodes = [
   { id: 'code-opt', data: { label: 'Code optimization', status: 'neutral' } },
 
   // --- Code Generation Children ---
-  { id: 'cg-position', data: { label: 'Position of code generation', status: 'pending' } },
+  { id: 'cg-position', data: { label: 'Position of code generation', status: 'done' } },
   { id: 'cg-issues', data: { label: 'Issues of code generation', status: 'pending' } },
   { id: 'cg-issues-selection', data: { label: 'instruction selection', status: 'pending' } },
   { id: 'cg-issues-allocation', data: { label: 'register Allocation', status: 'pending' } },
