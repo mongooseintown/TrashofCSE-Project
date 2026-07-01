@@ -77,12 +77,12 @@ export const initialEdges = [
   { id: 'e-ll1-error', source: 'top-down-ll1', target: 'top-down-ll1-error', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } }
 ];
 
-export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
+export const getLayoutedElements = (nodes, edges, direction = 'LR', nodesep = 150) => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
   
   // Always layout using LR (Left-to-Right) spacing under the hood
-  dagreGraph.setGraph({ rankdir: 'LR', ranksep: 800, nodesep: 150 });
+  dagreGraph.setGraph({ rankdir: 'LR', ranksep: 800, nodesep });
 
   // Clone nodes to prevent mutation bugs
   const clonedNodes = nodes.map(node => ({
