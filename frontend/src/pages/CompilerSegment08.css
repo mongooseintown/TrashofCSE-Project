@@ -35,10 +35,8 @@
   font-weight: 600;
   font-size: 150px;
   text-align: center;
-  white-space: normal; /* Allow text wrapping on desktop */
-  word-break: break-word;
+  white-space: pre-line; /* Only wrap when a manual newline (\n) is added */
   min-width: 800px;
-  max-width: 2200px; /* Prevent node from expanding to overlap neighbors */
   display: flex;
   justify-content: center;
   align-items: center;
