@@ -1,0 +1,53 @@
+.roadmap-container {
+  width: 100%;
+  height: calc(100vh - 100px); /* Adjust for navbar */
+  background-color: #0b0b0b;
+  position: relative;
+}
+
+/* Hide default React Flow attribution if desired (optional but cleaner) */
+.react-flow__attribution {
+  display: none;
+}
+
+/* Custom Node Styles */
+.custom-roadmap-node {
+  padding: 40px 60px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: 600;
+  font-size: 150px;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer; /* Makes it look like a button */
+}
+
+.custom-roadmap-node:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Handles */
+.custom-handle {
+  background: #ffffff !important;
+  width: 10px !important;
+  height: 10px !important;
+  border: none !important;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-roadmap-node:hover .custom-handle {
+  opacity: 1;
+}
