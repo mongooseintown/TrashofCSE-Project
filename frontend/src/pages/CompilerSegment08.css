@@ -1,0 +1,109 @@
+.roadmap-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #0b0b0b;
+  position: relative;
+  padding-left: 120px; /* Offset for desktop vertical navbar */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+@media (max-width: 768px) {
+  .roadmap-container {
+    padding-left: 0;
+    padding-bottom: 100px; /* Offset for mobile bottom navbar */
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+}
+
+/* Hide default React Flow attribution if desired (optional but cleaner) */
+.react-flow__attribution {
+  display: none;
+}
+
+/* Custom Node Styles */
+.custom-roadmap-node {
+  padding: 40px 60px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-weight: 600;
+  font-size: 150px;
+  text-align: center;
+  white-space: nowrap;
+  min-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer; /* Makes it look like a button */
+  position: relative; /* Base for absolute children */
+}
+
+/* Ensure SVG icons have base dimensions and never shrink */
+.custom-roadmap-node svg {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.custom-roadmap-node.vertical-node {
+  min-width: unset;
+  width: 300px;
+  height: 2500px; /* Matched to rotated width of 2500px */
+  padding: 0;
+  font-size: 80px; /* Smaller font size on mobile to prevent overflow */
+}
+
+/* Responsive smaller icons for vertical mobile nodes */
+.custom-roadmap-node.vertical-node svg {
+  width: 80px;
+  height: 80px;
+}
+
+.horizontal-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.vertical-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg); /* Center and rotate absolute element */
+  width: 2500px; /* Matches height of vertical-node */
+  height: 300px; /* Matches width of vertical-node */
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  justify-content: center;
+}
+
+.custom-roadmap-node:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Handles */
+.custom-handle {
+  background: #ffffff !important;
+  width: 10px !important;
+  height: 10px !important;
+  border: none !important;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.custom-roadmap-node:hover .custom-handle {
+  opacity: 1;
+}

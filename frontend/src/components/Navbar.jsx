@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { Home, Terminal, LogIn } from 'lucide-react';
+import { Home, Terminal, LogIn, Cpu } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -17,8 +17,11 @@ const Navbar = () => {
           <Link to="/" className="nav-link" title="Home">
             <Home size={24} />
           </Link>
-          <Link to="/compilersegment-04" className="nav-link" title="Compiler">
+          <Link to="/compilersegment-04" className="nav-link" title="Compiler Segment 04">
             <Terminal size={24} />
+          </Link>
+          <Link to="/compilersegment-08" className="nav-link" title="Compiler Segment 08">
+            <Cpu size={24} />
           </Link>
           <Link to="/login" className="nav-link" title="Login">
             <LogIn size={24} />
