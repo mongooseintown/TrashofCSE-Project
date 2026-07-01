@@ -4,12 +4,16 @@
   background-color: #0b0b0b;
   position: relative;
   padding-left: 120px; /* Offset for desktop vertical navbar */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent scrolling */
 }
 
 @media (max-width: 768px) {
   .roadmap-container {
     padding-left: 0;
     padding-bottom: 100px; /* Offset for mobile bottom navbar */
+    box-sizing: border-box;
+    overflow: hidden;
   }
 }
 
