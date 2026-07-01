@@ -25,7 +25,7 @@ const CompilerSegment08 = () => {
   }, []);
 
   const { layoutedNodes, layoutedEdges } = useMemo(() => {
-    const { nodes, edges } = getLayoutedElements(initialNodes, initialEdges, direction, 300);
+    const { nodes, edges } = getLayoutedElements(initialNodes, initialEdges, direction);
     return { layoutedNodes: nodes, layoutedEdges: edges };
   }, [direction]);
 
