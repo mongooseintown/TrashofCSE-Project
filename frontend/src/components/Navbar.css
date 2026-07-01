@@ -1,18 +1,18 @@
 .glass-nav-container {
   position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 900px;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  width: max-content;
   z-index: 100;
 }
 
 .glass-nav {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
+  justify-content: center;
+  padding: 2rem 0.8rem;
   border-radius: 50px;
   
   /* Glassmorphism background */
@@ -49,17 +49,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 0.25rem;
+  margin-left: 0;
+  margin-bottom: 2rem;
 }
 
 .nav-links {
   display: flex;
+  flex-direction: column;
   gap: 2.5rem;
   align-items: center;
 }
 
 .nav-link {
-  color: #00E5FF; /* Vibrant, soothing Cyan that stands out */
+  color: #00E5FF;
   text-decoration: none;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.5rem;
@@ -76,8 +78,17 @@
 
 @media (max-width: 768px) {
   .glass-nav-container {
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
     width: 95%;
     bottom: 1.5rem;
+  }
+
+  .glass-nav {
+    flex-direction: row;
+    padding: 0.8rem 1rem;
+    justify-content: center;
   }
 
   .nav-logo {
@@ -85,14 +96,10 @@
   }
 
   .nav-links {
+    flex-direction: row;
     width: 100%;
     justify-content: space-around;
     gap: 0;
-  }
-  
-  .glass-nav {
-    padding: 0.8rem 1rem;
-    justify-content: center;
   }
   
   .nav-link svg {
