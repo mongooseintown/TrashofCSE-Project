@@ -26,7 +26,14 @@ const CompilerSegment08 = () => {
 
   const { layoutedNodes, layoutedEdges } = useMemo(() => {
     const { nodes, edges } = getLayoutedElements(initialNodes, initialEdges, direction);
-    return { layoutedNodes: nodes, layoutedEdges: edges };
+    // Manually shift the long overlapping node down
+    const adjusted = nodes.map(n => {
+      if (n.id === 'cg-basic-types') {
+        return { ...n, position: { ...n.position, y: n.position.y + 400 } };
+      }
+      return n;
+    });
+    return { layoutedNodes: adjusted, layoutedEdges: edges };
   }, [direction]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
