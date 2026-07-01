@@ -86,7 +86,11 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
 
   // Standard node dimensions for layout calculation
   nodes.forEach((node) => {
-    dagreGraph.setNode(node.id, { width: 2500, height: 300 });
+    if (isHorizontal) {
+      dagreGraph.setNode(node.id, { width: 2500, height: 300 });
+    } else {
+      dagreGraph.setNode(node.id, { width: 300, height: 2500 });
+    }
   });
 
   edges.forEach((edge) => {
@@ -102,10 +106,15 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
 
     // We are shifting the dagre node position (anchor=center center) to the top left
     // so it matches the React Flow node anchor point (top left).
+    const nodeWidth = isHorizontal ? 2500 : 300;
+    const nodeHeight = isHorizontal ? 300 : 2500;
+    
     node.position = {
-      x: nodeWithPosition.x - 2500 / 2,
-      y: nodeWithPosition.y - 300 / 2,
+      x: nodeWithPosition.x - nodeWidth / 2,
+      y: nodeWithPosition.y - nodeHeight / 2,
     };
+    
+    node.data = { ...node.data, isVertical: !isHorizontal };
 
     return node;
   });

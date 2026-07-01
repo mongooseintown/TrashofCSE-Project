@@ -18,14 +18,14 @@ const CustomNode = ({ data, targetPosition = Position.Left, sourcePosition = Pos
   }
 
   return (
-    <div className="custom-roadmap-node">
+    <div className={`custom-roadmap-node ${data.isVertical ? 'vertical-node' : ''}`}>
       <Handle 
         type="target" 
         position={targetPosition} 
         className="custom-handle" 
       />
       
-      <div style={{ display: 'flex', alignItems: 'center', gap: '40px', justifyContent: 'center' }}>
+      <div className={data.isVertical ? "vertical-content" : "horizontal-content"}>
         {IconComponent && <IconComponent size={120} color={iconColor} strokeWidth={2.5} />}
         <span>{data.label}</span>
       </div>
