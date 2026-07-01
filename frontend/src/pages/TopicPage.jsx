@@ -275,6 +275,14 @@ const topicContent = {
         <img src="/cfg.png" alt="Context free grammar" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
     </div>
+  ),
+  'code-gen': (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Code Generator:-</strong><br/><br/>
+        is the final phase of compiler. It takes as input an intermediate presentation of the source program and produce at output an equivalent target program.
+      </p>
+    </div>
   )
 };
 
