@@ -57,10 +57,10 @@ const CompilerSegment04 = () => {
         minZoom={0.01}
         nodesDraggable={false}
         zoomOnScroll={false}
-        zoomOnPinch={false}
+        zoomOnPinch={window.innerWidth <= 768} /* Enable zoom on mobile */
         zoomOnDoubleClick={false}
-        panOnScroll={false}
-        panOnDrag={false}
+        panOnScroll={window.innerWidth <= 768} /* Enable pan on mobile */
+        panOnDrag={window.innerWidth <= 768} /* Enable pan on mobile */
         preventScrolling={false}
       >
         <Background variant="dots" gap={12} size={1} color="rgba(255, 255, 255, 0.1)" />
