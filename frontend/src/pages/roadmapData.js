@@ -89,7 +89,7 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
     if (isHorizontal) {
       dagreGraph.setNode(node.id, { width: 2500, height: 300 });
     } else {
-      dagreGraph.setNode(node.id, { width: 300, height: 2500 });
+      dagreGraph.setNode(node.id, { width: 300, height: 1000 });
     }
   });
 
@@ -107,7 +107,7 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
     // We are shifting the dagre node position (anchor=center center) to the top left
     // so it matches the React Flow node anchor point (top left).
     const nodeWidth = isHorizontal ? 2500 : 300;
-    const nodeHeight = isHorizontal ? 300 : 2500;
+    const nodeHeight = isHorizontal ? 300 : 1000;
     
     node.position = {
       x: nodeWithPosition.x - nodeWidth / 2,

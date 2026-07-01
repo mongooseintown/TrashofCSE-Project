@@ -25,9 +25,7 @@
   text-align: center;
   white-space: nowrap;
   
-  /* Horizontal default dimensions */
-  width: 2500px;
-  height: 300px;
+  min-width: 800px; /* Restored original min-width */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,8 +34,9 @@
 }
 
 .custom-roadmap-node.vertical-node {
+  min-width: unset;
   width: 300px;
-  height: 2500px;
+  height: 1000px; /* Much smaller than 2500px, so it doesn't get shrunk into oblivion */
   padding: 0;
 }
 
@@ -56,8 +55,8 @@
   gap: 40px;
   justify-content: center;
   transform: rotate(90deg);
-  width: 2500px;
-  height: 300px;
+  width: 1000px; /* Must match the height of .vertical-node */
+  height: 300px; /* Must match the width of .vertical-node */
 }
 
 .custom-roadmap-node:hover {
