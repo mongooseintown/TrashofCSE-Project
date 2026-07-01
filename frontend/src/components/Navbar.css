@@ -1,6 +1,6 @@
 .glass-nav-container {
   position: fixed;
-  top: 2rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
