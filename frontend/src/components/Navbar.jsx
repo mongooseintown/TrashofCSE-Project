@@ -24,13 +24,6 @@ const Navbar = () => {
             <LogIn size={24} />
           </Link>
         </div>
-        
-        {/* Right Hamburger Menu Icon Placeholder */}
-        <button className="nav-menu-btn" aria-label="Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </nav>
     </div>
   );
