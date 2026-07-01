@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { Home, Terminal, LogIn } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -13,9 +14,15 @@ const Navbar = () => {
         
         {/* Center Links */}
         <div className="nav-links">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/compilersegment-04" className="nav-link">Compiler</Link>
-          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/" className="nav-link" title="Home">
+            <Home size={24} />
+          </Link>
+          <Link to="/compilersegment-04" className="nav-link" title="Compiler">
+            <Terminal size={24} />
+          </Link>
+          <Link to="/login" className="nav-link" title="Login">
+            <LogIn size={24} />
+          </Link>
         </div>
         
         {/* Right Hamburger Menu Icon Placeholder */}
