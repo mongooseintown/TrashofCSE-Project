@@ -81,8 +81,8 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
   
-  const isHorizontal = direction === 'LR';
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 800, nodesep: 150 });
+  // Always layout using LR (Left-to-Right) spacing under the hood
+  dagreGraph.setGraph({ rankdir: 'LR', ranksep: 800, nodesep: 150 });
 
   // Clone nodes to prevent mutation bugs
   const clonedNodes = nodes.map(node => ({
@@ -90,13 +90,8 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
     data: { ...node.data }
   }));
 
-  // Swap dimensions for vertical layout (mobile)
   clonedNodes.forEach((node) => {
-    if (isHorizontal) {
-      dagreGraph.setNode(node.id, { width: 2500, height: 300 });
-    } else {
-      dagreGraph.setNode(node.id, { width: 300, height: 1000 });
-    }
+    dagreGraph.setNode(node.id, { width: 2500, height: 300 });
   });
 
   edges.forEach((edge) => {
@@ -105,20 +100,28 @@ export const getLayoutedElements = (nodes, edges, direction = 'LR') => {
 
   dagre.layout(dagreGraph);
 
+  const isMobile = direction === 'TB';
+
   const layoutedNodes = clonedNodes.map((node) => {
     const nodeWithPosition = dagreGraph.node(node.id);
-    node.targetPosition = isHorizontal ? 'left' : 'top';
-    node.sourcePosition = isHorizontal ? 'right' : 'bottom';
+    
+    // Target is top/bottom for mobile, left/right for desktop
+    node.targetPosition = isMobile ? 'top' : 'left';
+    node.sourcePosition = isMobile ? 'bottom' : 'right';
 
-    const nodeWidth = isHorizontal ? 2500 : 300;
-    const nodeHeight = isHorizontal ? 300 : 1000;
+    const nodeWidth = isMobile ? 300 : 2500;
+    const nodeHeight = isMobile ? 2500 : 300;
+
+    // Rotate calculated LR coordinates by 90 degrees for mobile (swap X and Y)
+    const x = isMobile ? nodeWithPosition.y : nodeWithPosition.x;
+    const y = isMobile ? nodeWithPosition.x : nodeWithPosition.y;
 
     node.position = {
-      x: nodeWithPosition.x - nodeWidth / 2,
-      y: nodeWithPosition.y - nodeHeight / 2,
+      x: x - nodeWidth / 2,
+      y: y - nodeHeight / 2,
     };
 
-    node.data.isVertical = !isHorizontal;
+    node.data.isVertical = isMobile;
 
     return node;
   });

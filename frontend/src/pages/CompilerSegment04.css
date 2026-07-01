@@ -48,7 +48,7 @@
 .custom-roadmap-node.vertical-node {
   min-width: unset;
   width: 300px;
-  height: 1000px;
+  height: 2500px; /* Matched to rotated width of 2500px */
   padding: 0;
 }
 
@@ -66,8 +66,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg); /* Center and rotate absolute element */
-  width: 1000px; /* Same as container height */
-  height: 300px; /* Same as container width */
+  width: 2500px; /* Matches height of vertical-node */
+  height: 300px; /* Matches width of vertical-node */
   display: flex;
   align-items: center;
   gap: 40px;
