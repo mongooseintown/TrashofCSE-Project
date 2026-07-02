@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import EEE from './pages/EEE';
 import PVCellNote from './pages/PVCellNote';
+import OptoElectronicsNote from './pages/OptoElectronicsNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -31,6 +32,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/eee" element={<EEE />} />
           <Route path="/eee/pv-cell" element={<PVCellNote />} />
+          <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />
         </Routes>
       </div>
     </div>
