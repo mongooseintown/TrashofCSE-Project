@@ -229,11 +229,11 @@ const Home = () => {
                   <span>+152%</span>
                 </div>
                 <svg className="retention-line-chart" viewBox="0 0 100 40">
-                  <path d="M0,35 C20,32 30,10 50,15 C70,20 80,2 100,5" fill="none" stroke="#4ade80" strokeWidth="3" />
+                  <path d="M0,35 C20,32 30,10 50,15 C70,20 80,2 100,5" fill="none" stroke="var(--text-primary)" strokeWidth="3" />
                   <path d="M0,35 C20,32 30,10 50,15 C70,20 80,2 100,5 L100,40 L0,40 Z" fill="url(#chart-glow)" opacity="0.15" />
                   <defs>
                     <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#4ade80" />
+                      <stop offset="0%" stopColor="var(--text-primary)" />
                       <stop offset="100%" stopColor="transparent" />
                     </linearGradient>
                   </defs>

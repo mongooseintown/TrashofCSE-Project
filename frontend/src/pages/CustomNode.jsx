@@ -8,13 +8,13 @@ const CustomNode = ({ data, targetPosition = Position.Left, sourcePosition = Pos
   
   if (data.status === 'done') {
     IconComponent = CheckCircle;
-    iconColor = '#4ade80'; // Green
+    iconColor = 'var(--text-primary)'; 
   } else if (data.status === 'pending') {
     IconComponent = XCircle;
-    iconColor = '#f87171'; // Red
+    iconColor = 'var(--text-muted)'; 
   } else if (data.status === 'neutral') {
     IconComponent = MinusCircle;
-    iconColor = '#9ca3af'; // Gray
+    iconColor = 'var(--text-muted)'; 
   }
 
   return (

@@ -35,12 +35,12 @@
   left: -260px;
   width: 400px;
   height: 400px;
-  /* Radial gradient mixing the cyan and green colors shown in the image */
+  /* Radial gradient using monochrome variables */
   background: radial-gradient(
     ellipse at center, 
-    rgba(99, 245, 203, 0.45) 0%,   /* Mint green */
-    rgba(64, 171, 230, 0.35) 40%,  /* Cyan */
-    rgba(0, 0, 0, 0) 70%
+    var(--border-secondary) 0%,   
+    var(--bg-secondary) 40%,  
+    transparent 70%
   );
   z-index: 0;
   pointer-events: none;

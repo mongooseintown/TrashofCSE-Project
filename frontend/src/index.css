@@ -18,7 +18,7 @@
   --button-bg: #ffffff;
   --button-text: #070707;
   --nav-bg: rgba(7, 7, 7, 0.7);
-  --nav-link: #00E5FF;
+  --nav-link: rgba(255, 255, 255, 0.6);
   --nav-link-hover: #ffffff;
   --card-bg: rgba(255, 255, 255, 0.02);
   --card-border: rgba(255, 255, 255, 0.06);
@@ -42,7 +42,7 @@
   --button-bg: #070707;
   --button-text: #ffffff;
   --nav-bg: rgba(247, 247, 247, 0.8);
-  --nav-link: #008899;
+  --nav-link: rgba(0, 0, 0, 0.6);
   --nav-link-hover: #070707;
   --card-bg: rgba(0, 0, 0, 0.015);
   --card-border: rgba(0, 0, 0, 0.08);
