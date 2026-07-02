@@ -5,6 +5,7 @@ import CompilerSegment08 from './pages/CompilerSegment08';
 import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import EEE from './pages/EEE';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -27,6 +28,7 @@ function AppContent() {
           <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
           <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/eee" element={<EEE />} />
         </Routes>
       </div>
     </div>
