@@ -21,25 +21,25 @@ const ThermocoupleMathNote = () => {
         <h1>Thermocouple & Thermistor Related Math Note</h1>
       </div>
 
-      {/* Note Images List */}
+      {/* Note Images List (Swapped Order) */}
       <div className="note-images-list">
         <div className="note-image-card">
-          <span className="note-image-caption">Part 1: Thermocouple EMF Calculation Math Problem and Solution</span>
+          <span className="note-image-caption">Part 1: Thermocouple EMF Formula and Variables Definition</span>
           <div className="note-img-wrapper">
             <img 
-              src="/thermocouple-math-1.png" 
-              alt="Thermocouple Math Part 1" 
+              src="/thermocouple-math-2.png" 
+              alt="Thermocouple Math Formula" 
               className="note-handnote-img" 
             />
           </div>
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Part 2: Thermocouple EMF Formula and Equations list</span>
+          <span className="note-image-caption">Part 2: Thermocouple EMF Calculation Math Problem and Solution</span>
           <div className="note-img-wrapper">
             <img 
-              src="/thermocouple-math-2.png" 
-              alt="Thermocouple Math Part 2" 
+              src="/thermocouple-math-1.png" 
+              alt="Thermocouple Math Solution" 
               className="note-handnote-img" 
             />
           </div>
