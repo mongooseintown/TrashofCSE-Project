@@ -117,7 +117,7 @@
 }
 
 .submit-btn {
-  background: #ffffff;
+  background: linear-gradient(135deg, #00f7a6 0%, #00c6ff 100%);
   color: #000000;
   border: none;
   border-radius: 50%;
@@ -127,12 +127,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .submit-btn:hover {
   transform: scale(1.05);
-  background: #e0e0e0;
+  filter: brightness(1.15);
 }
 
 .divider {
@@ -223,5 +223,16 @@
 }
 
 .login-footer a:hover {
+  text-decoration: underline;
+}
+
+.auth-link-text {
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-link-text:hover {
   text-decoration: underline;
 }

@@ -4,6 +4,7 @@ import CompilerSegment04 from './pages/CompilerSegment04';
 import CompilerSegment08 from './pages/CompilerSegment08';
 import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Home from './pages/Home';
 import EEE from './pages/EEE';
 import PVCellNote from './pages/PVCellNote';
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
           <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/eee" element={<EEE />} />
           <Route path="/eee/pv-cell" element={<PVCellNote />} />
           <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />

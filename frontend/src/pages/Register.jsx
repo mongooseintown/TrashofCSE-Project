@@ -1,25 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import './Login.css';
+import './Login.css'; // Reusing identical auth layouts and base variables
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
   return (
     <div className="login-page-container">
       <div className="login-card">
         <div className="login-header">
-          <h1>Welcome back</h1>
-          <p>Sign in to your account</p>
+          <h1>Create account</h1>
+          <p>Sign up to get started</p>
         </div>
 
-        <form className="login-form">
+        <form className="login-form" onSubmit={(e) => e.preventDefault()}>
           <div className="input-group">
             <label>Email</label>
             <div className="input-row">
-              <input type="email" placeholder="example@mail.com" />
-              <button type="button" className="submit-btn" aria-label="Submit">
+              <input type="email" placeholder="example@mail.com" required />
+              <button type="submit" className="submit-btn" aria-label="Submit">
                 <ArrowRight size={18} />
               </button>
             </div>
@@ -57,11 +57,11 @@ const Login = () => {
         </form>
 
         <div className="login-footer">
-          Don't have an account? <span className="auth-link-text" onClick={() => navigate('/register')}>Sign up</span>
+          Already have an account? <span className="auth-link-text" onClick={() => navigate('/login')}>Sign in</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
