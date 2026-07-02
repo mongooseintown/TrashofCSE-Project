@@ -1,71 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { X, ArrowUpRight } from 'lucide-react';
 import './EEE.css';
 
 const EEE = () => {
-  const steps = [
-    "When light reaches the p-n junction (depletion region), the light photons can easily enter in the junction through very thin n-type layers.",
-    "The light energy in the form of photons, supplies sufficient energy to the junction to create a number of electron-hole pairs.",
-    "This light breaks the equilibrium condition of the junctions.",
-    "The free electron in the depletion region can quickly come to the n-type side of the junction.",
-    "The hole in the depletion region can quickly come to the p-type side of the junction.",
-    "The newly created free electron come on the n-type side and the newly created hole come to the p-type side."
-  ];
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="eee-container">
       {/* Page Header */}
       <div className="eee-header">
         <h1>EEE Study Portal</h1>
-        <p>Interactive engineering concept visualization cards and lecture resources.</p>
+        <p>Interactive study cards and lecture notes modeled after modern designs.</p>
       </div>
 
-      {/* Flashcard Container */}
-      <div className="flashcard-container">
-        <div className="flashcard">
-          {/* Card Header */}
-          <div className="flashcard-header">
-            <span className="flashcard-title">Photovoltaic (PV) Cell Working Principle</span>
-            <span className="flashcard-tag">Concept Card</span>
-          </div>
+      {/* Card Grid */}
+      <div className="card-grid">
+        {/* PV Cell Product-Style Card */}
+        <div className="product-card" onClick={() => setIsModalOpen(true)}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">Best Seller</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/pv-cell-cover.png" 
+              alt="Photovoltaic Solar Cell" 
+              className="card-img" 
+            />
 
-          {/* Card Images (Top Section) */}
-          <div className="flashcard-images-section">
-            <div className="images-row">
-              <div className="pv-image-wrapper" title="PV Cell Layers Diagram">
-                <img 
-                  src="/pv-cell-2.png" 
-                  alt="PV Cell Layers Diagram" 
-                  className="pv-cell-img" 
-                />
-              </div>
-              <div className="pv-image-wrapper" title="Working Principle Handwritten Scan">
-                <img 
-                  src="/pv-cell-1.png" 
-                  alt="Working Principle Handwritten Scan" 
-                  className="pv-cell-img" 
-                />
-              </div>
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </div>
 
-          {/* Card Text Description (Bottom Section) */}
-          <div className="flashcard-text-section">
-            <h3 className="concept-subtitle">Working Mechanism Overview</h3>
-            <ol className="working-steps">
-              {steps.map((step, index) => (
-                <li key={index}>
-                  <div className="step-num">{index + 1}</div>
-                  <div className="step-desc">{step}</div>
-                </li>
-              ))}
-            </ol>
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Photovoltaic Cell (PV Cell)</h3>
+            <span className="card-sub">Solar Energy Conversion</span>
+            <p className="card-desc">
+              Explore the detailed physical layer structure, depletion boundary behavior, and voltage setup mechanisms.
+            </p>
+          </div>
 
-            <div className="concept-summary">
-              <strong>P-n junction behavior:</strong> The P-n junction acts like a small battery cell. Finally, a photo voltage is set up. If a small load is connected across the junction, a tiny electric current flows through the circuit.
-            </div>
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              setIsModalOpen(true);
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Modal containing handwritten notes serially */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content-card" onClick={(e) => e.stopPropagation()}>
+            {/* Modal Header */}
+            <div className="modal-header">
+              <h2>PV Cell - Handwritten Lecture Notes</h2>
+              <button className="modal-close-btn" onClick={() => setIsModalOpen(false)} title="Close">
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Modal notes body displaying images serially */}
+            <div className="modal-notes-body">
+              <div className="handnote-image-container">
+                <span className="handnote-image-title">Part 1: Layer Schematic and Construction Diagram</span>
+                <img 
+                  src="/pv-cell-2.png" 
+                  alt="PV Cell Schematic Diagram" 
+                  className="modal-handnote-img" 
+                />
+              </div>
+
+              <div className="handnote-image-container">
+                <span className="handnote-image-title">Part 2: Working Mechanism & Charge Transitions</span>
+                <img 
+                  src="/pv-cell-1.png" 
+                  alt="Working Mechanism Details" 
+                  className="modal-handnote-img" 
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
