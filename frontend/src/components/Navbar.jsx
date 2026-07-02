@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { Home, Terminal, LogIn, Cpu } from 'lucide-react';
+import { Home, Terminal, LogIn, Cpu, Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      setTheme(localStorage.getItem('theme') || 'dark');
+    };
+    window.addEventListener('theme-change', handleThemeChange);
+    return () => window.removeEventListener('theme-change', handleThemeChange);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    window.dispatchEvent(new Event('theme-change'));
+  };
+
   return (
     <div className="glass-nav-container">
       <nav className="glass-nav">
@@ -26,6 +43,9 @@ const Navbar = () => {
           <Link to="/login" className="nav-link" title="Login">
             <LogIn size={24} />
           </Link>
+          <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
+            {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+          </button>
         </div>
       </nav>
     </div>

@@ -407,7 +407,7 @@ const TopicPage = () => {
   );
 
   return (
-    <div style={{ padding: '2rem', color: 'white', minHeight: 'calc(100vh - 100px)', backgroundColor: '#0b0b0b' }}>
+    <div style={{ padding: '2rem', color: 'var(--text-primary)', minHeight: 'calc(100vh - 100px)', backgroundColor: 'var(--bg-primary)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2rem' }}>
         <button 
           onClick={() => navigate(-1)}
@@ -418,9 +418,9 @@ const TopicPage = () => {
             justifyContent: 'center',
             width: '48px',
             height: '48px',
-            background: 'rgba(255,255,255,0.03)', 
-            color: '#aaa', 
-            border: '1px solid rgba(255,255,255,0.1)', 
+            background: 'var(--bg-secondary)', 
+            color: 'var(--text-secondary)', 
+            border: '1px solid var(--border-secondary)', 
             borderRadius: '50%', 
             cursor: 'pointer', 
             backdropFilter: 'blur(10px)',
@@ -428,16 +428,16 @@ const TopicPage = () => {
             flexShrink: 0
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
-            e.currentTarget.style.color = '#fff';
+            e.currentTarget.style.background = 'var(--bg-secondary-hover)';
+            e.currentTarget.style.color = 'var(--text-primary)';
             e.currentTarget.style.transform = 'scale(1.05)';
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+            e.currentTarget.style.borderColor = 'var(--text-primary)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-            e.currentTarget.style.color = '#aaa';
+            e.currentTarget.style.background = 'var(--bg-secondary)';
+            e.currentTarget.style.color = 'var(--text-secondary)';
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+            e.currentTarget.style.borderColor = 'var(--border-secondary)';
           }}
         >
           <LogOut size={20} />

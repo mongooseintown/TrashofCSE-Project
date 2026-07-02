@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Sparkles, ArrowRight, Play, Check, Star, 
   Layers, Activity, BookOpen, ChevronDown, 
-  ShieldAlert, Layout, HelpCircle 
+  ShieldAlert, Layout, HelpCircle, Sun, Moon 
 } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(null);
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      setTheme(localStorage.getItem('theme') || 'dark');
+    };
+    window.addEventListener('theme-change', handleThemeChange);
+    return () => window.removeEventListener('theme-change', handleThemeChange);
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    window.dispatchEvent(new Event('theme-change'));
+  };
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -58,6 +74,9 @@ const Home = () => {
           <a href="#faq">FAQ</a>
         </nav>
         <div className="header-actions">
+          <button className="btn-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
           <Link to="/login" className="btn-signin">Sign in</Link>
           <Link to="/compilersegment-04" className="btn-signup">Get Started</Link>
         </div>
@@ -85,7 +104,7 @@ const Home = () => {
               Explore Segment 04 <ArrowRight size={18} />
             </button>
             <button className="btn-secondary" onClick={() => navigate('/compilersegment-08')}>
-              <Play size={16} fill="white" />
+              <Play size={16} fill="currentColor" />
               Watch Demo (Segment 08)
             </button>
           </div>
