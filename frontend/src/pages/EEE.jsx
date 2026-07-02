@@ -144,6 +144,49 @@ const EEE = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 4: Transducer Product-Style Card */}
+        <div className="product-card" onClick={() => navigate('/eee/transducer')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">Popular</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/transducer-cover.png" 
+              alt="Energy transducer schematic" 
+              className="card-img" 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Transducers</h3>
+            <span className="card-sub">Energy Form Conversion</span>
+            <p className="card-desc">
+              Explore the definition of electrical transducers, active sensing mechanisms, and classifications between Primary and Secondary transducers.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/transducer');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
