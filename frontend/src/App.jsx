@@ -1,32 +1,43 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import CompilerSegment04 from './pages/CompilerSegment04';
 import CompilerSegment08 from './pages/CompilerSegment08';
 import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import './App.css';
 
 import { ReactLenis } from 'lenis/react';
 
+function AppContent() {
+  const location = useLocation();
+  // Hide global floating navbar on the home page to match exact landing page mockup design
+  const showNavbar = location.pathname !== '/';
+
+  return (
+    <div className="App">
+      {showNavbar && <Navbar />}
+
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
+          <Route path="/compilersegment-04/:topicId" element={<TopicPage />} />
+          <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
+          <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <ReactLenis root>
       <BrowserRouter>
-        <div className="App">
-          <Navbar />
-
-          <div>
-            <Routes>
-              <Route path="/" element={<div style={{ minHeight: '100vh', backgroundColor: '#0b0b0b' }} />} />
-              <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
-              <Route path="/compilersegment-04/:topicId" element={<TopicPage />} />
-              <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
-              <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-        </div>
+        <AppContent />
       </BrowserRouter>
     </ReactLenis>
   );
