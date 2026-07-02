@@ -1,64 +1,173 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import './Login.css'; // Reusing identical auth layouts and base variables
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import './Register.css';
 
 const Register = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Registration handling logic can be hooked here
+    console.log('Registering with:', formData);
+  };
 
   return (
-    <div className="login-page-container">
-      <div className="login-card">
-        <div className="login-header">
-          <h1>Create account</h1>
-          <p>Sign up to get started</p>
+    <div className="register-page-container">
+      <div className="register-card">
+        
+        {/* Left Side: Spotlight Banner */}
+        <div className="register-banner">
+          <img 
+            src="/registration-spotlight.png" 
+            alt="Spotlight banner background" 
+            className="banner-spotlight-img"
+          />
+          <div className="banner-content">
+            <h2>Where Ideas Take Off</h2>
+            <p>We're waiting for your breakthroughs.</p>
+          </div>
         </div>
 
-        <form className="login-form" onSubmit={(e) => e.preventDefault()}>
-          <div className="input-group">
-            <label>Email</label>
-            <div className="input-row">
-              <input type="email" placeholder="example@mail.com" required />
-              <button type="submit" className="submit-btn" aria-label="Submit">
-                <ArrowRight size={18} />
-              </button>
-            </div>
+        {/* Right Side: Form Area */}
+        <div className="register-form-area">
+          <div className="back-btn-row">
+            <button className="back-link-btn" onClick={() => navigate(-1)}>
+              <ArrowLeft size={16} /> Back
+            </button>
           </div>
 
-          <div className="divider">OR</div>
+          <div className="register-title-section">
+            <h3>Create your account</h3>
+            <p>Enter your personal data to create account.</p>
+          </div>
 
-          <button type="button" className="social-btn">
-            <div className="social-content">
-              <span className="social-icon">
-                <svg width="22" height="22" viewBox="0 0 48 48">
-                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-                  <path fill="none" d="M0 0h48v48H0z"/>
-                </svg>
-              </span>
-              <span>Continue with Google</span>
+          <form className="reg-form" onSubmit={handleSubmit}>
+            {/* Full Name Input */}
+            <div className="reg-input-group">
+              <label>Full name *</label>
+              <div className="input-container">
+                <input 
+                  type="text" 
+                  name="fullName"
+                  placeholder="Maxim Anisimov" 
+                  value={formData.fullName}
+                  onChange={handleInputChange}
+                  required 
+                />
+              </div>
             </div>
-            <ArrowRight size={18} className="arrow-icon" />
-          </button>
 
-          <button type="button" className="social-btn">
-            <div className="social-content">
-              <span className="social-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" fill="#ffffff"/>
-                </svg>
-              </span>
-              <span>Continue with X</span>
+            {/* Email Input */}
+            <div className="reg-input-group">
+              <label>Email *</label>
+              <div className="input-container">
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="nezh.projects@gmail.com" 
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required 
+                />
+              </div>
             </div>
-            <ArrowRight size={18} className="arrow-icon" />
-          </button>
-        </form>
 
-        <div className="login-footer">
-          Already have an account? <span className="auth-link-text" onClick={() => navigate('/login')}>Sign in</span>
+            {/* Password Input */}
+            <div className="reg-input-group">
+              <label>Password</label>
+              <div className="input-container">
+                <input 
+                  type={showPassword ? 'text' : 'password'} 
+                  name="password"
+                  placeholder="••••••••••••••" 
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required 
+                />
+                <button 
+                  type="button" 
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
+
+            {/* Confirm Password Input */}
+            <div className="reg-input-group">
+              <label>Confirm password</label>
+              <div className="input-container">
+                <input 
+                  type={showConfirmPassword ? 'text' : 'password'} 
+                  name="confirmPassword"
+                  placeholder="••••••••••••••" 
+                  value={formData.confirmPassword}
+                  onChange={handleInputChange}
+                  required 
+                />
+                <button 
+                  type="button" 
+                  className="password-toggle-btn"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
+
+            {/* Solid Orange Submit Button */}
+            <button type="submit" className="reg-submit-btn">
+              Create account
+            </button>
+          </form>
+
+          {/* Social login option separator */}
+          <div className="social-divider">
+            <span>· Or continue with ·</span>
+          </div>
+
+          {/* Social buttons: Google & Apple */}
+          <div className="social-row">
+            <button className="social-btn-item" aria-label="Google">
+              <svg width="22" height="22" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                <path fill="none" d="M0 0h48v48H0z"/>
+              </svg>
+            </button>
+
+            <button className="social-btn-item" aria-label="Apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.51-.62.73-1.16 1.87-1.02 2.97 1.1.09 2.23-.55 2.95-1.42Z" fill="#ffffff"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Sign in redirect footer */}
+          <div className="reg-footer-row">
+            Already have an account? 
+            <span className="reg-link-txt" onClick={() => navigate('/login')}>Log in</span>
+          </div>
         </div>
+
       </div>
     </div>
   );
