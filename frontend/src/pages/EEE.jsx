@@ -187,6 +187,49 @@ const EEE = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 5: Piezo-electric Sensor Product-Style Card */}
+        <div className="product-card" onClick={() => navigate('/eee/piezo-electric')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">Popular</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/piezo-electric-cover.png" 
+              alt="Piezoelectric crystal sensor schematic" 
+              className="card-img" 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Piezo-electric Sensor</h3>
+            <span className="card-sub">Piezoelectric Transduction</span>
+            <p className="card-desc">
+              Explore charge displacement on ionic crystal surfaces under applied force, working principle parameters, and proportionality derivations.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/piezo-electric');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

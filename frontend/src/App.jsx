@@ -10,6 +10,7 @@ import PVCellNote from './pages/PVCellNote';
 import OptoElectronicsNote from './pages/OptoElectronicsNote';
 import StrainGaugeNote from './pages/StrainGaugeNote';
 import TransducerNote from './pages/TransducerNote';
+import PiezoElectricNote from './pages/PiezoElectricNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -37,6 +38,7 @@ function AppContent() {
           <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />
           <Route path="/eee/strain-gauge" element={<StrainGaugeNote />} />
           <Route path="/eee/transducer" element={<TransducerNote />} />
+          <Route path="/eee/piezo-electric" element={<PiezoElectricNote />} />
         </Routes>
       </div>
     </div>
