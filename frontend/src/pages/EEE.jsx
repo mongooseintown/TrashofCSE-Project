@@ -273,6 +273,49 @@ const EEE = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 7: RTD Product-Style Card */}
+        <div className="product-card" onClick={() => navigate('/eee/rtd')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">Popular</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/rtd-cover.png" 
+              alt="RTD temperature sensing probe diagram" 
+              className="card-img" 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>RTD (Resistance temperature detector)</h3>
+            <span className="card-sub">Linear Resistance Changes</span>
+            <p className="card-desc">
+              Study resistance shifts in metallic coils due to heating, linear approximation limits, and protective sheath probe construction.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/rtd');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

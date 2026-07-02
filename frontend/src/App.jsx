@@ -12,6 +12,7 @@ import StrainGaugeNote from './pages/StrainGaugeNote';
 import TransducerNote from './pages/TransducerNote';
 import PiezoElectricNote from './pages/PiezoElectricNote';
 import ThermocoupleMathNote from './pages/ThermocoupleMathNote';
+import RTDNote from './pages/RTDNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -41,6 +42,7 @@ function AppContent() {
           <Route path="/eee/transducer" element={<TransducerNote />} />
           <Route path="/eee/piezo-electric" element={<PiezoElectricNote />} />
           <Route path="/eee/thermocouple-math" element={<ThermocoupleMathNote />} />
+          <Route path="/eee/rtd" element={<RTDNote />} />
         </Routes>
       </div>
     </div>
