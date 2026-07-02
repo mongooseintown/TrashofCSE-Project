@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { Home, Terminal, LogIn, Cpu, Sun, Moon } from 'lucide-react';
+import { Home, Terminal, LogIn, Cpu, Sun, Moon, Zap } from 'lucide-react';
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -39,6 +39,9 @@ const Navbar = () => {
           </Link>
           <Link to="/compilersegment-08" className="nav-link" title="Compiler Segment 08">
             <Cpu size={24} />
+          </Link>
+          <Link to="/eee" className="nav-link" title="EEE">
+            <Zap size={24} />
           </Link>
           <Link to="/login" className="nav-link" title="Login">
             <LogIn size={24} />
