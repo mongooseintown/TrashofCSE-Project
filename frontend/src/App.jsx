@@ -18,7 +18,7 @@ function App() {
 
           <div>
             <Routes>
-              <Route path="/" element={<div style={{ padding: '2rem', height: '200vh' }}>Welcome to the Home Page (Scroll to test Lenis)</div>} />
+              <Route path="/" element={<div style={{ minHeight: '100vh', backgroundColor: '#0b0b0b' }} />} />
               <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
               <Route path="/compilersegment-04/:topicId" element={<TopicPage />} />
               <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
