@@ -11,6 +11,7 @@ import OptoElectronicsNote from './pages/OptoElectronicsNote';
 import StrainGaugeNote from './pages/StrainGaugeNote';
 import TransducerNote from './pages/TransducerNote';
 import PiezoElectricNote from './pages/PiezoElectricNote';
+import ThermocoupleMathNote from './pages/ThermocoupleMathNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -39,6 +40,7 @@ function AppContent() {
           <Route path="/eee/strain-gauge" element={<StrainGaugeNote />} />
           <Route path="/eee/transducer" element={<TransducerNote />} />
           <Route path="/eee/piezo-electric" element={<PiezoElectricNote />} />
+          <Route path="/eee/thermocouple-math" element={<ThermocoupleMathNote />} />
         </Routes>
       </div>
     </div>
