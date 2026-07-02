@@ -101,6 +101,49 @@ const EEE = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 3: Strain Gauge Product-Style Card */}
+        <div className="product-card" onClick={() => navigate('/eee/strain-gauge')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">Popular</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/strain-gauge-cover.png" 
+              alt="Strain Gauge sensor grid" 
+              className="card-img" 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Strain Gauge</h3>
+            <span className="card-sub">Deformation & Resistance</span>
+            <p className="card-desc">
+              Understand resistance changes under mechanical stress, Wheatstone bridge configurations, and mathematical Gauge Factor derivations.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/strain-gauge');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

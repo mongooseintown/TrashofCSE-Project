@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import EEE from './pages/EEE';
 import PVCellNote from './pages/PVCellNote';
 import OptoElectronicsNote from './pages/OptoElectronicsNote';
+import StrainGaugeNote from './pages/StrainGaugeNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -33,6 +34,7 @@ function AppContent() {
           <Route path="/eee" element={<EEE />} />
           <Route path="/eee/pv-cell" element={<PVCellNote />} />
           <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />
+          <Route path="/eee/strain-gauge" element={<StrainGaugeNote />} />
         </Routes>
       </div>
     </div>
