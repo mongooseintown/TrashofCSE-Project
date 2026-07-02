@@ -18,7 +18,7 @@ export const initialNodes = [
   { id: 'cg-target-runtime-stack', data: { label: 'Stack allocation', status: 'done' } },
   { id: 'cg-target-runtime-heap', data: { label: 'Heap allocation', status: 'done' } },
   { id: 'cg-basic', data: { label: 'Basic block', status: 'done' } },
-  { id: 'cg-basic-types', data: { label: 'Types of transformation on basic blocks/Code optimization technique', status: 'pending' } },
+  { id: 'cg-basic-types', data: { label: 'Types of transformation on basic blocks/Code optimization technique', status: 'done' } },
   { id: 'cg-flow', data: { label: 'Flow graph', status: 'pending' } },
   { id: 'cg-dag', data: { label: 'Dag reprsentation of basic blocks', status: 'pending' } },
   { id: 'cg-peephole', data: { label: 'Peephole optimization', status: 'pending' } },
