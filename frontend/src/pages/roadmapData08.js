@@ -11,7 +11,7 @@ export const initialNodes = [
   { id: 'cg-issues', data: { label: 'Issues of code generation', status: 'done' } },
   { id: 'cg-issues-selection', data: { label: 'instruction selection', status: 'done' } },
   { id: 'cg-issues-allocation', data: { label: 'register Allocation', status: 'done' } },
-  { id: 'cg-target', data: { label: 'The target machine', status: 'pending' } },
+  { id: 'cg-target', data: { label: 'The target machine', status: 'done' } },
   { id: 'cg-target-rules', data: { label: 'Rules of assembly code', status: 'pending' } },
   { id: 'cg-target-runtime', data: { label: 'Run time storage management', status: 'pending' } },
   { id: 'cg-target-runtime-static', data: { label: 'Static Allocation', status: 'pending' } },
