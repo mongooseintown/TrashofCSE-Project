@@ -15,7 +15,7 @@ export const initialNodes = [
   { id: 'cg-target-rules', data: { label: 'Rules of assembly code', status: 'done' } },
   { id: 'cg-target-runtime', data: { label: 'Run time storage management', status: 'done' } },
   { id: 'cg-target-runtime-static', data: { label: 'Static Allocation', status: 'done' } },
-  { id: 'cg-target-runtime-stack', data: { label: 'Stack allocation', status: 'pending' } },
+  { id: 'cg-target-runtime-stack', data: { label: 'Stack allocation', status: 'done' } },
   { id: 'cg-target-runtime-heap', data: { label: 'Heap allocation', status: 'pending' } },
   { id: 'cg-basic', data: { label: 'Basic block', status: 'pending' } },
   { id: 'cg-basic-types', data: { label: 'Types of transformation on basic blocks/Code optimization technique', status: 'pending' } },
