@@ -6,6 +6,7 @@ import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import EEE from './pages/EEE';
+import PVCellNote from './pages/PVCellNote';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -29,6 +30,7 @@ function AppContent() {
           <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/eee" element={<EEE />} />
+          <Route path="/eee/pv-cell" element={<PVCellNote />} />
         </Routes>
       </div>
     </div>

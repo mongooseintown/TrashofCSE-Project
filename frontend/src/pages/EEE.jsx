@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { X, ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import './EEE.css';
 
 const EEE = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="eee-container">
@@ -16,7 +17,7 @@ const EEE = () => {
       {/* Card Grid */}
       <div className="card-grid">
         {/* PV Cell Product-Style Card */}
-        <div className="product-card" onClick={() => setIsModalOpen(true)}>
+        <div className="product-card" onClick={() => navigate('/eee/pv-cell')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
             <span className="card-tag-badge">Best Seller</span>
@@ -51,49 +52,13 @@ const EEE = () => {
             <span className="price-pill">EEE 101</span>
             <button className="buy-pill-btn" onClick={(e) => {
               e.stopPropagation();
-              setIsModalOpen(true);
+              navigate('/eee/pv-cell');
             }}>
               Open Note <ArrowUpRight size={16} />
             </button>
           </div>
         </div>
       </div>
-
-      {/* Modal containing handwritten notes serially */}
-      {isModalOpen && (
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
-          <div className="modal-content-card" onClick={(e) => e.stopPropagation()}>
-            {/* Modal Header */}
-            <div className="modal-header">
-              <h2>PV Cell - Handwritten Lecture Notes</h2>
-              <button className="modal-close-btn" onClick={() => setIsModalOpen(false)} title="Close">
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Modal notes body displaying images serially */}
-            <div className="modal-notes-body">
-              <div className="handnote-image-container">
-                <span className="handnote-image-title">Part 1: Layer Schematic and Construction Diagram</span>
-                <img 
-                  src="/pv-cell-2.png" 
-                  alt="PV Cell Schematic Diagram" 
-                  className="modal-handnote-img" 
-                />
-              </div>
-
-              <div className="handnote-image-container">
-                <span className="handnote-image-title">Part 2: Working Mechanism & Charge Transitions</span>
-                <img 
-                  src="/pv-cell-1.png" 
-                  alt="Working Mechanism Details" 
-                  className="modal-handnote-img" 
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

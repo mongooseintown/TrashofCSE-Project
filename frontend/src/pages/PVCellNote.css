@@ -1,0 +1,97 @@
+.note-page-container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 4rem 2rem 4rem 140px; /* Offset for desktop vertical navbar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .note-page-container {
+    padding: 2rem 1rem 120px 1rem; /* Offset for mobile bottom navbar */
+  }
+}
+
+.note-header-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  max-width: 900px;
+  border-bottom: 1px solid var(--border-primary);
+  padding-bottom: 1.5rem;
+}
+
+.note-header-row h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.note-back-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.note-back-btn:hover {
+  background: var(--bg-secondary-hover);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+  transform: translateX(-2px);
+}
+
+/* Images List */
+.note-images-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.note-image-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.note-image-caption {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  border-left: 3px solid var(--text-primary);
+  padding-left: 0.75rem;
+}
+
+.note-img-wrapper {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 15px 35px var(--shadow-primary);
+  overflow: hidden;
+}
+
+.note-handnote-img {
+  width: 100%;
+  height: auto;
+  max-width: 800px;
+  border-radius: 12px;
+  border: 1px solid var(--border-primary);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
