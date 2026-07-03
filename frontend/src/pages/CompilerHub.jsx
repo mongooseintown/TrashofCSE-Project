@@ -116,7 +116,7 @@ const CompilerHub = () => {
 
           <div className="card-details-section">
             <h3>Compiler Segment 07</h3>
-            <span className="card-sub">Previous Questions Solutions</span>
+            <span className="card-sub">Intermediate Code Generation</span>
             <p className="card-desc">
               Review past examination questions on Activation Trees, Stack/Heap Allocation strategies, Control Stack roles, Syntax trees, and DAG representation.
             </p>

@@ -18,7 +18,7 @@ const CompilerSegment07 = () => {
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
-        <h1>Compiler Segment 07 Previous Questions</h1>
+        <h1>Compiler Segment 07: Intermediate Code Generation</h1>
       </div>
 
       {/* Note Images List (All previous questions serially, one below another) */}
