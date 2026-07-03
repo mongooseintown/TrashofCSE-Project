@@ -17,7 +17,7 @@ export const initialNodes = [
   { id: 'sdt-annotated-tree', data: { label: 'Annotated Parse Tree (Example)', status: 'done' } },
 
   // --- Type Checking Children ---
-  { id: 'tc-expr', data: { label: 'Type checking of expression', status: 'pending' } },
+  { id: 'tc-expr', data: { label: 'Type checking of expression', status: 'done' } },
   { id: 'tc-stmt', data: { label: 'Type checking of statement', status: 'pending' } },
   { id: 'tc-conv', data: { label: 'Type conversion', status: 'pending' } },
   { id: 'tc-conv-implicit', data: { label: 'Implicit type conversion', status: 'pending' } },
