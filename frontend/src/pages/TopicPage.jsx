@@ -40,12 +40,25 @@ const topicContent = {
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <img src="/cg-seg6-syntax-tree.png" alt="Syntax Tree Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
+      
       <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Syntax Tree for Nested Expression `a + a + (a + a + a + (a + a + a + a))`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 1: Syntax Tree for Nested Expression `a + a + (a + a + a + (a + a + a + a))`</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-syntax-tree-nested-ex.png" alt="Nested Expression Syntax Tree Example" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
+      </div>
+
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+        <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 2: Parse Tree vs. Abstract Syntax Tree (AST) for `a + b * 1 + 10`</strong>
+        </p>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <img src="/cg-seg6-syntax-tree-ast-calc-q.png" alt="Grammar semantic rules and LMD trace steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/cg-seg6-syntax-tree-ast-calc-ans.png" alt="Parse Tree and Abstract Syntax Tree diagrams" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
         </div>
       </div>
     </div>
