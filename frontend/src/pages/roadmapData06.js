@@ -4,7 +4,7 @@ export const initialNodes = [
   
   // Level 1 Categories
   { id: 'sdt', data: { label: 'Syntax Directed Translation', status: 'done' } },
-  { id: 'tc', data: { label: 'Type Checking', status: 'neutral' } },
+  { id: 'tc', data: { label: 'Type Checking', status: 'done' } },
 
   // --- Syntax Directed Translation Children ---
   { id: 'sdt-synth', data: { label: 'Synthesized attribute', status: 'done' } },
