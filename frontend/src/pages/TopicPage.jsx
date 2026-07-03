@@ -13,6 +13,46 @@ const topicContent = {
       </div>
     </div>
   ),
+  'sdt-synth': (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Synthesized Attribute:</strong>
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <img src="/cg-seg6-synthesized-attribute.png" alt="Synthesized Attribute Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+    </div>
+  ),
+  'sdt-inh': (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Inherited Attribute:</strong>
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <img src="/cg-seg6-inherited-attribute.png" alt="Inherited Attribute Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+    </div>
+  ),
+  'sdt-vs': (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Synthesized vs Inherited Attributes:</strong>
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <img src="/cg-seg6-synth-vs-inherited.png" alt="Synthesized vs Inherited Attributes Comparison" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+    </div>
+  ),
+  'sdt-annotated-tree': (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Annotated Parse Tree (Example):</strong>
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <img src="/cg-seg6-annotated-parse-tree-calc.png" alt="Annotated Parse Tree Example" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+    </div>
+  ),
   parser: (
     <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>

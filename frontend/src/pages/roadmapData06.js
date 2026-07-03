@@ -7,15 +7,16 @@ export const initialNodes = [
   { id: 'tc', data: { label: 'Type Checking', status: 'neutral' } },
 
   // --- Syntax Directed Translation Children ---
-  { id: 'sdt-synth', data: { label: 'Synthesized attribute', status: 'pending' } },
-  { id: 'sdt-inh', data: { label: 'Inherited attribute', status: 'pending' } },
-  { id: 'sdt-vs', data: { label: 'Synthesized vs inherited attribute', status: 'pending' } },
+  { id: 'sdt-synth', data: { label: 'Synthesized attribute', status: 'done' } },
+  { id: 'sdt-inh', data: { label: 'Inherited attribute', status: 'done' } },
+  { id: 'sdt-vs', data: { label: 'Synthesized vs inherited attribute', status: 'done' } },
   { id: 'sdt-dep', data: { label: 'Dependency Graph', status: 'pending' } },
   { id: 'sdt-tree', data: { label: 'Syntax Tree', status: 'pending' } },
   { id: 'sdt-tree-construction', data: { label: 'Construction method of syntax tree', status: 'pending' } },
   { id: 'sdt-tree-mknode', data: { label: 'mknode', status: 'pending' } },
   { id: 'sdt-tree-mkleaf', data: { label: 'mkleaf', status: 'pending' } },
   { id: 'sdt-dag', data: { label: 'DAG', status: 'pending' } },
+  { id: 'sdt-annotated-tree', data: { label: 'Annotated Parse Tree (Example)', status: 'done' } },
 
   // --- Type Checking Children ---
   { id: 'tc-expr', data: { label: 'Type checking of expression', status: 'pending' } },
@@ -37,6 +38,7 @@ export const initialEdges = [
   { id: 'e-sdt-dep', source: 'sdt', target: 'sdt-dep', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
   { id: 'e-sdt-tree', source: 'sdt', target: 'sdt-tree', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
   { id: 'e-sdt-dag', source: 'sdt', target: 'sdt-dag', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
+  { id: 'e-sdt-annotated-tree', source: 'sdt', target: 'sdt-annotated-tree', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
 
   // SDT level 2 sub-connections
   { id: 'e-sdt-tree-const', source: 'sdt-tree', target: 'sdt-tree-construction', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
