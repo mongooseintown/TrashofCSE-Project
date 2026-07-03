@@ -193,6 +193,15 @@ const CompilerSegment07 = () => {
                 className="note-handnote-img" 
               />
             </div>
+
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Factorial Function Activation Tree Drawing n=6):</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-factorial-activation-ans.jpg" 
+                alt="Factorial function activation tree drawing answer" 
+                className="note-handnote-img" 
+              />
+            </div>
           </div>
         </div>
 
