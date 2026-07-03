@@ -38,8 +38,20 @@ const topicContent = {
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
         <strong style={{ color: 'white', fontSize: '1.4rem' }}>Inherited Attribute:</strong>
       </p>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <img src="/cg-seg6-inherited-attribute.png" alt="Inherited Attribute Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+      
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+        <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: SDD & Dependency Graph for Declarations</strong>
+        </p>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <img src="/cg-seg6-inh-declaration-q.png" alt="Declaration SDD Problem Statement" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/cg-seg6-inh-declaration-ans.png" alt="Declaration SDD Solution" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
       </div>
     </div>
   ),
