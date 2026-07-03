@@ -28,8 +28,16 @@ const topicContent = {
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
         <strong style={{ color: 'white', fontSize: '1.4rem' }}>Syntax Tree:</strong>
       </p>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <img src="/cg-seg6-syntax-tree.png" alt="Syntax Tree Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+        <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Syntax Tree for Nested Expression `a + a + (a + a + a + (a + a + a + a))`</strong>
+        </p>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/cg-seg6-syntax-tree-nested-ex.png" alt="Nested Expression Syntax Tree Example" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
       </div>
     </div>
   ),
@@ -66,13 +74,22 @@ const topicContent = {
       
       <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Syntax Tree vs. DAG comparison for `a + a * (b - c) + (b - c) * d`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 1: Syntax Tree vs. DAG comparison for `a + a * (b - c) + (b - c) * d`</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-dag-ex-steps.png" alt="Syntax Tree and DAG Construction Steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
         </div>
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-dag-ex-diagrams.png" alt="Syntax Tree vs DAG Side-by-Side Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
+      </div>
+      
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+        <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 2: Syntax Tree vs. DAG comparison for Assignment `i := i + 10`</strong>
+        </p>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/cg-seg6-syntax-tree-vs-dag-assignment-ex.png" alt="Syntax Tree vs DAG Assignment Solution Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
         </div>
       </div>
     </div>
