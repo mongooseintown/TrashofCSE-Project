@@ -141,6 +141,16 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-fibonacci-activation-ans.jpg" 
+                alt="Fibonacci activation tree answer" 
+                className="note-handnote-img" 
+              />
+            </div>
+          </div>
         </div>
 
         <div className="note-image-card">
