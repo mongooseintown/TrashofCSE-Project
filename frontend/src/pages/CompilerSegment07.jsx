@@ -33,6 +33,16 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-activation-tree-ans.jpg" 
+                alt="Activation tree answer" 
+                className="note-handnote-img" 
+              />
+            </div>
+          </div>
         </div>
 
         <div className="note-image-card">
@@ -100,6 +110,16 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-activation-tree-ans.jpg" 
+                alt="Activation tree answer" 
+                className="note-handnote-img" 
+              />
+            </div>
+          </div>
         </div>
 
         <div className="note-image-card">
@@ -144,6 +164,16 @@ const CompilerSegment07 = () => {
               alt="Factorial activation tree drawing question n=6" 
               className="note-handnote-img" 
             />
+          </div>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution (Activation Tree Definition):</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-activation-tree-ans.jpg" 
+                alt="Activation tree answer" 
+                className="note-handnote-img" 
+              />
+            </div>
           </div>
         </div>
 
