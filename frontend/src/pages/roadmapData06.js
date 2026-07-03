@@ -20,8 +20,8 @@ export const initialNodes = [
   { id: 'tc-expr', data: { label: 'Type checking of expression', status: 'done' } },
   { id: 'tc-stmt', data: { label: 'Type checking of statement', status: 'done' } },
   { id: 'tc-conv', data: { label: 'Type conversion', status: 'done' } },
-  { id: 'tc-conv-implicit', data: { label: 'Implicit type conversion', status: 'pending' } },
-  { id: 'tc-conv-explicit', data: { label: 'Explicit type conversion', status: 'pending' } }
+  { id: 'tc-conv-implicit', data: { label: 'Implicit type conversion', status: 'done' } },
+  { id: 'tc-conv-explicit', data: { label: 'Explicit type conversion', status: 'done' } }
 ].map(node => ({ ...node, type: 'custom', position: { x: 0, y: 0 } }));
 
 export const initialEdges = [
