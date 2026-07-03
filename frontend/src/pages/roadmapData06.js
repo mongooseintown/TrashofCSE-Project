@@ -10,7 +10,7 @@ export const initialNodes = [
   { id: 'sdt-synth', data: { label: 'Synthesized attribute', status: 'done' } },
   { id: 'sdt-inh', data: { label: 'Inherited attribute', status: 'done' } },
   { id: 'sdt-vs', data: { label: 'Synthesized vs inherited attribute', status: 'done' } },
-  { id: 'sdt-dep', data: { label: 'Dependency Graph', status: 'pending' } },
+  { id: 'sdt-dep', data: { label: 'Dependency Graph', status: 'done' } },
   { id: 'sdt-tree', data: { label: 'Syntax Tree', status: 'pending' } },
   { id: 'sdt-tree-construction', data: { label: 'Construction method of syntax tree', status: 'pending' } },
   { id: 'sdt-tree-mknode', data: { label: 'mknode', status: 'pending' } },
