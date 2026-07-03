@@ -3,7 +3,7 @@ export const initialNodes = [
   { id: 'root', data: { label: 'Compiler Segment 06', status: 'neutral' } },
   
   // Level 1 Categories
-  { id: 'sdt', data: { label: 'Syntax Directed Translation', status: 'neutral' } },
+  { id: 'sdt', data: { label: 'Syntax Directed Translation', status: 'done' } },
   { id: 'tc', data: { label: 'Type Checking', status: 'neutral' } },
 
   // --- Syntax Directed Translation Children ---
