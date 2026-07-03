@@ -3,6 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 
 const topicContent = {
+  sdt: (
+    <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
+      <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
+        <strong style={{ color: 'white', fontSize: '1.4rem' }}>Syntax-Directed Translation / Definition:</strong>
+      </p>
+      <div style={{ textAlign: 'center' }}>
+        <img src="/cg-seg6-sdt-intro-ans.png" alt="Syntax-Directed Translation Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+    </div>
+  ),
   parser: (
     <div style={{ background: 'rgba(255,255,255,0.05)', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
