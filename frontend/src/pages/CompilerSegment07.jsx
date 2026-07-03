@@ -105,28 +105,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q4: What is the activation tree in the run-time environment of a compiler for a function?</span>
-          <div className="note-img-wrapper">
-            <img 
-              src="/cg-seg7-q7.png" 
-              alt="Activation tree definition question" 
-              className="note-handnote-img" 
-            />
-          </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
-            <div className="note-img-wrapper">
-              <img 
-                src="/cg-seg7-activation-tree-ans.jpg" 
-                alt="Activation tree answer" 
-                className="note-handnote-img" 
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="note-image-card">
-          <span className="note-image-caption">Q5: Draw the activation tree for C Fibonacci function (n=7)</span>
+          <span className="note-image-caption">Q4: Draw the activation tree for C Fibonacci function (n=7)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q8.png" 
@@ -147,7 +126,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q6: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q5: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q10.png" 
@@ -168,7 +147,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q7: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
+          <span className="note-image-caption">Q6: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q11.png" 
@@ -207,7 +186,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q8: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q7: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q12.png" 
@@ -228,7 +207,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q9: Explain two strategies for dynamic storage allocation</span>
+          <span className="note-image-caption">Q8: Explain two strategies for dynamic storage allocation</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q13.png" 
@@ -249,7 +228,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q10: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
+          <span className="note-image-caption">Q9: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q14.png" 
