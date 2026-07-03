@@ -1,0 +1,37 @@
+/* CompilerHub.css */
+@import './EEE.css';
+
+/* Custom styling specific to the Compiler Hub */
+.compiler-hub-container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 4rem 2rem 4rem 140px; /* Offset for desktop vertical navbar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .compiler-hub-container {
+    padding: 2rem 1rem 120px 1rem; /* Offset for mobile bottom navbar */
+  }
+}
+
+.compiler-hub-header {
+  margin-bottom: 3.5rem;
+  max-width: 800px;
+}
+
+.compiler-hub-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #00f7a6 0%, #00c6ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.compiler-hub-header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}

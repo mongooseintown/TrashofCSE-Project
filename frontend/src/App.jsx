@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import CompilerSegment04 from './pages/CompilerSegment04';
 import CompilerSegment08 from './pages/CompilerSegment08';
+import CompilerHub from './pages/CompilerHub';
+import CompilerSegment07 from './pages/CompilerSegment07';
 import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -31,6 +33,8 @@ function AppContent() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/compiler" element={<CompilerHub />} />
+          <Route path="/compiler/segment-07" element={<CompilerSegment07 />} />
           <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
           <Route path="/compilersegment-04/:topicId" element={<TopicPage />} />
           <Route path="/compilersegment-08" element={<CompilerSegment08 />} />

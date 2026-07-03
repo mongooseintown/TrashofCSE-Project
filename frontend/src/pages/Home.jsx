@@ -78,7 +78,7 @@ const Home = () => {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <Link to="/login" className="btn-signin">Sign in</Link>
-          <Link to="/compilersegment-04" className="btn-signup">Get Started</Link>
+          <Link to="/compiler" className="btn-signup">Get Started</Link>
         </div>
       </header>
 
@@ -100,12 +100,11 @@ const Home = () => {
           </p>
 
           <div className="hero-ctas">
-            <button className="btn-primary" onClick={() => navigate('/compilersegment-04')}>
-              Explore Segment 04 <ArrowRight size={18} />
+            <button className="btn-primary" onClick={() => navigate('/compiler')}>
+              Explore Compiler Portal <ArrowRight size={18} />
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/compilersegment-08')}>
-              <Play size={16} fill="currentColor" />
-              Watch Demo (Segment 08)
+            <button className="btn-secondary" onClick={() => navigate('/eee')}>
+              Explore EEE Portal
             </button>
           </div>
 
@@ -294,7 +293,7 @@ const Home = () => {
               <span className="price-period">/semester</span>
             </div>
             <p className="plan-desc">Access basic parsing and code generation roadmap tracking.</p>
-            <button className="btn-plan-cta" onClick={() => navigate('/compilersegment-04')}>Start Free Trial</button>
+            <button className="btn-plan-cta" onClick={() => navigate('/compiler')}>Start Free Trial</button>
             <ul className="plan-features">
               <li><Check size={16} /> Access to segment roadmaps</li>
               <li><Check size={16} /> Status tracking checkpoints</li>
@@ -313,7 +312,7 @@ const Home = () => {
               <span className="price-period">/semester</span>
             </div>
             <p className="plan-desc">Full access to handwritten notes, parsing tables, and assembly rules.</p>
-            <button className="btn-plan-cta active" onClick={() => navigate('/compilersegment-08')}>Get Started Pro</button>
+            <button className="btn-plan-cta active" onClick={() => navigate('/compiler')}>Get Started Pro</button>
             <ul className="plan-features">
               <li><Check size={16} /> Access to segment roadmaps</li>
               <li><Check size={16} /> Status tracking checkpoints</li>
@@ -418,8 +417,8 @@ const Home = () => {
           <div className="footer-links-grid">
             <div className="footer-col">
               <h4>Pages</h4>
-              <Link to="/compilersegment-04">Roadmap Segment 04</Link>
-              <Link to="/compilersegment-08">Roadmap Segment 08</Link>
+              <Link to="/compiler">Compiler Study Portal</Link>
+              <Link to="/eee">EEE Study Portal</Link>
               <Link to="/login">Login Portal</Link>
             </div>
             <div className="footer-col">

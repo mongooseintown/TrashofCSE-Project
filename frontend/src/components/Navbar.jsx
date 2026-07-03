@@ -34,11 +34,8 @@ const Navbar = () => {
           <Link to="/" className="nav-link" title="Home">
             <Home size={24} />
           </Link>
-          <Link to="/compilersegment-04" className="nav-link" title="Compiler Segment 04">
+          <Link to="/compiler" className="nav-link" title="Compiler">
             <Terminal size={24} />
-          </Link>
-          <Link to="/compilersegment-08" className="nav-link" title="Compiler Segment 08">
-            <Cpu size={24} />
           </Link>
           <Link to="/eee" className="nav-link" title="EEE">
             <Zap size={24} />
