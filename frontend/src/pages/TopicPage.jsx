@@ -60,8 +60,20 @@ const topicContent = {
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
         <strong style={{ color: 'white', fontSize: '1.4rem' }}>Directed Acyclic Graph (DAG):</strong>
       </p>
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <img src="/cg-seg6-dag-definition.png" alt="DAG Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+      
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+        <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Syntax Tree vs. DAG comparison for `a + a * (b - c) + (b - c) * d`</strong>
+        </p>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <img src="/cg-seg6-dag-ex-steps.png" alt="Syntax Tree and DAG Construction Steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <img src="/cg-seg6-dag-ex-diagrams.png" alt="Syntax Tree vs DAG Side-by-Side Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+        </div>
       </div>
     </div>
   ),
