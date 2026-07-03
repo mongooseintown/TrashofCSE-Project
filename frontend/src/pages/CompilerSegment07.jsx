@@ -184,6 +184,15 @@ const CompilerSegment07 = () => {
                 className="note-handnote-img" 
               />
             </div>
+            
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Memory Allocation Strategies):</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-mem-strategies-ans.jpg" 
+                alt="Memory allocation strategies answer" 
+                className="note-handnote-img" 
+              />
+            </div>
           </div>
         </div>
 
