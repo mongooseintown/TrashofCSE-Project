@@ -11,11 +11,9 @@ export const initialNodes = [
   { id: 'sdt-inh', data: { label: 'Inherited attribute', status: 'done' } },
   { id: 'sdt-vs', data: { label: 'Synthesized vs inherited attribute', status: 'done' } },
   { id: 'sdt-dep', data: { label: 'Dependency Graph', status: 'done' } },
-  { id: 'sdt-tree', data: { label: 'Syntax Tree', status: 'pending' } },
-  { id: 'sdt-tree-construction', data: { label: 'Construction method of syntax tree', status: 'pending' } },
-  { id: 'sdt-tree-mknode', data: { label: 'mknode', status: 'pending' } },
-  { id: 'sdt-tree-mkleaf', data: { label: 'mkleaf', status: 'pending' } },
-  { id: 'sdt-dag', data: { label: 'DAG', status: 'pending' } },
+  { id: 'sdt-tree', data: { label: 'Syntax Tree', status: 'done' } },
+  { id: 'sdt-tree-construction', data: { label: 'Construction method of syntax tree', status: 'done' } },
+  { id: 'sdt-dag', data: { label: 'DAG', status: 'done' } },
   { id: 'sdt-annotated-tree', data: { label: 'Annotated Parse Tree (Example)', status: 'done' } },
 
   // --- Type Checking Children ---
@@ -42,8 +40,6 @@ export const initialEdges = [
 
   // SDT level 2 sub-connections
   { id: 'e-sdt-tree-const', source: 'sdt-tree', target: 'sdt-tree-construction', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
-  { id: 'e-sdt-tree-mknode', source: 'sdt-tree-construction', target: 'sdt-tree-mknode', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
-  { id: 'e-sdt-tree-mkleaf', source: 'sdt-tree-construction', target: 'sdt-tree-mkleaf', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
 
   // Type Checking level 1 connections
   { id: 'e-tc-expr', source: 'tc', target: 'tc-expr', type: 'smoothstep', animated: true, style: { stroke: '#ffffff', strokeWidth: 6 } },
