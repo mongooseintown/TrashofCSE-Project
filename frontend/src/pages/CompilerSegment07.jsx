@@ -21,32 +21,10 @@ const CompilerSegment07 = () => {
         <h1>Compiler Segment 07 Previous Questions</h1>
       </div>
 
-      {/* Note Images List (All 14 questions serially, one below another) */}
+      {/* Note Images List (All previous questions serially, one below another) */}
       <div className="note-images-list">
-        {/* SET A - Questions 1 to 5 */}
         <div className="note-image-card">
-          <span className="note-image-caption">Q1: Activation tree definition for a function</span>
-          <div className="note-img-wrapper">
-            <img 
-              src="/cg-seg7-q1.png" 
-              alt="Activation tree definition" 
-              className="note-handnote-img" 
-            />
-          </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
-            <div className="note-img-wrapper">
-              <img 
-                src="/cg-seg7-activation-tree-ans.jpg" 
-                alt="Activation tree answer" 
-                className="note-handnote-img" 
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="note-image-card">
-          <span className="note-image-caption">Q2: Activation tree drawing task for C factorial function (n=8)</span>
+          <span className="note-image-caption">Q1: Activation tree drawing task for C factorial function (n=8)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q2.png" 
@@ -67,7 +45,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q3: Heap and stack memory allocation strategies</span>
+          <span className="note-image-caption">Q2: Heap and stack memory allocation strategies</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q3.png" 
@@ -78,7 +56,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q4: Control stack role & Activation tree drawing task</span>
+          <span className="note-image-caption">Q3: Control stack role & Activation tree drawing task</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q4.png" 
@@ -89,7 +67,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q5: Intermediate code generation (Syntax tree, 3AC, Triples, Quadruples, DAG)</span>
+          <span className="note-image-caption">Q4: Intermediate code generation (Syntax tree, 3AC, Triples, Quadruples, DAG)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q5.png" 
@@ -99,9 +77,8 @@ const CompilerSegment07 = () => {
           </div>
         </div>
 
-        {/* SET B - Questions 6 to 10 */}
         <div className="note-image-card">
-          <span className="note-image-caption">Q6: Translate expression (a + b * c / e + b * c) to quadruple, triple, indirect triple and polish notation</span>
+          <span className="note-image-caption">Q5: Translate expression (a + b * c / e + b * c) to quadruple, triple, indirect triple and polish notation</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q6.png" 
@@ -112,7 +89,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q7: What is the activation tree in the run-time environment of a compiler for a function?</span>
+          <span className="note-image-caption">Q6: What is the activation tree in the run-time environment of a compiler for a function?</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q7.png" 
@@ -133,7 +110,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q8: Draw the activation tree for C Fibonacci function (n=7)</span>
+          <span className="note-image-caption">Q7: Draw the activation tree for C Fibonacci function (n=7)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q8.png" 
@@ -154,7 +131,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q9: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q8: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q10.png" 
@@ -175,7 +152,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q10: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
+          <span className="note-image-caption">Q9: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q11.png" 
@@ -214,7 +191,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q11: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q10: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q12.png" 
@@ -235,7 +212,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q12: Explain two strategies for dynamic storage allocation</span>
+          <span className="note-image-caption">Q11: Explain two strategies for dynamic storage allocation</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q13.png" 
@@ -256,7 +233,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q13: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
+          <span className="note-image-caption">Q12: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q14.png" 
