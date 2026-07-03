@@ -144,18 +144,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q9: Explain the memory allocation strategies for the run-time environment</span>
-          <div className="note-img-wrapper">
-            <img 
-              src="/cg-seg7-q9.png" 
-              alt="Memory allocation strategies question" 
-              className="note-handnote-img" 
-            />
-          </div>
-        </div>
-
-        <div className="note-image-card">
-          <span className="note-image-caption">Q10: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q9: Translate the arithmetic expression 'x + x * (y - z) + (y - z) * w' into Syntax tree, Three-address code, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q10.png" 
@@ -175,9 +164,8 @@ const CompilerSegment07 = () => {
           </div>
         </div>
 
-        {/* SET C - Questions 11 to 14 */}
         <div className="note-image-card">
-          <span className="note-image-caption">Q11: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
+          <span className="note-image-caption">Q10: Activation tree & memory strategies + Factorial function drawing (n=6)</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q11.png" 
@@ -216,7 +204,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q12: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
+          <span className="note-image-caption">Q11: Translate arithmetic expression (o := x * (-y) + x * (-y) + x*y) to Syntax tree, 3AC, Triples, DAG, Quadruples</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q12.png" 
@@ -237,7 +225,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q13: Explain two strategies for dynamic storage allocation</span>
+          <span className="note-image-caption">Q12: Explain two strategies for dynamic storage allocation</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q13.png" 
@@ -258,7 +246,7 @@ const CompilerSegment07 = () => {
         </div>
 
         <div className="note-image-card">
-          <span className="note-image-caption">Q14: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
+          <span className="note-image-caption">Q13: Translate expression (a + b*c/e + b*c) to quadruple, triple and indirect triple</span>
           <div className="note-img-wrapper">
             <img 
               src="/cg-seg7-q14.png" 
