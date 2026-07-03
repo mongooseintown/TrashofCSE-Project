@@ -41,6 +41,15 @@ const CompilerSegment07 = () => {
                 className="note-handnote-img" 
               />
             </div>
+
+            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Fibonacci Function Activation Tree Drawing n=8):</span>
+            <div className="note-img-wrapper">
+              <img 
+                src="/cg-seg7-factorial-n8-ans.jpg" 
+                alt="Fibonacci function activation tree drawing answer" 
+                className="note-handnote-img" 
+              />
+            </div>
           </div>
         </div>
 
