@@ -48,8 +48,12 @@ const topicContent = {
       <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '2rem' }}>
         <strong style={{ color: 'white', fontSize: '1.4rem' }}>Annotated Parse Tree (Example):</strong>
       </p>
-      <div style={{ textAlign: 'center' }}>
-        <img src="/cg-seg6-annotated-parse-tree-calc.png" alt="Annotated Parse Tree Example" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <img src="/cg-seg6-annotated-parse-tree-calc.png" alt="Annotated Parse Tree Example Specification" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
+      </div>
+      <div style={{ textAlign: 'center', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem' }}>
+        <span style={{ color: '#ff5b22', fontWeight: 'bold', display: 'block', marginBottom: '1.5rem', fontSize: '1.2rem' }}>Annotated Parse Tree Drawing Solution:</span>
+        <img src="/cg-seg6-annotated-parse-tree-calc-diagram.png" alt="Annotated Parse Tree Drawing Solution Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
     </div>
   ),
