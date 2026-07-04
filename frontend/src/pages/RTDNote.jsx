@@ -21,43 +21,27 @@ const RTDNote = () => {
         <h1>RTD (Resistance Temperature Detector) Note</h1>
       </div>
 
-      {/* YouTube Video Link Button */}
-      <div className="youtube-video-container" style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'flex-start' }}>
-        <a 
-          href="https://www.youtube.com/watch?v=3PCswhjLlhA" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            background: '#ff0000',
-            color: '#ffffff',
-            padding: '0.8rem 1.6rem',
-            borderRadius: '14px',
-            textDecoration: 'none',
-            fontSize: '1rem',
-            fontWeight: '600',
-            boxShadow: '0 4px 15px rgba(255, 0, 0, 0.25)',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#cc0000';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 6px 22px rgba(255, 0, 0, 0.45)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#ff0000';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 0, 0, 0.25)';
-          }}
-        >
-          {/* YouTube SVG Icon */}
+      {/* YouTube Video Embed Player */}
+      <div className="rtd-video-section" style={{ marginBottom: '3rem', maxWidth: '850px' }}>
+        <span className="note-image-caption" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem', color: '#ff5b22', fontWeight: 'bold', fontSize: '1.1rem' }}>
+          {/* YouTube Icon */}
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
           </svg>
-          <span>Watch RTD Working Principle Video</span>
-        </a>
+          <span>RTD Working Principle Video Lecture</span>
+        </span>
+        <div className="rtd-video-embed-container" style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--card-border)', boxShadow: '0 15px 35px var(--shadow-primary)' }}>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+            <iframe
+              src="https://www.youtube.com/embed/3PCswhjLlhA"
+              title="RTD Working Principle Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Note Images List */}
