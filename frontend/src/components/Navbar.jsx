@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { Home, Terminal, LogIn, Cpu, Sun, Moon, Zap } from 'lucide-react';
+import { Home, Terminal, LayoutDashboard, Sun, Moon, Zap } from 'lucide-react';
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
@@ -40,8 +40,8 @@ const Navbar = () => {
           <Link to="/eee" className="nav-link" title="EEE">
             <Zap size={24} />
           </Link>
-          <Link to="/login" className="nav-link" title="Login">
-            <LogIn size={24} />
+          <Link to="/dashboard" className="nav-link" title="Dashboard">
+            <LayoutDashboard size={24} />
           </Link>
           <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
             {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
