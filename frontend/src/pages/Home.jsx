@@ -78,7 +78,7 @@ const Home = () => {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <Link to="/login" className="btn-signin">Sign in</Link>
-          <Link to="/compiler" className="btn-signup">Get Started</Link>
+          <Link to="/register" className="btn-signup">Get Started</Link>
         </div>
       </header>
 
@@ -100,11 +100,11 @@ const Home = () => {
           </p>
 
           <div className="hero-ctas">
-            <button className="btn-primary" onClick={() => navigate('/compiler')}>
-              Explore Compiler Portal <ArrowRight size={18} />
+            <button className="btn-primary" onClick={() => navigate('/register')}>
+              Register / Get Started <ArrowRight size={18} />
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/eee')}>
-              Explore EEE Portal
+            <button className="btn-secondary" onClick={() => navigate('/login')}>
+              Log In
             </button>
           </div>
 
