@@ -53,7 +53,7 @@ const Register = () => {
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
 
       setTimeout(() => {
-        navigate('/compiler');
+        navigate('/dashboard');
       }, 1500);
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');

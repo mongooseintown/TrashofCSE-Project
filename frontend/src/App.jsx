@@ -9,6 +9,7 @@ import TopicPage from './pages/TopicPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 import EEE from './pages/EEE';
 import PVCellNote from './pages/PVCellNote';
 import OptoElectronicsNote from './pages/OptoElectronicsNote';
@@ -32,8 +33,8 @@ import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
-  // Hide global floating navbar on Home, Login, and Register pages
-  const showNavbar = !['/', '/login', '/register'].includes(location.pathname);
+  // Hide global floating navbar on Home, Login, Register, and Dashboard pages
+  const showNavbar = !['/', '/login', '/register', '/dashboard'].includes(location.pathname);
 
   return (
     <div className="App">
@@ -42,6 +43,7 @@ function AppContent() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/compiler" element={<CompilerHub />} />
           <Route path="/compiler/segment-07" element={<CompilerSegment07 />} />
           <Route path="/compiler/segment-06" element={<CompilerSegment06 />} />
