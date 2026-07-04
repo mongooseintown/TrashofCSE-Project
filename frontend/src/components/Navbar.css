@@ -90,10 +90,10 @@
 @media (max-width: 768px) {
   .glass-nav-container {
     top: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    bottom: 1.5rem;
+    left: 0;
+    transform: none;
+    width: 100%;
+    bottom: 0;
   }
 
   .glass-nav {
@@ -103,12 +103,14 @@
     background: linear-gradient(135deg, #e52d27 0%, #b31217 100%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(179, 18, 23, 0.4);
+    border-radius: 0;
+    border: none;
+    border-top: 2px solid #ffffff;
+    box-shadow: 0 -10px 30px rgba(179, 18, 23, 0.4);
   }
 
   .glass-nav:hover {
-    box-shadow: 0 12px 35px rgba(179, 18, 23, 0.6);
+    box-shadow: 0 -12px 35px rgba(179, 18, 23, 0.6);
   }
 
   .nav-logo {
