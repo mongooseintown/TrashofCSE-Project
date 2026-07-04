@@ -11,8 +11,15 @@ const Home = () => {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(null);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+
     const handleThemeChange = () => {
       setTheme(localStorage.getItem('theme') || 'dark');
     };
@@ -77,8 +84,14 @@ const Home = () => {
           <button className="btn-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <Link to="/login" className="btn-signin">Sign in</Link>
-          <Link to="/register" className="btn-signup">Get Started</Link>
+          {isLoggedIn ? (
+            <Link to="/dashboard" className="btn-signup">Dashboard</Link>
+          ) : (
+            <>
+              <Link to="/login" className="btn-signin">Sign in</Link>
+              <Link to="/register" className="btn-signup">Get Started</Link>
+            </>
+          )}
         </div>
       </header>
 
@@ -100,12 +113,25 @@ const Home = () => {
           </p>
 
           <div className="hero-ctas">
-            <button className="btn-primary" onClick={() => navigate('/register')}>
-              Register / Get Started <ArrowRight size={18} />
-            </button>
-            <button className="btn-secondary" onClick={() => navigate('/login')}>
-              Log In
-            </button>
+            {isLoggedIn ? (
+              <>
+                <button className="btn-primary" onClick={() => navigate('/dashboard')}>
+                  Go to Dashboard <ArrowRight size={18} />
+                </button>
+                <button className="btn-secondary" onClick={() => navigate('/compiler')}>
+                  Explore Compiler Portal
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="btn-primary" onClick={() => navigate('/register')}>
+                  Register / Get Started <ArrowRight size={18} />
+                </button>
+                <button className="btn-secondary" onClick={() => navigate('/login')}>
+                  Log In
+                </button>
+              </>
+            )}
           </div>
 
           <div className="hero-partners">
