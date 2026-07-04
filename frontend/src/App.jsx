@@ -30,15 +30,14 @@ import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import CompilerLocked from './pages/CompilerLocked';
-import GoogleLoginPopup from './pages/GoogleLoginPopup';
 import './App.css';
 
 import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
-  // Hide global floating navbar on Home, Login, Register, and Google popup pages
-  const showNavbar = !['/', '/login', '/register', '/google-login-popup'].includes(location.pathname);
+  // Hide global floating navbar on Home, Login, and Register pages
+  const showNavbar = !['/', '/login', '/register'].includes(location.pathname);
 
   return (
     <div className="App">
@@ -60,7 +59,6 @@ function AppContent() {
           <Route path="/compilersegment-08/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
           
           <Route path="/compiler-locked" element={<CompilerLocked />} />
-          <Route path="/google-login-popup" element={<GoogleLoginPopup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           

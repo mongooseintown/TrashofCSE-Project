@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { auth, googleProvider, githubProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 import './Register.css';
 
 const Register = () => {
@@ -16,77 +18,34 @@ const Register = () => {
     if (token) {
       navigate('/dashboard');
     }
-
-    const handleAuthMessage = async (event) => {
-      // Security check: ensure event is from our domain
-      if (event.origin !== window.location.origin) return;
-
-      if (event.data && event.data.type === 'GOOGLE_AUTH_SUCCESS') {
-        const { email, name } = event.data;
-        
-        setLoading(true);
-        setError('');
-        setSuccess('');
-
-        try {
-          const response = await fetch('http://localhost:5000/api/auth/social', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, fullName: name }),
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(data.message || 'Authentication failed');
-          }
-
-          setSuccess('Authenticated successfully! Redirecting...');
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
-
-          setTimeout(() => {
-            navigate('/dashboard');
-          }, 1500);
-        } catch (err) {
-          setError(err.message || 'Social auth error');
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-
-    window.addEventListener('message', handleAuthMessage);
-    return () => window.removeEventListener('message', handleAuthMessage);
   }, [navigate]);
 
-  // Social Auth States
-  const [socialModalOpen, setSocialModalOpen] = useState(false);
-  const [socialPlatform, setSocialPlatform] = useState(''); // 'Google' or 'GitHub'
-  const [socialEmail, setSocialEmail] = useState('');
-  const [socialName, setSocialName] = useState('');
-  const [socialError, setSocialError] = useState('');
-  const [socialLoading, setSocialLoading] = useState(false);
-
-  const handleSocialAuth = async () => {
-    if (!socialEmail) {
-      return setSocialError('Please enter your email');
-    }
-
-    const normalizedEmail = socialEmail.trim().toLowerCase();
-    const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
-    const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
-
-    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
-      return setSocialError('Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed');
-    }
-
-    setSocialLoading(true);
-    setSocialError('');
+  const openSocialModal = async (platform) => {
+    setError('');
+    setSuccess('');
+    setLoading(true);
 
     try {
+      const provider = platform === 'Google' ? googleProvider : githubProvider;
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const userEmail = user.email;
+      const name = user.displayName || userEmail.split('@')[0];
+
+      if (!userEmail) {
+        throw new Error('No email address associated with this social account.');
+      }
+
+      const normalizedEmail = userEmail.trim().toLowerCase();
+      const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
+      const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
+
+      if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
+        await auth.signOut();
+        throw new Error('Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed');
+      }
+
+      // Call backend social route
       const response = await fetch('http://localhost:5000/api/auth/social', {
         method: 'POST',
         headers: {
@@ -94,7 +53,7 @@ const Register = () => {
         },
         body: JSON.stringify({
           email: normalizedEmail,
-          fullName: socialName
+          fullName: name
         }),
       });
 
@@ -104,7 +63,6 @@ const Register = () => {
         throw new Error(data.message || 'Authentication failed');
       }
 
-      setSocialModalOpen(false);
       setSuccess('Authenticated successfully! Redirecting...');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
@@ -113,34 +71,16 @@ const Register = () => {
         navigate('/dashboard');
       }, 1500);
     } catch (err) {
-      setSocialError(err.message || 'Social authentication error');
-    } finally {
-      setSocialLoading(false);
-    }
-  };
-
-  const openSocialModal = (platform) => {
-    if (platform === 'Google') {
-      const width = 500;
-      const height = 600;
-      const left = window.screen.width / 2 - width / 2;
-      const top = window.screen.height / 2 - height / 2;
-      
-      const popup = window.open(
-        '/google-login-popup',
-        'GoogleSignIn',
-        `width=${width},height=${height},left=${left},top=${top},status=no,resizable=yes,scrollbars=yes`
-      );
-      
-      if (popup) {
-        popup.focus();
+      // Firebase standard error parsing / styling
+      let errMsg = err.message || 'Social authentication error';
+      if (err.code === 'auth/popup-closed-by-user') {
+        errMsg = 'Sign-in popup was closed before completing.';
+      } else if (err.code === 'auth/cancelled-popup-request') {
+        errMsg = 'Sign-in request was cancelled.';
       }
-    } else {
-      setSocialPlatform(platform);
-      setSocialEmail('');
-      setSocialName('');
-      setSocialError('');
-      setSocialModalOpen(true);
+      setError(errMsg);
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -366,121 +306,6 @@ const Register = () => {
             <span className="reg-link-txt" onClick={() => navigate('/login')}>Log in</span>
           </div>
         </div>
-
-        {/* Social Modal */}
-        {socialModalOpen && (
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'rgba(10, 11, 14, 0.95)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            borderRadius: '40px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '2.5rem',
-            zIndex: 100
-          }}>
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#ffffff', margin: 0, textAlign: 'center' }}>
-                Sign up with {socialPlatform}
-              </h2>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.5)', textAlign: 'center', margin: 0 }}>
-                Please enter your {socialPlatform} email to continue.
-              </p>
-
-              {socialError && (
-                <div style={{
-                  background: 'rgba(255, 85, 85, 0.1)',
-                  border: '1px solid rgba(255, 85, 85, 0.2)',
-                  color: '#ff5555',
-                  padding: '0.75rem 1rem',
-                  borderRadius: '12px',
-                  fontSize: '0.85rem',
-                  lineHeight: '1.4',
-                  textAlign: 'center'
-                }}>
-                  {socialError}
-                </div>
-              )}
-
-              {/* Email Input */}
-              <div className="reg-input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', width: '100%' }}>
-                <label style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.6)' }}>Social Email Address</label>
-                <div className="input-container" style={{ background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '0.6rem 1rem' }}>
-                  <input 
-                    type="email" 
-                    placeholder={socialPlatform === 'Google' ? 'cXXXXXX@ugrad.iiuc.ac.bd' : 'username@github.com'} 
-                    value={socialEmail}
-                    onChange={(e) => {
-                      setSocialEmail(e.target.value);
-                      setSocialError('');
-                    }}
-                    style={{ background: 'transparent', border: 'none', color: '#ffffff', width: '100%', outline: 'none' }}
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Name Input */}
-              <div className="reg-input-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', width: '100%' }}>
-                <label style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.6)' }}>Full Name (Optional)</label>
-                <div className="input-container" style={{ background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px', padding: '0.6rem 1rem' }}>
-                  <input 
-                    type="text" 
-                    placeholder="Your Name" 
-                    value={socialName}
-                    onChange={(e) => setSocialName(e.target.value)}
-                    style={{ background: 'transparent', border: 'none', color: '#ffffff', width: '100%', outline: 'none' }}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-                <button 
-                  type="button" 
-                  onClick={() => setSocialModalOpen(false)}
-                  style={{
-                    flex: 1,
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    borderRadius: '12px',
-                    color: '#ffffff',
-                    padding: '0.8rem',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Cancel
-                </button>
-                <button 
-                  type="button" 
-                  onClick={handleSocialAuth}
-                  disabled={socialLoading}
-                  style={{
-                    flex: 1,
-                    background: 'linear-gradient(135deg, #ff5b22 0%, #ff3b00 100%)',
-                    border: 'none',
-                    borderRadius: '12px',
-                    color: '#ffffff',
-                    padding: '0.8rem',
-                    fontSize: '0.9rem',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  {socialLoading ? 'Connecting...' : 'Continue'}
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
 
       </div>
     </div>
