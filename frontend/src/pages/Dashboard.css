@@ -1,0 +1,124 @@
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-landing);
+  background-image: radial-gradient(var(--text-muted) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  color: var(--text-primary);
+  font-family: 'Outfit', 'Inter', sans-serif;
+  padding: 8rem 2rem 4rem 2rem;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dashboard-card {
+  width: 100%;
+  max-width: 550px;
+  text-align: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: 28px;
+  padding: 3.5rem 2.5rem;
+  box-shadow: 0 40px 80px -15px var(--shadow-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+  transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gear-icon-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 91, 34, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff5b22;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 0;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dev-mode-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 179, 0, 0.08);
+  border: 1px solid rgba(255, 179, 0, 0.2);
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  color: #ffb300;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.dashboard-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0.5rem 0 0 0;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+.dashboard-actions {
+  width: 100%;
+  border-top: 1px solid var(--border-primary);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.signed-in-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.signed-in-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 85, 85, 0.05);
+  border: 1px solid rgba(255, 85, 85, 0.15);
+  border-radius: 12px;
+  color: #ff5555;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-logout:hover {
+  background: rgba(255, 85, 85, 0.15);
+  border-color: rgba(255, 85, 85, 0.3);
+  transform: translateY(-1px);
+}
