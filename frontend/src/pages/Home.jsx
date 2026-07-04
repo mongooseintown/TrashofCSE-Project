@@ -68,6 +68,13 @@ const Home = () => {
 
   return (
     <div className="landing-container">
+      {/* Background Mesh Blobs */}
+      <div className="mesh-gradient-container">
+        <div className="mesh-blob blob-1"></div>
+        <div className="mesh-blob blob-2"></div>
+        <div className="mesh-blob blob-3"></div>
+      </div>
+
       {/* 1. Header Navigation */}
       <header className="landing-header">
         <div className="header-logo" onClick={() => navigate('/')}>

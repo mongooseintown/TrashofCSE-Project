@@ -10,6 +10,78 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Mesh Gradient Container & Blobs */
+.mesh-gradient-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mesh-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.22; /* Subtle contrast spill */
+  transition: background-color 0.5s ease;
+}
+
+/* Dark Mode (Default) vs Light Mode Colors */
+:root {
+  --mesh-color-1: rgba(255, 255, 255, 0.08);
+  --mesh-color-2: rgba(255, 255, 255, 0.04);
+  --mesh-color-3: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] {
+  --mesh-color-1: rgba(0, 0, 0, 0.06);
+  --mesh-color-2: rgba(0, 0, 0, 0.04);
+  --mesh-color-3: rgba(0, 0, 0, 0.05);
+}
+
+.blob-1 {
+  width: 700px;
+  height: 700px;
+  background-color: var(--mesh-color-1);
+  top: -100px;
+  right: -100px;
+  animation: drift-one 25s infinite alternate ease-in-out;
+}
+
+.blob-2 {
+  width: 800px;
+  height: 800px;
+  background-color: var(--mesh-color-2);
+  top: 25%;
+  left: -250px;
+  animation: drift-two 30s infinite alternate ease-in-out;
+}
+
+.blob-3 {
+  width: 600px;
+  height: 600px;
+  background-color: var(--mesh-color-3);
+  bottom: 10%;
+  right: 10%;
+  animation: drift-one 20s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes drift-one {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(80px, -60px) scale(1.15) rotate(180deg); }
+  100% { transform: translate(-40px, 80px) scale(0.9) rotate(360deg); }
+}
+
+@keyframes drift-two {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(-100px, 120px) scale(0.85) rotate(-180deg); }
+  100% { transform: translate(50px, -50px) scale(1.1) rotate(-360deg); }
+}
+
 /* 1. Header Styles */
 .landing-header {
   display: flex;
