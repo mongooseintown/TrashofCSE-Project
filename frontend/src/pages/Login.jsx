@@ -19,6 +19,71 @@ const Login = () => {
     }
   }, [navigate]);
 
+  // Social Auth States
+  const [socialModalOpen, setSocialModalOpen] = useState(false);
+  const [socialPlatform, setSocialPlatform] = useState(''); // 'Google' or 'GitHub'
+  const [socialEmail, setSocialEmail] = useState('');
+  const [socialName, setSocialName] = useState('');
+  const [socialError, setSocialError] = useState('');
+  const [socialLoading, setSocialLoading] = useState(false);
+
+  const handleSocialAuth = async () => {
+    if (!socialEmail) {
+      return setSocialError('Please enter your email');
+    }
+
+    const normalizedEmail = socialEmail.trim().toLowerCase();
+    const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
+    const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
+
+    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
+      return setSocialError('Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed');
+    }
+
+    setSocialLoading(true);
+    setSocialError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/social', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          fullName: socialName
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Authentication failed');
+      }
+
+      setSocialModalOpen(false);
+      setSuccess('Authenticated successfully! Redirecting...');
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 1500);
+    } catch (err) {
+      setSocialError(err.message || 'Social authentication error');
+    } finally {
+      setSocialLoading(false);
+    }
+  };
+
+  const openSocialModal = (platform) => {
+    setSocialPlatform(platform);
+    setSocialEmail('');
+    setSocialName('');
+    setSocialError('');
+    setSocialModalOpen(true);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -147,7 +212,7 @@ const Login = () => {
 
           <div className="divider">OR</div>
 
-          <button type="button" className="social-btn">
+          <button type="button" className="social-btn" onClick={() => openSocialModal('Google')}>
             <div className="social-content">
               <span className="social-icon">
                 <svg width="22" height="22" viewBox="0 0 48 48">
@@ -163,14 +228,14 @@ const Login = () => {
             <ArrowRight size={18} className="arrow-icon" />
           </button>
 
-          <button type="button" className="social-btn">
+          <button type="button" className="social-btn" onClick={() => openSocialModal('GitHub')}>
             <div className="social-content">
               <span className="social-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" fill="#ffffff"/>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
               </span>
-              <span>Continue with X</span>
+              <span>Continue with GitHub</span>
             </div>
             <ArrowRight size={18} className="arrow-icon" />
           </button>
@@ -179,6 +244,121 @@ const Login = () => {
         <div className="login-footer">
           Don't have an account? <span className="auth-link-text" onClick={() => navigate('/register')}>Sign up</span>
         </div>
+
+        {/* Social Modal */}
+        {socialModalOpen && (
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'rgba(10, 11, 14, 0.95)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            borderRadius: '40px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '2.5rem',
+            zIndex: 100
+          }}>
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#ffffff', margin: 0, textAlign: 'center' }}>
+                Sign in with {socialPlatform}
+              </h2>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.5)', textAlign: 'center', margin: 0 }}>
+                Please enter your {socialPlatform} email to continue.
+              </p>
+
+              {socialError && (
+                <div style={{
+                  background: 'rgba(255, 85, 85, 0.1)',
+                  border: '1px solid rgba(255, 85, 85, 0.2)',
+                  color: '#ff5555',
+                  padding: '0.75rem 1rem',
+                  borderRadius: '12px',
+                  fontSize: '0.85rem',
+                  lineHeight: '1.4',
+                  textAlign: 'center'
+                }}>
+                  {socialError}
+                </div>
+              )}
+
+              {/* Email Input */}
+              <div className="input-group" style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
+                <label>Social Email Address</label>
+                <div className="input-row">
+                  <input 
+                    type="email" 
+                    placeholder={socialPlatform === 'Google' ? 'cXXXXXX@ugrad.iiuc.ac.bd' : 'username@github.com'} 
+                    value={socialEmail}
+                    onChange={(e) => {
+                      setSocialEmail(e.target.value);
+                      setSocialError('');
+                    }}
+                    style={{ background: 'transparent', border: 'none', color: '#ffffff', width: '100%', outline: 'none' }}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Name Input */}
+              <div className="input-group" style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
+                <label>Full Name (Optional)</label>
+                <div className="input-row">
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    value={socialName}
+                    onChange={(e) => setSocialName(e.target.value)}
+                    style={{ background: 'transparent', border: 'none', color: '#ffffff', width: '100%', outline: 'none' }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                <button 
+                  type="button" 
+                  onClick={() => setSocialModalOpen(false)}
+                  style={{
+                    flex: 1,
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '12px',
+                    color: '#ffffff',
+                    padding: '0.8rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="button" 
+                  onClick={handleSocialAuth}
+                  disabled={socialLoading}
+                  style={{
+                    flex: 1,
+                    background: 'linear-gradient(135deg, #00f7a6 0%, #00c6ff 100%)',
+                    border: 'none',
+                    borderRadius: '12px',
+                    color: '#000000',
+                    padding: '0.8rem',
+                    fontSize: '0.9rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  {socialLoading ? 'Connecting...' : 'Continue'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

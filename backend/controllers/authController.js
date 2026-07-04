@@ -142,3 +142,54 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ message: 'Server error during login' });
   }
 };
+
+// @desc    Authenticate/Register user via social credentials
+// @route   POST /api/auth/social
+// @access  Public
+exports.socialAuth = async (req, res) => {
+  try {
+    const { email, fullName } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: 'Email is required' });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
+    const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
+
+    // Strictly validate student domain emails for all other accounts
+    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ 
+        message: 'Only IIUC student email addresses (cXXXXXX@ugrad.iiuc.ac.bd) are allowed' 
+      });
+    }
+
+    // Find or automatically create user
+    let user = await User.findOne({ email: normalizedEmail });
+    if (!user) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash('social_auth_bypass_placeholder_password_1029!', salt);
+      user = await User.create({
+        fullName: fullName || normalizedEmail.split('@')[0],
+        email: normalizedEmail,
+        password: hashedPassword,
+        isAdmin: isAdminEmail
+      });
+    }
+
+    // Generate token
+    const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '30d' });
+
+    res.json({
+      _id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token,
+    });
+  } catch (error) {
+    console.error('Social Auth error:', error);
+    res.status(500).json({ message: 'Server error during social authentication' });
+  }
+};
