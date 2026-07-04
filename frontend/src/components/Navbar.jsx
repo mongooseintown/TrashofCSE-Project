@@ -43,7 +43,7 @@ const Navbar = () => {
         {/* Center Links */}
         <div className="nav-links">
           <Link to="/dashboard" className="nav-link">Dashboard</Link>
-          <Link to="/eee" className="nav-link">EEE Portal</Link>
+          <Link to="/eee" className="nav-link">EEE</Link>
           <Link to="/compiler" className="nav-link">Compiler</Link>
           
           <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
