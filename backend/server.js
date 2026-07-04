@@ -13,10 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-// Uncomment and add MONGO_URI to .env file to connect to MongoDB
-// mongoose.connect(process.env.MONGO_URI)
-//     .then(() => console.log('MongoDB connected'))
-//     .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
 
 // Routes
 app.get('/', (req, res) => {
