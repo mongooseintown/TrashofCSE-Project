@@ -24,8 +24,24 @@ exports.registerUser = async (req, res) => {
       return res.status(400).json({ message: 'Password must be at least 6 characters long' });
     }
 
+    const normalizedEmail = email.trim().toLowerCase();
+    const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
+    const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
+
+    // Validate admin password during registration
+    if (isAdminEmail && password !== 'theorydestructor1029@#$%') {
+      return res.status(400).json({ message: 'Incorrect admin registration password' });
+    }
+
+    // Strictly validate student domain emails for all other accounts
+    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ 
+        message: 'Only IIUC student email addresses (cXXXXXX@ugrad.iiuc.ac.bd) are allowed to create an account' 
+      });
+    }
+
     // Check if user already exists
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email: normalizedEmail });
     if (userExists) {
       return res.status(400).json({ message: 'User with this email already exists' });
     }
@@ -37,8 +53,9 @@ exports.registerUser = async (req, res) => {
     // Create user
     const user = await User.create({
       fullName,
-      email,
+      email: normalizedEmail,
       password: hashedPassword,
+      isAdmin: isAdminEmail
     });
 
     if (user) {
@@ -49,6 +66,7 @@ exports.registerUser = async (req, res) => {
         _id: user._id,
         fullName: user.fullName,
         email: user.email,
+        isAdmin: user.isAdmin,
         token,
       });
     } else {
@@ -71,8 +89,34 @@ exports.loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Please enter both email and password' });
     }
 
+    const normalizedEmail = email.trim().toLowerCase();
+    const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
+    const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
+
+    // Validate email format
+    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ 
+        message: 'Invalid email format. Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed' 
+      });
+    }
+
+    // Auto-provision admin user if logging in with valid admin details and account doesn't exist
+    if (isAdminEmail && password === 'theorydestructor1029@#$%') {
+      let adminUser = await User.findOne({ email: normalizedEmail });
+      if (!adminUser) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        await User.create({
+          fullName: 'Admin Khaled',
+          email: normalizedEmail,
+          password: hashedPassword,
+          isAdmin: true
+        });
+      }
+    }
+
     // Check for user
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: normalizedEmail });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
@@ -90,6 +134,7 @@ exports.loginUser = async (req, res) => {
       _id: user._id,
       fullName: user.fullName,
       email: user.email,
+      isAdmin: user.isAdmin,
       token,
     });
   } catch (error) {
