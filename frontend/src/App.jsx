@@ -28,6 +28,7 @@ import StrainGaugePQNote from './pages/StrainGaugePQNote';
 import EEESegment08 from './pages/EEESegment08';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
+import PrivateRoute from './components/PrivateRoute';
 import CompilerLocked from './pages/CompilerLocked';
 import './App.css';
 
@@ -45,7 +46,7 @@ function AppContent() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           
           {/* Admin Restricted Compiler Routes */}
           <Route path="/compiler" element={<AdminRoute><CompilerHub /></AdminRoute>} />
@@ -60,22 +61,24 @@ function AppContent() {
           <Route path="/compiler-locked" element={<CompilerLocked />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/eee" element={<EEE />} />
-          <Route path="/eee/pv-cell" element={<PVCellNote />} />
-          <Route path="/eee/pv-cell-pq" element={<PVCellPQNote />} />
-          <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />
-          <Route path="/eee/strain-gauge" element={<StrainGaugeNote />} />
-          <Route path="/eee/transducer" element={<TransducerNote />} />
-          <Route path="/eee/piezo-electric" element={<PiezoElectricNote />} />
-          <Route path="/eee/thermocouple-math" element={<ThermocoupleMathNote />} />
-          <Route path="/eee/rtd" element={<RTDNote />} />
-          <Route path="/eee/rtd-pq" element={<RTDPQNote />} />
-          <Route path="/eee/piezo-electric-pq" element={<PiezoElectricPQNote />} />
-          <Route path="/eee/transducer-pq" element={<TransducerPQNote />} />
-          <Route path="/eee/dvm-pq" element={<DVMPQNote />} />
-          <Route path="/eee/opto-electronics-pq" element={<OptoElectronicsPQNote />} />
-          <Route path="/eee/strain-gauge-pq" element={<StrainGaugePQNote />} />
-          <Route path="/eee/segment-08" element={<EEESegment08 />} />
+          
+          {/* Authenticated EEE Routes */}
+          <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
+          <Route path="/eee/pv-cell" element={<PrivateRoute><PVCellNote /></PrivateRoute>} />
+          <Route path="/eee/pv-cell-pq" element={<PrivateRoute><PVCellPQNote /></PrivateRoute>} />
+          <Route path="/eee/opto-electronics" element={<PrivateRoute><OptoElectronicsNote /></PrivateRoute>} />
+          <Route path="/eee/strain-gauge" element={<PrivateRoute><StrainGaugeNote /></PrivateRoute>} />
+          <Route path="/eee/transducer" element={<PrivateRoute><TransducerNote /></PrivateRoute>} />
+          <Route path="/eee/piezo-electric" element={<PrivateRoute><PiezoElectricNote /></PrivateRoute>} />
+          <Route path="/eee/thermocouple-math" element={<PrivateRoute><ThermocoupleMathNote /></PrivateRoute>} />
+          <Route path="/eee/rtd" element={<PrivateRoute><RTDNote /></PrivateRoute>} />
+          <Route path="/eee/rtd-pq" element={<PrivateRoute><RTDPQNote /></PrivateRoute>} />
+          <Route path="/eee/piezo-electric-pq" element={<PrivateRoute><PiezoElectricPQNote /></PrivateRoute>} />
+          <Route path="/eee/transducer-pq" element={<PrivateRoute><TransducerPQNote /></PrivateRoute>} />
+          <Route path="/eee/dvm-pq" element={<PrivateRoute><DVMPQNote /></PrivateRoute>} />
+          <Route path="/eee/opto-electronics-pq" element={<PrivateRoute><OptoElectronicsPQNote /></PrivateRoute>} />
+          <Route path="/eee/strain-gauge-pq" element={<PrivateRoute><StrainGaugePQNote /></PrivateRoute>} />
+          <Route path="/eee/segment-08" element={<PrivateRoute><EEESegment08 /></PrivateRoute>} />
         </Routes>
       </div>
     </div>
