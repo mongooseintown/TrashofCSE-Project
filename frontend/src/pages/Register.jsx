@@ -7,6 +7,9 @@ const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const [formData, setFormData] = useState({
     fullName: '',
@@ -20,10 +23,43 @@ const Register = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Registration handling logic can be hooked here
-    console.log('Registering with:', formData);
+    setError('');
+    setSuccess('');
+
+    if (formData.password !== formData.confirmPassword) {
+      return setError('Passwords do not match');
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+
+      setSuccess('Account created successfully! Redirecting...');
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+
+      setTimeout(() => {
+        navigate('/compiler');
+      }, 1500);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,6 +91,36 @@ const Register = () => {
             <h3>Create your account</h3>
             <p>Enter your personal data to create account.</p>
           </div>
+
+          {error && (
+            <div style={{
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.2)',
+              color: '#ef4444',
+              padding: '0.8rem 1rem',
+              borderRadius: '12px',
+              fontSize: '0.85rem',
+              marginBottom: '1rem',
+              fontWeight: 500
+            }}>
+              {error}
+            </div>
+          )}
+
+          {success && (
+            <div style={{
+              background: 'rgba(16, 185, 129, 0.1)',
+              border: '1px solid rgba(16, 185, 129, 0.2)',
+              color: '#10b981',
+              padding: '0.8rem 1rem',
+              borderRadius: '12px',
+              fontSize: '0.85rem',
+              marginBottom: '1rem',
+              fontWeight: 500
+            }}>
+              {success}
+            </div>
+          )}
 
           <form className="reg-form" onSubmit={handleSubmit}>
             {/* Full Name Input */}
@@ -132,8 +198,8 @@ const Register = () => {
             </div>
 
             {/* Solid Orange Submit Button */}
-            <button type="submit" className="reg-submit-btn">
-              Create account
+            <button type="submit" className="reg-submit-btn" disabled={loading}>
+              {loading ? 'Creating account...' : 'Create account'}
             </button>
           </form>
 

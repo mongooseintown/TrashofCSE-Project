@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+
+    if (!email || !password) {
+      return setError('Please fill in all fields');
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Login failed');
+      }
+
+      setSuccess('Logged in successfully! Redirecting...');
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+
+      setTimeout(() => {
+        navigate('/compiler');
+      }, 1500);
+    } catch (err) {
+      setError(err.message || 'Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="login-page-container">
@@ -14,16 +59,84 @@ const Login = () => {
           <p>Sign in to your account</p>
         </div>
 
-        <form className="login-form">
+        {error && (
+          <div style={{
+            background: 'rgba(239, 68, 68, 0.1)',
+            border: '1px solid rgba(239, 68, 68, 0.2)',
+            color: '#ef4444',
+            padding: '0.8rem 1rem',
+            borderRadius: '16px',
+            fontSize: '0.85rem',
+            marginBottom: '1rem',
+            fontWeight: 500,
+            textAlign: 'center'
+          }}>
+            {error}
+          </div>
+        )}
+
+        {success && (
+          <div style={{
+            background: 'rgba(16, 185, 129, 0.1)',
+            border: '1px solid rgba(16, 185, 129, 0.2)',
+            color: '#10b981',
+            padding: '0.8rem 1rem',
+            borderRadius: '16px',
+            fontSize: '0.85rem',
+            marginBottom: '1rem',
+            fontWeight: 500,
+            textAlign: 'center'
+          }}>
+            {success}
+          </div>
+        )}
+
+        <form className="login-form" onSubmit={handleSubmit}>
+          {/* Email Input Group */}
           <div className="input-group">
             <label>Email</label>
             <div className="input-row">
-              <input type="email" placeholder="example@mail.com" />
-              <button type="button" className="submit-btn" aria-label="Submit">
-                <ArrowRight size={18} />
+              <input 
+                type="email" 
+                placeholder="example@mail.com" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Password Input Group */}
+          <div className="input-group">
+            <label>Password</label>
+            <div className="input-row">
+              <input 
+                type={showPassword ? 'text' : 'password'} 
+                placeholder="••••••••••••••" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button 
+                type="button" 
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: 'rgba(255, 255, 255, 0.3)',
+                  cursor: 'pointer',
+                  padding: 0
+                }}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
           </div>
+
+          {/* Full-width submit button */}
+          <button type="submit" className="login-submit-btn" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign In'}
+          </button>
 
           <div className="divider">OR</div>
 
