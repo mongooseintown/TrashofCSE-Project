@@ -38,11 +38,6 @@
 .nav-logo {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--border-primary), var(--bg-secondary));
-  box-shadow: 
-    inset 0 2px 4px var(--border-secondary),
-    0 2px 5px var(--shadow-nav);
   display: flex;
   align-items: center;
   justify-content: center;
