@@ -17,6 +17,14 @@ import TransducerNote from './pages/TransducerNote';
 import PiezoElectricNote from './pages/PiezoElectricNote';
 import ThermocoupleMathNote from './pages/ThermocoupleMathNote';
 import RTDNote from './pages/RTDNote';
+import PVCellPQNote from './pages/PVCellPQNote';
+import RTDPQNote from './pages/RTDPQNote';
+import PiezoElectricPQNote from './pages/PiezoElectricPQNote';
+import TransducerPQNote from './pages/TransducerPQNote';
+import DVMPQNote from './pages/DVMPQNote';
+import OptoElectronicsPQNote from './pages/OptoElectronicsPQNote';
+import StrainGaugePQNote from './pages/StrainGaugePQNote';
+import EEESegment08 from './pages/EEESegment08';
 import Navbar from './components/Navbar';
 import './App.css';
 
@@ -46,12 +54,20 @@ function AppContent() {
           <Route path="/register" element={<Register />} />
           <Route path="/eee" element={<EEE />} />
           <Route path="/eee/pv-cell" element={<PVCellNote />} />
+          <Route path="/eee/pv-cell-pq" element={<PVCellPQNote />} />
           <Route path="/eee/opto-electronics" element={<OptoElectronicsNote />} />
           <Route path="/eee/strain-gauge" element={<StrainGaugeNote />} />
           <Route path="/eee/transducer" element={<TransducerNote />} />
           <Route path="/eee/piezo-electric" element={<PiezoElectricNote />} />
           <Route path="/eee/thermocouple-math" element={<ThermocoupleMathNote />} />
           <Route path="/eee/rtd" element={<RTDNote />} />
+          <Route path="/eee/rtd-pq" element={<RTDPQNote />} />
+          <Route path="/eee/piezo-electric-pq" element={<PiezoElectricPQNote />} />
+          <Route path="/eee/transducer-pq" element={<TransducerPQNote />} />
+          <Route path="/eee/dvm-pq" element={<DVMPQNote />} />
+          <Route path="/eee/opto-electronics-pq" element={<OptoElectronicsPQNote />} />
+          <Route path="/eee/strain-gauge-pq" element={<StrainGaugePQNote />} />
+          <Route path="/eee/segment-08" element={<EEESegment08 />} />
         </Routes>
       </div>
     </div>
