@@ -27,6 +27,8 @@ import OptoElectronicsPQNote from './pages/OptoElectronicsPQNote';
 import StrainGaugePQNote from './pages/StrainGaugePQNote';
 import EEESegment08 from './pages/EEESegment08';
 import Navbar from './components/Navbar';
+import AdminRoute from './components/AdminRoute';
+import CompilerLocked from './pages/CompilerLocked';
 import './App.css';
 
 import { ReactLenis } from 'lenis/react';
@@ -44,14 +46,18 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/compiler" element={<CompilerHub />} />
-          <Route path="/compiler/segment-07" element={<CompilerSegment07 />} />
-          <Route path="/compiler/segment-06" element={<CompilerSegment06 />} />
-          <Route path="/compilersegment-06/:topicId" element={<TopicPage />} />
-          <Route path="/compilersegment-04" element={<CompilerSegment04 />} />
-          <Route path="/compilersegment-04/:topicId" element={<TopicPage />} />
-          <Route path="/compilersegment-08" element={<CompilerSegment08 />} />
-          <Route path="/compilersegment-08/:topicId" element={<TopicPage />} />
+          
+          {/* Admin Restricted Compiler Routes */}
+          <Route path="/compiler" element={<AdminRoute><CompilerHub /></AdminRoute>} />
+          <Route path="/compiler/segment-07" element={<AdminRoute><CompilerSegment07 /></AdminRoute>} />
+          <Route path="/compiler/segment-06" element={<AdminRoute><CompilerSegment06 /></AdminRoute>} />
+          <Route path="/compilersegment-06/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
+          <Route path="/compilersegment-04" element={<AdminRoute><CompilerSegment04 /></AdminRoute>} />
+          <Route path="/compilersegment-04/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
+          <Route path="/compilersegment-08" element={<AdminRoute><CompilerSegment08 /></AdminRoute>} />
+          <Route path="/compilersegment-08/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
+          
+          <Route path="/compiler-locked" element={<CompilerLocked />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/eee" element={<EEE />} />
