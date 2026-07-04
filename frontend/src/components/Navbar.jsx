@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
-import { Home, Terminal, LayoutDashboard, Sun, Moon, Zap } from 'lucide-react';
+import { Sun, Moon, LogOut } from 'lucide-react';
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleThemeChange = () => {
@@ -21,30 +22,40 @@ const Navbar = () => {
     window.dispatchEvent(new Event('theme-change'));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    // Force a theme-change event or logout redirect
+    navigate('/');
+  };
+
   return (
     <div className="glass-nav-container">
       <nav className="glass-nav">
-        {/* Left Logo */}
-        <div className="nav-logo">
-          <img src="/logo.png" alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.4)' }} />
+        {/* Left Logo branding */}
+        <div className="nav-logo-group" onClick={() => navigate('/dashboard')}>
+          <div className="nav-logo">
+            <img src="/logo.png" alt="Logo" />
+          </div>
+          <span className="nav-brand-text">TrashofCSE</span>
         </div>
         
         {/* Center Links */}
         <div className="nav-links">
-          <Link to="/" className="nav-link" title="Home">
-            <Home size={24} />
-          </Link>
-          <Link to="/compiler" className="nav-link" title="Compiler">
-            <Terminal size={24} />
-          </Link>
-          <Link to="/eee" className="nav-link" title="EEE">
-            <Zap size={24} />
-          </Link>
-          <Link to="/dashboard" className="nav-link" title="Dashboard">
-            <LayoutDashboard size={24} />
-          </Link>
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
+          <Link to="/eee" className="nav-link">EEE Portal</Link>
+          <Link to="/compiler" className="nav-link">Compiler</Link>
+          
           <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
-            {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+        </div>
+
+        {/* Right CTA Button (Matches the Download button style) */}
+        <div className="nav-actions">
+          <button className="btn-nav-logout" onClick={handleLogout}>
+            <LogOut size={16} />
+            <span>Log Out</span>
           </button>
         </div>
       </nav>

@@ -6,13 +6,13 @@
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  padding: 4rem 2rem 4rem 140px; /* Offset for desktop vertical navbar */
+  padding: 6.5rem 2rem 4rem 2rem; /* Symmetric layout offset with top clearance for header navbar */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @media (max-width: 768px) {
   .compiler-hub-container {
-    padding: 2rem 1rem 120px 1rem; /* Offset for mobile bottom navbar */
+    padding: 5.5rem 1rem 4rem 1rem;
   }
 }
 
