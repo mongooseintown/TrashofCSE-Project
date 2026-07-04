@@ -17,7 +17,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.35); /* Soft overlay so the text/form remains legible */
+  background: rgba(0, 0, 0, 0.45); /* Soft dark overlay so the text/form remains highly legible */
   z-index: 0;
   pointer-events: none;
 }
@@ -26,7 +26,7 @@
   z-index: 1;
   width: 100%;
   max-width: 420px;
-  background: var(--card-bg);
+  background: rgba(18, 20, 24, 0.88); /* Semi-solid card bg to prevent background drawing lines from interfering with form text */
   border-radius: 40px; /* More rounded to match the image */
   padding: 3rem 2rem;
   position: relative;
@@ -35,12 +35,12 @@
   -webkit-backdrop-filter: blur(40px);
   
   /* The crisp glass edge */
-  border: 1px solid var(--border-primary);
-  border-top: 1px solid var(--border-secondary);
-  border-left: 1px solid var(--border-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
   
   /* Outer shadow */
-  box-shadow: 0 30px 60px -12px var(--shadow-primary);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
 }
 
 /* Exact colored glow bleed inside the top left corner */
@@ -54,8 +54,8 @@
   /* Radial gradient using monochrome variables */
   background: radial-gradient(
     ellipse at center, 
-    var(--border-secondary) 0%,   
-    var(--bg-secondary) 40%,  
+    rgba(255, 255, 255, 0.08) 0%,   
+    rgba(0, 0, 0, 0.2) 40%,  
     transparent 70%
   );
   z-index: 0;
@@ -74,13 +74,13 @@
 .login-header h1 {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 0.5rem;
   letter-spacing: -0.5px;
 }
 
 .login-header p {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.95rem;
 }
 
@@ -94,23 +94,25 @@
 
 .input-group {
   position: relative;
-  background: var(--bg-secondary);
+  background: rgba(0, 0, 0, 0.45);
   border-radius: 16px;
-  border: 1px solid var(--border-primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .input-group:focus-within {
-  border-color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .input-group label {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 0.2rem;
+  font-weight: 500;
 }
 
 .input-row {
@@ -129,7 +131,7 @@
 }
 
 .input-row input::placeholder {
-  color: #555555;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .submit-btn {
@@ -183,8 +185,8 @@
   justify-content: space-between;
   width: 100%;
   padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   color: #ffffff;
   font-size: 0.95rem;
@@ -194,8 +196,8 @@
 }
 
 .social-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .social-content {
