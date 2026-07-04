@@ -32,8 +32,8 @@ import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
-  // Hide global floating navbar on the home page to match exact landing page mockup design
-  const showNavbar = location.pathname !== '/';
+  // Hide global floating navbar on Home, Login, and Register pages
+  const showNavbar = !['/', '/login', '/register'].includes(location.pathname);
 
   return (
     <div className="App">
