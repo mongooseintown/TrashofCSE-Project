@@ -11,9 +11,9 @@ const TransducerPQNote = () => {
       {/* Header Row with Back Button */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/eee')} 
+          onClick={() => navigate('/eee/segment-08')} 
           className="note-back-btn"
-          title="Back to EEE Portal"
+          title="Back to Segment 08 Portal"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
