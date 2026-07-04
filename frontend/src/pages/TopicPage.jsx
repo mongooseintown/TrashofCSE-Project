@@ -714,7 +714,9 @@ const TopicPage = () => {
         <h1 style={{ fontSize: '2.5rem', margin: 0, textTransform: 'capitalize' }}>{topicId.replace(/-/g, ' ')}</h1>
       </div>
       
-      {content}
+      <div className="topic-content-container">
+        {content}
+      </div>
     </div>
   );
 };

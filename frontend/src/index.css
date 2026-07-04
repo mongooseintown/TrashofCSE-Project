@@ -59,3 +59,24 @@ body {
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Topic Content Card Overrides for responsive Theme Mode */
+.topic-content-container > div {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+.topic-content-container p {
+  color: var(--text-secondary) !important;
+}
+
+.topic-content-container strong {
+  color: var(--text-primary) !important;
+}
+
+/* Maintain original orange color contrast for important labels */
+.topic-content-container strong[style*="#ff5b22"],
+.topic-content-container strong[style*="255, 91, 34"],
+.topic-content-container strong[style*="rgb(255, 91, 34)"] {
+  color: #ff5b22 !important;
+}
