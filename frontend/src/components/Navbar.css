@@ -20,9 +20,7 @@
   width: 100%;
   height: 52px;
   background-color: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-primary);
+  border: 1px solid var(--nav-border);
   border-top: none;
   border-radius: 0 0 20px 20px;
   box-shadow: 
@@ -82,7 +80,7 @@
   font-family: 'Outfit', 'Inter', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--nav-link-hover);
   letter-spacing: -0.3px;
   transition: color 0.3s ease;
 }
@@ -96,7 +94,7 @@
 }
 
 .nav-link {
-  color: var(--text-secondary);
+  color: var(--nav-link);
   text-decoration: none;
   font-family: 'Outfit', 'Inter', sans-serif;
   font-size: 0.85rem;
@@ -105,13 +103,13 @@
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--nav-link-hover);
 }
 
 .btn-nav-theme-toggle {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: var(--nav-link);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -121,7 +119,7 @@
 }
 
 .btn-nav-theme-toggle:hover {
-  color: var(--text-primary);
+  color: var(--nav-link-hover);
   transform: rotate(15deg);
 }
 
@@ -135,8 +133,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+  background-color: var(--nav-btn-bg);
+  color: var(--nav-btn-text);
   border: none;
   border-radius: 50px;
   padding: 0.4rem 1rem;
