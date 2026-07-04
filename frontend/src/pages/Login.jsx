@@ -17,6 +17,50 @@ const Login = () => {
     if (token) {
       navigate('/dashboard');
     }
+
+    const handleAuthMessage = async (event) => {
+      // Security check: ensure event is from our domain
+      if (event.origin !== window.location.origin) return;
+
+      if (event.data && event.data.type === 'GOOGLE_AUTH_SUCCESS') {
+        const { email, name } = event.data;
+        
+        setLoading(true);
+        setError('');
+        setSuccess('');
+
+        try {
+          const response = await fetch('http://localhost:5000/api/auth/social', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, fullName: name }),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.message || 'Authentication failed');
+          }
+
+          setSuccess('Authenticated successfully! Redirecting...');
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 1500);
+        } catch (err) {
+          setError(err.message || 'Social auth error');
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleAuthMessage);
+    return () => window.removeEventListener('message', handleAuthMessage);
   }, [navigate]);
 
   // Social Auth States
@@ -77,11 +121,28 @@ const Login = () => {
   };
 
   const openSocialModal = (platform) => {
-    setSocialPlatform(platform);
-    setSocialEmail('');
-    setSocialName('');
-    setSocialError('');
-    setSocialModalOpen(true);
+    if (platform === 'Google') {
+      const width = 500;
+      const height = 600;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height / 2;
+      
+      const popup = window.open(
+        '/google-login-popup',
+        'GoogleSignIn',
+        `width=${width},height=${height},left=${left},top=${top},status=no,resizable=yes,scrollbars=yes`
+      );
+      
+      if (popup) {
+        popup.focus();
+      }
+    } else {
+      setSocialPlatform(platform);
+      setSocialEmail('');
+      setSocialName('');
+      setSocialError('');
+      setSocialModalOpen(true);
+    }
   };
 
   const handleSubmit = async (e) => {
