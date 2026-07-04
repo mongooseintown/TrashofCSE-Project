@@ -36,53 +36,9 @@ const Dashboard = () => {
       backgroundSize: '20px 20px',
       color: '#ffffff',
       fontFamily: "'Outfit', 'Inter', sans-serif",
-      padding: '2rem',
+      padding: '8rem 2rem 4rem 2rem',
       position: 'relative'
     }}>
-      {/* Top Header Actions */}
-      <div style={{
-        position: 'absolute',
-        top: '2rem',
-        right: '2rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem'
-      }}>
-        {user && (
-          <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.9rem' }}>
-            Signed in as: <strong style={{ color: '#ffffff' }}>{user.fullName}</strong>
-          </span>
-        )}
-        <button 
-          onClick={handleLogout}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            borderRadius: '12px',
-            color: '#ff5555',
-            padding: '0.6rem 1.2rem',
-            fontSize: '0.9rem',
-            fontWeight: 600,
-            cursor: 'pointer',
-            transition: 'all 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 85, 85, 0.1)';
-            e.currentTarget.style.borderColor = 'rgba(255, 85, 85, 0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-          }}
-        >
-          <LogOut size={16} />
-          Log Out
-        </button>
-      </div>
-
       {/* Main Center Message Box */}
       <div style={{
         maxWidth: '550px',
@@ -95,7 +51,8 @@ const Dashboard = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '1.5rem'
+        gap: '1.5rem',
+        zIndex: 1
       }}>
         {/* Visual Animated Gear Icon Container */}
         <div style={{
@@ -162,6 +119,55 @@ const Dashboard = () => {
         }}>
           Our core CSE analytics panels, visualization workspaces, and study maps are currently under constructor optimization. Check back soon for full feature rollout.
         </p>
+
+        {/* User Card Actions & Logout Info (Inside Card) */}
+        <div style={{
+          width: '100%',
+          borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+          paddingTop: '1.5rem',
+          marginTop: '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '1rem'
+        }}>
+          {user && (
+            <span style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.85rem' }}>
+              Signed in as: <strong style={{ color: '#ffffff', fontWeight: 600 }}>{user.fullName}</strong>
+            </span>
+          )}
+          
+          <button 
+            onClick={handleLogout}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: 'rgba(255, 85, 85, 0.05)',
+              border: '1px solid rgba(255, 85, 85, 0.15)',
+              borderRadius: '12px',
+              color: '#ff5555',
+              padding: '0.7rem 1.4rem',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              width: '100%',
+              justifyContent: 'center'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 85, 85, 0.15)';
+              e.currentTarget.style.borderColor = 'rgba(255, 85, 85, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 85, 85, 0.05)';
+              e.currentTarget.style.borderColor = 'rgba(255, 85, 85, 0.15)';
+            }}
+          >
+            <LogOut size={16} />
+            Log Out Account
+          </button>
+        </div>
       </div>
     </div>
   );

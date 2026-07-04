@@ -33,8 +33,8 @@ import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
-  // Hide global floating navbar on Home, Login, Register, and Dashboard pages
-  const showNavbar = !['/', '/login', '/register', '/dashboard'].includes(location.pathname);
+  // Hide global floating navbar on Home, Login, and Register pages
+  const showNavbar = !['/', '/login', '/register'].includes(location.pathname);
 
   return (
     <div className="App">
