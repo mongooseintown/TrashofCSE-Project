@@ -186,11 +186,25 @@
   display: none;
 }
 
-/* Desktop layout adjustment: let children direct layout to .glass-nav */
+/* Desktop layout adjustment: brand left, links perfectly centered, actions right */
 @media (min-width: 769px) {
-  .nav-top-row,
+  .nav-top-row {
+    width: auto;
+  }
+
   .nav-menu-content {
-    display: contents;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+    height: 100%;
+  }
+
+  .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
