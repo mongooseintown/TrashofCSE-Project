@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 5.5rem 2rem 2rem 2rem; /* Added top padding clearance for global top navbar */
   background: url('/login-bg.png') no-repeat center center;
   background-size: cover;
   position: relative;

@@ -75,33 +75,6 @@ const Home = () => {
         <div className="mesh-blob blob-3"></div>
       </div>
 
-      {/* 1. Header Navigation */}
-      <header className="landing-header">
-        <div className="header-logo" onClick={() => navigate('/')}>
-          <div className="logo-sparkle">✦</div>
-          <span>TrashofCSE</span>
-        </div>
-        <nav className="header-nav">
-          <a href="#features">Features</a>
-          <a href="#achievements">Benefits</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div className="header-actions">
-          <button className="btn-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          {isLoggedIn ? (
-            <Link to="/dashboard" className="btn-signup">Dashboard</Link>
-          ) : (
-            <>
-              <Link to="/login" className="btn-signin">Sign in</Link>
-              <Link to="/register" className="btn-signup">Get Started</Link>
-            </>
-          )}
-        </div>
-      </header>
-
       {/* 2. Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
