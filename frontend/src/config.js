@@ -16,6 +16,6 @@ export const getApiUrl = (path) => {
     return `http://${hostname}:5000${path}`;
   }
   
-  // Fallback to relative path for production (Vercel serverless / proxy or same host)
-  return `${window.location.origin}${path}`;
+  // Fallback to production Render backend URL
+  return `https://trashofcse-project.onrender.com${path}`;
 };
