@@ -74,7 +74,7 @@ exports.registerUser = async (req, res) => {
     }
   } catch (error) {
     console.error('Register error:', error);
-    res.status(500).json({ message: 'Server error during registration' });
+    res.status(500).json({ message: 'Server error during registration', error: error.message });
   }
 };
 
@@ -139,7 +139,7 @@ exports.loginUser = async (req, res) => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    res.status(500).json({ message: 'Server error during login', error: error.message });
   }
 };
 
@@ -190,6 +190,6 @@ exports.socialAuth = async (req, res) => {
     });
   } catch (error) {
     console.error('Social Auth error:', error);
-    res.status(500).json({ message: 'Server error during social authentication' });
+    res.status(500).json({ message: 'Server error during social authentication', error: error.message });
   }
 };
