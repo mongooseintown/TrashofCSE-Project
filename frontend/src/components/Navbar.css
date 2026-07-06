@@ -288,7 +288,7 @@
 
   /* Supaste-styled giant typography vertical links */
   .nav-link {
-    font-size: 2.1rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--nav-link);
     letter-spacing: -0.5px;
@@ -314,8 +314,7 @@
   }
 
   .btn-nav-theme-toggle svg {
-    width: 24px;
-    height: 24px;
+    display: none;
   }
 
   .btn-nav-theme-toggle:hover, .btn-nav-theme-toggle:active {
@@ -325,9 +324,9 @@
 
   .theme-toggle-text-mobile {
     display: inline;
-    font-size: 2.1rem;
+    font-size: 1.4rem;
     font-weight: 600;
-    margin-left: 0.8rem;
+    margin-left: 0;
     font-family: 'Outfit', 'Inter', sans-serif;
     letter-spacing: -0.5px;
   }
