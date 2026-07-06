@@ -65,13 +65,9 @@ const Login = () => {
         throw new Error(data.message || 'Authentication failed');
       }
 
-      setSuccess('Authenticated successfully! Redirecting...');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
-
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+      navigate('/dashboard');
     } catch (err) {
       // Firebase standard error parsing / styling
       let errMsg = err.message || 'Social authentication error';
@@ -111,13 +107,9 @@ const Login = () => {
         throw new Error(data.message || 'Login failed');
       }
 
-      setSuccess('Logged in successfully! Redirecting...');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
-
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Invalid email or password');
     } finally {

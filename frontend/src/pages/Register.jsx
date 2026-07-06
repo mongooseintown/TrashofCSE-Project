@@ -64,13 +64,9 @@ const Register = () => {
         throw new Error(data.message || 'Authentication failed');
       }
 
-      setSuccess('Authenticated successfully! Redirecting...');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
-
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+      navigate('/dashboard');
     } catch (err) {
       // Firebase standard error parsing / styling
       let errMsg = err.message || 'Social authentication error';
@@ -122,13 +118,9 @@ const Register = () => {
         throw new Error(data.message || 'Registration failed');
       }
 
-      setSuccess('Account created successfully! Redirecting...');
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
-
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 1500);
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Something went wrong. Please try again.');
     } finally {
