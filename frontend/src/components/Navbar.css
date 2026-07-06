@@ -19,6 +19,7 @@
   justify-content: space-between;
   width: 100%;
   height: 52px;
+  max-height: 52px;
   background-color: var(--nav-bg);
   border: 1px solid var(--nav-border);
   border-top: none;
@@ -27,7 +28,13 @@
     0 12px 30px -10px var(--shadow-nav),
     inset 0 -1px 0px rgba(255, 255, 255, 0.05);
   padding: 0 1.25rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+  transition: 
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease, 
+    border-color 0.3s ease, 
+    box-shadow 0.3s ease;
+  overflow: hidden;
 }
 
 /* Outward shoulder curve fillets */
@@ -52,7 +59,17 @@
   background: radial-gradient(circle at bottom right, transparent 20px, var(--nav-bg-solid) 20px);
 }
 
-/* Left Group */
+/* Top horizontal bar containing logo and mobile trigger button */
+.nav-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 52px;
+  flex-shrink: 0;
+}
+
+/* Logo group */
 .nav-logo-group {
   display: flex;
   align-items: center;
@@ -85,7 +102,16 @@
   transition: color 0.3s ease;
 }
 
-/* Center Links */
+/* Menu Content Container: contains links and action buttons */
+.nav-menu-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+/* Links Container */
 .nav-links {
   display: flex;
   flex-direction: row;
@@ -99,7 +125,7 @@
   font-family: 'Outfit', 'Inter', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-link:hover {
@@ -123,6 +149,10 @@
   transform: rotate(15deg);
 }
 
+.theme-toggle-text-mobile {
+  display: none; /* Only visible on mobile */
+}
+
 /* Right Actions / Logout Button */
 .nav-actions {
   display: flex;
@@ -132,6 +162,7 @@
 .btn-nav-logout {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   background-color: var(--nav-btn-bg);
   color: var(--nav-btn-text);
@@ -150,49 +181,143 @@
   transform: translateY(-0.5px);
 }
 
-/* Mobile Responsiveness */
+/* Hide Hamburger Menu trigger on Desktop */
+.nav-mobile-toggle {
+  display: none;
+}
+
+/* ==========================================================================
+   Mobile Responsiveness: Mobile unfold layouts matching screenshot 1 and 2
+   ========================================================================== */
 @media (max-width: 768px) {
   .glass-nav-container {
     max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 1rem;
   }
 
   .glass-nav {
-    height: 48px;
-    padding: 0 0.8rem;
-    border-radius: 0 0 16px 16px;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: auto;
+    max-height: 52px; /* Restrict height when closed */
+    padding: 0 1.25rem;
+    border-radius: 0 0 20px 20px;
   }
 
-  .glass-nav::before,
-  .glass-nav::after {
-    width: 16px;
-    height: 16px;
+  /* When mobile navbar is unfolded */
+  .glass-nav.is-open {
+    max-height: 480px; /* Animate height unfold */
   }
 
-  .glass-nav::before {
-    left: -16px;
-    background: radial-gradient(circle at bottom left, transparent 16px, var(--nav-bg-solid) 16px);
+  /* Top row height and structure */
+  .nav-top-row {
+    height: 52px;
   }
 
-  .glass-nav::after {
-    right: -16px;
-    background: radial-gradient(circle at bottom right, transparent 16px, var(--nav-bg-solid) 16px);
+  /* Hamburger Menu trigger visible on mobile */
+  .nav-mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--nav-link-hover);
+    cursor: pointer;
+    padding: 0.3rem;
+    transition: transform 0.2s ease;
   }
 
-  .nav-brand-text {
-    display: none; /* Hide brand text on mobile to save space */
+  .nav-mobile-toggle:active {
+    transform: scale(0.9);
   }
 
+  /* Mobile menu content panel - vertical layout when open */
+  .nav-menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 2.2rem 0.5rem 2.5rem 0.5rem;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .glass-nav.is-open .nav-menu-content {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Vertical navigation links list styling */
   .nav-links {
-    gap: 0.8rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.8rem;
+    width: 100%;
   }
 
+  /* Supaste-styled giant typography vertical links */
   .nav-link {
-    font-size: 0.8rem;
+    font-size: 2.1rem;
+    font-weight: 600;
+    color: var(--nav-link);
+    letter-spacing: -0.5px;
+    width: 100%;
+    padding: 0.2rem 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .nav-link:hover, .nav-link:active {
+    color: var(--nav-link-hover);
+    transform: translateX(4px);
+  }
+
+  /* Mobile theme toggle styled like standard list link item */
+  .btn-nav-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    color: var(--nav-link);
+    padding: 0.2rem 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .btn-nav-theme-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .btn-nav-theme-toggle:hover, .btn-nav-theme-toggle:active {
+    color: var(--nav-link-hover);
+    transform: translateX(4px);
+  }
+
+  .theme-toggle-text-mobile {
+    display: inline;
+    font-size: 2.1rem;
+    font-weight: 600;
+    margin-left: 0.8rem;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    letter-spacing: -0.5px;
+  }
+
+  /* Full-width white/dark CTA action buttons on mobile */
+  .nav-actions {
+    display: flex;
+    width: 100%;
+    margin-top: 0.5rem;
   }
 
   .btn-nav-logout {
-    padding: 0.35rem 0.8rem;
-    font-size: 0.75rem;
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 }
