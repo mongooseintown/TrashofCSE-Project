@@ -65,26 +65,6 @@ const TransducerPQNote = () => {
           </div>
         </div>
 
-        <div className="note-image-card">
-          <span className="note-image-caption">
-            Question 3
-          </span>
-          <div className="note-img-wrapper" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
-            <img 
-              src="/eee-transducer-pq-3.png" 
-              alt="A displacement transducer with a shaft stroke of 3 inch is applied to the circuit of Figure 1. The total resistance of the potentiometer is 5kΩ, and the applied voltage VT = 5V. When the wiper is 0.9 inch from B, what is the value of the output voltage VO?" 
-              className="note-handnote-img" 
-            />
-            <div style={{ alignSelf: 'flex-start', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)', borderLeft: '2px solid var(--text-secondary)', paddingLeft: '0.5rem' }}>
-              Solution:
-            </div>
-            <img 
-              src="/eee-transducer-pq-ans-3.png" 
-              alt="Transducer math solution sheet" 
-              className="note-handnote-img" 
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
