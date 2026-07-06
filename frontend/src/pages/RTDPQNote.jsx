@@ -38,8 +38,13 @@ const RTDPQNote = () => {
               Solution:
             </div>
             <img 
-              src="/eee-rtd-pq-ans-1.png" 
-              alt="RTD Construction and Working Principle Solution Sheet" 
+              src="/eee-rtd-pq-ans-1a.png" 
+              alt="RTD Construction and Working Principle Solution Sheet Page 1" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-rtd-pq-ans-1b.png" 
+              alt="RTD Construction and Working Principle Solution Sheet Page 2" 
               className="note-handnote-img" 
             />
           </div>
