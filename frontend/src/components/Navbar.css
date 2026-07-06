@@ -186,6 +186,15 @@
   display: none;
 }
 
+/* Desktop layout adjustment: let children direct layout to .glass-nav */
+@media (min-width: 769px) {
+  .nav-top-row,
+  .nav-menu-content {
+    display: contents;
+  }
+}
+
+
 /* ==========================================================================
    Mobile Responsiveness: Mobile unfold layouts matching screenshot 1 and 2
    ========================================================================== */
