@@ -26,6 +26,26 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
+app.get('/debug-db', async (req, res) => {
+  const dnsPromises = require('dns').promises;
+  const results = {};
+  const hosts = [
+    'ac-wf1zzbc-shard-00-00.hspvqcp.mongodb.net',
+    'ac-wf1zzbc-shard-00-01.hspvqcp.mongodb.net',
+    'ac-wf1zzbc-shard-00-02.hspvqcp.mongodb.net'
+  ];
+  for (const host of hosts) {
+    try {
+      const addresses = await dnsPromises.resolve4(host);
+      results[host] = { success: true, addresses };
+    } catch (err) {
+      results[host] = { success: false, error: err.message };
+    }
+  }
+  results['mongoose_state'] = mongoose.connection.readyState;
+  res.json(results);
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
