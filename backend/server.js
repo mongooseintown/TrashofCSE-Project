@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection (Triggered redeployment for whitelist propagation check)
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { family: 4 })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
