@@ -26,6 +26,7 @@ import DVMPQNote from './pages/DVMPQNote';
 import OptoElectronicsPQNote from './pages/OptoElectronicsPQNote';
 import StrainGaugePQNote from './pages/StrainGaugePQNote';
 import ThermocouplePQNote from './pages/ThermocouplePQNote';
+import ThermistorPQNote from './pages/ThermistorPQNote';
 import EEESegment08 from './pages/EEESegment08';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
@@ -75,6 +76,7 @@ function AppContent() {
           <Route path="/eee/opto-electronics-pq" element={<PrivateRoute><OptoElectronicsPQNote /></PrivateRoute>} />
           <Route path="/eee/strain-gauge-pq" element={<PrivateRoute><StrainGaugePQNote /></PrivateRoute>} />
           <Route path="/eee/thermocouple-pq" element={<PrivateRoute><ThermocouplePQNote /></PrivateRoute>} />
+          <Route path="/eee/thermistor-pq" element={<PrivateRoute><ThermistorPQNote /></PrivateRoute>} />
 
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />

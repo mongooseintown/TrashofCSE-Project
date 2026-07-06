@@ -389,6 +389,50 @@ const EEESegment08 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 16: Thermistor Previous Questions */}
+        <div className="product-card" onClick={() => navigate('/eee/thermistor-pq')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/rtd-cover.png" 
+              alt="Thermistor Previous Questions" 
+              className="card-img" 
+              style={{ filter: 'hue-rotate(150deg) brightness(0.9)' }} 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Thermistor Previous Questions</h3>
+            <span className="card-sub">Exam Question Board</span>
+            <p className="card-desc">
+              Review and practice real previous exam questions on Thermistor Working Principles.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/thermistor-pq');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
