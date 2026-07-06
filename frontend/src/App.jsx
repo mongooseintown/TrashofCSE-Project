@@ -51,32 +51,32 @@ function AppContent() {
           <Route path="/compiler/segment-07" element={<AdminRoute><CompilerSegment07 /></AdminRoute>} />
           <Route path="/compiler/segment-06" element={<AdminRoute><CompilerSegment06 /></AdminRoute>} />
           <Route path="/compilersegment-06/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
-          <Route path="/compilersegment-04" element={<AdminRoute><CompilerSegment04 /></AdminRoute>} />
-          <Route path="/compilersegment-04/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
-          <Route path="/compilersegment-08" element={<AdminRoute><CompilerSegment08 /></AdminRoute>} />
-          <Route path="/compilersegment-08/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
-          
-          <Route path="/compiler-locked" element={<CompilerLocked />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          
-          {/* Authenticated EEE Routes */}
+          <Route path="/compiler/segment-04" element={<AdminRoute><CompilerSegment04 /></AdminRoute>} />
+          <Route path="/compiler/locked" element={<CompilerLocked />} />
+
+          {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
+          <Route path="/eee/segment-08" element={<PrivateRoute><EEESegment08 /></PrivateRoute>} />
           <Route path="/eee/pv-cell" element={<PrivateRoute><PVCellNote /></PrivateRoute>} />
-          <Route path="/eee/pv-cell-pq" element={<PrivateRoute><PVCellPQNote /></PrivateRoute>} />
           <Route path="/eee/opto-electronics" element={<PrivateRoute><OptoElectronicsNote /></PrivateRoute>} />
           <Route path="/eee/strain-gauge" element={<PrivateRoute><StrainGaugeNote /></PrivateRoute>} />
           <Route path="/eee/transducer" element={<PrivateRoute><TransducerNote /></PrivateRoute>} />
           <Route path="/eee/piezo-electric" element={<PrivateRoute><PiezoElectricNote /></PrivateRoute>} />
           <Route path="/eee/thermocouple-math" element={<PrivateRoute><ThermocoupleMathNote /></PrivateRoute>} />
           <Route path="/eee/rtd" element={<PrivateRoute><RTDNote /></PrivateRoute>} />
+          
+          {/* EEE Prev Questions Routes */}
+          <Route path="/eee/pv-cell-pq" element={<PrivateRoute><PVCellPQNote /></PrivateRoute>} />
           <Route path="/eee/rtd-pq" element={<PrivateRoute><RTDPQNote /></PrivateRoute>} />
           <Route path="/eee/piezo-electric-pq" element={<PrivateRoute><PiezoElectricPQNote /></PrivateRoute>} />
           <Route path="/eee/transducer-pq" element={<PrivateRoute><TransducerPQNote /></PrivateRoute>} />
           <Route path="/eee/dvm-pq" element={<PrivateRoute><DVMPQNote /></PrivateRoute>} />
           <Route path="/eee/opto-electronics-pq" element={<PrivateRoute><OptoElectronicsPQNote /></PrivateRoute>} />
           <Route path="/eee/strain-gauge-pq" element={<PrivateRoute><StrainGaugePQNote /></PrivateRoute>} />
-          <Route path="/eee/segment-08" element={<PrivateRoute><EEESegment08 /></PrivateRoute>} />
+
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </div>
@@ -87,6 +87,12 @@ function App() {
   React.useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Disable native scroll restoration so reloads start at the top
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
   }, []);
 
   return (
