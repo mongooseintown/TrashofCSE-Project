@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { auth, googleProvider } from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
+import { getApiUrl } from '../config';
 import './Login.css';
 
 const Login = () => {
@@ -47,7 +48,7 @@ const Login = () => {
       }
 
       // Call backend social route
-      const response = await fetch('http://localhost:5000/api/auth/social', {
+      const response = await fetch(getApiUrl('/api/auth/social'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(getApiUrl('/api/auth/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
