@@ -223,10 +223,17 @@
     align-items: stretch;
     justify-content: flex-start;
     height: auto;
+    max-height: 52px; /* Restrict height when closed */
     overflow: visible;
     padding: 0 1.25rem;
     border-radius: 0 0 20px 20px;
   }
+
+  /* When mobile navbar is unfolded */
+  .glass-nav.is-open {
+    max-height: 480px; /* Animate height unfold */
+  }
+
 
   /* Top row height and structure */
   .nav-top-row {

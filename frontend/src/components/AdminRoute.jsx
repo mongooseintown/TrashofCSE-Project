@@ -14,7 +14,7 @@ const AdminRoute = ({ children }) => {
       return <Navigate to="/login" replace />;
     }
     // If logged in but not admin, redirect to locked screen
-    return <Navigate to="/compiler-locked" replace />;
+    return <Navigate to="/compiler/locked" replace />;
   }
 
   return children;
