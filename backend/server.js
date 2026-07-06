@@ -14,10 +14,18 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+let mongoConnectionError = null;
+
 // Database connection (Triggered redeployment for whitelist propagation check)
 mongoose.connect(process.env.MONGO_URI, { family: 4 })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+    .then(() => {
+      console.log('MongoDB connected');
+      mongoConnectionError = 'None (Connected successfully!)';
+    })
+    .catch(err => {
+      console.log(err);
+      mongoConnectionError = err.message || err.toString();
+    });
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
@@ -43,6 +51,7 @@ app.get('/debug-db', async (req, res) => {
     }
   }
   results['mongoose_state'] = mongoose.connection.readyState;
+  results['connection_error'] = mongoConnectionError;
   res.json(results);
 });
 
