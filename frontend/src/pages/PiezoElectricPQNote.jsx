@@ -37,19 +37,28 @@ const PiezoElectricPQNote = () => {
               Solution:
             </div>
             <img 
-              src="/eee-piezo-electric-pq-ans-1.png" 
+              src="/eee-piezo-pq-ans-1a.png" 
               alt="Piezoelectric Sensor Diagram" 
               className="note-handnote-img" 
-              style={{ maxWidth: '500px' }}
             />
             <img 
-              src="/eee-piezo-electric-pq-ans-2.png" 
+              src="/eee-piezo-pq-ans-1b.png" 
               alt="Working Principle Part 1" 
               className="note-handnote-img" 
             />
             <img 
-              src="/eee-piezo-electric-pq-ans-3.png" 
+              src="/eee-piezo-pq-ans-1c.png" 
               alt="Working Principle Part 2" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-piezo-pq-ans-1d.png" 
+              alt="Working Principle Part 3" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-piezo-pq-ans-1e.png" 
+              alt="Working Principle Part 4" 
               className="note-handnote-img" 
             />
           </div>
