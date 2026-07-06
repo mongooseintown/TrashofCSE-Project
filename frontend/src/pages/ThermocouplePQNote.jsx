@@ -27,10 +27,23 @@ const ThermocouplePQNote = () => {
           <span className="note-image-caption">
             Question 1
           </span>
-          <div className="note-img-wrapper">
+          <div className="note-img-wrapper" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
             <img 
               src="/eee-thermocouple-pq-1.png" 
               alt="Describe working principle of the Thermocouple with proper net sketches." 
+              className="note-handnote-img" 
+            />
+            <div style={{ alignSelf: 'flex-start', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)', borderLeft: '2px solid var(--text-secondary)', paddingLeft: '0.5rem' }}>
+              Solution:
+            </div>
+            <img 
+              src="/eee-thermocouple-pq-ans-1.png" 
+              alt="Thermocouple circuit diagram" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-thermocouple-pq-ans-2.png" 
+              alt="Thermocouple working principle explanation" 
               className="note-handnote-img" 
             />
           </div>
