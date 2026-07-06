@@ -139,7 +139,12 @@ exports.loginUser = async (req, res) => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login', error: error.message });
+    const maskedUri = process.env.MONGO_URI ? process.env.MONGO_URI.replace(/:([^@]+)@/, ':****@') : 'undefined';
+    res.status(500).json({ 
+      message: 'Server error during login', 
+      error: error.message,
+      uri: maskedUri
+    });
   }
 };
 
