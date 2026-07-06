@@ -24,28 +24,31 @@ const StrainGaugePQNote = () => {
       {/* Note Images List (Serially) */}
       <div className="note-images-list">
         <div className="note-image-card">
-          <div className="note-img-wrapper">
+          <span className="note-image-caption">
+            Question 1
+          </span>
+          <div className="note-img-wrapper" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
             <img 
-              src="/eee-strain-gauge-pq-1.png" 
-              alt="Strain Gauge PQ Page 1" 
+              src="/eee-strain-gauge-pq-q1.png" 
+              alt="Prove the gauge factor equation for a strain gauge." 
               className="note-handnote-img" 
             />
-          </div>
-        </div>
-        <div className="note-image-card">
-          <div className="note-img-wrapper">
+            <div style={{ alignSelf: 'flex-start', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)', borderLeft: '2px solid var(--text-secondary)', paddingLeft: '0.5rem' }}>
+              Solution:
+            </div>
             <img 
-              src="/eee-strain-gauge-pq-2.png" 
-              alt="Strain Gauge PQ Page 2" 
+              src="/eee-strain-gauge-pq-ans-1.png" 
+              alt="Gauge factor equation derivation part 1" 
               className="note-handnote-img" 
             />
-          </div>
-        </div>
-        <div className="note-image-card">
-          <div className="note-img-wrapper">
             <img 
-              src="/eee-strain-gauge-pq-3.png" 
-              alt="Strain Gauge PQ Page 3" 
+              src="/eee-strain-gauge-pq-ans-2.png" 
+              alt="Gauge factor equation derivation part 2" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-strain-gauge-pq-ans-3.png" 
+              alt="Gauge factor equation derivation part 3" 
               className="note-handnote-img" 
             />
           </div>
