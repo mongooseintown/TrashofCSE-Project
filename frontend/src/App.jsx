@@ -28,6 +28,7 @@ import StrainGaugePQNote from './pages/StrainGaugePQNote';
 import ThermocouplePQNote from './pages/ThermocouplePQNote';
 import ThermistorPQNote from './pages/ThermistorPQNote';
 import EEESegment08 from './pages/EEESegment08';
+import PotentiometerMathNote from './pages/PotentiometerMathNote';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -66,6 +67,7 @@ function AppContent() {
           <Route path="/eee/piezo-electric" element={<PrivateRoute><PiezoElectricNote /></PrivateRoute>} />
           <Route path="/eee/thermocouple-math" element={<PrivateRoute><ThermocoupleMathNote /></PrivateRoute>} />
           <Route path="/eee/rtd" element={<PrivateRoute><RTDNote /></PrivateRoute>} />
+          <Route path="/eee/potentiometer-math" element={<PrivateRoute><PotentiometerMathNote /></PrivateRoute>} />
           
           {/* EEE Prev Questions Routes */}
           <Route path="/eee/pv-cell-pq" element={<PrivateRoute><PVCellPQNote /></PrivateRoute>} />
