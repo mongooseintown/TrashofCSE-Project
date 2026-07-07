@@ -11,35 +11,24 @@ const ThermocoupleMathNote = () => {
       {/* Header Row with Back Button */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/eee')} 
+          onClick={() => navigate('/eee/segment-08')} 
           className="note-back-btn"
-          title="Back to EEE Portal"
+          title="Back to Segment 08 Portal"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
-        <h1>Thermocouple & Thermistor Related Math Note</h1>
+        <h1>Thermocouple's Math</h1>
       </div>
 
-      {/* Note Images List (Swapped Order) */}
+      {/* Note Images List */}
       <div className="note-images-list">
         <div className="note-image-card">
-          <span className="note-image-caption">Part 1: Thermocouple EMF Formula and Variables Definition</span>
+          <span className="note-image-caption">Thermocouple EMF Math Problem & Solution</span>
           <div className="note-img-wrapper">
             <img 
-              src="/thermocouple-math-2.png" 
-              alt="Thermocouple Math Formula" 
-              className="note-handnote-img" 
-            />
-          </div>
-        </div>
-
-        <div className="note-image-card">
-          <span className="note-image-caption">Part 2: Thermocouple EMF Calculation Math Problem and Solution</span>
-          <div className="note-img-wrapper">
-            <img 
-              src="/thermocouple-math-1.png" 
-              alt="Thermocouple Math Solution" 
+              src="/eee-thermocouple-math.png" 
+              alt="Thermocouple Math Solved Example" 
               className="note-handnote-img" 
             />
           </div>
