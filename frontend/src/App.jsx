@@ -34,6 +34,7 @@ import MeasurementInstrumentationNote from './pages/MeasurementInstrumentationNo
 import GeneralizedMeasurementNote from './pages/GeneralizedMeasurementNote';
 import TypesOfErrorsNote from './pages/TypesOfErrorsNote';
 import AccuracyPrecisionNote from './pages/AccuracyPrecisionNote';
+import DisplayDevicesNote from './pages/DisplayDevicesNote';
 import EEESegment04 from './pages/EEESegment04';
 import EEESegment05 from './pages/EEESegment05';
 import EEESegment06 from './pages/EEESegment06';
@@ -71,6 +72,7 @@ function AppContent() {
           <Route path="/eee/segment-05" element={<PrivateRoute><EEESegment05 /></PrivateRoute>} />
           <Route path="/eee/segment-06" element={<PrivateRoute><EEESegment06 /></PrivateRoute>} />
           <Route path="/eee/segment-07" element={<PrivateRoute><EEESegment07 /></PrivateRoute>} />
+          <Route path="/eee/display-devices" element={<PrivateRoute><DisplayDevicesNote /></PrivateRoute>} />
           <Route path="/eee/measurement-instrumentation" element={<PrivateRoute><MeasurementInstrumentationNote /></PrivateRoute>} />
           <Route path="/eee/generalized-measurement-system" element={<PrivateRoute><GeneralizedMeasurementNote /></PrivateRoute>} />
           <Route path="/eee/types-of-errors" element={<PrivateRoute><TypesOfErrorsNote /></PrivateRoute>} />
