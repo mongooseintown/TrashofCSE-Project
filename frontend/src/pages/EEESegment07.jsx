@@ -38,51 +38,7 @@ const EEESegment07 = () => {
 
       {/* Card Grid */}
       <div className="card-grid" style={{ marginTop: '2rem' }}>
-        {/* Card 1: Generalized Measurement System */}
-        <div className="product-card" onClick={() => navigate('/eee/generalized-measurement-system')}>
-          {/* Card Top Image Cover */}
-          <div className="card-img-container">
-            <span className="card-tag-badge">New</span>
-            <div className="card-logo-badge">EEE</div>
-            
-            <img 
-              src="/eee-seg08-cover.png" 
-              alt="Generalized Measurement System" 
-              className="card-img" 
-              style={{ filter: 'hue-rotate(200deg) brightness(0.9)' }} 
-            />
-
-            {/* Pagination dots mimicking Nike card pagination */}
-            <div className="card-dots">
-              <span className="active"></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-
-          {/* Card Content details */}
-          <div className="card-details-section">
-            <h3>Generalized Measurement System</h3>
-            <span className="card-sub">Exam Question Board</span>
-            <p className="card-desc">
-              Study the steps, functional stages, and examples of a generalized measuring system.
-            </p>
-          </div>
-
-          {/* Card Footer row */}
-          <div className="card-footer-row">
-            <span className="price-pill">EEE 101</span>
-            <button className="buy-pill-btn" onClick={(e) => {
-              e.stopPropagation();
-              navigate('/eee/generalized-measurement-system');
-            }}>
-              Open Note <ArrowUpRight size={16} />
-            </button>
-          </div>
-        </div>
-
-        {/* Card 2: Measurement and Instrumentation */}
+        {/* Card 1: Measurement and Instrumentation */}
         <div className="product-card" onClick={() => navigate('/eee/measurement-instrumentation')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
@@ -126,8 +82,8 @@ const EEESegment07 = () => {
           </div>
         </div>
 
-        {/* Card 3: Types of Errors in Measurement */}
-        <div className="product-card" onClick={() => navigate('/eee/types-of-errors')}>
+        {/* Card 2: Generalized Measurement System */}
+        <div className="product-card" onClick={() => navigate('/eee/generalized-measurement-system')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
             <span className="card-tag-badge">New</span>
@@ -135,9 +91,9 @@ const EEESegment07 = () => {
             
             <img 
               src="/eee-seg08-cover.png" 
-              alt="Types of Errors in Measurement" 
+              alt="Generalized Measurement System" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(300deg) brightness(0.9)' }} 
+              style={{ filter: 'hue-rotate(200deg) brightness(0.9)' }} 
             />
 
             {/* Pagination dots mimicking Nike card pagination */}
@@ -151,10 +107,10 @@ const EEESegment07 = () => {
 
           {/* Card Content details */}
           <div className="card-details-section">
-            <h3>Types of Errors in Measurement</h3>
+            <h3>Generalized Measurement System</h3>
             <span className="card-sub">Exam Question Board</span>
             <p className="card-desc">
-              Learn about systematic errors, random errors, and their types & causes in measurement systems.
+              Study the steps, functional stages, and examples of a generalized measuring system.
             </p>
           </div>
 
@@ -163,14 +119,14 @@ const EEESegment07 = () => {
             <span className="price-pill">EEE 101</span>
             <button className="buy-pill-btn" onClick={(e) => {
               e.stopPropagation();
-              navigate('/eee/types-of-errors');
+              navigate('/eee/generalized-measurement-system');
             }}>
               Open Note <ArrowUpRight size={16} />
             </button>
           </div>
         </div>
 
-        {/* Card 4: Accuracy and Precision */}
+        {/* Card 3: Accuracy and Precision */}
         <div className="product-card" onClick={() => navigate('/eee/accuracy-precision')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
@@ -208,6 +164,50 @@ const EEESegment07 = () => {
             <button className="buy-pill-btn" onClick={(e) => {
               e.stopPropagation();
               navigate('/eee/accuracy-precision');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Card 4: Types of Errors in Measurement */}
+        <div className="product-card" onClick={() => navigate('/eee/types-of-errors')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/eee-seg08-cover.png" 
+              alt="Types of Errors in Measurement" 
+              className="card-img" 
+              style={{ filter: 'hue-rotate(300deg) brightness(0.9)' }} 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Types of Errors in Measurement</h3>
+            <span className="card-sub">Exam Question Board</span>
+            <p className="card-desc">
+              Learn about systematic errors, random errors, and their types & causes in measurement systems.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/types-of-errors');
             }}>
               Open Note <ArrowUpRight size={16} />
             </button>
