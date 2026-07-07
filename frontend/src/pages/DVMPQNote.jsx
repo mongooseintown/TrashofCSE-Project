@@ -37,12 +37,12 @@ const DVMPQNote = () => {
               Solution:
             </div>
             <img 
-              src="/eee-dvm-pq-ans-1.png" 
+              src="/eee-dvm-pq-ans-1a.png" 
               alt="DVM functional block diagram" 
               className="note-handnote-img" 
             />
             <img 
-              src="/eee-dvm-pq-ans-2.png" 
+              src="/eee-dvm-pq-ans-1b.jpg" 
               alt="DVM construction notes" 
               className="note-handnote-img" 
             />
