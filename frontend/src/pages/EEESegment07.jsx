@@ -38,7 +38,51 @@ const EEESegment07 = () => {
 
       {/* Card Grid */}
       <div className="card-grid" style={{ marginTop: '2rem' }}>
-        {/* Card 1: Measurement and Instrumentation */}
+        {/* Card 1: Generalized Measurement System */}
+        <div className="product-card" onClick={() => navigate('/eee/generalized-measurement-system')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/eee-seg08-cover.png" 
+              alt="Generalized Measurement System" 
+              className="card-img" 
+              style={{ filter: 'hue-rotate(200deg) brightness(0.9)' }} 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Generalized Measurement System</h3>
+            <span className="card-sub">Exam Question Board</span>
+            <p className="card-desc">
+              Study the steps, functional stages, and examples of a generalized measuring system.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/generalized-measurement-system');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Card 2: Measurement and Instrumentation */}
         <div className="product-card" onClick={() => navigate('/eee/measurement-instrumentation')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
