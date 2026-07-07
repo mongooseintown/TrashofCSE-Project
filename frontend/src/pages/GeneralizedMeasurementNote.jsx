@@ -11,9 +11,9 @@ const GeneralizedMeasurementNote = () => {
       {/* Header Row with Back Button */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/eee/segment-07')} 
+          onClick={() => navigate('/eee/segment-06')} 
           className="note-back-btn"
-          title="Back to Segment 07 Portal"
+          title="Back to Segment 06 Portal"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
