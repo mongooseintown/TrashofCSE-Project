@@ -169,6 +169,50 @@ const EEESegment07 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 4: Accuracy and Precision */}
+        <div className="product-card" onClick={() => navigate('/eee/accuracy-precision')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/transducer-cover.png" 
+              alt="Accuracy and Precision" 
+              className="card-img" 
+              style={{ filter: 'hue-rotate(30deg) brightness(0.95)' }} 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Accuracy and Precision</h3>
+            <span className="card-sub">Exam Question Board</span>
+            <p className="card-desc">
+              Understand consistency, repeatability, resolution, and expected values in measurements.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/accuracy-precision');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
