@@ -33,6 +33,9 @@ import PotentiometerMathNote from './pages/PotentiometerMathNote';
 import MeasurementInstrumentationNote from './pages/MeasurementInstrumentationNote';
 import GeneralizedMeasurementNote from './pages/GeneralizedMeasurementNote';
 import SystematicErrorsNote from './pages/SystematicErrorsNote';
+import EEESegment04 from './pages/EEESegment04';
+import EEESegment05 from './pages/EEESegment05';
+import EEESegment06 from './pages/EEESegment06';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -63,6 +66,9 @@ function AppContent() {
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
+          <Route path="/eee/segment-04" element={<PrivateRoute><EEESegment04 /></PrivateRoute>} />
+          <Route path="/eee/segment-05" element={<PrivateRoute><EEESegment05 /></PrivateRoute>} />
+          <Route path="/eee/segment-06" element={<PrivateRoute><EEESegment06 /></PrivateRoute>} />
           <Route path="/eee/segment-07" element={<PrivateRoute><EEESegment07 /></PrivateRoute>} />
           <Route path="/eee/measurement-instrumentation" element={<PrivateRoute><MeasurementInstrumentationNote /></PrivateRoute>} />
           <Route path="/eee/generalized-measurement-system" element={<PrivateRoute><GeneralizedMeasurementNote /></PrivateRoute>} />
