@@ -37,14 +37,13 @@ const PVCellPQNote = () => {
               Solution:
             </div>
             <img 
-              src="/eee-pv-pq-new-1-ans-1.png" 
-              alt="Solar Cell Schematic Diagram" 
+              src="/eee-pvcell-pq-ans-1a.jpg" 
+              alt="Solar Cell Schematic and Working Principle Part 1" 
               className="note-handnote-img" 
-              style={{ maxWidth: '450px' }}
             />
             <img 
-              src="/eee-pv-pq-new-1-ans-2.png" 
-              alt="Working Principle Part 1" 
+              src="/eee-pvcell-pq-ans-1b.png" 
+              alt="Solar Cell Working Principle Part 2" 
               className="note-handnote-img" 
             />
           </div>
