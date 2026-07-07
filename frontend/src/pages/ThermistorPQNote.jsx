@@ -27,10 +27,23 @@ const ThermistorPQNote = () => {
           <span className="note-image-caption">
             Question 1
           </span>
-          <div className="note-img-wrapper">
+          <div className="note-img-wrapper" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
             <img 
               src="/eee-thermistor-pq-1.png" 
               alt="Describe working principle of the Thermistor with proper net sketches." 
+              className="note-handnote-img" 
+            />
+            <div style={{ alignSelf: 'flex-start', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)', borderLeft: '2px solid var(--text-secondary)', paddingLeft: '0.5rem' }}>
+              Solution:
+            </div>
+            <img 
+              src="/eee-thermistor-pq-ans-1a.png" 
+              alt="Thermistor Construction Schemes" 
+              className="note-handnote-img" 
+            />
+            <img 
+              src="/eee-thermistor-pq-ans-1b.png" 
+              alt="Thermistor Working Principle Notes" 
               className="note-handnote-img" 
             />
           </div>
