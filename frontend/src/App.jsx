@@ -28,6 +28,7 @@ import StrainGaugePQNote from './pages/StrainGaugePQNote';
 import ThermocouplePQNote from './pages/ThermocouplePQNote';
 import ThermistorPQNote from './pages/ThermistorPQNote';
 import EEESegment08 from './pages/EEESegment08';
+import EEESegment07 from './pages/EEESegment07';
 import PotentiometerMathNote from './pages/PotentiometerMathNote';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
@@ -59,6 +60,7 @@ function AppContent() {
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
+          <Route path="/eee/segment-07" element={<PrivateRoute><EEESegment07 /></PrivateRoute>} />
           <Route path="/eee/segment-08" element={<PrivateRoute><EEESegment08 /></PrivateRoute>} />
           <Route path="/eee/pv-cell" element={<PrivateRoute><PVCellNote /></PrivateRoute>} />
           <Route path="/eee/opto-electronics" element={<PrivateRoute><OptoElectronicsNote /></PrivateRoute>} />
