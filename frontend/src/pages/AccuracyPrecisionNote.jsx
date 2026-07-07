@@ -26,8 +26,8 @@ const AccuracyPrecisionNote = () => {
         <div className="note-image-card">
           <div className="note-img-wrapper">
             <img 
-              src="/eee-accuracy-precision.png" 
-              alt="Accuracy and Precision, Resolution and expected value details" 
+              src="/eee-accuracy-precision-new.png" 
+              alt="Define Accuracy and Precision. Why are they needed?" 
               className="note-handnote-img" 
             />
           </div>
