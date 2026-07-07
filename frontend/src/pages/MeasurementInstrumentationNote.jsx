@@ -21,29 +21,13 @@ const MeasurementInstrumentationNote = () => {
         <h1>Measurement and Instrumentation</h1>
       </div>
 
-      {/* Note Images List (Serially) */}
+      {/* Note Images List */}
       <div className="note-images-list">
         <div className="note-image-card">
-          <span className="note-image-caption">
-            Question 1
-          </span>
-          <div className="note-img-wrapper" style={{ flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+          <div className="note-img-wrapper">
             <img 
-              src="/eee-measurement-pq-1.png" 
-              alt="What is Measurement / What do you understand by the term measurement and instrumentation?" 
-              className="note-handnote-img" 
-            />
-            <div style={{ alignSelf: 'flex-start', fontWeight: 600, fontSize: '0.9rem', color: 'var(--text-secondary)', borderLeft: '2px solid var(--text-secondary)', paddingLeft: '0.5rem' }}>
-              Solution:
-            </div>
-            <img 
-              src="/eee-measurement-pq-ans-1a.png" 
-              alt="Definition of Measurement" 
-              className="note-handnote-img" 
-            />
-            <img 
-              src="/eee-measurement-pq-ans-1b.png" 
-              alt="Definition of Instrumentation" 
+              src="/eee-measurement-instrumentation-new.png" 
+              alt="Measurement and Instrumentation Question and Answer" 
               className="note-handnote-img" 
             />
           </div>
