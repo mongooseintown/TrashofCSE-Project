@@ -125,6 +125,50 @@ const EEESegment07 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 3: Systematic Errors */}
+        <div className="product-card" onClick={() => navigate('/eee/systematic-errors')}>
+          {/* Card Top Image Cover */}
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">EEE</div>
+            
+            <img 
+              src="/eee-seg08-cover.png" 
+              alt="Systematic Errors" 
+              className="card-img" 
+              style={{ filter: 'hue-rotate(300deg) brightness(0.9)' }} 
+            />
+
+            {/* Pagination dots mimicking Nike card pagination */}
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          {/* Card Content details */}
+          <div className="card-details-section">
+            <h3>Systematic Errors</h3>
+            <span className="card-sub">Exam Question Board</span>
+            <p className="card-desc">
+              Learn about systematic errors, their types, and causes in measurement systems.
+            </p>
+          </div>
+
+          {/* Card Footer row */}
+          <div className="card-footer-row">
+            <span className="price-pill">EEE 101</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/eee/systematic-errors');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
