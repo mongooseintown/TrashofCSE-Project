@@ -46,10 +46,9 @@ const EEESegment07 = () => {
             <div className="card-logo-badge">EEE</div>
             
             <img 
-              src="/transducer-cover.png" 
+              src="/eee-measurement-cover.png" 
               alt="Measurement and Instrumentation" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(100deg) brightness(0.9)' }} 
             />
 
             {/* Pagination dots mimicking Nike card pagination */}
@@ -90,10 +89,9 @@ const EEESegment07 = () => {
             <div className="card-logo-badge">EEE</div>
             
             <img 
-              src="/eee-seg08-cover.png" 
+              src="/eee-generalized-cover.png" 
               alt="Generalized Measurement System" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(200deg) brightness(0.9)' }} 
             />
 
             {/* Pagination dots mimicking Nike card pagination */}
@@ -134,10 +132,9 @@ const EEESegment07 = () => {
             <div className="card-logo-badge">EEE</div>
             
             <img 
-              src="/transducer-cover.png" 
+              src="/eee-accuracy-cover.png" 
               alt="Accuracy and Precision" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(30deg) brightness(0.95)' }} 
             />
 
             {/* Pagination dots mimicking Nike card pagination */}
@@ -178,10 +175,9 @@ const EEESegment07 = () => {
             <div className="card-logo-badge">EEE</div>
             
             <img 
-              src="/eee-seg08-cover.png" 
+              src="/eee-errors-cover.png" 
               alt="Types of Errors in Measurement" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(300deg) brightness(0.9)' }} 
             />
 
             {/* Pagination dots mimicking Nike card pagination */}
