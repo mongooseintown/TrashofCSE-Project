@@ -40,6 +40,8 @@ import InstrumentationAmplifierNote from './pages/InstrumentationAmplifierNote';
 import EEESegment04 from './pages/EEESegment04';
 import EEESegment05 from './pages/EEESegment05';
 import EEESegment06 from './pages/EEESegment06';
+import EEEGroupA from './pages/EEEGroupA';
+import StepperMotorNote from './pages/StepperMotorNote';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -74,6 +76,8 @@ function AppContent() {
           <Route path="/eee/segment-05" element={<PrivateRoute><EEESegment05 /></PrivateRoute>} />
           <Route path="/eee/segment-06" element={<PrivateRoute><EEESegment06 /></PrivateRoute>} />
           <Route path="/eee/segment-07" element={<PrivateRoute><EEESegment07 /></PrivateRoute>} />
+          <Route path="/eee/group-a" element={<PrivateRoute><EEEGroupA /></PrivateRoute>} />
+          <Route path="/eee/stepper-motor" element={<PrivateRoute><StepperMotorNote /></PrivateRoute>} />
           <Route path="/eee/display-devices" element={<PrivateRoute><DisplayDevicesNote /></PrivateRoute>} />
           <Route path="/eee/instrumentation-amplifier" element={<PrivateRoute><InstrumentationAmplifierNote /></PrivateRoute>} />
           <Route path="/eee/measurement-instrumentation" element={<PrivateRoute><MeasurementInstrumentationNote /></PrivateRoute>} />

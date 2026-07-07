@@ -16,16 +16,15 @@ const EEE = () => {
 
       {/* Card Grid */}
       <div className="card-grid">
-        {/* Card: EEE Segment 04 */}
-        <div className="product-card" onClick={() => navigate('/eee/segment-04')}>
+        {/* Card: EEE Group A */}
+        <div className="product-card" onClick={() => navigate('/eee/group-a')}>
           <div className="card-img-container">
             <span className="card-tag-badge">New</span>
             <div className="card-logo-badge">EEE</div>
             <img 
-              src="/eee-seg08-cover.png" 
-              alt="EEE Segment 04" 
+              src="/eee-group-a-cover.png" 
+              alt="EEE Group A" 
               className="card-img" 
-              style={{ filter: 'hue-rotate(30deg) brightness(0.95)' }}
             />
             <div className="card-dots">
               <span className="active"></span>
@@ -35,53 +34,17 @@ const EEE = () => {
             </div>
           </div>
           <div className="card-details-section">
-            <h3>Segment 04</h3>
-            <span className="card-sub">DC Network Analysis</span>
+            <h3>Group A</h3>
+            <span className="card-sub">Electrical Machines & Topics</span>
             <p className="card-desc">
-              Study DC circuits, Kirchhoff's laws, Thevenin's theorem, and network analysis fundamentals.
+              Study stepper motors, driving modes, full step, half step configurations, and industrial machines.
             </p>
           </div>
           <div className="card-footer-row">
             <span className="price-pill">EEE 101</span>
             <button className="buy-pill-btn" onClick={(e) => {
               e.stopPropagation();
-              navigate('/eee/segment-04');
-            }}>
-              Open Note <ArrowUpRight size={16} />
-            </button>
-          </div>
-        </div>
-
-        {/* Card: EEE Segment 05 */}
-        <div className="product-card" onClick={() => navigate('/eee/segment-05')}>
-          <div className="card-img-container">
-            <span className="card-tag-badge">New</span>
-            <div className="card-logo-badge">EEE</div>
-            <img 
-              src="/eee-seg08-cover.png" 
-              alt="EEE Segment 05" 
-              className="card-img" 
-              style={{ filter: 'hue-rotate(60deg) brightness(0.95)' }}
-            />
-            <div className="card-dots">
-              <span className="active"></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div>
-          <div className="card-details-section">
-            <h3>Segment 05</h3>
-            <span className="card-sub">Magnetic Circuits & Inductance</span>
-            <p className="card-desc">
-              Explore magnetic circuits, electromagnetic induction, and inductance concepts.
-            </p>
-          </div>
-          <div className="card-footer-row">
-            <span className="price-pill">EEE 101</span>
-            <button className="buy-pill-btn" onClick={(e) => {
-              e.stopPropagation();
-              navigate('/eee/segment-05');
+              navigate('/eee/group-a');
             }}>
               Open Note <ArrowUpRight size={16} />
             </button>
