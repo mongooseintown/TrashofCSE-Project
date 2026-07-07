@@ -35,6 +35,7 @@ import GeneralizedMeasurementNote from './pages/GeneralizedMeasurementNote';
 import TypesOfErrorsNote from './pages/TypesOfErrorsNote';
 import AccuracyPrecisionNote from './pages/AccuracyPrecisionNote';
 import DisplayDevicesNote from './pages/DisplayDevicesNote';
+import DFMNote from './pages/DFMNote';
 import EEESegment04 from './pages/EEESegment04';
 import EEESegment05 from './pages/EEESegment05';
 import EEESegment06 from './pages/EEESegment06';
@@ -78,6 +79,7 @@ function AppContent() {
           <Route path="/eee/types-of-errors" element={<PrivateRoute><TypesOfErrorsNote /></PrivateRoute>} />
           <Route path="/eee/accuracy-precision" element={<PrivateRoute><AccuracyPrecisionNote /></PrivateRoute>} />
           <Route path="/eee/segment-08" element={<PrivateRoute><EEESegment08 /></PrivateRoute>} />
+          <Route path="/eee/dfm-pq" element={<PrivateRoute><DFMNote /></PrivateRoute>} />
           <Route path="/eee/pv-cell" element={<PrivateRoute><PVCellNote /></PrivateRoute>} />
           <Route path="/eee/opto-electronics" element={<PrivateRoute><OptoElectronicsNote /></PrivateRoute>} />
           <Route path="/eee/strain-gauge" element={<PrivateRoute><StrainGaugeNote /></PrivateRoute>} />
