@@ -126,8 +126,8 @@ const EEESegment07 = () => {
           </div>
         </div>
 
-        {/* Card 3: Systematic Errors */}
-        <div className="product-card" onClick={() => navigate('/eee/systematic-errors')}>
+        {/* Card 3: Types of Errors in Measurement */}
+        <div className="product-card" onClick={() => navigate('/eee/types-of-errors')}>
           {/* Card Top Image Cover */}
           <div className="card-img-container">
             <span className="card-tag-badge">New</span>
@@ -135,7 +135,7 @@ const EEESegment07 = () => {
             
             <img 
               src="/eee-seg08-cover.png" 
-              alt="Systematic Errors" 
+              alt="Types of Errors in Measurement" 
               className="card-img" 
               style={{ filter: 'hue-rotate(300deg) brightness(0.9)' }} 
             />
@@ -151,10 +151,10 @@ const EEESegment07 = () => {
 
           {/* Card Content details */}
           <div className="card-details-section">
-            <h3>Systematic Errors</h3>
+            <h3>Types of Errors in Measurement</h3>
             <span className="card-sub">Exam Question Board</span>
             <p className="card-desc">
-              Learn about systematic errors, their types, and causes in measurement systems.
+              Learn about systematic errors, random errors, and their types & causes in measurement systems.
             </p>
           </div>
 
@@ -163,7 +163,7 @@ const EEESegment07 = () => {
             <span className="price-pill">EEE 101</span>
             <button className="buy-pill-btn" onClick={(e) => {
               e.stopPropagation();
-              navigate('/eee/systematic-errors');
+              navigate('/eee/types-of-errors');
             }}>
               Open Note <ArrowUpRight size={16} />
             </button>

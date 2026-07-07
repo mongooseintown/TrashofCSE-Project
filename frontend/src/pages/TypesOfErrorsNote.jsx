@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import './PVCellNote.css'; // Reuses notes layout styling
 
-const SystematicErrorsNote = () => {
+const TypesOfErrorsNote = () => {
   const navigate = useNavigate();
 
   return (
@@ -18,11 +18,12 @@ const SystematicErrorsNote = () => {
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
-        <h1>Systematic Errors</h1>
+        <h1>Types of Errors in Measurement</h1>
       </div>
 
       {/* Note Images List (Serially) */}
       <div className="note-images-list">
+        {/* Question 1: Systematic Errors */}
         <div className="note-image-card">
           <span className="note-image-caption">
             Question 1
@@ -53,4 +54,4 @@ const SystematicErrorsNote = () => {
   );
 };
 
-export default SystematicErrorsNote;
+export default TypesOfErrorsNote;
