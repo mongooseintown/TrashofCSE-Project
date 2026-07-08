@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import './PVCellNote.css'; // Reuses notes layout styling
 
 const CALogicElementsNote = () => {
@@ -21,16 +21,34 @@ const CALogicElementsNote = () => {
         <h1>Logic Elements & Execution Steps</h1>
       </div>
 
-      {/* Placeholder content */}
-      <div className="note-images-list" style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div className="note-image-card" style={{ padding: '3rem', textAlign: 'center', maxWidth: '500px' }}>
-          <Clock size={40} style={{ color: 'rgba(255,255,255,0.3)', marginBottom: '1rem' }} />
-          <h2 style={{ fontSize: '1.4rem', fontWeight: 650, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
-            No Handnotes Uploaded Yet
+      {/* Note Content List */}
+      <div className="note-images-list">
+        {/* Q1 Card */}
+        <div className="note-image-card" style={{ marginBottom: '2.5rem' }}>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 650, color: 'var(--text-primary)', marginBottom: '1rem', padding: '0 1rem' }}>
+            Question 1:
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.5 }}>
-            State transition diagrams and instruction execution step descriptions are currently under preparation. Check back soon.
-          </p>
+          <div className="note-img-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src="/ca-logic-elements-q1.png" 
+              alt="Explain the logic elements for multicycle datapath. (Autumn 2025)" 
+              className="note-handnote-img" 
+            />
+          </div>
+        </div>
+
+        {/* Q2 Card */}
+        <div className="note-image-card">
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 650, color: 'var(--text-primary)', marginBottom: '1rem', padding: '0 1rem' }}>
+            Question 2:
+          </h2>
+          <div className="note-img-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img 
+              src="/ca-logic-elements-q2.png" 
+              alt="How does the execution of different instruction types differ in multi-cycle datapath. Show the steps. (Spring 2025)" 
+              className="note-handnote-img" 
+            />
+          </div>
         </div>
       </div>
     </div>
