@@ -6,6 +6,49 @@ import './EEE.css';
 const ComputerArchitecture = () => {
   const navigate = useNavigate();
 
+  const cardsData = [
+    {
+      title: 'Segment 05',
+      subtitle: 'Datapath & Control Design',
+      desc: 'Study the differences between single-cycle and multi-cycle datapaths, control unit signals, and operations.',
+      cover: '/ca-seg05-cover.png',
+      path: '/computer-architecture/segment-05',
+      pill: 'CSE-3523',
+      badge: 'New',
+      badgeColor: 'var(--accent-teal)'
+    },
+    {
+      title: 'Suggestions From Mahir Shadid Sir',
+      subtitle: 'Exam Suggestions & Chapters Guidelines',
+      desc: 'Get exam suggestions, chapter-wise highlights, and question guidelines from Mahir Shadid Sir for Computer Architecture course.',
+      cover: '/ca-suggestions-cover.png',
+      path: '/computer-architecture/suggestions',
+      pill: 'Guidelines',
+      badge: 'Special',
+      badgeColor: '#d4a017'
+    },
+    {
+      title: 'Suggestions From Shafiullah Sir',
+      subtitle: 'Exam Q&A & Architecture Guidelines',
+      desc: 'Access comprehensive exam preparation questions, topic summaries, and study guidelines from Shafiullah Sir.',
+      cover: '/ca-shafiullah-cover.png',
+      path: '/computer-architecture/suggestions-shafiullah',
+      pill: 'Guidelines',
+      badge: 'Special',
+      badgeColor: '#d4a017'
+    },
+    {
+      title: 'Guidelines From Amanullah Sir',
+      subtitle: 'Semester Final Exam Syllabus',
+      desc: 'Review official course outline, Group-A & Group-B topics distribution, and questions credit weight criteria.',
+      cover: '/ca-amanullah-cover.png',
+      path: '/computer-architecture/guidelines-amanullah',
+      pill: 'Syllabus',
+      badge: 'Exam',
+      badgeColor: '#3b82f6'
+    }
+  ];
+
   return (
     <div className="eee-container">
       {/* Page Header */}
@@ -16,40 +59,41 @@ const ComputerArchitecture = () => {
 
       {/* Card Grid */}
       <div className="card-grid">
-        {/* Card: Segment 05 */}
-        <div className="product-card" onClick={() => navigate('/computer-architecture/segment-05')}>
-          <div className="card-img-container">
-            <span className="card-tag-badge">New</span>
-            <div className="card-logo-badge">CSE</div>
-            <img 
-              src="/ca-seg05-cover.png" 
-              alt="Segment 05" 
-              className="card-img" 
-            />
-            <div className="card-dots">
-              <span className="active"></span>
-              <span></span>
-              <span></span>
-              <span></span>
+        {cardsData.map((card, idx) => (
+          <div key={idx} className="product-card" onClick={() => navigate(card.path)}>
+            <div className="card-img-container">
+              <span className="card-tag-badge" style={{ background: card.badgeColor }}>
+                {card.badge}
+              </span>
+              <div className="card-logo-badge">CSE</div>
+              <img 
+                src={card.cover} 
+                alt={card.title} 
+                className="card-img" 
+              />
+              <div className="card-dots">
+                <span className="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div className="card-details-section">
+              <h3>{card.title}</h3>
+              <span className="card-sub">{card.subtitle}</span>
+              <p className="card-desc">{card.desc}</p>
+            </div>
+            <div className="card-footer-row">
+              <span className="price-pill">{card.pill}</span>
+              <button className="buy-pill-btn" onClick={(e) => {
+                e.stopPropagation();
+                navigate(card.path);
+              }}>
+                Open Note <ArrowUpRight size={16} />
+              </button>
             </div>
           </div>
-          <div className="card-details-section">
-            <h3>Segment 05</h3>
-            <span className="card-sub">Datapath & Control Design</span>
-            <p className="card-desc">
-              Study the differences between single-cycle and multi-cycle datapaths, control unit signals, and operations.
-            </p>
-          </div>
-          <div className="card-footer-row">
-            <span className="price-pill">CSE-3523</span>
-            <button className="buy-pill-btn" onClick={(e) => {
-              e.stopPropagation();
-              navigate('/computer-architecture/segment-05');
-            }}>
-              Open Segment <ArrowUpRight size={16} />
-            </button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
