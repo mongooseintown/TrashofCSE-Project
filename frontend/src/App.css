@@ -12,25 +12,25 @@
   transition: padding-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Sidebar Margin offsets on desktop */
+/* Sidebar offset on desktop — sidebar is 240px wide + 10px left margin + 16px gap */
 @media (min-width: 769px) {
   .app-container.has-sidebar .app-main-content {
-    padding-left: 260px;
+    padding-left: 268px;
   }
   
   .app-container.has-sidebar:has(.glass-sidebar.collapsed) .app-main-content {
-    padding-left: 76px;
+    padding-left: 86px;
   }
 }
 
-/* Adjust padding-left dynamic fallback using standard class-selector if has() selector is not supported */
+/* Fallback for browsers without :has() */
 @media (min-width: 769px) {
   .glass-sidebar.collapsed + .app-main-content {
-    padding-left: 76px !important;
+    padding-left: 86px !important;
   }
 }
 
-/* Mobile responsive layout */
+/* Mobile */
 @media (max-width: 768px) {
   .app-container.has-sidebar .app-main-content {
     padding-left: 0;
@@ -40,12 +40,16 @@
   .glass-sidebar {
     width: 240px;
     z-index: 1000;
+    top: 84px;
+    left: 10px;
+    bottom: 10px;
+    border-radius: 16px;
   }
   
   .glass-sidebar.collapsed {
     width: 0;
     padding: 0;
-    border-right: none;
+    border: none;
     overflow: hidden;
   }
 }
