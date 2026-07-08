@@ -97,7 +97,7 @@ const Sidebar = () => {
                 <span className="menu-label" onClick={(e) => {
                   e.stopPropagation();
                   handleNav('/eee');
-                }}>EEE 101 (Zap)</span>
+                }}>EEE-2421 (5th Sem)</span>
                 <span className="menu-chevron">
                   {eeeExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
                 </span>
@@ -162,7 +162,7 @@ const Sidebar = () => {
                   e.stopPropagation();
                   handleNav('/compiler', true);
                 }}>
-                  Compiler Design
+                  CSE-3527 (5th Sem)
                   {!isAdmin && <Lock size={12} className="lock-indicator-badge" />}
                 </span>
                 <span className="menu-chevron">
