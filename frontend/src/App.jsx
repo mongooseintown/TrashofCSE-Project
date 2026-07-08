@@ -43,6 +43,7 @@ import EEESegment06 from './pages/EEESegment06';
 import EEEGroupA from './pages/EEEGroupA';
 import StepperMotorNote from './pages/StepperMotorNote';
 import Profile from './pages/Profile';
+import ComputerArchitecture from './pages/ComputerArchitecture';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import AdminRoute from './components/AdminRoute';
@@ -81,6 +82,9 @@ function AppContent() {
           <Route path="/compilersegment-06/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
           <Route path="/compiler/segment-04" element={<AdminRoute><CompilerSegment04 /></AdminRoute>} />
           <Route path="/compiler/locked" element={<CompilerLocked />} />
+
+          {/* Computer Architecture Routes */}
+          <Route path="/computer-architecture" element={<PrivateRoute><ComputerArchitecture /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

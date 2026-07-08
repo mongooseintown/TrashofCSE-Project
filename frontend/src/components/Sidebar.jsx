@@ -64,6 +64,12 @@ const Sidebar = () => {
       colorClass: 'icon-teal',
       requiresAdmin: true
     },
+    { 
+      label: 'CSE-3523', 
+      path: '/computer-architecture', 
+      icon: <Cpu size={18} />, 
+      colorClass: 'icon-purple'
+    },
   ];
 
   return (
