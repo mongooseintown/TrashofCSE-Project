@@ -44,7 +44,7 @@ const Sidebar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [semester, setSemester] = useState('');
 
-  useEffect(() => {
+  const updateSidebarUser = () => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
@@ -55,6 +55,20 @@ const Sidebar = () => {
         console.error('Error parsing user in Sidebar:', err);
       }
     }
+  };
+
+  useEffect(() => {
+    // Run initially and on location changes
+    updateSidebarUser();
+
+    // Listen to custom events to react to updates immediately without full page refresh
+    window.addEventListener('profile-update', updateSidebarUser);
+    window.addEventListener('theme-change', updateSidebarUser);
+
+    return () => {
+      window.removeEventListener('profile-update', updateSidebarUser);
+      window.removeEventListener('theme-change', updateSidebarUser);
+    };
   }, [location]);
 
   const toggleSidebar = () => {
@@ -93,8 +107,27 @@ const Sidebar = () => {
 
       {/* Menu */}
       <div className="sidebar-menu">
-        {courses.length > 0 ? (
-          // Render semester courses
+        {!semester ? (
+          // Case 1: No semester selected
+          !isCollapsed && (
+            <div className="sidebar-no-semester">
+              <div className="no-sem-icon">
+                <GraduationCap size={32} />
+              </div>
+              <h3>Select Your Semester</h3>
+              <p>
+                Head over to your profile and choose your current semester to unlock semester-wise course navigation.
+              </p>
+              <button 
+                className="no-sem-btn"
+                onClick={() => navigate('/profile')}
+              >
+                Go to Profile
+              </button>
+            </div>
+          )
+        ) : courses.length > 0 ? (
+          // Case 2: Semester selected and has courses
           courses.map((item, idx) => (
             <div 
               key={idx}
@@ -115,21 +148,21 @@ const Sidebar = () => {
             </div>
           ))
         ) : (
-          // No semester selected — show prompt
+          // Case 3: Semester selected but no courses available yet
           !isCollapsed && (
             <div className="sidebar-no-semester">
               <div className="no-sem-icon">
                 <GraduationCap size={32} />
               </div>
-              <h3>Select Your Semester</h3>
+              <h3>No Courses Available</h3>
               <p>
-                Head over to your profile and choose your current semester to unlock semester-wise course navigation.
+                No courses have been added to the syllabus for this semester yet. Check back later or contact your department moderator.
               </p>
               <button 
                 className="no-sem-btn"
                 onClick={() => navigate('/profile')}
               >
-                Go to Profile
+                Change Semester
               </button>
             </div>
           )

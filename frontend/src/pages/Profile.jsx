@@ -139,8 +139,9 @@ const Profile = () => {
 
       setSuccess('Profile updated successfully');
       
-      // Dispatch event to update Navbar immediately
+      // Dispatch events to update UI immediately
       window.dispatchEvent(new Event('theme-change'));
+      window.dispatchEvent(new Event('profile-update'));
     } catch (err) {
       setError(err.message || 'Error updating profile');
     } finally {
