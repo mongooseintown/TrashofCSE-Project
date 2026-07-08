@@ -54,6 +54,7 @@ import CAControlSignalsNote from './pages/CAControlSignalsNote';
 import CALogicElementsNote from './pages/CALogicElementsNote';
 import CASuggestionsNote from './pages/CASuggestionsNote';
 import CAShafiullahSuggestionsNote from './pages/CAShafiullahSuggestionsNote';
+import CAAmanullahGuidelinesNote from './pages/CAAmanullahGuidelinesNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import AdminRoute from './components/AdminRoute';
@@ -105,6 +106,7 @@ function AppContent() {
           <Route path="/computer-architecture/logic-elements" element={<PrivateRoute><CALogicElementsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/suggestions" element={<PrivateRoute><CASuggestionsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/suggestions-shafiullah" element={<PrivateRoute><CAShafiullahSuggestionsNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/guidelines-amanullah" element={<PrivateRoute><CAAmanullahGuidelinesNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

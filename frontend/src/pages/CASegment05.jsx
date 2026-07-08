@@ -142,6 +142,41 @@ const CASegment05 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 4: Guidelines From Amanullah Sir */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/guidelines-amanullah')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge" style={{ background: '#3b82f6' }}>Exam</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-amanullah-cover.png" 
+              alt="Guidelines From Amanullah Sir" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Guidelines From Amanullah Sir</h3>
+            <span className="card-sub">Semester Final Exam Syllabus</span>
+            <p className="card-desc">
+              Review official course outline, Group-A & Group-B topics distribution, and questions credit weight criteria.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Syllabus</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/guidelines-amanullah');
+            }}>
+              Open Guidelines <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
