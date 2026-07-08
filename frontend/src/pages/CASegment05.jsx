@@ -72,6 +72,76 @@ const CASegment05 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 2: Suggestions From Mahir Shadid Sir */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/suggestions')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge" style={{ background: '#d4a017' }}>Special</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-suggestions-cover.png" 
+              alt="Suggestions From Mahir Shadid Sir" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Suggestions From Mahir Shadid Sir</h3>
+            <span className="card-sub">Exam Suggestions & Chapters Guidelines</span>
+            <p className="card-desc">
+              Get exam suggestions, chapter-wise highlights, and question guidelines from Mahir Shadid Sir for Computer Architecture course.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Guidelines</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/suggestions');
+            }}>
+              Open Suggestions <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Card 3: Suggestions From Shafiullah Sir */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/suggestions-shafiullah')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge" style={{ background: '#d4a017' }}>Special</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-shafiullah-cover.png" 
+              alt="Suggestions From Shafiullah Sir" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Suggestions From Shafiullah Sir</h3>
+            <span className="card-sub">Exam Q&A & Architecture Guidelines</span>
+            <p className="card-desc">
+              Access comprehensive exam preparation questions, topic summaries, and study guidelines from Shafiullah Sir.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Guidelines</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/suggestions-shafiullah');
+            }}>
+              Open Suggestions <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
