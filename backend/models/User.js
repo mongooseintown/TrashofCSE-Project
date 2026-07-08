@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  department: {
+    type: String,
+    default: '',
+  },
+  semester: {
+    type: String,
+    default: '',
+  },
   createdAt: {
     type: Date,
     default: Date.now,

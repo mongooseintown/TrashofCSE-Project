@@ -42,6 +42,7 @@ import EEESegment05 from './pages/EEESegment05';
 import EEESegment06 from './pages/EEESegment06';
 import EEEGroupA from './pages/EEEGroupA';
 import StepperMotorNote from './pages/StepperMotorNote';
+import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
@@ -61,6 +62,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           
           {/* Admin Restricted Compiler Routes */}
           <Route path="/compiler" element={<AdminRoute><CompilerHub /></AdminRoute>} />

@@ -70,6 +70,7 @@ const Navbar = () => {
                 <Link to="/dashboard" className="nav-link">Dashboard</Link>
                 <Link to="/eee" className="nav-link">EEE</Link>
                 <Link to="/compiler" className="nav-link">Compiler</Link>
+                <Link to="/profile" className="nav-link">Profile</Link>
               </>
             ) : (
               <>

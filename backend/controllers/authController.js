@@ -193,3 +193,83 @@ exports.socialAuth = async (req, res) => {
     res.status(500).json({ message: 'Server error during social authentication', error: error.message });
   }
 };
+
+// @desc    Get user profile
+// @route   GET /api/auth/profile
+// @access  Private
+exports.getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      res.json({
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        isAdmin: user.isAdmin,
+        department: user.department || '',
+        semester: user.semester || '',
+        createdAt: user.createdAt,
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Get Profile error:', error);
+    res.status(500).json({ message: 'Server error fetching profile' });
+  }
+};
+
+// @desc    Update user profile
+// @route   PUT /api/auth/profile
+// @access  Private
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      // If password update is requested
+      if (req.body.password) {
+        if (!req.body.currentPassword) {
+          return res.status(400).json({ message: 'Please provide current password to update password' });
+        }
+
+        const isMatch = await bcrypt.compare(req.body.currentPassword, user.password);
+        if (!isMatch) {
+          return res.status(400).json({ message: 'Incorrect current password' });
+        }
+
+        if (req.body.password.length < 6) {
+          return res.status(400).json({ message: 'New password must be at least 6 characters long' });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(req.body.password, salt);
+      }
+
+      user.fullName = req.body.fullName || user.fullName;
+      user.department = req.body.department !== undefined ? req.body.department : user.department;
+      user.semester = req.body.semester !== undefined ? req.body.semester : user.semester;
+
+      const updatedUser = await user.save();
+
+      // Generate refreshed token
+      const token = jwt.sign({ id: updatedUser._id }, JWT_SECRET, { expiresIn: '30d' });
+
+      res.json({
+        _id: updatedUser._id,
+        fullName: updatedUser.fullName,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        department: updatedUser.department,
+        semester: updatedUser.semester,
+        token,
+      });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Update Profile error:', error);
+    res.status(500).json({ message: 'Server error updating profile', error: error.message });
+  }
+};
