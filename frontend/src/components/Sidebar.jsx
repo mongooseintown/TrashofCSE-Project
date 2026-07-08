@@ -58,62 +58,10 @@ const Sidebar = () => {
       colorClass: 'icon-blue' 
     },
     { 
-      label: 'Segment 06', 
-      path: '/eee/segment-06', 
-      icon: <BookOpen size={18} />, 
-      colorClass: 'icon-cyan' 
-    },
-    { 
-      label: 'Segment 07', 
-      path: '/eee/segment-07', 
-      icon: <Layers size={18} />, 
-      colorClass: 'icon-green' 
-    },
-    { 
-      label: 'Segment 08', 
-      path: '/eee/segment-08', 
-      icon: <Activity size={18} />, 
-      colorClass: 'icon-pink' 
-    },
-    { 
-      label: 'Group A', 
-      path: '/eee/group-a', 
-      icon: <Settings2 size={18} />, 
-      colorClass: 'icon-amber' 
-    },
-    { 
       label: 'CSE-3527', 
       path: '/compiler', 
       icon: <Terminal size={18} />, 
       colorClass: 'icon-teal',
-      requiresAdmin: true
-    },
-    { 
-      label: 'Segment 04', 
-      path: '/compiler/segment-04', 
-      icon: <Cpu size={18} />, 
-      colorClass: 'icon-purple',
-      requiresAdmin: true
-    },
-    { 
-      label: 'Segment 06', 
-      path: '/compiler/segment-06', 
-      icon: <BookOpen size={18} />, 
-      colorClass: 'icon-indigo',
-      requiresAdmin: true
-    },
-    { 
-      label: 'Segment 07', 
-      path: '/compiler/segment-07', 
-      icon: <Layers size={18} />, 
-      colorClass: 'icon-blue',
-      requiresAdmin: true
-    },
-    { 
-      label: 'Segment 08', 
-      path: '/compiler/segment-08', 
-      icon: <Activity size={18} />, 
-      colorClass: 'icon-orange',
       requiresAdmin: true
     },
   ];
