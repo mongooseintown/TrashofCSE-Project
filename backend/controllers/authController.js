@@ -67,6 +67,8 @@ exports.registerUser = async (req, res) => {
         fullName: user.fullName,
         email: user.email,
         isAdmin: user.isAdmin,
+        semester: user.semester || '',
+        department: user.department || '',
         token,
       });
     } else {
@@ -135,6 +137,8 @@ exports.loginUser = async (req, res) => {
       fullName: user.fullName,
       email: user.email,
       isAdmin: user.isAdmin,
+      semester: user.semester || '',
+      department: user.department || '',
       token,
     });
   } catch (error) {
@@ -186,6 +190,8 @@ exports.socialAuth = async (req, res) => {
       fullName: user.fullName,
       email: user.email,
       isAdmin: user.isAdmin,
+      semester: user.semester || '',
+      department: user.department || '',
       token,
     });
   } catch (error) {

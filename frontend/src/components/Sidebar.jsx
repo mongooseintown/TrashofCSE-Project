@@ -3,22 +3,46 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   Zap, 
   Terminal, 
+  Cpu,
   PanelLeftClose, 
   PanelLeft, 
-  Lock, 
-  BookOpen,
-  Layers,
-  Cpu,
-  Activity,
-  Settings2
+  Lock,
+  GraduationCap
 } from 'lucide-react';
 import './Sidebar.css';
+
+// Semester-to-courses mapping based on IIUC CSE syllabus
+const SEMESTER_COURSES = {
+  '5th': [
+    { 
+      label: 'EEE-2421', 
+      path: '/eee', 
+      icon: <Zap size={18} />, 
+      colorClass: 'icon-blue' 
+    },
+    { 
+      label: 'CSE-3527', 
+      path: '/compiler', 
+      icon: <Terminal size={18} />, 
+      colorClass: 'icon-teal',
+      requiresAdmin: true
+    },
+    { 
+      label: 'CSE-3523', 
+      path: '/computer-architecture', 
+      icon: <Cpu size={18} />, 
+      colorClass: 'icon-purple'
+    },
+  ],
+  // Future semesters can be added here
+};
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [semester, setSemester] = useState('');
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -26,6 +50,7 @@ const Sidebar = () => {
       try {
         const parsed = JSON.parse(storedUser);
         setIsAdmin(!!parsed.isAdmin);
+        setSemester(parsed.semester || '');
       } catch (err) {
         console.error('Error parsing user in Sidebar:', err);
       }
@@ -49,28 +74,8 @@ const Sidebar = () => {
 
   const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/');
 
-  // Flat menu items — each one is a simple row like the reference image
-  const menuItems = [
-    { 
-      label: 'EEE-2421', 
-      path: '/eee', 
-      icon: <Zap size={18} />, 
-      colorClass: 'icon-blue' 
-    },
-    { 
-      label: 'CSE-3527', 
-      path: '/compiler', 
-      icon: <Terminal size={18} />, 
-      colorClass: 'icon-teal',
-      requiresAdmin: true
-    },
-    { 
-      label: 'CSE-3523', 
-      path: '/computer-architecture', 
-      icon: <Cpu size={18} />, 
-      colorClass: 'icon-purple'
-    },
-  ];
+  // Get courses for current semester
+  const courses = SEMESTER_COURSES[semester] || [];
 
   return (
     <div className={`glass-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -86,30 +91,52 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Flat Menu Items */}
+      {/* Menu */}
       <div className="sidebar-menu">
-        {menuItems.map((item, idx) => (
-          <div 
-            key={idx}
-            className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
-            onClick={() => handleNav(item.path, item.requiresAdmin)}
-          >
-            <div className={`sidebar-icon ${item.colorClass}`}>
-              {item.icon}
+        {courses.length > 0 ? (
+          // Render semester courses
+          courses.map((item, idx) => (
+            <div 
+              key={idx}
+              className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
+              onClick={() => handleNav(item.path, item.requiresAdmin)}
+            >
+              <div className={`sidebar-icon ${item.colorClass}`}>
+                {item.icon}
+              </div>
+              {!isCollapsed && (
+                <span className="sidebar-label">
+                  {item.label}
+                  {item.requiresAdmin && !isAdmin && (
+                    <Lock size={11} className="sidebar-lock-icon" />
+                  )}
+                </span>
+              )}
             </div>
-            {!isCollapsed && (
-              <span className="sidebar-label">
-                {item.label}
-                {item.requiresAdmin && !isAdmin && (
-                  <Lock size={11} className="sidebar-lock-icon" />
-                )}
-              </span>
-            )}
-          </div>
-        ))}
+          ))
+        ) : (
+          // No semester selected — show prompt
+          !isCollapsed && (
+            <div className="sidebar-no-semester">
+              <div className="no-sem-icon">
+                <GraduationCap size={32} />
+              </div>
+              <h3>Select Your Semester</h3>
+              <p>
+                Head over to your profile and choose your current semester to unlock semester-wise course navigation.
+              </p>
+              <button 
+                className="no-sem-btn"
+                onClick={() => navigate('/profile')}
+              >
+                Go to Profile
+              </button>
+            </div>
+          )
+        )}
       </div>
 
-      {/* Footer — TrashofCSE Logo */}
+      {/* Footer */}
       {!isCollapsed && (
         <div className="sidebar-footer">
           <span className="sidebar-brand">TrashofCSE</span>

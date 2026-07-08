@@ -66,7 +66,7 @@ const Login = () => {
       }
 
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email, semester: data.semester || '', department: data.department || '', isAdmin: data.isAdmin || false }));
       navigate('/dashboard');
     } catch (err) {
       // Firebase standard error parsing / styling
@@ -108,7 +108,7 @@ const Login = () => {
       }
 
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email, semester: data.semester || '', department: data.department || '', isAdmin: data.isAdmin || false }));
       navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Invalid email or password');

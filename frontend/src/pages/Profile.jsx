@@ -122,7 +122,7 @@ const Profile = () => {
 
       // Update local storage and profile state
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email }));
+      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email, semester: data.semester || '', department: data.department || '', isAdmin: data.isAdmin || false }));
       
       setProfile({
         ...profile,
