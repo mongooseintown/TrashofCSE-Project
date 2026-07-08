@@ -227,16 +227,9 @@ const Sidebar = () => {
 
       </div>
 
-      {/* Footer inspiration card mimicking Mobbin card in user's image */}
+      {/* Footer Branding */}
       {!isCollapsed && (
-        <div className="sidebar-footer-card">
-          <p className="footer-card-desc">Never run out of study inspiration again.</p>
-          <span className="footer-card-sub">Featuring notes, guides & compiler solvers.</span>
-          <div className="footer-logos-row">
-            <span className="logo-badge badge-c">CSE</span>
-            <span className="logo-badge badge-e">EEE</span>
-            <span className="logo-badge badge-m">MATH</span>
-          </div>
+        <div className="sidebar-footer-brand">
           <div className="footer-brand">TrashofCSE</div>
         </div>
       )}

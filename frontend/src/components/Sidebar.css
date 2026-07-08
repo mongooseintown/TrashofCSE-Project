@@ -219,71 +219,24 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Sidebar Footer Card mimicking Mobbin Promo Card */
-.sidebar-footer-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 1.2rem;
-  margin-top: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+/* Sidebar Footer Branding */
+.sidebar-footer-brand {
+  margin-top: auto;
+  padding: 1.2rem 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.footer-card-desc {
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.35;
-  color: #fff;
-  margin: 0;
-}
-
-.footer-card-sub {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 0.6rem;
-  display: block;
-}
-
-.footer-logos-row {
-  display: flex;
-  gap: 0.4rem;
-  margin-bottom: 0.6rem;
-}
-
-.logo-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-
-.badge-c {
-  background: rgba(59, 130, 246, 0.15);
-  color: #3b82f6;
-}
-
-.badge-e {
-  background: rgba(20, 184, 166, 0.15);
-  color: #14b8a6;
-}
-
-.badge-m {
-  background: rgba(139, 92, 246, 0.15);
-  color: #8b5cf6;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  width: 100%;
 }
 
 .footer-brand {
-  font-size: 1.1rem;
-  font-weight: 900;
-  letter-spacing: -0.5px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
   color: #fff;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding-top: 0.6rem;
-  margin-top: 0.4rem;
+  opacity: 0.9;
+  text-align: center;
 }
 
 /* Custom Scrollbar for Sidebar */
