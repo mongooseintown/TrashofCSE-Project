@@ -47,6 +47,10 @@ import ComputerArchitecture from './pages/ComputerArchitecture';
 import CASegment05 from './pages/CASegment05';
 import CASingleVsMultiNote from './pages/CASingleVsMultiNote';
 import CATempRegistersNote from './pages/CATempRegistersNote';
+import CAHardwareChangesNote from './pages/CAHardwareChangesNote';
+import CADatapathDesignNote from './pages/CADatapathDesignNote';
+import CAControlSignalsNote from './pages/CAControlSignalsNote';
+import CALogicElementsNote from './pages/CALogicElementsNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import AdminRoute from './components/AdminRoute';
@@ -91,6 +95,10 @@ function AppContent() {
           <Route path="/computer-architecture/segment-05" element={<PrivateRoute><CASegment05 /></PrivateRoute>} />
           <Route path="/computer-architecture/single-vs-multi-cycle" element={<PrivateRoute><CASingleVsMultiNote /></PrivateRoute>} />
           <Route path="/computer-architecture/temp-registers" element={<PrivateRoute><CATempRegistersNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/hardware-changes" element={<PrivateRoute><CAHardwareChangesNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/datapath-design" element={<PrivateRoute><CADatapathDesignNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/control-signals" element={<PrivateRoute><CAControlSignalsNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/logic-elements" element={<PrivateRoute><CALogicElementsNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
