@@ -1,0 +1,305 @@
+/* Collapsible Glass Sidebar Navigator */
+.glass-sidebar {
+  position: fixed;
+  top: 75px; /* Aligned below Navbar */
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  color: var(--text-primary);
+  overflow-y: auto;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+.glass-sidebar.collapsed {
+  width: 76px;
+  padding: 1.5rem 0.6rem;
+  align-items: center;
+}
+
+/* Header & Toggle styling */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.glass-sidebar.collapsed .sidebar-header {
+  justify-content: center;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.2rem;
+  width: 100%;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sidebar-toggle-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.sidebar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* Sidebar Menu Items */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;
+  width: 100%;
+}
+
+.menu-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  width: 100%;
+  gap: 0.85rem;
+}
+
+.glass-sidebar.collapsed .menu-item {
+  justify-content: center;
+  padding: 0.7rem 0;
+  border-radius: 10px;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.menu-item.active {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Icon Badges */
+.menu-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.menu-item:hover .menu-icon-wrapper {
+  transform: scale(1.05);
+}
+
+/* Rounded Icon color themes mimicking the Mobbin mockup */
+.menu-icon-wrapper.gray-bg {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.menu-icon-wrapper.blue-bg {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.menu-icon-wrapper.teal-bg {
+  background: rgba(20, 184, 166, 0.15);
+  color: #14b8a6;
+  border: 1px solid rgba(20, 184, 166, 0.1);
+}
+
+.menu-icon-wrapper.purple-bg {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.menu-label {
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menu-chevron {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.lock-indicator-badge {
+  color: rgba(255, 255, 255, 0.35);
+  margin-left: 2px;
+}
+
+/* Submenu layout */
+.submenu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3.1rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  padding-left: 0.8rem;
+  gap: 0.4rem;
+  animation: slideDown 0.25s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.submenu-item {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.submenu-item:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.submenu-item.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar Footer Card mimicking Mobbin Promo Card */
+.sidebar-footer-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 1.2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer-card-desc {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin: 0;
+}
+
+.footer-card-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.footer-logos-row {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.logo-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.badge-c {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.badge-e {
+  background: rgba(20, 184, 166, 0.15);
+  color: #14b8a6;
+}
+
+.badge-m {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.footer-brand {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+/* Custom Scrollbar for Sidebar */
+.glass-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.glass-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.glass-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.glass-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

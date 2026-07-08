@@ -1,1 +1,51 @@
-/* App CSS */
+/* Main App Layout Styles with Sidebar */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-main-content {
+  flex: 1;
+  width: 100%;
+  transition: padding-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar Margin offsets on desktop */
+@media (min-width: 769px) {
+  .app-container.has-sidebar .app-main-content {
+    padding-left: 260px;
+  }
+  
+  .app-container.has-sidebar:has(.glass-sidebar.collapsed) .app-main-content {
+    padding-left: 76px;
+  }
+}
+
+/* Adjust padding-left dynamic fallback using standard class-selector if has() selector is not supported */
+@media (min-width: 769px) {
+  .glass-sidebar.collapsed + .app-main-content {
+    padding-left: 76px !important;
+  }
+}
+
+/* Mobile responsive layout */
+@media (max-width: 768px) {
+  .app-container.has-sidebar .app-main-content {
+    padding-left: 0;
+    margin-top: 75px;
+  }
+  
+  .glass-sidebar {
+    width: 240px;
+    z-index: 1000;
+  }
+  
+  .glass-sidebar.collapsed {
+    width: 0;
+    padding: 0;
+    border-right: none;
+    overflow: hidden;
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import CompilerSegment04 from './pages/CompilerSegment04';
 import CompilerSegment08 from './pages/CompilerSegment08';
@@ -44,6 +44,7 @@ import EEEGroupA from './pages/EEEGroupA';
 import StepperMotorNote from './pages/StepperMotorNote';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import CompilerLocked from './pages/CompilerLocked';
@@ -53,15 +54,24 @@ import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+    setIsLoggedIn(!!(token && storedUser));
+  }, [location]);
 
   return (
     <div className="App">
       <Navbar />
 
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      <div className={`app-container ${isLoggedIn ? 'has-sidebar' : ''}`}>
+        {isLoggedIn && <Sidebar />}
+        <div className="app-main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           
           {/* Admin Restricted Compiler Routes */}
@@ -114,7 +124,8 @@ function AppContent() {
         </Routes>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 function App() {
