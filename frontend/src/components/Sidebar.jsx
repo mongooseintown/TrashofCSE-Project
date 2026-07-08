@@ -72,18 +72,7 @@ const Sidebar = () => {
       {/* Navigation Items */}
       <div className="sidebar-menu">
         
-        {/* Item 1: Dashboard */}
-        <div 
-          className={`menu-item ${isActive('/dashboard') ? 'active' : ''}`}
-          onClick={() => handleNav('/dashboard')}
-        >
-          <div className="menu-icon-wrapper gray-bg">
-            <Home size={18} />
-          </div>
-          {!isCollapsed && <span className="menu-label">Dashboard</span>}
-        </div>
-
-        {/* Item 2: EEE 101 */}
+        {/* Item 1: EEE 101 */}
         <div className="menu-group">
           <div 
             className={`menu-item has-sub ${isActive('/eee') ? 'active' : ''}`}
@@ -147,7 +136,7 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* Item 3: Compiler Design */}
+        {/* Item 2: Compiler Design */}
         <div className="menu-group">
           <div 
             className={`menu-item has-sub ${isActive('/compiler') ? 'active' : ''}`}
@@ -212,17 +201,6 @@ const Sidebar = () => {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Item 4: Profile Settings */}
-        <div 
-          className={`menu-item ${isActive('/profile') ? 'active' : ''}`}
-          onClick={() => handleNav('/profile')}
-        >
-          <div className="menu-icon-wrapper purple-bg">
-            <User size={18} />
-          </div>
-          {!isCollapsed && <span className="menu-label">My Profile</span>}
         </div>
 
       </div>
