@@ -72,6 +72,41 @@ const CASegment05 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 2: Temp Registers in Multi-Cycle */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/temp-registers')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-temp-regs-cover.png" 
+              alt="Temp Registers in Multi-Cycle" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Temp Registers in Multi-Cycle</h3>
+            <span className="card-sub">Temporary Registers & Purpose</span>
+            <p className="card-desc">
+              Explore the functional roles and need for Instruction, Memory Data, A, B, and ALUOut registers in multicycle execution.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Registers</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/temp-registers');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

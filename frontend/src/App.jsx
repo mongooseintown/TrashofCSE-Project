@@ -46,6 +46,7 @@ import Profile from './pages/Profile';
 import ComputerArchitecture from './pages/ComputerArchitecture';
 import CASegment05 from './pages/CASegment05';
 import CASingleVsMultiNote from './pages/CASingleVsMultiNote';
+import CATempRegistersNote from './pages/CATempRegistersNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import AdminRoute from './components/AdminRoute';
@@ -89,6 +90,7 @@ function AppContent() {
           <Route path="/computer-architecture" element={<PrivateRoute><ComputerArchitecture /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-05" element={<PrivateRoute><CASegment05 /></PrivateRoute>} />
           <Route path="/computer-architecture/single-vs-multi-cycle" element={<PrivateRoute><CASingleVsMultiNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/temp-registers" element={<PrivateRoute><CATempRegistersNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
