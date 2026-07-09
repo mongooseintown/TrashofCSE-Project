@@ -8,6 +8,12 @@ const ActiveUsersWidget = () => {
   const [activeData, setActiveData] = useState({ count: 1, users: [] });
   const [user, setUser] = useState(null);
   const popoverRef = useRef(null);
+  const userRef = useRef(null);
+
+  // Keep userRef updated to prevent stale closures in intervals
+  useEffect(() => {
+    userRef.current = user;
+  }, [user]);
 
   // Check login state
   const checkUser = () => {
@@ -31,7 +37,7 @@ const ActiveUsersWidget = () => {
 
   // Fetch active users list and send heartbeat
   const fetchActiveUsers = async (currentUser) => {
-    const usr = currentUser || user;
+    const usr = currentUser || userRef.current;
     if (!usr || !usr.token) return;
 
     try {
@@ -51,7 +57,7 @@ const ActiveUsersWidget = () => {
   };
 
   const sendHeartbeat = async (currentUser) => {
-    const usr = currentUser || user;
+    const usr = currentUser || userRef.current;
     if (!usr || !usr.token) return;
 
     try {
@@ -87,19 +93,28 @@ const ActiveUsersWidget = () => {
       fetchActiveUsers(usr);
     }
 
-    // Heartbeat interval (45 seconds)
+    // Dynamic Visibility Tab Switch Trigger
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        sendHeartbeat();
+        fetchActiveUsers();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Send heartbeat every 30 seconds
     const heartbeatInterval = setInterval(() => {
       if (document.visibilityState === 'visible') {
         sendHeartbeat();
       }
-    }, 45000);
+    }, 30000);
 
-    // Active users fetch interval (30 seconds)
+    // Fetch active users list every 5 seconds (Highly responsive, live updates)
     const fetchInterval = setInterval(() => {
       if (document.visibilityState === 'visible') {
         fetchActiveUsers();
       }
-    }, 30000);
+    }, 5000);
 
     // Close popover when clicking outside
     const handleOutsideClick = (e) => {
@@ -113,6 +128,7 @@ const ActiveUsersWidget = () => {
       clearInterval(heartbeatInterval);
       clearInterval(fetchInterval);
       window.removeEventListener('profile-update', handleProfileUpdate);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [user?.token]);
