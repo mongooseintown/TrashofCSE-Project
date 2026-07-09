@@ -92,90 +92,103 @@ const Sidebar = () => {
   const courses = SEMESTER_COURSES[semester] || [];
 
   return (
-    <div className={`glass-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-      {/* Header */}
-      <div className="sidebar-header">
-        {!isCollapsed && <span className="sidebar-title">Portal Navigator</span>}
-        <button 
-          className="sidebar-toggle-btn" 
-          onClick={toggleSidebar}
-          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-        >
-          {isCollapsed ? <PanelLeft size={18} /> : <PanelLeftClose size={18} />}
-        </button>
-      </div>
+    <>
+      <div className={`glass-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+        {/* Header */}
+        <div className="sidebar-header">
+          {!isCollapsed && <span className="sidebar-title">Portal Navigator</span>}
+          <button 
+            className="sidebar-toggle-btn" 
+            onClick={toggleSidebar}
+            title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          >
+            {isCollapsed ? <PanelLeft size={18} /> : <PanelLeftClose size={18} />}
+          </button>
+        </div>
 
-      {/* Menu */}
-      <div className="sidebar-menu">
-        {!semester ? (
-          // Case 1: No semester selected
-          !isCollapsed && (
-            <div className="sidebar-no-semester">
-              <div className="no-sem-icon">
-                <GraduationCap size={32} />
+        {/* Menu */}
+        <div className="sidebar-menu">
+          {!semester ? (
+            // Case 1: No semester selected
+            !isCollapsed && (
+              <div className="sidebar-no-semester">
+                <div className="no-sem-icon">
+                  <GraduationCap size={32} />
+                </div>
+                <h3>Select Your Semester</h3>
+                <p>
+                  Head over to your profile and choose your current semester to unlock semester-wise course navigation.
+                </p>
+                <button 
+                  className="no-sem-btn"
+                  onClick={() => navigate('/profile')}
+                >
+                  Go to Profile
+                </button>
               </div>
-              <h3>Select Your Semester</h3>
-              <p>
-                Head over to your profile and choose your current semester to unlock semester-wise course navigation.
-              </p>
-              <button 
-                className="no-sem-btn"
-                onClick={() => navigate('/profile')}
+            )
+          ) : courses.length > 0 ? (
+            // Case 2: Semester selected and has courses
+            courses.map((item, idx) => (
+              <div 
+                key={idx}
+                className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
+                onClick={() => handleNav(item.path, item.requiresAdmin)}
               >
-                Go to Profile
-              </button>
-            </div>
-          )
-        ) : courses.length > 0 ? (
-          // Case 2: Semester selected and has courses
-          courses.map((item, idx) => (
-            <div 
-              key={idx}
-              className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
-              onClick={() => handleNav(item.path, item.requiresAdmin)}
-            >
-              <div className={`sidebar-icon ${item.colorClass}`}>
-                {item.icon}
+                <div className={`sidebar-icon ${item.colorClass}`}>
+                  {item.icon}
+                </div>
+                {!isCollapsed && (
+                  <span className="sidebar-label">
+                    {item.label}
+                    {item.requiresAdmin && !isAdmin && (
+                      <Lock size={11} className="sidebar-lock-icon" />
+                    )}
+                  </span>
+                )}
               </div>
-              {!isCollapsed && (
-                <span className="sidebar-label">
-                  {item.label}
-                  {item.requiresAdmin && !isAdmin && (
-                    <Lock size={11} className="sidebar-lock-icon" />
-                  )}
-                </span>
-              )}
-            </div>
-          ))
-        ) : (
-          // Case 3: Semester selected but no courses available yet
-          !isCollapsed && (
-            <div className="sidebar-no-semester">
-              <div className="no-sem-icon">
-                <GraduationCap size={32} />
+            ))
+          ) : (
+            // Case 3: Semester selected but no courses available yet
+            !isCollapsed && (
+              <div className="sidebar-no-semester">
+                <div className="no-sem-icon">
+                  <GraduationCap size={32} />
+                </div>
+                <h3>No Courses Available</h3>
+                <p>
+                  No courses have been added to the syllabus for this semester yet. Check back later or contact your department moderator.
+                </p>
+                <button 
+                  className="no-sem-btn"
+                  onClick={() => navigate('/profile')}
+                >
+                  Change Semester
+                </button>
               </div>
-              <h3>No Courses Available</h3>
-              <p>
-                No courses have been added to the syllabus for this semester yet. Check back later or contact your department moderator.
-              </p>
-              <button 
-                className="no-sem-btn"
-                onClick={() => navigate('/profile')}
-              >
-                Change Semester
-              </button>
-            </div>
-          )
+            )
+          )}
+        </div>
+
+        {/* Footer */}
+        {!isCollapsed && (
+          <div className="sidebar-footer">
+            <span className="sidebar-brand">TrashofCSE</span>
+          </div>
         )}
       </div>
 
-      {/* Footer */}
-      {!isCollapsed && (
-        <div className="sidebar-footer">
-          <span className="sidebar-brand">TrashofCSE</span>
-        </div>
+      {/* Mobile Drawer Trigger Tab (shows when sidebar collapsed on mobile) */}
+      {isCollapsed && (
+        <button 
+          className="sidebar-mobile-expand-btn"
+          onClick={toggleSidebar}
+          title="Expand Sidebar"
+        >
+          <PanelLeft size={18} />
+        </button>
       )}
-    </div>
+    </>
   );
 };
 
