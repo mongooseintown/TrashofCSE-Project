@@ -85,6 +85,7 @@ const Navbar = () => {
             {isLoggedIn ? (
               <>
                 <Link to="/dashboard" className="nav-link">Dashboard</Link>
+                <Link to="/feed" className="nav-link">Feed</Link>
                 <Link to="/profile" className="nav-link">Profile</Link>
               </>
             ) : (

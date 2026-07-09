@@ -70,6 +70,7 @@ import ActiveUsersWidget from './components/ActiveUsersWidget';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import CompilerLocked from './pages/CompilerLocked';
+import CommunityFeed from './pages/CommunityFeed';
 import './App.css';
 
 import { ReactLenis } from 'lenis/react';
@@ -90,7 +91,8 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/feed" element={<PrivateRoute><CommunityFeed /></PrivateRoute>} />
           
           {/* Admin Restricted Compiler Routes */}
           <Route path="/compiler" element={<AdminRoute><CompilerHub /></AdminRoute>} />

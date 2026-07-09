@@ -7,7 +7,8 @@ import {
   PanelLeftClose, 
   PanelLeft, 
   Lock,
-  GraduationCap
+  GraduationCap,
+  MessageSquare
 } from 'lucide-react';
 import './Sidebar.css';
 
@@ -108,6 +109,21 @@ const Sidebar = () => {
 
         {/* Menu */}
         <div className="sidebar-menu">
+          {/* Global Community Feed link */}
+          <div 
+            className={`sidebar-item ${isActive('/feed') ? 'active' : ''}`}
+            onClick={() => navigate('/feed')}
+          >
+            <div className="sidebar-icon icon-pink">
+              <MessageSquare size={18} />
+            </div>
+            {!isCollapsed && (
+              <span className="sidebar-label">Community Feed</span>
+            )}
+          </div>
+
+          <div className="sidebar-divider"></div>
+
           {!semester ? (
             // Case 1: No semester selected
             !isCollapsed && (
