@@ -75,13 +75,9 @@ import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    setIsLoggedIn(!!(token && storedUser));
-  }, [location]);
+  const token = localStorage.getItem('token');
+  const storedUser = localStorage.getItem('user');
+  const isLoggedIn = !!(token && storedUser);
 
   return (
     <div className="App">
