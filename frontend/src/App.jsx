@@ -59,6 +59,7 @@ import CAShafiullahSuggestionsNote from './pages/CAShafiullahSuggestionsNote';
 import CAAmanullahGuidelinesNote from './pages/CAAmanullahGuidelinesNote';
 import CASegment08 from './pages/CASegment08';
 import CADMANote from './pages/CADMANote';
+import CAHandshakingNote from './pages/CAHandshakingNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -112,6 +113,7 @@ function AppContent() {
           <Route path="/computer-architecture/guidelines-amanullah" element={<PrivateRoute><CAAmanullahGuidelinesNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08" element={<PrivateRoute><CASegment08 /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08/dma" element={<PrivateRoute><CADMANote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08/handshaking-protocol" element={<PrivateRoute><CAHandshakingNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

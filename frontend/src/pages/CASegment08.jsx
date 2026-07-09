@@ -72,6 +72,41 @@ const CASegment08 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card: Handshaking Protocol */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/segment-08/handshaking-protocol')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-io-cover.png" 
+              alt="Handshaking Protocol" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Handshaking Protocol</h3>
+            <span className="card-sub">Asynchronous Data Transfer</span>
+            <p className="card-desc">
+              Study the handshaking protocol steps, source/destination initiated asynchronous transfers, timing diagrams, and read request examples.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Protocol</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/segment-08/handshaking-protocol');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
