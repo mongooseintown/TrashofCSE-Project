@@ -57,6 +57,12 @@ import CALogicElementsNote from './pages/CALogicElementsNote';
 import CASuggestionsNote from './pages/CASuggestionsNote';
 import CAShafiullahSuggestionsNote from './pages/CAShafiullahSuggestionsNote';
 import CAAmanullahGuidelinesNote from './pages/CAAmanullahGuidelinesNote';
+import CASegment08 from './pages/CASegment08';
+import CAInterfacingHub from './pages/CAInterfacingHub';
+import CAInterfacingSchemesNote from './pages/CAInterfacingSchemesNote';
+import CAInterruptsNote from './pages/CAInterruptsNote';
+import CADMANote from './pages/CADMANote';
+import CABusesProtocolsNote from './pages/CABusesProtocolsNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -112,6 +118,12 @@ function AppContent() {
           <Route path="/computer-architecture/suggestions" element={<PrivateRoute><CASuggestionsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/suggestions-shafiullah" element={<PrivateRoute><CAShafiullahSuggestionsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/guidelines-amanullah" element={<PrivateRoute><CAAmanullahGuidelinesNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08" element={<PrivateRoute><CASegment08 /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08/interfacing" element={<PrivateRoute><CAInterfacingHub /></PrivateRoute>} />
+          <Route path="/computer-architecture/interfacing-schemes" element={<PrivateRoute><CAInterfacingSchemesNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/interrupts" element={<PrivateRoute><CAInterruptsNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/dma" element={<PrivateRoute><CADMANote /></PrivateRoute>} />
+          <Route path="/computer-architecture/buses-protocols" element={<PrivateRoute><CABusesProtocolsNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

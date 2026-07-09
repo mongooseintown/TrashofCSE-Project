@@ -18,6 +18,16 @@ const ComputerArchitecture = () => {
       badgeColor: 'var(--accent-teal)'
     },
     {
+      title: 'Segment 08',
+      subtitle: 'Interfacing Processors & Peripherals',
+      desc: 'Learn about interfacing processors with external peripherals, handling interrupts, direct memory access (DMA), and communication buses.',
+      cover: '/ca-seg08-cover.png',
+      path: '/computer-architecture/segment-08',
+      pill: 'CSE-3523',
+      badge: 'New',
+      badgeColor: 'var(--accent-teal)'
+    },
+    {
       title: 'Suggestions From Mahir Shadid Sir',
       subtitle: 'Exam Suggestions & Chapters Guidelines',
       desc: 'Get exam suggestions, chapter-wise highlights, and question guidelines from Mahir Shadid Sir for Computer Architecture course.',
