@@ -59,6 +59,7 @@ import CAShafiullahSuggestionsNote from './pages/CAShafiullahSuggestionsNote';
 import CAAmanullahGuidelinesNote from './pages/CAAmanullahGuidelinesNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import ActiveUsersWidget from './components/ActiveUsersWidget';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
 import CompilerLocked from './pages/CompilerLocked';
@@ -152,10 +153,11 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
+        </div>
       </div>
+      <ActiveUsersWidget />
     </div>
-  </div>
-);
+  );
 }
 
 function App() {

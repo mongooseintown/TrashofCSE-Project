@@ -279,3 +279,42 @@ exports.updateUserProfile = async (req, res) => {
     res.status(500).json({ message: 'Server error updating profile', error: error.message });
   }
 };
+
+// @desc    Update user last active heartbeat
+// @route   POST /api/auth/heartbeat
+// @access  Private
+exports.updateHeartbeat = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, { lastActive: Date.now() });
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Heartbeat update error:', error);
+    res.status(500).json({ message: 'Server error updating heartbeat' });
+  }
+};
+
+// @desc    Get active online users in last 2 minutes
+// @route   GET /api/auth/active-users
+// @access  Private
+exports.getActiveUsers = async (req, res) => {
+  try {
+    const threshold = new Date(Date.now() - 2 * 60 * 1000);
+    const activeUsers = await User.find({ lastActive: { $gt: threshold } })
+      .select('fullName email semester department lastActive')
+      .sort({ lastActive: -1 });
+
+    res.json({
+      count: activeUsers.length,
+      users: activeUsers.map(u => ({
+        id: u._id,
+        fullName: u.fullName,
+        semester: u.semester || '',
+        department: u.department || '',
+        lastActive: u.lastActive
+      }))
+    });
+  } catch (error) {
+    console.error('Fetch active users error:', error);
+    res.status(500).json({ message: 'Server error fetching active users' });
+  }
+};

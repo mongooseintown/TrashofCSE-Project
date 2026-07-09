@@ -1,11 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser, socialAuth, getUserProfile, updateUserProfile } = require('../controllers/authController');
+const { 
+  registerUser, 
+  loginUser, 
+  socialAuth, 
+  getUserProfile, 
+  updateUserProfile,
+  updateHeartbeat,
+  getActiveUsers
+} = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/social', socialAuth);
+
+// Active users tracking (Protected)
+router.post('/heartbeat', protect, updateHeartbeat);
+router.get('/active-users', protect, getActiveUsers);
 
 // Profile routes (Protected)
 router.route('/profile')
