@@ -61,6 +61,9 @@ import CASegment08 from './pages/CASegment08';
 import CADMANote from './pages/CADMANote';
 import CAHandshakingNote from './pages/CAHandshakingNote';
 import CASyncAsyncNote from './pages/CASyncAsyncNote';
+import CAIOInterfaceNote from './pages/CAIOInterfaceNote';
+import CABusesNote from './pages/CABusesNote';
+import CADefineTermsNote from './pages/CADefineTermsNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -116,6 +119,9 @@ function AppContent() {
           <Route path="/computer-architecture/segment-08/dma" element={<PrivateRoute><CADMANote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08/handshaking-protocol" element={<PrivateRoute><CAHandshakingNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08/sync-async" element={<PrivateRoute><CASyncAsyncNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08/io-interface" element={<PrivateRoute><CAIOInterfaceNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08/buses" element={<PrivateRoute><CABusesNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-08/define-terms" element={<PrivateRoute><CADefineTermsNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
