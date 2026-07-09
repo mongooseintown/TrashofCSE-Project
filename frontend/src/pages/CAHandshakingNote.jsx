@@ -53,7 +53,7 @@ const CAHandshakingNote = () => {
           <span className="note-image-caption">Handshaking Protocol Execution Steps (1 to 7)</span>
           <div className="note-image-wrapper">
             <img 
-              src="/ca-handshake-ans2.jpg" 
+              src="/ca-handshake-ans2.png" 
               alt="Handshaking Protocol Execution Steps" 
               className="note-img"
             />
