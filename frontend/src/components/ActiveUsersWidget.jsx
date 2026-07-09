@@ -11,10 +11,12 @@ const ActiveUsersWidget = () => {
   // Check login state
   const checkUser = () => {
     const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    const token = localStorage.getItem('token');
+    if (storedUser && token) {
       try {
         const parsed = JSON.parse(storedUser);
-        if (parsed && parsed.token) {
+        if (parsed) {
+          parsed.token = token;
           setUser(parsed);
           return parsed;
         }
