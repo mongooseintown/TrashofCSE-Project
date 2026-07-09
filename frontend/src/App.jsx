@@ -46,7 +46,9 @@ import Profile from './pages/Profile';
 import ComputerArchitecture from './pages/ComputerArchitecture';
 import CASegment05 from './pages/CASegment05';
 import CAMultiCycleHub from './pages/CAMultiCycleHub';
+import CAIntroductionHub from './pages/CAIntroductionHub';
 import CASingleVsMultiNote from './pages/CASingleVsMultiNote';
+import CALogicConventionNote from './pages/CALogicConventionNote';
 import CATempRegistersNote from './pages/CATempRegistersNote';
 import CAHardwareChangesNote from './pages/CAHardwareChangesNote';
 import CADatapathDesignNote from './pages/CADatapathDesignNote';
@@ -97,8 +99,10 @@ function AppContent() {
           {/* Computer Architecture Routes */}
           <Route path="/computer-architecture" element={<PrivateRoute><ComputerArchitecture /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-05" element={<PrivateRoute><CASegment05 /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-05/introduction" element={<PrivateRoute><CAIntroductionHub /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-05/multi-cycle" element={<PrivateRoute><CAMultiCycleHub /></PrivateRoute>} />
           <Route path="/computer-architecture/single-vs-multi-cycle" element={<PrivateRoute><CASingleVsMultiNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/logic-convention" element={<PrivateRoute><CALogicConventionNote /></PrivateRoute>} />
           <Route path="/computer-architecture/temp-registers" element={<PrivateRoute><CATempRegistersNote /></PrivateRoute>} />
           <Route path="/computer-architecture/hardware-changes" element={<PrivateRoute><CAHardwareChangesNote /></PrivateRoute>} />
           <Route path="/computer-architecture/datapath-design" element={<PrivateRoute><CADatapathDesignNote /></PrivateRoute>} />

@@ -72,6 +72,41 @@ const CASegment05 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card 2: Introduction & Basic Datapath Elements */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/segment-05/introduction')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge" style={{ background: 'var(--accent-teal)' }}>Basic</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-intro-cover.png" 
+              alt="Introduction & Basic Datapath Elements" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Introduction & Basic Datapath Elements</h3>
+            <span className="card-sub">Datapath Fundamentals & Clocking</span>
+            <p className="card-desc">
+              Explore logic convention, clocking methodologies, combinational elements, state elements, and processor foundation concepts.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Fundamentals</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/segment-05/introduction');
+            }}>
+              Open Hub <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
