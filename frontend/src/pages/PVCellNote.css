@@ -75,7 +75,8 @@
   padding-left: 0.75rem;
 }
 
-.note-img-wrapper {
+.note-img-wrapper,
+.note-image-wrapper {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 24px;
@@ -85,13 +86,17 @@
   align-items: center;
   box-shadow: 0 15px 35px var(--shadow-primary);
   overflow: hidden;
+  width: 100%;
 }
 
-.note-handnote-img {
+.note-handnote-img,
+.note-img {
   width: 100%;
   height: auto;
   max-width: 800px;
   border-radius: 12px;
   border: 1px solid var(--border-primary);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  display: block;
+  margin: 0 auto;
 }
