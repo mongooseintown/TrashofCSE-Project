@@ -11,9 +11,9 @@ const CAControlSignalsNote = () => {
       {/* Header Row with Back Button */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/computer-architecture/segment-05')} 
+          onClick={() => navigate('/computer-architecture/segment-05/multi-cycle')} 
           className="note-back-btn"
-          title="Back to Segment 05 Portal"
+          title="Back to Multi-Cycle Hub"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
