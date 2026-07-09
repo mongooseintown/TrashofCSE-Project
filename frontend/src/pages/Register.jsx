@@ -38,13 +38,6 @@ const Register = () => {
       }
 
       const normalizedEmail = userEmail.trim().toLowerCase();
-      const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
-      const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
-
-      if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
-        await auth.signOut();
-        throw new Error('Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed');
-      }
 
       // Call backend social route
       const response = await fetch(getApiUrl('/api/auth/social'), {

@@ -33,11 +33,10 @@ exports.registerUser = async (req, res) => {
       return res.status(400).json({ message: 'Incorrect admin registration password' });
     }
 
-    // Strictly validate student domain emails for all other accounts
-    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
-      return res.status(400).json({ 
-        message: 'Only IIUC student email addresses (cXXXXXX@ugrad.iiuc.ac.bd) are allowed to create an account' 
-      });
+    // Validate general email format
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Invalid email address format' });
     }
 
     // Check if user already exists
@@ -95,11 +94,10 @@ exports.loginUser = async (req, res) => {
     const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
     const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
 
-    // Validate email format
-    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
-      return res.status(400).json({ 
-        message: 'Invalid email format. Only IIUC student emails (cXXXXXX@ugrad.iiuc.ac.bd) are allowed' 
-      });
+    // Validate general email format
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Invalid email address format' });
     }
 
     // Auto-provision admin user if logging in with valid admin details and account doesn't exist
@@ -162,11 +160,10 @@ exports.socialAuth = async (req, res) => {
     const isAdminEmail = normalizedEmail === 'khaledbinnasir1714412140@gmail.com';
     const iiucEmailRegex = /^c\d+@ugrad\.iiuc\.ac\.bd$/i;
 
-    // Strictly validate student domain emails for all other accounts
-    if (!isAdminEmail && !iiucEmailRegex.test(normalizedEmail)) {
-      return res.status(400).json({ 
-        message: 'Only IIUC student email addresses (cXXXXXX@ugrad.iiuc.ac.bd) are allowed' 
-      });
+    // Validate general email format
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(normalizedEmail)) {
+      return res.status(400).json({ message: 'Invalid email address format' });
     }
 
     // Find or automatically create user
