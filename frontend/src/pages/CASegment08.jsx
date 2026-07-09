@@ -107,6 +107,41 @@ const CASegment08 = () => {
             </button>
           </div>
         </div>
+
+        {/* Card: Synchronous and Asynchronous */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/segment-08/sync-async')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-clocking-cover.png" 
+              alt="Synchronous and Asynchronous Bus" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Synchronous and Asynchronous</h3>
+            <span className="card-sub">Bus Differences & Bandwidth</span>
+            <p className="card-desc">
+              Compare synchronous vs asynchronous bus lines, characteristics table, and solve bandwidth mathematical word problems.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">Buses</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/segment-08/sync-async');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
