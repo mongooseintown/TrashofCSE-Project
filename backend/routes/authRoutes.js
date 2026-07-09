@@ -7,7 +7,8 @@ const {
   getUserProfile, 
   updateUserProfile,
   updateHeartbeat,
-  getActiveUsers
+  getActiveUsers,
+  logoutUser
 } = require('../controllers/authController');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -18,6 +19,7 @@ router.post('/social', socialAuth);
 // Active users tracking (Protected)
 router.post('/heartbeat', protect, updateHeartbeat);
 router.get('/active-users', protect, getActiveUsers);
+router.post('/logout', protect, logoutUser);
 
 // Profile routes (Protected)
 router.route('/profile')

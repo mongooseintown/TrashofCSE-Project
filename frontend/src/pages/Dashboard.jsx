@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { LogOut, Settings, ShieldAlert } from 'lucide-react';
 import './Dashboard.css';
 
+import { getApiUrl } from '../config';
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -19,9 +21,24 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await fetch(getApiUrl('/api/auth/logout'), {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+      } catch (err) {
+        console.error('Logout request failed:', err);
+      }
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    window.dispatchEvent(new Event('profile-update'));
     navigate('/');
   };
 

@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import { Sun, Moon, LogOut, Menu, X } from 'lucide-react';
 
+import { getApiUrl } from '../config';
+
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -36,10 +38,25 @@ const Navbar = () => {
     window.dispatchEvent(new Event('theme-change'));
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await fetch(getApiUrl('/api/auth/logout'), {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+      } catch (err) {
+        console.error('Logout request failed:', err);
+      }
+    }
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsLoggedIn(false);
+    window.dispatchEvent(new Event('profile-update'));
     navigate('/');
   };
 

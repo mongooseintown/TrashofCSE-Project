@@ -318,3 +318,16 @@ exports.getActiveUsers = async (req, res) => {
     res.status(500).json({ message: 'Server error fetching active users' });
   }
 };
+
+// @desc    Logout user (clear last active state)
+// @route   POST /api/auth/logout
+// @access  Private
+exports.logoutUser = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, { lastActive: new Date(0) });
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({ message: 'Server error during logout' });
+  }
+};
