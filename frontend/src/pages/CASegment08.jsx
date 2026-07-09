@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import './EEE.css';
 
 const CASegment08 = () => {
@@ -36,42 +36,41 @@ const CASegment08 = () => {
         </div>
       </div>
 
-      {/* Main Empty State Container */}
-      <div style={{
-        marginTop: '3.5rem',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '260px'
-      }}>
-        <div className="product-card" style={{
-          width: '100%',
-          maxWidth: '520px',
-          padding: '3rem 2rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1.5rem',
-          background: 'rgba(255, 255, 255, 0.02)',
-          border: '1px dashed rgba(255, 255, 255, 0.08)',
-          cursor: 'default',
-          transform: 'none',
-          boxShadow: 'none'
-        }}>
-          <Clock size={44} style={{ color: 'var(--accent-teal)', opacity: 0.8 }} />
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 650, color: 'var(--text-primary)', margin: 0 }}>
-            No Notes Uploaded Yet
-          </h3>
-          <p style={{
-            margin: 0,
-            fontSize: '0.92rem',
-            color: 'var(--text-secondary)',
-            textAlign: 'center',
-            lineHeight: 1.6,
-            fontWeight: 300
-          }}>
-            Study sheets, handnotes, and question answers for Interfacing, Interrupts, and DMA have not been uploaded for Segment 08. They will appear here once updated by the moderator.
-          </p>
+      {/* Card Grid */}
+      <div className="card-grid" style={{ marginTop: '2.5rem' }}>
+        {/* Card: DMA */}
+        <div className="product-card" onClick={() => navigate('/computer-architecture/segment-08/dma')}>
+          <div className="card-img-container">
+            <span className="card-tag-badge">New</span>
+            <div className="card-logo-badge">CSE</div>
+            <img 
+              src="/ca-cache-cover.png" 
+              alt="Direct Memory Access (DMA)" 
+              className="card-img" 
+            />
+            <div className="card-dots">
+              <span className="active"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div className="card-details-section">
+            <h3>Direct Memory Access (DMA)</h3>
+            <span className="card-sub">Purpose, Scope & Mechanisms</span>
+            <p className="card-desc">
+              Understand how DMA enables high-speed peripheral data transfer directly to/from main memory without CPU intervention. Includes Autumn 2025 and 2023 questions.
+            </p>
+          </div>
+          <div className="card-footer-row">
+            <span className="price-pill">DMA</span>
+            <button className="buy-pill-btn" onClick={(e) => {
+              e.stopPropagation();
+              navigate('/computer-architecture/segment-08/dma');
+            }}>
+              Open Note <ArrowUpRight size={16} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
