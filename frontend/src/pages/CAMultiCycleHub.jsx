@@ -48,7 +48,7 @@ const CAMultiCycleHub = () => {
       pill: 'Control'
     },
     {
-      title: 'Logic Elements & Execution Steps',
+      title: 'Execution Steps',
       subtitle: 'Execution Steps & States',
       desc: 'Step through instruction phases (fetch, decode, execute) and finite state machine logical transitions.',
       cover: '/ca-logic-cover.png',

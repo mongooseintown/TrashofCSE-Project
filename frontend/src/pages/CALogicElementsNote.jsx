@@ -18,7 +18,7 @@ const CALogicElementsNote = () => {
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
-        <h1>Logic Elements & Execution Steps</h1>
+        <h1>Execution Steps</h1>
       </div>
 
       {/* Note Content List */}

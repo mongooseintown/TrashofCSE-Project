@@ -11,9 +11,9 @@ const CAShafiullahSuggestionsNote = () => {
       {/* Header Row with Back Button */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/computer-architecture/segment-05')} 
+          onClick={() => navigate('/computer-architecture')} 
           className="note-back-btn"
-          title="Back to Segment 05 Portal"
+          title="Back to Computer Architecture Portal"
         >
           <ArrowLeft size={20} />
           <span>Back</span>
