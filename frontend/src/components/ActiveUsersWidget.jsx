@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Users, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { getApiUrl } from '../config';
 import './ActiveUsersWidget.css';
 
 const ActiveUsersWidget = () => {
@@ -34,7 +35,7 @@ const ActiveUsersWidget = () => {
     if (!usr || !usr.token) return;
 
     try {
-      const response = await fetch('/api/auth/active-users', {
+      const response = await fetch(getApiUrl('/api/auth/active-users'), {
         headers: {
           'Authorization': `Bearer ${usr.token}`,
           'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ const ActiveUsersWidget = () => {
     if (!usr || !usr.token) return;
 
     try {
-      await fetch('/api/auth/heartbeat', {
+      await fetch(getApiUrl('/api/auth/heartbeat'), {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${usr.token}`,
