@@ -64,6 +64,8 @@ import CASyncAsyncNote from './pages/CASyncAsyncNote';
 import CAIOInterfaceNote from './pages/CAIOInterfaceNote';
 import CABusesNote from './pages/CABusesNote';
 import CADefineTermsNote from './pages/CADefineTermsNote';
+import CASegment07 from './pages/CASegment07';
+import CATLBNote from './pages/CATLBNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -124,6 +126,8 @@ function AppContent() {
           <Route path="/computer-architecture/segment-08/io-interface" element={<PrivateRoute><CAIOInterfaceNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08/buses" element={<PrivateRoute><CABusesNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-08/define-terms" element={<PrivateRoute><CADefineTermsNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07" element={<PrivateRoute><CASegment07 /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/tlb" element={<PrivateRoute><CATLBNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

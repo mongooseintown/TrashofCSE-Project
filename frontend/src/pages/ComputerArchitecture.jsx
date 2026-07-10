@@ -18,6 +18,16 @@ const ComputerArchitecture = () => {
       badgeColor: 'var(--accent-teal)'
     },
     {
+      title: 'Segment 07',
+      subtitle: 'Virtual Memory & TLB',
+      desc: 'Learn about Translation Lookaside Buffer (TLB), working principles, flowchart logic, paging operations, and page translation miss scenarios.',
+      cover: '/ca-seg07-cover.png',
+      path: '/computer-architecture/segment-07',
+      pill: 'CSE-3523',
+      badge: 'New',
+      badgeColor: 'var(--accent-teal)'
+    },
+    {
       title: 'Segment 08',
       subtitle: 'Interfacing Processors & Peripherals',
       desc: 'Learn about interfacing processors with external peripherals, handling interrupts, direct memory access (DMA), and communication buses.',
