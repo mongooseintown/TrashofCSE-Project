@@ -66,6 +66,11 @@ import CABusesNote from './pages/CABusesNote';
 import CADefineTermsNote from './pages/CADefineTermsNote';
 import CASegment07 from './pages/CASegment07';
 import CATLBNote from './pages/CATLBNote';
+import CAPageFaultNote from './pages/CAPageFaultNote';
+import CAVirtualMemoryNote from './pages/CAVirtualMemoryNote';
+import CACacheMappingNote from './pages/CACacheMappingNote';
+import CACacheMemoryNote from './pages/CACacheMemoryNote';
+import CALocalityNote from './pages/CALocalityNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -128,6 +133,11 @@ function AppContent() {
           <Route path="/computer-architecture/segment-08/define-terms" element={<PrivateRoute><CADefineTermsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07" element={<PrivateRoute><CASegment07 /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07/tlb" element={<PrivateRoute><CATLBNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/page-fault" element={<PrivateRoute><CAPageFaultNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/virtual-memory" element={<PrivateRoute><CAVirtualMemoryNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/cache-mapping" element={<PrivateRoute><CACacheMappingNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/cache-memory" element={<PrivateRoute><CACacheMemoryNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-07/locality" element={<PrivateRoute><CALocalityNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
