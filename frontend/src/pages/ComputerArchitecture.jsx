@@ -18,6 +18,16 @@ const ComputerArchitecture = () => {
       badgeColor: 'var(--accent-teal)'
     },
     {
+      title: 'Segment 06',
+      subtitle: 'Pipelining & Hazards',
+      desc: 'Analyze instruction pipelining, execution stages, hazards (structural, data, control), and mitigation schemes like forwarding and stalling.',
+      cover: '/ca-seg06-cover.png',
+      path: '/computer-architecture/segment-06',
+      pill: 'CSE-3523',
+      badge: 'New',
+      badgeColor: 'var(--accent-teal)'
+    },
+    {
       title: 'Segment 07',
       subtitle: 'Virtual Memory & TLB',
       desc: 'Learn about Translation Lookaside Buffer (TLB), working principles, flowchart logic, paging operations, and page translation miss scenarios.',
