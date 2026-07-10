@@ -8,36 +8,12 @@ const CASegment07 = () => {
 
   const cards = [
     {
-      title: 'Translation Lookaside Buffer (TLB)',
-      sub: 'Paging, Flowchart & Miss Handling',
-      desc: 'Understand the Translation Lookaside Buffer (TLB) cache structure, working principles, Paging translation flowcharts, and step-by-step miss resolution.',
-      path: '/computer-architecture/segment-07/tlb',
-      cover: '/ca-virtual-cover.png',
-      pill: 'TLB Cache'
-    },
-    {
-      title: 'Page Fault',
-      sub: 'Mechanisms & How To Reduce Page Faults',
-      desc: 'Analyze the high cost of page faults, temporal/spatial locality benefits, write-back schemes, LRU replacements, and how the OS resolves them.',
-      path: '/computer-architecture/segment-07/page-fault',
-      cover: '/ca-pipeline-cover.png',
-      pill: 'Page Fault'
-    },
-    {
-      title: 'Virtual Memory',
-      sub: 'Concepts, Page Tables & Visual Diagrams',
-      desc: 'Study Virtual Memory fundamentals, mapping tables translating virtual-to-physical RAM addresses, and core benefits.',
-      path: '/computer-architecture/segment-07/virtual-memory',
-      cover: '/ca-virtual-cover.png',
-      pill: 'Virtual Memory'
-    },
-    {
-      title: 'Cache Mapping Architectures',
-      sub: 'Direct-Mapped, Associative & Set-Associative',
-      desc: 'Study Cache Mapping classifications, block mapping math problem solutions, tag calculation formulas, and comparative details.',
-      path: '/computer-architecture/segment-07/cache-mapping',
-      cover: '/ca-cache-cover.png',
-      pill: 'Cache Mapping'
+      title: 'Locality of Reference',
+      sub: 'Temporal vs Spatial Locality Proofs',
+      desc: 'Learn about Locality of Reference principles, array iteration optimization benefits, and how CPU cache lines handle spatial cache hits.',
+      path: '/computer-architecture/segment-07/locality',
+      cover: '/ca-clocking-cover.png',
+      pill: 'Locality'
     },
     {
       title: 'Cache Memory & Terminology',
@@ -48,12 +24,36 @@ const CASegment07 = () => {
       pill: 'Cache Memory'
     },
     {
-      title: 'Locality of Reference',
-      sub: 'Temporal vs Spatial Locality Proofs',
-      desc: 'Learn about Locality of Reference principles, array iteration optimization benefits, and how CPU cache lines handle spatial cache hits.',
-      path: '/computer-architecture/segment-07/locality',
-      cover: '/ca-clocking-cover.png',
-      pill: 'Locality'
+      title: 'Cache Mapping Architectures',
+      sub: 'Direct-Mapped, Associative & Set-Associative',
+      desc: 'Study Cache Mapping classifications, block mapping math problem solutions, tag calculation formulas, and comparative details.',
+      path: '/computer-architecture/segment-07/cache-mapping',
+      cover: '/ca-cache-cover.png',
+      pill: 'Cache Mapping'
+    },
+    {
+      title: 'Virtual Memory',
+      sub: 'Concepts, Page Tables & Visual Diagrams',
+      desc: 'Study Virtual Memory fundamentals, mapping tables translating virtual-to-physical RAM addresses, and core benefits.',
+      path: '/computer-architecture/segment-07/virtual-memory',
+      cover: '/ca-virtual-cover.png',
+      pill: 'Virtual Memory'
+    },
+    {
+      title: 'Page Fault',
+      sub: 'Mechanisms & How To Reduce Page Faults',
+      desc: 'Analyze the high cost of page faults, temporal/spatial locality benefits, write-back schemes, LRU replacements, and how the OS resolves them.',
+      path: '/computer-architecture/segment-07/page-fault',
+      cover: '/ca-pipeline-cover.png',
+      pill: 'Page Fault'
+    },
+    {
+      title: 'Translation Lookaside Buffer (TLB)',
+      sub: 'Paging, Flowchart & Miss Handling',
+      desc: 'Understand the Translation Lookaside Buffer (TLB) cache structure, working principles, Paging translation flowcharts, and step-by-step miss resolution.',
+      path: '/computer-architecture/segment-07/tlb',
+      cover: '/ca-virtual-cover.png',
+      pill: 'TLB Cache'
     }
   ];
 
