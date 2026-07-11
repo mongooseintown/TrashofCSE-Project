@@ -8,6 +8,14 @@ const CASegment06 = () => {
 
   const cards = [
     {
+      title: 'Advanced Pipelining',
+      sub: 'Branch Prediction & Superscalar Execution',
+      desc: 'Understand advanced pipelining, dynamic branch prediction models, superscalar execution complexity, and superpipelining methods.',
+      path: '/computer-architecture/segment-06/advanced-pipelining',
+      cover: '/ca-seg06-cover.png',
+      pill: 'Advanced'
+    },
+    {
       title: 'Pipelining & Hazards',
       sub: 'Instruction Pipeline Stages, Hazards & Solutions',
       desc: 'Study basic pipelining concepts, execution stages (IF, ID, EX, MEM, WB), structural hazards, data hazards, control hazards, and mitigation schemes.',
