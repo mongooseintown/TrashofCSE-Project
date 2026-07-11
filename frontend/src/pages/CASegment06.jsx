@@ -8,6 +8,22 @@ const CASegment06 = () => {
 
   const cards = [
     {
+      title: 'Suggestions from Shafiul Sir and Solve',
+      sub: 'Shafiul Sir Suggestions & Solutions',
+      desc: 'Study pipelining definition, working principles, MIPS instruction execution timing charts, benefits, limitations, and hazard explanations recommended by Shafiul Sir.',
+      path: '/computer-architecture/segment-06/shafiul-suggestions-solve',
+      cover: '/ca-seg06-cover.png',
+      pill: 'Suggestions & Solve'
+    },
+    {
+      title: 'Suggestions from Mahir Sir and Solve',
+      sub: 'Mahir Sir Suggestions & Solutions',
+      desc: 'Access pipelining lecture slides, timing diagrams, example problems, and MIPS pipelined execution solutions recommended by Mahir Sir.',
+      path: '/computer-architecture/segment-06/mahir-suggestions-solve',
+      cover: '/ca-seg06-cover.png',
+      pill: 'Suggestions & Solve'
+    },
+    {
       title: 'Previous Question and Solve',
       sub: 'MIPS Pipelining Exam Q&A Solve',
       desc: 'Study past exam questions on MIPS 5-stage pipelining, execution delays, speedup calculations, pipeline hazards (structural, data, control), stalls, forwarding, and instruction reordering.',

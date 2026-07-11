@@ -68,6 +68,8 @@ import CASegment07 from './pages/CASegment07';
 import CATLBNote from './pages/CATLBNote';
 import CASegment06 from './pages/CASegment06';
 import CAPrevQuestionSolveNote from './pages/CAPrevQuestionSolveNote';
+import CAMahirSuggestionsNote from './pages/CAMahirSuggestionsNote';
+import CAShafiulSuggestionsNote from './pages/CAShafiulSuggestionsNote';
 import CAPageFaultNote from './pages/CAPageFaultNote';
 import CAVirtualMemoryNote from './pages/CAVirtualMemoryNote';
 import CACacheMappingNote from './pages/CACacheMappingNote';
@@ -135,6 +137,8 @@ function AppContent() {
           <Route path="/computer-architecture/segment-08/define-terms" element={<PrivateRoute><CADefineTermsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-06" element={<PrivateRoute><CASegment06 /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-06/previous-question-solve" element={<PrivateRoute><CAPrevQuestionSolveNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-06/mahir-suggestions-solve" element={<PrivateRoute><CAMahirSuggestionsNote /></PrivateRoute>} />
+          <Route path="/computer-architecture/segment-06/shafiul-suggestions-solve" element={<PrivateRoute><CAShafiulSuggestionsNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07" element={<PrivateRoute><CASegment07 /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07/tlb" element={<PrivateRoute><CATLBNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07/page-fault" element={<PrivateRoute><CAPageFaultNote /></PrivateRoute>} />
