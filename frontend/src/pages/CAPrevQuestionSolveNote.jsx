@@ -4,7 +4,7 @@ import { ArrowLeft, Maximize2, Minimize2, Download, ExternalLink } from 'lucide-
 import './PVCellNote.css';
 import './CATLBNote.css';
 
-const CAAdvancedPipeliningNote = () => {
+const CAPrevQuestionSolveNote = () => {
   const navigate = useNavigate();
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -30,7 +30,7 @@ const CAAdvancedPipeliningNote = () => {
           <ArrowLeft size={16} /> Back to Segment 06
         </button>
         <div>
-          <h1>Advanced Pipelining Notes</h1>
+          <h1>Previous Question and Solve Notes</h1>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ const CAAdvancedPipeliningNote = () => {
       {/* Embedded PDF Viewer Container */}
       <div className="tlb-pdf-container">
         <div className="tlb-pdf-header-controls">
-          <span className="pdf-filename">Advanced Pipelining.pdf</span>
+          <span className="pdf-filename">Segment 6 Previous Questions Solve.pdf</span>
           <div className="pdf-header-actions">
             <button 
               className="pdf-action-btn" 
@@ -54,8 +54,8 @@ const CAAdvancedPipeliningNote = () => {
               <span>Fullscreen</span>
             </button>
             <a 
-              href="/ca-advanced-pipelining.pdf" 
-              download="CA_Advanced_Pipelining.pdf" 
+              href="/ca-seg06-solve.pdf" 
+              download="CA_Segment06_Prev_Question_Solve.pdf" 
               className="pdf-action-btn" 
               title="Download PDF"
             >
@@ -63,7 +63,7 @@ const CAAdvancedPipeliningNote = () => {
               <span>Download</span>
             </a>
             <a 
-              href="/ca-advanced-pipelining.pdf" 
+              href="/ca-seg06-solve.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="pdf-action-btn" 
@@ -78,8 +78,8 @@ const CAAdvancedPipeliningNote = () => {
         {/* Embedded PDF iframe */}
         <div className="pdf-frame-wrapper">
           <iframe 
-            src="/ca-advanced-pipelining.pdf#toolbar=1" 
-            title="Advanced Pipelining Notes PDF"
+            src="/ca-seg06-solve.pdf#toolbar=1" 
+            title="Pipelining Previous Question and Solve PDF"
             width="100%" 
             height="700px" 
             className="tlb-pdf-iframe"
@@ -89,8 +89,8 @@ const CAAdvancedPipeliningNote = () => {
         <div className="pdf-fallback-footer">
           <p>
             Having trouble viewing the PDF? 
-            <a href="/ca-advanced-pipelining.pdf" target="_blank" rel="noopener noreferrer"> Click here to open it directly</a> or 
-            <a href="/ca-advanced-pipelining.pdf" download="CA_Advanced_Pipelining.pdf"> download it</a>.
+            <a href="/ca-seg06-solve.pdf" target="_blank" rel="noopener noreferrer"> Click here to open it directly</a> or 
+            <a href="/ca-seg06-solve.pdf" download="CA_Segment06_Prev_Question_Solve.pdf"> download it</a>.
           </p>
         </div>
       </div>
@@ -99,11 +99,11 @@ const CAAdvancedPipeliningNote = () => {
       {isFullscreen && (
         <div className="pdf-fullscreen-overlay">
           <div className="fullscreen-header">
-            <span className="fullscreen-title">Advanced Pipelining.pdf - Document Viewer</span>
+            <span className="fullscreen-title">Segment 6 Previous Questions Solve.pdf - Document Viewer</span>
             <div className="fullscreen-actions">
               <a 
-                href="/ca-advanced-pipelining.pdf" 
-                download="CA_Advanced_Pipelining.pdf" 
+                href="/ca-seg06-solve.pdf" 
+                download="CA_Segment06_Prev_Question_Solve.pdf" 
                 className="fullscreen-action-btn"
                 title="Download PDF"
               >
@@ -121,8 +121,8 @@ const CAAdvancedPipeliningNote = () => {
           </div>
           <div className="fullscreen-body">
             <iframe 
-              src="/ca-advanced-pipelining.pdf#toolbar=1" 
-              title="Advanced Pipelining Notes PDF Fullscreen"
+              src="/ca-seg06-solve.pdf#toolbar=1" 
+              title="Pipelining Previous Question and Solve PDF Fullscreen"
               width="100%" 
               height="100%" 
               className="fullscreen-iframe"
@@ -155,4 +155,4 @@ const InfoIcon = () => (
   </svg>
 );
 
-export default CAAdvancedPipeliningNote;
+export default CAPrevQuestionSolveNote;

@@ -8,20 +8,12 @@ const CASegment06 = () => {
 
   const cards = [
     {
-      title: 'Advanced Pipelining',
-      sub: 'Branch Prediction & Superscalar Execution',
-      desc: 'Understand advanced pipelining, dynamic branch prediction models, superscalar execution complexity, and superpipelining methods.',
-      path: '/computer-architecture/segment-06/advanced-pipelining',
+      title: 'Previous Question and Solve',
+      sub: 'MIPS Pipelining Exam Q&A Solve',
+      desc: 'Study past exam questions on MIPS 5-stage pipelining, execution delays, speedup calculations, pipeline hazards (structural, data, control), stalls, forwarding, and instruction reordering.',
+      path: '/computer-architecture/segment-06/previous-question-solve',
       cover: '/ca-seg06-cover.png',
-      pill: 'Advanced'
-    },
-    {
-      title: 'Pipelining & Hazards',
-      sub: 'Instruction Pipeline Stages, Hazards & Solutions',
-      desc: 'Study basic pipelining concepts, execution stages (IF, ID, EX, MEM, WB), structural hazards, data hazards, control hazards, and mitigation schemes.',
-      path: '/computer-architecture/segment-06/pipelining',
-      cover: '/ca-seg06-cover.png',
-      pill: 'Pipelining'
+      pill: 'Exam Q&A Solve'
     }
   ];
 
