@@ -1,0 +1,265 @@
+/* Custom stylesheet for SAD Portal cards following the 4th design layout */
+
+.sad-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 80px);
+}
+
+.sad-header {
+  margin-bottom: 2.5rem;
+}
+
+.sad-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #ff8a00, #e52e71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sad-header p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.sad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* 4th Card Design - Exactly matching the shoe card from Row 2, Card 1 */
+.sad-card-4 {
+  background: #111319;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.sad-card-4.unlocked {
+  cursor: pointer;
+}
+
+.sad-card-4.unlocked:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 107, 53, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(255, 107, 53, 0.15);
+}
+
+.sad-card-4.locked {
+  opacity: 0.75;
+}
+
+/* Top Right Action Button (Heart or Lock Icon) */
+.sad-card-action-btn {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.8rem;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff6b35;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  transition: transform 0.2s ease;
+}
+
+.sad-card-action-btn:hover {
+  transform: scale(1.15);
+}
+
+.sad-card-action-btn.is-locked {
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+/* Image Container */
+.sad-card-img-wrapper {
+  background: #1a1e28;
+  border-radius: 14px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.sad-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.sad-card-4.unlocked:hover .sad-card-img {
+  transform: scale(1.05);
+}
+
+/* Thumbnail Previews Row */
+.sad-thumb-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  margin-top: 0.25rem;
+}
+
+.sad-thumb-item {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #161a23;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.sad-thumb-item.active {
+  border: 1.5px solid #ff6b35;
+}
+
+.sad-thumb-img {
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Details Section */
+.sad-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sad-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.sad-card-sub {
+  font-size: 0.8rem;
+  color: #ff6b35;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Price / Page Info Row */
+.sad-card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.sad-price-current {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.sad-price-original {
+  font-size: 0.85rem;
+  color: #64748b;
+  text-decoration: line-through;
+}
+
+/* Bottom Controls Section - Counter/Quantity Selector */
+.sad-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.sad-counter-container {
+  display: flex;
+  align-items: center;
+  background: #161a23;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.sad-counter-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s ease;
+}
+
+.sad-counter-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sad-counter-btn:disabled {
+  color: #334155;
+  cursor: not-allowed;
+}
+
+.sad-counter-value {
+  flex: 1;
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Locked Overlay style */
+.sad-locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justifyContent: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.sad-locked-badge {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}

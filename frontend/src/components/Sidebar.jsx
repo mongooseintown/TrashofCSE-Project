@@ -34,8 +34,21 @@ const SEMESTER_COURSES = {
       icon: <Cpu size={18} />, 
       colorClass: 'icon-purple'
     },
+    { 
+      label: 'CSE-3611 (SAD)', 
+      path: '/system-analysis-design', 
+      icon: <GraduationCap size={18} />, 
+      colorClass: 'icon-pink'
+    },
   ],
-  // Future semesters can be added here
+  '6th': [
+    { 
+      label: 'CSE-3611 (SAD)', 
+      path: '/system-analysis-design', 
+      icon: <GraduationCap size={18} />, 
+      colorClass: 'icon-pink'
+    },
+  ],
 };
 
 const Sidebar = () => {

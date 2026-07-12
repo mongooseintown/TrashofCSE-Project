@@ -75,6 +75,8 @@ import CAVirtualMemoryNote from './pages/CAVirtualMemoryNote';
 import CACacheMappingNote from './pages/CACacheMappingNote';
 import CACacheMemoryNote from './pages/CACacheMemoryNote';
 import CALocalityNote from './pages/CALocalityNote';
+import SAD from './pages/SAD';
+import SADSegment08Note from './pages/SADSegment08Note';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -146,6 +148,10 @@ function AppContent() {
           <Route path="/computer-architecture/segment-07/cache-mapping" element={<PrivateRoute><CACacheMappingNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07/cache-memory" element={<PrivateRoute><CACacheMemoryNote /></PrivateRoute>} />
           <Route path="/computer-architecture/segment-07/locality" element={<PrivateRoute><CALocalityNote /></PrivateRoute>} />
+
+          {/* SAD Routes */}
+          <Route path="/system-analysis-design" element={<PrivateRoute><SAD /></PrivateRoute>} />
+          <Route path="/system-analysis-design/segment-08" element={<PrivateRoute><SADSegment08Note /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />
