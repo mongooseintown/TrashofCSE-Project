@@ -8,7 +8,7 @@
   background-image: radial-gradient(rgba(255, 91, 34, 0.03) 1.2px, transparent 1.2px);
   background-size: 20px 20px;
   color: var(--text-primary);
-  font-family: 'Outfit', 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
   padding: 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
