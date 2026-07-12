@@ -61,17 +61,28 @@
   right: -60px;
   width: 400px;
   max-height: 520px;
-  background: var(--card-bg, #0f1117);
-  border: 1px solid var(--card-border, rgba(255, 255, 255, 0.08));
+  background: #12141a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.04);
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
   overflow: hidden;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   animation: notifSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light mode: solid white background */
+[data-theme="light"] .notif-panel {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 @keyframes notifSlideIn {
@@ -323,3 +334,42 @@
     right: -1rem;
   }
 }
+
+/* ============ Light Mode Overrides ============ */
+[data-theme="light"] .notif-panel-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .notif-mark-all-btn {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .notif-close-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .notif-item {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .notif-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .notif-item.unread {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+[data-theme="light"] .notif-item.unread:hover {
+  background: rgba(59, 130, 246, 0.08);
+}
+
+[data-theme="light"] .notif-read-btn {
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .notif-panel-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+}
+
