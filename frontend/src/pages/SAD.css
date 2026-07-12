@@ -1,156 +1,18 @@
-/* Cleaned and revised stylesheet for SAD Portal cards */
+/* SAD Portal — Uses EEE.css shared card classes (.product-card, .card-grid, etc.)
+   Only SAD-specific overrides and the locked-overlay styles live here. */
 
-.sad-container {
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  min-height: calc(100vh - 80px);
-}
-
-.sad-header {
-  margin-bottom: 2.5rem;
-}
-
-.sad-header h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #ff8a00, #e52e71);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sad-header p {
-  color: var(--text-muted);
-  font-size: 1rem;
-}
-
-.sad-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-/* Revised 4th Card Design - Clean notes-focused dark-theme layout */
-.sad-card-4 {
-  background: #111319;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 1.25rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  user-select: none;
-}
-
-.sad-card-4.unlocked {
-  cursor: pointer;
-}
-
-.sad-card-4.unlocked:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 138, 0, 0.4);
-  box-shadow: 0 10px 25px -5px rgba(255, 138, 0, 0.15);
-}
-
-.sad-card-4.locked {
-  opacity: 0.6;
-}
-
-/* Image/Logo Container */
-.sad-card-img-wrapper {
-  background: #1a1e28;
-  border-radius: 14px;
-  height: 160px;
-  display: flex;
-  align-items: center;
-  justifyContent: center;
-  overflow: hidden;
-  position: relative;
-  padding: 0;
-}
-
-.sad-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.9;
-  transition: transform 0.5s ease;
-}
-
-.sad-card-4.unlocked:hover .sad-card-img {
-  transform: scale(1.05);
-}
-
-/* Details Section */
-.sad-card-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  flex-grow: 1;
-}
-
-.sad-card-sub {
-  font-size: 0.75rem;
-  color: #ff8a00;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.sad-card-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-}
-
-.sad-card-desc {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  line-height: 1.5;
-  margin: 0.25rem 0 0 0;
-}
-
-/* Bottom Controls Section - Button/Badge */
-.sad-card-footer {
-  margin-top: 0.5rem;
-}
-
-.sad-action-btn {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justifyContent: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
-}
-
-.sad-card-4.unlocked .sad-action-btn {
-  background: linear-gradient(135deg, #ff8a00, #e52e71);
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-}
-
-.sad-card-4.unlocked .sad-action-btn:hover {
-  opacity: 0.95;
-  transform: scale(1.02);
-}
-
-.sad-card-4.locked .sad-action-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #64748b;
+/* Locked card visual dimming */
+.product-card.sad-locked {
+  opacity: 0.55;
   cursor: not-allowed;
+  pointer-events: none;
+  position: relative;
+}
+
+.product-card.sad-locked:hover {
+  transform: none;
+  box-shadow: 0 15px 35px var(--shadow-primary);
+  border-color: var(--card-border);
 }
 
 /* Big Lock Icon Overlay for Locked Segment Cards */
@@ -160,38 +22,37 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
+  background: rgba(10, 15, 25, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justifyContent: center;
-  z-index: 10;
+  justify-content: center;
+  z-index: 20;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sad-lock-circle {
-  width: 70px;
-  height: 70px;
-  background: rgba(30, 41, 59, 0.8);
-  border: 1.5px solid rgba(239, 68, 68, 0.4);
+  width: 72px;
+  height: 72px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 2px solid rgba(239, 68, 68, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
-  justifyContent: center;
+  justify-content: center;
   color: #ef4444;
-  box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
-  margin-bottom: 0.75rem;
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.25), inset 0 0 15px rgba(239, 68, 68, 0.08);
+  margin-bottom: 0.85rem;
 }
 
 .sad-lock-label {
   color: #ef4444;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
-
