@@ -76,7 +76,9 @@ import CACacheMappingNote from './pages/CACacheMappingNote';
 import CACacheMemoryNote from './pages/CACacheMemoryNote';
 import CALocalityNote from './pages/CALocalityNote';
 import SAD from './pages/SAD';
-import SADSegment08Note from './pages/SADSegment08Note';
+import SADSegment08 from './pages/SADSegment08';
+import SADSelectionCriteriaNote from './pages/SADSelectionCriteriaNote';
+import SADSecurityThreatsNote from './pages/SADSecurityThreatsNote';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
@@ -151,7 +153,9 @@ function AppContent() {
 
           {/* SAD Routes */}
           <Route path="/system-analysis-design" element={<PrivateRoute><SAD /></PrivateRoute>} />
-          <Route path="/system-analysis-design/segment-08" element={<PrivateRoute><SADSegment08Note /></PrivateRoute>} />
+          <Route path="/system-analysis-design/segment-08" element={<PrivateRoute><SADSegment08 /></PrivateRoute>} />
+          <Route path="/system-analysis-design/segment-08/selection-criteria" element={<PrivateRoute><SADSelectionCriteriaNote /></PrivateRoute>} />
+          <Route path="/system-analysis-design/segment-08/security-threats" element={<PrivateRoute><SADSecurityThreatsNote /></PrivateRoute>} />
 
           {/* EEE Routes */}
           <Route path="/eee" element={<PrivateRoute><EEE /></PrivateRoute>} />

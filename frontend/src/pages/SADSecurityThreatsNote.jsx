@@ -4,7 +4,7 @@ import { ArrowLeft, Maximize2, Minimize2, Download, ExternalLink } from 'lucide-
 import './PVCellNote.css';
 import './CATLBNote.css';
 
-const SADSegment08Note = () => {
+const SADSecurityThreatsNote = () => {
   const navigate = useNavigate();
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -24,13 +24,13 @@ const SADSegment08Note = () => {
       {/* Header Row */}
       <div className="note-header-row">
         <button 
-          onClick={() => navigate('/system-analysis-design')} 
+          onClick={() => navigate('/system-analysis-design/segment-08')} 
           className="note-back-btn"
         >
-          <ArrowLeft size={16} /> Back to SAD Portal
+          <ArrowLeft size={16} /> Back to Segment 08
         </button>
         <div>
-          <h1>Segment 08: System Implementation Notes</h1>
+          <h1>Security Vulnerabilities and Threats Notes</h1>
         </div>
       </div>
 
@@ -43,7 +43,7 @@ const SADSegment08Note = () => {
       {/* Embedded PDF Viewer Container */}
       <div className="tlb-pdf-container">
         <div className="tlb-pdf-header-controls">
-          <span className="pdf-filename">SAD Segment 8: System Implementation.pdf</span>
+          <span className="pdf-filename">Security Vulnerabilities & Threats.pdf</span>
           <div className="pdf-header-actions">
             <button 
               className="pdf-action-btn" 
@@ -54,8 +54,8 @@ const SADSegment08Note = () => {
               <span>Fullscreen</span>
             </button>
             <a 
-              href="/sad-segment-08.pdf" 
-              download="SAD_Segment08_System_Implementation.pdf" 
+              href="/sad-seg08-security.pdf" 
+              download="SAD_Segment08_Security_Vulnerabilities_Threats.pdf" 
               className="pdf-action-btn" 
               title="Download PDF"
             >
@@ -63,7 +63,7 @@ const SADSegment08Note = () => {
               <span>Download</span>
             </a>
             <a 
-              href="/sad-segment-08.pdf" 
+              href="/sad-seg08-security.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="pdf-action-btn" 
@@ -78,8 +78,8 @@ const SADSegment08Note = () => {
         {/* Embedded PDF iframe */}
         <div className="pdf-frame-wrapper">
           <iframe 
-            src="/sad-segment-08.pdf#toolbar=1" 
-            title="SAD Segment 08 Notes PDF"
+            src="/sad-seg08-security.pdf#toolbar=1" 
+            title="Security Vulnerabilities & Threats Notes PDF"
             width="100%" 
             height="700px" 
             className="tlb-pdf-iframe"
@@ -89,8 +89,8 @@ const SADSegment08Note = () => {
         <div className="pdf-fallback-footer">
           <p>
             Having trouble viewing the PDF? 
-            <a href="/sad-segment-08.pdf" target="_blank" rel="noopener noreferrer"> Click here to open it directly</a> or 
-            <a href="/sad-segment-08.pdf" download="SAD_Segment08_System_Implementation.pdf"> download it</a>.
+            <a href="/sad-seg08-security.pdf" target="_blank" rel="noopener noreferrer"> Click here to open it directly</a> or 
+            <a href="/sad-seg08-security.pdf" download="SAD_Segment08_Security_Vulnerabilities_Threats.pdf"> download it</a>.
           </p>
         </div>
       </div>
@@ -99,11 +99,11 @@ const SADSegment08Note = () => {
       {isFullscreen && (
         <div className="pdf-fullscreen-overlay">
           <div className="fullscreen-header">
-            <span className="fullscreen-title">SAD Segment 08 - Document Viewer</span>
+            <span className="fullscreen-title">Security Vulnerabilities & Threats.pdf - Document Viewer</span>
             <div className="fullscreen-actions">
               <a 
-                href="/sad-segment-08.pdf" 
-                download="SAD_Segment08_System_Implementation.pdf" 
+                href="/sad-seg08-security.pdf" 
+                download="SAD_Segment08_Security_Vulnerabilities_Threats.pdf" 
                 className="fullscreen-action-btn"
                 title="Download PDF"
               >
@@ -121,8 +121,8 @@ const SADSegment08Note = () => {
           </div>
           <div className="fullscreen-body">
             <iframe 
-              src="/sad-segment-08.pdf#toolbar=1" 
-              title="SAD Segment 08 Notes PDF Fullscreen"
+              src="/sad-seg08-security.pdf#toolbar=1" 
+              title="Security Vulnerabilities & Threats Notes PDF Fullscreen"
               width="100%" 
               height="100%" 
               className="fullscreen-iframe"
@@ -155,4 +155,4 @@ const InfoIcon = () => (
   </svg>
 );
 
-export default SADSegment08Note;
+export default SADSecurityThreatsNote;

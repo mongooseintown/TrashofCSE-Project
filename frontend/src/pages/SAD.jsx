@@ -92,6 +92,16 @@ const SAD = () => {
               />
             </div>
 
+            {/* Locked Overlay */}
+            {seg.locked && (
+              <div className="sad-locked-overlay">
+                <div className="sad-lock-circle">
+                  <Lock size={30} />
+                </div>
+                <span className="sad-lock-label">Locked</span>
+              </div>
+            )}
+
             {/* Details Section */}
             <div className="sad-card-details">
               <span className="sad-card-sub">{seg.sub}</span>

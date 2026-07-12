@@ -152,3 +152,46 @@
   color: #64748b;
   cursor: not-allowed;
 }
+
+/* Big Lock Icon Overlay for Locked Segment Cards */
+.sad-locked-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justifyContent: center;
+  z-index: 10;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sad-lock-circle {
+  width: 70px;
+  height: 70px;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1.5px solid rgba(239, 68, 68, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  color: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+  margin-bottom: 0.75rem;
+}
+
+.sad-lock-label {
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
