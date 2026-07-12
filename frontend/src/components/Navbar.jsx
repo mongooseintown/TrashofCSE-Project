@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import { Sun, Moon, LogOut, Menu, X } from 'lucide-react';
+import NotificationPanel from './NotificationPanel';
 
 import { getApiUrl } from '../config';
 
@@ -96,6 +97,8 @@ const Navbar = () => {
                 <a href="/#faq" className="nav-link">FAQ</a>
               </>
             )}
+
+            {isLoggedIn && <NotificationPanel />}
             
             <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
