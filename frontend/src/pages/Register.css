@@ -22,7 +22,7 @@
   left: 20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 107, 0, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -193,25 +193,24 @@
   color: #ffffff;
 }
 
-/* Submit Action Button */
 .reg-submit-btn {
   margin-top: 1rem;
   padding: 1rem;
-  background: #ff5b22; /* Solid orange matching mockup */
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(255, 91, 34, 0.15);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
 }
 
 .reg-submit-btn:hover {
-  background: #ff7242;
+  background: #e5e5e5;
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(255, 91, 34, 0.25);
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.12);
 }
 
 /* Social Separator */
@@ -272,7 +271,7 @@
 }
 
 .reg-link-txt {
-  color: #ff5b22;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
@@ -282,7 +281,7 @@
 
 .reg-link-txt:hover {
   text-decoration: underline;
-  color: #ff7242;
+  color: #e5e5e5;
 }
 
 /* Responsive adjustments */
@@ -302,4 +301,112 @@
     width: 100%;
     padding: 2.5rem;
   }
+}
+
+/* ========================================================
+   Light Theme Overrides for Register View
+   ======================================================== */
+[data-theme="light"] .register-page-container {
+  background-color: #f7f7f7;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px);
+}
+
+[data-theme="light"] .register-page-container::before {
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.02) 0%, transparent 70%);
+}
+
+[data-theme="light"] .register-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .register-banner {
+  background: #f1f1f1;
+  border-right-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .banner-content h2 {
+  color: #070707;
+}
+
+[data-theme="light"] .banner-content p {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="light"] .register-form-area {
+  background: #ffffff;
+}
+
+[data-theme="light"] .form-header h1 {
+  color: #070707;
+}
+
+[data-theme="light"] .form-header p {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .back-link-btn {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .back-link-btn:hover {
+  color: #000000;
+}
+
+[data-theme="light"] .input-group-row label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="light"] .input-group-row select,
+[data-theme="light"] .input-group-row input {
+  color: #070707;
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .input-group-row select:focus,
+[data-theme="light"] .input-group-row input:focus {
+  border-bottom-color: #000000;
+}
+
+[data-theme="light"] .reg-submit-btn {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .reg-submit-btn:hover {
+  background: #222222;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .social-divider {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] .social-divider::before,
+[data-theme="light"] .social-divider::after {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .social-btn-item {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .social-btn-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .reg-footer-row {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .reg-link-txt {
+  color: #000000;
+}
+
+[data-theme="light"] .reg-link-txt:hover {
+  color: #222222;
 }

@@ -135,7 +135,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #00f7a6 0%, #00c6ff 100%);
+  background: #ffffff;
   color: #000000;
   border: none;
   border-radius: 50%;
@@ -256,7 +256,7 @@
 }
 
 .login-submit-btn {
-  background: linear-gradient(135deg, #00f7a6 0%, #00c6ff 100%);
+  background: #ffffff;
   color: #000000;
   border: none;
   border-radius: 16px;
@@ -270,10 +270,86 @@
 
 .login-submit-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  filter: brightness(1.1);
+  background: #e5e5e5;
 }
 
 .login-submit-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ========================================================
+   Light Theme Overrides for Login View
+   ======================================================== */
+[data-theme="light"] .login-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .login-header h1 {
+  color: #070707;
+}
+
+[data-theme="light"] .login-header p {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .input-group {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .input-group:focus-within {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: #000000;
+}
+
+[data-theme="light"] .input-group label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="light"] .input-row input {
+  color: #070707;
+}
+
+[data-theme="light"] .input-row input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .submit-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+[data-theme="light"] .login-submit-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+[data-theme="light"] .login-submit-btn:hover:not(:disabled) {
+  background: #222222;
+}
+
+[data-theme="light"] .social-btn {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+}
+
+[data-theme="light"] .social-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .social-btn:hover .arrow-icon {
+  color: #000000;
+}
+
+[data-theme="light"] .login-footer {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] .login-footer a,
+[data-theme="light"] .auth-link-text {
+  color: #000000;
 }

@@ -310,3 +310,85 @@
     right: 0;
   }
 }
+
+/* ========================================================
+   Light Theme Overrides for Active Users Widget
+   ======================================================== */
+[data-theme="light"] .active-users-trigger {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .active-users-trigger:hover,
+[data-theme="light"] .active-users-trigger.active {
+  background: rgba(240, 240, 240, 0.95);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #000;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .active-users-popover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .popover-header {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.01);
+}
+
+[data-theme="light"] .popover-header h4 {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .no-users-state p {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .active-user-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .active-user-item.is-self {
+  background: rgba(52, 199, 89, 0.05);
+}
+
+[data-theme="light"] .avatar-placeholder {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .active-user-item.is-self .avatar-placeholder {
+  background: rgba(52, 199, 89, 0.1);
+  border-color: rgba(52, 199, 89, 0.2);
+  color: #2b9d44;
+}
+
+[data-theme="light"] .status-dot-glowing {
+  border-color: #ffffff;
+}
+
+[data-theme="light"] .user-name {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .user-sem-badge.none {
+  color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .user-dept-text {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .popover-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .popover-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.16);
+}

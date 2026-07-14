@@ -308,3 +308,94 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin: 12px 10px;
 }
+
+/* ========================================================
+   Light Theme Overrides for Sidebar
+   ======================================================== */
+[data-theme="light"] .glass-sidebar {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .sidebar-header {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .sidebar-title {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .sidebar-toggle-btn {
+  border-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .sidebar-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+[data-theme="light"] .sidebar-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .sidebar-item.active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .sidebar-label {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .sidebar-lock-icon {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .sidebar-no-semester h3 {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .sidebar-no-semester p {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="light"] .no-sem-btn {
+  background: #070707;
+  color: #ffffff;
+}
+
+[data-theme="light"] .no-sem-btn:hover {
+  background: #222222;
+}
+
+[data-theme="light"] .sidebar-footer {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .sidebar-brand {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] .glass-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .glass-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .sidebar-mobile-expand-btn {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="light"] .sidebar-mobile-expand-btn:hover {
+  background: #f7f7f7;
+  color: #000000;
+}
+
+[data-theme="light"] .sidebar-divider {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
