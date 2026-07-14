@@ -26,8 +26,7 @@ const SEMESTER_COURSES = {
       label: 'CSE-3527', 
       path: '/compiler', 
       icon: <Terminal size={18} />, 
-      colorClass: 'icon-teal',
-      requiresAdmin: true
+      colorClass: 'icon-teal'
     },
     { 
       label: 'CSE-3523', 

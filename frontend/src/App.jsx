@@ -110,12 +110,12 @@ function AppContent() {
             <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
             <Route path="/feed" element={<PrivateRoute><CommunityFeed /></PrivateRoute>} />
           
-          {/* Admin Restricted Compiler Routes */}
-          <Route path="/compiler" element={<AdminRoute><CompilerHub /></AdminRoute>} />
-          <Route path="/compiler/segment-07" element={<AdminRoute><CompilerSegment07 /></AdminRoute>} />
-          <Route path="/compiler/segment-06" element={<AdminRoute><CompilerSegment06 /></AdminRoute>} />
-          <Route path="/compilersegment-06/:topicId" element={<AdminRoute><TopicPage /></AdminRoute>} />
-          <Route path="/compiler/segment-04" element={<AdminRoute><CompilerSegment04 /></AdminRoute>} />
+          {/* Compiler Routes (Open to all students) */}
+          <Route path="/compiler" element={<PrivateRoute><CompilerHub /></PrivateRoute>} />
+          <Route path="/compiler/segment-07" element={<PrivateRoute><CompilerSegment07 /></PrivateRoute>} />
+          <Route path="/compiler/segment-06" element={<PrivateRoute><CompilerSegment06 /></PrivateRoute>} />
+          <Route path="/compilersegment-06/:topicId" element={<PrivateRoute><TopicPage /></PrivateRoute>} />
+          <Route path="/compiler/segment-04" element={<PrivateRoute><CompilerSegment04 /></PrivateRoute>} />
           <Route path="/compiler/locked" element={<CompilerLocked />} />
 
           {/* Computer Architecture Routes */}
