@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import {
-  ArrowRight, Check, ChevronDown, ChevronUp,
-  Layers, Activity, BookOpen, Layout,
-  Terminal, Cpu, Shield, User, Sparkles,
-  GitBranch, FileCode, BarChart2, Zap, Star
+import { useNavigate } from 'react-router-dom';
+import { 
+  ArrowRight, Check, ChevronDown, ChevronUp, Star,
+  Layers, Activity, BookOpen, Layout, HelpCircle,
+  Terminal, Cpu, Shield, User, Sparkles, FolderOpen,
+  Plus, UploadCloud, Search, CheckCircle2, Moon, Sun
 } from 'lucide-react';
 import './Home.css';
 
@@ -14,408 +14,505 @@ const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Check if user is logged in
     const token = localStorage.getItem('token');
-    if (token) setIsLoggedIn(true);
+    if (token) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
 
-  const techStack = [
-    { name: 'Vite', icon: <Zap size={15} /> },
-    { name: 'React', icon: <Cpu size={15} /> },
-    { name: 'ReactFlow', icon: <Layers size={15} /> },
-    { name: 'Node.js', icon: <Terminal size={15} /> },
-    { name: 'MongoDB', icon: <Shield size={15} /> },
-    { name: 'GitHub', icon: <GitBranch size={15} /> },
-  ];
-
-  const features = [
-    {
-      tag: 'Interactive Roadmap',
-      headline: 'START YOUR OWN\nSTUDY ROADMAP',
-      desc: 'Visualize your entire compiler design syllabus as an interactive node graph. Track completed topics, identify prerequisite chains, and never lose your place mid-semester.',
-      icon: <Layout size={22} />,
-      mockup: (
-        <div className="feat-mockup roadmap-mock">
-          <div className="rm-node rm-done"><Check size={12}/> Lexical Analysis</div>
-          <div className="rm-line done"></div>
-          <div className="rm-node rm-active"><span className="rm-dot"></span> Syntax Analysis</div>
-          <div className="rm-line"></div>
-          <div className="rm-node rm-pending">Semantic Analysis</div>
-          <div className="rm-line"></div>
-          <div className="rm-node rm-pending">Code Generation</div>
-        </div>
-      ),
-    },
-    {
-      tag: 'Productivity Tools',
-      headline: 'MAXIMIZE YOUR\nPRODUCTIVITY WITH\nINTEGRATED TOOLS',
-      desc: 'Access handwritten diagrams, parsing tables, and LL(1)/LR(1) cheat sheets from directly within your study session. No more switching between tabs.',
-      icon: <BarChart2 size={22} />,
-      mockup: (
-        <div className="feat-mockup tools-mock">
-          <div className="tm-row"><FileCode size={14}/><span>LL(1) Parsing Table</span><span className="tm-badge">PDF</span></div>
-          <div className="tm-row"><BookOpen size={14}/><span>Hand-drawn CFG Notes</span><span className="tm-badge">IMG</span></div>
-          <div className="tm-row"><Activity size={14}/><span>Syntax Tree Diagram</span><span className="tm-badge">IMG</span></div>
-          <div className="tm-row"><Layers size={14}/><span>Code Gen Cheat Sheet</span><span className="tm-badge">PDF</span></div>
-        </div>
-      ),
-    },
-    {
-      tag: 'Progress Tracking',
-      headline: 'CUSTOMIZE YOUR\nLEARNING WITH\nUNIQUE TRACKING',
-      desc: 'Each topic node tracks your state — pending, in-progress, or completed. Visual coverage breakdowns show you exactly how exam-ready you are at any given time.',
-      icon: <BarChart2 size={22} />,
-      mockup: (
-        <div className="feat-mockup progress-mock">
-          <div className="pm-stat"><span className="pm-num">92%</span><span>Syllabus Coverage</span></div>
-          <div className="pm-bars">
-            <div className="pm-bar-row"><span>Parsing</span><div className="pm-bar"><div className="pm-fill" style={{width:'95%'}}></div></div><span>95%</span></div>
-            <div className="pm-bar-row"><span>Code Gen</span><div className="pm-bar"><div className="pm-fill" style={{width:'80%'}}></div></div><span>80%</span></div>
-            <div className="pm-bar-row"><span>Optimization</span><div className="pm-bar"><div className="pm-fill" style={{width:'60%'}}></div></div><span>60%</span></div>
-          </div>
-        </div>
-      ),
-    },
-  ];
-
-  const testimonials = [
-    {
-      text: '"The handwritten notes inside Segment 04 saved me during midterms. The visual parsing tables made predictive LL(1) tables so easy to build."',
-      name: 'Fahim Ahmed',
-      role: 'CSE Student, UIU',
-      stars: 5,
-    },
-    {
-      text: '"Code generation always felt like black magic until I saw the visual flow mapping stack allocation vs heap allocation. Absolutely recommended!"',
-      name: 'Nusrat Jahan',
-      role: 'SWE Major, NSU',
-      stars: 5,
-    },
-    {
-      text: '"TrashofCSE gave me a clear picture of the entire compiler pipeline. I went from confused to confident in just two weeks of using the roadmap."',
-      name: 'Raihan Islam',
-      role: 'CSE Student, IIUC',
-      stars: 5,
-    },
-  ];
-
-  const plans = [
-    {
-      name: 'Basic',
-      price: '$0',
-      period: '/semester',
-      desc: 'Access basic parsing and code generation roadmap tracking.',
-      cta: 'Get Started Free',
-      ctaAction: () => navigate('/register'),
-      highlight: false,
-      features: [
-        { text: 'Access to segment roadmaps', ok: true },
-        { text: 'Status tracking checkpoints', ok: true },
-        { text: 'Desktop & Mobile flows', ok: true },
-        { text: 'Handwritten class notes', ok: false },
-        { text: 'Shared study dashboards', ok: false },
-      ],
-    },
-    {
-      name: 'Pro',
-      price: '$19',
-      period: '/semester',
-      desc: 'Full access to handwritten notes, parsing tables, and assembly rules.',
-      cta: 'Get Started Pro',
-      ctaAction: () => navigate('/register'),
-      highlight: true,
-      badge: 'Most Popular',
-      features: [
-        { text: 'Access to segment roadmaps', ok: true },
-        { text: 'Status tracking checkpoints', ok: true },
-        { text: 'Desktop & Mobile flows', ok: true },
-        { text: 'High-res handwritten notes', ok: true },
-        { text: 'Error recovery details', ok: true },
-        { text: 'Shared study dashboards', ok: false },
-      ],
-    },
-    {
-      name: 'Study Group',
-      price: '$39',
-      period: '/semester',
-      desc: 'Optimized for study groups and team compiler projects.',
-      cta: 'Get Started Group',
-      ctaAction: () => navigate('/register'),
-      highlight: false,
-      features: [
-        { text: 'Access to segment roadmaps', ok: true },
-        { text: 'Status tracking checkpoints', ok: true },
-        { text: 'Desktop & Mobile flows', ok: true },
-        { text: 'High-res handwritten notes', ok: true },
-        { text: 'Shared team study folders', ok: true },
-        { text: 'Custom checklist assignments', ok: true },
-      ],
-    },
+  const partnerLogos = [
+    { name: 'Vite', icon: <Terminal size={14} /> },
+    { name: 'React', icon: <Cpu size={14} /> },
+    { name: 'ReactFlow', icon: <Layers size={14} /> },
+    { name: 'Tailwind', icon: <Layout size={14} /> },
+    { name: 'Framer', icon: <Sparkles size={14} /> },
+    { name: 'GitHub', icon: <Shield size={14} /> }
   ];
 
   const faqs = [
-    { q: 'What is TrashofCSE?', a: 'TrashofCSE is a visual compiler design syllabus roadmap tracking tool created to simplify complex computer science concepts through interactive flowcharts and handwritten diagrams.' },
-    { q: 'How does the interactive roadmap help me?', a: 'Instead of reading text-heavy manuals, our roadmap structures topics like LL(1) Parsing and Code Generation in logical flows. You can view prerequisite nodes, mark topics completed, and click to open contextual handwritten details.' },
-    { q: 'Are the handwritten notes free?', a: 'Yes — basic study roadmaps and conceptual notes are completely free. Pro and Study Group plans unlock detailed handwritten files and group study configurations.' },
-    { q: 'Is there support for other CSE subjects?', a: 'Currently TrashofCSE covers Compiler Design, Computer Architecture, EEE, and System Analysis & Design. More subjects are planned for future releases.' },
+    {
+      q: "What is TrashofCSE?",
+      a: "TrashofCSE is an interactive syllabus tracking and resource sharing hub designed specifically for Computer Science students to organize notes, roadmaps, and previous semester solutions."
+    },
+    {
+      q: "How does the interactive roadmap help me?",
+      a: "Instead of browsing through unorganized drives, the roadmap structures topics logically. You can trace prerequisite chains, click nodes to view specific notes, and mark topics completed as you study."
+    },
+    {
+      q: "Are the handwritten notes free?",
+      a: "Yes, the core syllabus roadmaps and student-contributed notes are completely free to access. We also support semester plans for study groups to collaborate and share private resources."
+    },
+    {
+      q: "Can I contribute notes?",
+      a: "Absolutely! Registered students can upload notes or PDFs directly from their dashboard. Once verified by a moderator, your notes will be published in the Shared Resources Hub for everyone."
+    }
   ];
 
   return (
-    <div className="lp-root">
+    <div className="lp-container">
+      {/* Background Mesh Gradients (Monochrome) */}
+      <div className="lp-mesh-container">
+        <div className="lp-mesh-blob lp-blob-1"></div>
+        <div className="lp-mesh-blob lp-blob-2"></div>
+        <div className="lp-mesh-blob lp-blob-3"></div>
+      </div>
 
-      {/* ─── HERO ─────────────────────────────────────── */}
-      <section className="lp-hero">
-        <div className="lp-hero-glow glow-1"></div>
-        <div className="lp-hero-glow glow-2"></div>
-
-        <div className="lp-hero-inner">
-          <div className="lp-hero-text">
-            <div className="lp-badge">
-              <Sparkles size={13} />
-              <span>Interactive CSE Study Platform</span>
-            </div>
-            <h1 className="lp-hero-h1">
-              <span className="lp-h1-line1">YOUR NOTES,</span>
-              <span className="lp-h1-line2">YOUR EDGE.</span>
-            </h1>
-            <p className="lp-hero-sub">
-              Visualize complex compiler design and computer science syllabi as interactive node graphs. Track, explore, and master — all in one place.
-            </p>
-            <div className="lp-hero-ctas">
-              {isLoggedIn ? (
-                <>
-                  <button className="lp-btn-primary" onClick={() => navigate('/dashboard')}>
-                    Go to Dashboard <ArrowRight size={17} />
-                  </button>
-                  <button className="lp-btn-ghost" onClick={() => navigate('/compiler')}>
-                    Explore Portal
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button className="lp-btn-primary" onClick={() => navigate('/register')}>
-                    Get Started Free <ArrowRight size={17} />
-                  </button>
-                  <button className="lp-btn-ghost" onClick={() => navigate('/login')}>
-                    Sign In
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Tech strip */}
-            <div className="lp-tech-strip">
-              <span className="lp-tech-label">BUILT WITH</span>
-              {techStack.map((t, i) => (
-                <div key={i} className="lp-tech-item">
-                  {t.icon}
-                  <span>{t.name}</span>
-                </div>
-              ))}
-            </div>
+      {/* ─── 1. HERO SECTION ─── */}
+      <section className="lp-hero-section">
+        <div className="lp-hero-content">
+          <div className="lp-badge">
+            <Sparkles size={13} className="lp-sparkle-icon" />
+            <span>Interactive syllabus tracking & note sharing hub</span>
           </div>
 
-          {/* Hero visual — floating dashboard card */}
-          <div className="lp-hero-visual">
-            <div className="lp-hero-card">
-              <div className="lhc-header">
-                <div className="lhc-dots"><span></span><span></span><span></span></div>
-                <span className="lhc-title">Compiler Roadmap — Segment 04</span>
+          <h1 className="lp-hero-title">
+            YOUR NOTES,<br />
+            <span>YOUR AUTHORITY.</span>
+          </h1>
+
+          <p className="lp-hero-subtitle">
+            Create internal sharing networks for group studies. Manage your notes, previous year question solves, and interactive roadmaps, your way.
+          </p>
+
+          <div className="lp-hero-ctas">
+            {isLoggedIn ? (
+              <>
+                <button className="lp-btn-primary" onClick={() => navigate('/dashboard')}>
+                  Go to Dashboard <ArrowRight size={16} />
+                </button>
+                <button className="lp-btn-secondary" onClick={() => navigate('/compiler')}>
+                  Explore Portals
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="lp-btn-primary" onClick={() => navigate('/register')}>
+                  Start Sharing <ArrowRight size={16} />
+                </button>
+                <button className="lp-btn-secondary" onClick={() => navigate('/login')}>
+                  Log In
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Hero visual card - Detailed dashboard mockup from the image */}
+        <div className="lp-hero-mockup-wrapper">
+          <div className="lp-dashboard-mockup">
+            <div className="lp-mock-sidebar">
+              <div className="lp-mock-brand">
+                <div className="lp-mock-logo-dot"></div>
+                <span>TrashofCSE</span>
               </div>
-              <div className="lhc-body">
-                <div className="lhc-node lhc-done"><Check size={11}/> Lexical Analysis</div>
-                <div className="lhc-arrow">↓</div>
-                <div className="lhc-node lhc-active"><span className="lhc-dot"></span> Syntax Analysis (Current)</div>
-                <div className="lhc-arrow">↓</div>
-                <div className="lhc-node lhc-lock">Semantic Analysis</div>
-                <div className="lhc-arrow">↓</div>
-                <div className="lhc-node lhc-lock">Intermediate Code Gen</div>
+              <div className="lp-mock-menu-item active">
+                <Layout size={12} /> <span>Dashboard</span>
               </div>
-              <div className="lhc-footer">
-                <span className="lhc-progress-label">Progress</span>
-                <div className="lhc-progress-bar"><div className="lhc-progress-fill" style={{width:'45%'}}></div></div>
-                <span className="lhc-pct">45%</span>
+              <div className="lp-mock-menu-item">
+                <Activity size={12} /> <span>Feed</span>
+              </div>
+              <div className="lp-mock-menu-item">
+                <User size={12} /> <span>Profile</span>
               </div>
             </div>
-            {/* Floating stat bubbles */}
-            <div className="lp-bubble b1"><BarChart2 size={14}/><span>92% Coverage</span></div>
-            <div className="lp-bubble b2"><Star size={14}/><span>Top Rated</span></div>
+            
+            <div className="lp-mock-main">
+              <div className="lp-mock-main-header">
+                <span className="lp-mock-user-name">Khaled Bin Nasir</span>
+                <span className="lp-mock-badge">Moderator</span>
+              </div>
+
+              {/* Folder list matching the image */}
+              <div className="lp-mock-folders">
+                <div className="lp-mock-folder-card">
+                  <div className="lp-mock-folder-icon">📂</div>
+                  <h4>EEE Notes</h4>
+                  <span>14 Files</span>
+                </div>
+                <div className="lp-mock-folder-card highlighted">
+                  <div className="lp-mock-folder-icon">📂</div>
+                  <h4>Compiler Solutions</h4>
+                  <span>28 Files</span>
+                </div>
+                <div className="lp-mock-folder-card">
+                  <div className="lp-mock-folder-icon">📂</div>
+                  <h4>CA Handnotes</h4>
+                  <span>18 Files</span>
+                </div>
+              </div>
+
+              {/* Bottom activity stats */}
+              <div className="lp-mock-activity">
+                <div className="lp-mock-activity-header">
+                  <span>Recent Approved Notes</span>
+                  <span>View All</span>
+                </div>
+                <div className="lp-mock-activity-row">
+                  <span className="lp-mock-activity-bullet"></span>
+                  <span className="lp-mock-activity-text">CSE-3527 Segment 04 - LL(1) Parsing Table.pdf</span>
+                  <span className="lp-mock-activity-time">2m ago</span>
+                </div>
+                <div className="lp-mock-activity-row">
+                  <span className="lp-mock-activity-bullet"></span>
+                  <span className="lp-mock-activity-text">EEE-2421 Segment 08 - RTD Math Solve.jpg</span>
+                  <span className="lp-mock-activity-time">10m ago</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── DIVIDER HEADING ──────────────────────────── */}
-      <div className="lp-section-divider">
-        <span className="lp-divider-label">Features</span>
-        <h2 className="lp-divider-h2">
-          <em>POWERFUL TOOLS.</em><br />ENDLESS POSSIBILITIES.
-        </h2>
-      </div>
-
-      {/* ─── FEATURES — alternating rows ─────────────── */}
-      <section id="features" className="lp-features">
-        {features.map((feat, i) => (
-          <div key={i} className={`lp-feat-row ${i % 2 === 1 ? 'lp-feat-row--reverse' : ''}`}>
-            <div className="lp-feat-text">
-              <span className="lp-feat-tag">{feat.tag}</span>
-              <h3 className="lp-feat-h3">{feat.headline.split('\n').map((line, li) => <span key={li}>{line}<br/></span>)}</h3>
-              <p className="lp-feat-desc">{feat.desc}</p>
+      {/* ─── PARTNER LOGOS STRIP ─── */}
+      <section className="lp-partners-strip">
+        <div className="lp-partners-label">POWERING YOUR SEMESTER RESOURCES WITH</div>
+        <div className="lp-partners-list">
+          {partnerLogos.map((logo, idx) => (
+            <div key={idx} className="lp-partner-item">
+              <span className="lp-partner-icon">{logo.icon}</span>
+              <span className="lp-partner-name">{logo.name}</span>
             </div>
-            <div className="lp-feat-visual">
-              {feat.mockup}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
-      {/* ─── STATS BAND ───────────────────────────────── */}
-      <div className="lp-stats-band">
-        <div className="lp-stat"><span className="lp-stat-num">200%</span><span className="lp-stat-lbl">Syllabus Coverage</span></div>
-        <div className="lp-stat-divider"></div>
-        <div className="lp-stat"><span className="lp-stat-num">50+</span><span className="lp-stat-lbl">Concepts Mapped</span></div>
-        <div className="lp-stat-divider"></div>
-        <div className="lp-stat"><span className="lp-stat-num">100+</span><span className="lp-stat-lbl">Handwritten Diagrams</span></div>
-        <div className="lp-stat-divider"></div>
-        <div className="lp-stat"><span className="lp-stat-num">4</span><span className="lp-stat-lbl">CSE Courses</span></div>
-      </div>
-
-      {/* ─── TESTIMONIALS ─────────────────────────────── */}
-      <section className="lp-testimonials">
-        <div className="lp-section-divider" style={{paddingTop:0}}>
-          <span className="lp-divider-label">Testimonials</span>
-          <h2 className="lp-divider-h2">
-            HEAR FROM<br /><em>OUR SATISFIED STUDENTS</em>
+      {/* ─── 2. FEATURES SECTION ─── */}
+      <section id="features" className="lp-features-section">
+        <div className="lp-section-header">
+          <span className="lp-section-tag">Features</span>
+          <h2 className="lp-section-title">
+            STRONG TOOLS,<br />
+            <span>ENDLESS OPPORTUNITIES</span>
           </h2>
         </div>
-        <div className="lp-testimonials-grid">
-          {testimonials.map((t, i) => (
-            <div key={i} className="lp-tcard">
-              <div className="lp-tcard-stars">
-                {Array.from({length: t.stars}).map((_, s) => <Star key={s} size={13} fill="white" stroke="white"/>)}
-              </div>
-              <p className="lp-tcard-text">{t.text}</p>
-              <div className="lp-tcard-user">
-                <div className="lp-tcard-avatar"><User size={16}/></div>
-                <div>
-                  <strong>{t.name}</strong>
-                  <span>{t.role}</span>
+
+        {/* Feature Grid with alternating detailed mockups */}
+        <div className="lp-features-grid">
+          
+          {/* Feature 1 */}
+          <div className="lp-feature-row">
+            <div className="lp-feature-text-block">
+              <h3>START YOUR OWN ASSET-SHARING PLATFORM</h3>
+              <p>
+                Build private study networks and tracking lists. Share homework assignments, class notes, and exam solves with other members of your study group.
+              </p>
+              <ul className="lp-feature-checklist">
+                <li><Check size={14} /> Quick upload forms</li>
+                <li><Check size={14} /> Moderation review queue</li>
+                <li><Check size={14} /> Dynamic updates feed</li>
+              </ul>
+              <button className="lp-feature-btn" onClick={() => navigate('/register')}>Get Started</button>
+            </div>
+            
+            <div className="lp-feature-visual-block">
+              {/* Mockup of note upload form card */}
+              <div className="lp-form-mockup">
+                <div className="lp-form-mockup-header">
+                  <UploadCloud size={18} />
+                  <span>Submit Academic Note</span>
+                </div>
+                <div className="lp-form-mockup-body">
+                  <div className="lp-form-mockup-field">
+                    <label>Select Course</label>
+                    <div className="lp-form-mockup-input select">Compiler Design (CSE-3527)</div>
+                  </div>
+                  <div className="lp-form-mockup-field">
+                    <label>Document Title</label>
+                    <div className="lp-form-mockup-input">LL(1) First & Follow calculation rules</div>
+                  </div>
+                  <div className="lp-form-mockup-upload-zone">
+                    <Plus size={16} />
+                    <span>Upload Images or PDF</span>
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      {/* ─── PRICING ──────────────────────────────────── */}
-      <section id="pricing" className="lp-pricing">
-        <div className="lp-section-divider" style={{paddingTop:0}}>
-          <span className="lp-divider-label">Pricing</span>
-          <h2 className="lp-divider-h2">FLEXIBLE PLANS<br /><em>FOR EVERY STUDENT</em></h2>
-          <p className="lp-divider-sub">Choose the plan that suits your semester needs.</p>
-        </div>
-        <div className="lp-pricing-grid">
-          {plans.map((plan, i) => (
-            <div key={i} className={`lp-pcard ${plan.highlight ? 'lp-pcard--highlight' : ''}`}>
-              {plan.badge && <div className="lp-pcard-badge">{plan.badge}</div>}
-              <div className="lp-pcard-name">{plan.name}</div>
-              <div className="lp-pcard-price">
-                <span className="lp-pcard-num">{plan.price}</span>
-                <span className="lp-pcard-period">{plan.period}</span>
-              </div>
-              <p className="lp-pcard-desc">{plan.desc}</p>
-              <button
-                className={`lp-pcard-btn ${plan.highlight ? 'lp-pcard-btn--fill' : ''}`}
-                onClick={plan.ctaAction}
-              >
-                {plan.cta}
-              </button>
-              <ul className="lp-pcard-features">
-                {plan.features.map((f, fi) => (
-                  <li key={fi} className={f.ok ? '' : 'lp-feat-disabled'}>
-                    <Check size={14} /> {f.text}
-                  </li>
-                ))}
+          {/* Feature 2 */}
+          <div className="lp-feature-row lp-reverse">
+            <div className="lp-feature-text-block">
+              <h3>MAXIMIZE YOUR PRODUCTIVITY WITH INTEGRATED TOOLS</h3>
+              <p>
+                Access student contributions, handwritten diagrams, and syllabus checkpoints directly from within the interactive visual map layout.
+              </p>
+              <ul className="lp-feature-checklist">
+                <li><Check size={14} /> Interactive ReactFlow canvas</li>
+                <li><Check size={14} /> Direct popup notes view</li>
+                <li><Check size={14} /> Checkpoint progress tracking</li>
               </ul>
+              <button className="lp-feature-btn" onClick={() => navigate('/compiler')}>View Maps</button>
             </div>
-          ))}
+
+            <div className="lp-feature-visual-block">
+              {/* Mockup of circular wheel layout matching the reference image */}
+              <div className="lp-wheel-mockup">
+                <div className="lp-wheel-center">
+                  <Sparkles size={20} />
+                </div>
+                <div className="lp-wheel-node n1"><Terminal size={14} /></div>
+                <div className="lp-wheel-node n2"><Cpu size={14} /></div>
+                <div className="lp-wheel-node n3"><Layers size={14} /></div>
+                <div className="lp-wheel-node n4"><Layout size={14} /></div>
+                <div className="lp-wheel-node n5"><BookOpen size={14} /></div>
+                <div className="lp-wheel-node n6"><Shield size={14} /></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="lp-feature-row">
+            <div className="lp-feature-text-block">
+              <h3>CUSTOMIZE YOUR PLATFORM WITH UNIQUE BRANDING</h3>
+              <p>
+                Filter shared resources by course, segment, and exam term. Locate high-quality notes compiled specifically for UIU and other major syllabus outlines.
+              </p>
+              <ul className="lp-feature-checklist">
+                <li><Check size={14} /> Filter by course code</li>
+                <li><Check size={14} /> Filter by segment number</li>
+                <li><Check size={14} /> Search title & descriptions</li>
+              </ul>
+              <button className="lp-feature-btn" onClick={() => navigate('/dashboard')}>Go to Hub</button>
+            </div>
+
+            <div className="lp-feature-visual-block">
+              {/* Mockup of filter control widgets */}
+              <div className="lp-filter-mockup">
+                <div className="lp-filter-mockup-search">
+                  <Search size={14} />
+                  <span>Search resources...</span>
+                </div>
+                <div className="lp-filter-mockup-row">
+                  <div className="lp-filter-mockup-badge active">All Courses</div>
+                  <div className="lp-filter-mockup-badge">EEE-2421</div>
+                  <div className="lp-filter-mockup-badge">CSE-3527</div>
+                </div>
+                <div className="lp-filter-mockup-toggle-bar">
+                  <span>Include Handwritten PDF</span>
+                  <div className="lp-filter-mockup-toggle active"><div className="lp-toggle-circle"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* ─── FAQ ──────────────────────────────────────── */}
-      <section id="faq" className="lp-faq">
-        <div className="lp-section-divider" style={{paddingTop:0}}>
-          <span className="lp-divider-label">FAQ</span>
-          <h2 className="lp-divider-h2">GET ANSWERS<br /><em>TO YOUR TOP QUESTIONS</em></h2>
+      {/* ─── 3. TESTIMONIALS SECTION ─── */}
+      <section className="lp-testimonials-section">
+        <div className="lp-section-header">
+          <span className="lp-section-tag">Testimonials</span>
+          <h2 className="lp-section-title">
+            HEAR FROM<br />
+            <span>OUR SATISFIED CLIENTS</span>
+          </h2>
         </div>
+
+        <div className="lp-testimonials-grid">
+          <div className="lp-testimonial-card">
+            <div className="lp-stars">
+              {[...Array(5)].map((_, i) => <Star key={i} size={12} className="lp-star-filled" />)}
+            </div>
+            <p>
+              "The handwritten notes inside Segment 04 saved me during midterms. The visual parsing tables made predictive LL(1) tables so easy to build."
+            </p>
+            <div className="lp-testimonial-user">
+              <div className="lp-avatar">FA</div>
+              <div>
+                <h4>Fahim Ahmed</h4>
+                <span>CSE Student, UIU</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lp-testimonial-card highlighted">
+            <div className="lp-stars">
+              {[...Array(5)].map((_, i) => <Star key={i} size={12} className="lp-star-filled" />)}
+            </div>
+            <p>
+              "Code generation always felt like black magic until I saw the visual flow mapping stack allocation vs heap allocation. Absolutely recommended!"
+            </p>
+            <div className="lp-testimonial-user">
+              <div className="lp-avatar">NJ</div>
+              <div>
+                <h4>Nusrat Jahan</h4>
+                <span>SWE Major, NSU</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lp-testimonial-card">
+            <div className="lp-stars">
+              {[...Array(5)].map((_, i) => <Star key={i} size={12} className="lp-star-filled" />)}
+            </div>
+            <p>
+              "Navigating the syllabus is extremely intuitive now. I can easily identify prerequisites and focus on topics that I'm weakest at."
+            </p>
+            <div className="lp-testimonial-user">
+              <div className="lp-avatar">RI</div>
+              <div>
+                <h4>Raihan Islam</h4>
+                <span>CSE Major, IIUC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4. PRICING SECTION ─── */}
+      <section id="pricing" className="lp-pricing-section">
+        <div className="lp-section-header">
+          <span className="lp-section-tag">Pricing</span>
+          <h2 className="lp-section-title">
+            FLEXIBLE PLANS<br />
+            <span>FOR EVERY SEMESTER</span>
+          </h2>
+        </div>
+
+        <div className="lp-pricing-grid">
+          {/* Card 1 */}
+          <div className="lp-pricing-card">
+            <div className="lp-price-header">
+              <h3>Basic</h3>
+              <p>For standard syllabus tracking</p>
+            </div>
+            <div className="lp-price-amount">
+              <span className="num">$0</span>
+              <span className="period">/semester</span>
+            </div>
+            <button className="lp-price-btn" onClick={() => navigate('/compiler')}>Start Free</button>
+            <ul className="lp-price-features">
+              <li><Check size={14} /> Access to segment roadmaps</li>
+              <li><Check size={14} /> Status tracking checkpoints</li>
+              <li><Check size={14} /> Desktop & Mobile layout flows</li>
+              <li className="disabled"><Check size={14} /> Handwritten class note files</li>
+              <li className="disabled"><Check size={14} /> Shared study group dashboards</li>
+            </ul>
+          </div>
+
+          {/* Card 2 - Highlighted */}
+          <div className="lp-pricing-card highlighted">
+            <div className="lp-price-badge">Most Popular</div>
+            <div className="lp-price-header">
+              <h3>Pro</h3>
+              <p>For comprehensive exam prep</p>
+            </div>
+            <div className="lp-price-amount">
+              <span className="num">$19</span>
+              <span className="period">/semester</span>
+            </div>
+            <button className="lp-price-btn highlighted" onClick={() => navigate('/register')}>Get Pro</button>
+            <ul className="lp-price-features">
+              <li><Check size={14} /> Access to segment roadmaps</li>
+              <li><Check size={14} /> Status tracking checkpoints</li>
+              <li><Check size={14} /> Desktop & Mobile layout flows</li>
+              <li><Check size={14} /> High-res handwritten class notes</li>
+              <li><Check size={14} /> Error recovery details</li>
+              <li className="disabled"><Check size={14} /> Shared study group dashboards</li>
+            </ul>
+          </div>
+
+          {/* Card 3 */}
+          <div className="lp-pricing-card">
+            <div className="lp-price-header">
+              <h3>Study Group</h3>
+              <p>For collaborating team projects</p>
+            </div>
+            <div className="lp-price-amount">
+              <span className="num">$39</span>
+              <span className="period">/semester</span>
+            </div>
+            <button className="lp-price-btn" onClick={() => navigate('/register')}>Get Group</button>
+            <ul className="lp-price-features">
+              <li><Check size={14} /> Access to segment roadmaps</li>
+              <li><Check size={14} /> Status tracking checkpoints</li>
+              <li><Check size={14} /> Desktop & Mobile layout flows</li>
+              <li><Check size={14} /> High-res handwritten class notes</li>
+              <li><Check size={14} /> Shared team study folders</li>
+              <li><Check size={14} /> Custom checklist assignments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 5. FAQ SECTION ─── */}
+      <section id="faq" className="lp-faq-section">
+        <div className="lp-section-header">
+          <span className="lp-section-tag">FAQ</span>
+          <h2 className="lp-section-title">
+            GET ANSWERS<br />
+            <span>TO YOUR TOP QUESTIONS</span>
+          </h2>
+        </div>
+
         <div className="lp-faq-list">
           {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className={`lp-faq-item ${activeFaq === idx ? 'lp-faq-item--open' : ''}`}
-              onClick={() => toggleFaq(idx)}
-            >
-              <div className="lp-faq-q">
+            <div key={idx} className={`lp-faq-item ${activeFaq === idx ? 'active' : ''}`} onClick={() => toggleFaq(idx)}>
+              <div className="lp-faq-question">
                 <span>{faq.q}</span>
-                {activeFaq === idx ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
+                {activeFaq === idx ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
               </div>
               {activeFaq === idx && (
-                <div className="lp-faq-a"><p>{faq.a}</p></div>
+                <div className="lp-faq-answer">
+                  <p>{faq.a}</p>
+                </div>
               )}
             </div>
           ))}
         </div>
       </section>
 
-      {/* ─── FINAL CTA BANNER ─────────────────────────── */}
-      <section className="lp-cta-banner">
-        <div className="lp-cta-glow"></div>
-        <span className="lp-divider-label" style={{marginBottom:'1.2rem'}}>Start Today</span>
-        <h2 className="lp-cta-h2">
-          MASTER YOUR<br /><em>CSE SYLLABUS.</em>
-        </h2>
-        <p className="lp-cta-sub">Join students who use TrashofCSE to navigate complex topics with clarity and confidence.</p>
-        <button className="lp-btn-primary lp-btn-lg" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/register')}>
-          {isLoggedIn ? 'Go to Dashboard' : 'Get Started Free'} <ArrowRight size={18} />
-        </button>
+      {/* ─── 6. BOTTOM CALL TO ACTION ─── */}
+      <section className="lp-cta-card-section">
+        <div className="lp-cta-card">
+          <div className="lp-cta-card-glow"></div>
+          <h2>GET YOUR AUTHORITY</h2>
+          <p>Create internal sharing networks for group studies. Access handwritten notes and trace parsing steps dynamically today.</p>
+          <button className="lp-cta-card-btn" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/register')}>
+            Start Sharing <ArrowRight size={16} />
+          </button>
+        </div>
       </section>
 
-      {/* ─── FOOTER ───────────────────────────────────── */}
+      {/* ─── 7. FOOTER SECTION ─── */}
       <footer className="lp-footer">
         <div className="lp-footer-top">
           <div className="lp-footer-brand">
             <div className="lp-footer-logo">
-              <Sparkles size={16} />
+              <div className="lp-footer-logo-dot"></div>
               <span>TrashofCSE</span>
             </div>
-            <p>Simplifying complex computer science topics through interactive roadmap visualization.</p>
+            <p>Simplifying complex computer science topics through interactive roadmap visualizations and peer resources.</p>
           </div>
-          <div className="lp-footer-links">
+          <div className="lp-footer-links-grid">
             <div className="lp-footer-col">
-              <h4>Pages</h4>
-              <Link to="/compiler">Compiler Portal</Link>
-              <Link to="/eee">EEE Portal</Link>
-              <Link to="/login">Login</Link>
+              <h4>Portals</h4>
+              <span onClick={() => navigate('/compiler')}>Compiler Study Portal</span>
+              <span onClick={() => navigate('/eee')}>EEE Study Portal</span>
+              <span onClick={() => navigate('/computer-architecture')}>Computer Architecture</span>
             </div>
             <div className="lp-footer-col">
               <h4>Resources</h4>
               <a href="#features">Features</a>
-              <a href="#pricing">Pricing</a>
-              <a href="#faq">FAQ</a>
+              <a href="#pricing">Pricing Plans</a>
+              <a href="#faq">Frequently Asked</a>
             </div>
             <div className="lp-footer-col">
               <h4>Legal</h4>
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Use</a>
-              <a href="#">Syllabus Disclaimer</a>
+              <a href="#">Disclaimer</a>
             </div>
           </div>
         </div>
         <div className="lp-footer-bottom">
-          <span>© 2026 TrashofCSE. All rights reserved.</span>
-          <span className="lp-footer-wordmark">TrashofCSE</span>
+          <p className="lp-copyright">© 2026 TrashofCSE. All rights reserved.</p>
+          <div className="lp-footer-wordmark">TrashofCSE</div>
         </div>
       </footer>
     </div>
