@@ -1,0 +1,171 @@
+/* DynamicNoteCard.css */
+
+.product-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 30px;
+  padding: 1.25rem;
+  box-shadow: 0 15px 35px var(--shadow-primary);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px var(--shadow-primary);
+  border-color: var(--border-secondary);
+}
+
+.card-img-container {
+  width: 100%;
+  height: 240px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-landing);
+  border: 1px solid var(--border-primary);
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .card-img {
+  transform: scale(1.04);
+}
+
+.card-tag-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.card-logo-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ffffff;
+  color: #070707;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.card-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 10;
+}
+
+.card-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.card-dots span.active {
+  background: #ffffff;
+  width: 14px;
+  border-radius: 4px;
+}
+
+.card-details-section {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 0.5rem 0.5rem 0.5rem;
+  flex-grow: 1;
+}
+
+.card-details-section h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  line-height: 1.4;
+}
+
+.card-details-section .card-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.card-details-section .card-desc {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.card-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding: 0 0.5rem;
+}
+
+.price-pill {
+  background: var(--bg-secondary-hover);
+  border: 1px solid var(--border-primary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.buy-pill-btn {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buy-pill-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--border-secondary);
+}

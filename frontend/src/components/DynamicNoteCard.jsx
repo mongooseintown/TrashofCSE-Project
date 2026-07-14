@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, Image, BookOpen, GraduationCap, Lightbulb, Award } from 'lucide-react';
+import './DynamicNoteCard.css';
 
 const contentTypeConfig = {
   pdf: { label: "Sir's PDF", icon: <FileText size={14} />, color: '#3b82f6' },
