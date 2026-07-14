@@ -10,32 +10,37 @@ import {
   ChevronRight,
   Sparkles,
   Inbox,
-  AlertCircle
+  AlertCircle,
+  FolderOpen,
+  Cpu,
+  Zap,
+  Terminal,
+  Shield
 } from 'lucide-react';
 import { getApiUrl } from '../config';
 import './ModeratorPanel.css';
 
 const COURSES = [
-  { value: 'eee', label: '⚡ EEE-2421' },
-  { value: 'ca', label: '🖥️ CSE-3523 (CA)' },
-  { value: 'compiler', label: '💻 CSE-3527 (Compiler)' },
-  { value: 'sad', label: '📊 CSE-3611 (SAD)' }
+  { value: 'eee', label: 'EEE-2421' },
+  { value: 'ca', label: 'CSE-3523 (CA)' },
+  { value: 'compiler', label: 'CSE-3527 (Compiler)' },
+  { value: 'sad', label: 'CSE-3611 (SAD)' }
 ];
 
 const EXAM_TYPES = [
-  { value: 'mid', label: '📝 Mid Term' },
-  { value: 'final', label: '📋 Final Exam' }
+  { value: 'mid', label: 'Mid Term' },
+  { value: 'final', label: 'Final Exam' }
 ];
 
 const SEGMENTS = ['04', '05', '06', '07', '08'];
 
 const CONTENT_TYPES = [
-  { value: 'pdf', label: "📄 Sir's PDF" },
-  { value: 'handnote', label: '✍️ Handnote' },
-  { value: 'slides', label: '📊 Slides' },
-  { value: 'topper-note', label: '🏆 Topper Note' },
-  { value: 'suggestion', label: '💡 Suggestion' },
-  { value: 'pq-solve', label: '📝 Prev. Question Solve' }
+  { value: 'pdf', label: "Sir's PDF" },
+  { value: 'handnote', label: 'Handnote' },
+  { value: 'slides', label: 'Slides' },
+  { value: 'topper-note', label: 'Topper Note' },
+  { value: 'suggestion', label: 'Suggestion' },
+  { value: 'pq-solve', label: 'Prev. Question Solve' }
 ];
 
 const ModeratorPanel = () => {
@@ -57,8 +62,8 @@ const ModeratorPanel = () => {
 
   // Auto-generate title on dropdown change
   useEffect(() => {
-    const activeCourse = COURSES.find(c => c.value === course)?.label.replace(/[⚡🖥️💻📊]\s?/, '').split('(')[0].trim();
-    const activeType = CONTENT_TYPES.find(t => t.value === contentType)?.label.replace(/[📄✍️📊🏆💡📝]\s?/, '').trim();
+    const activeCourse = COURSES.find(c => c.value === course)?.label.split('(')[0].trim() || 'Course';
+    const activeType = CONTENT_TYPES.find(t => t.value === contentType)?.label || 'Material';
     setTitle(`${activeCourse} - Segment ${segment} - ${activeType}`);
   }, [course, segment, contentType]);
 
@@ -182,7 +187,7 @@ const ModeratorPanel = () => {
       {/* Top Banner Header */}
       <div className="mod-panel-header">
         <div>
-          <h1>👮 Moderator Control Center</h1>
+          <h1><Shield size={28} style={{ display: 'inline-block', marginRight: '0.6rem', verticalAlign: 'text-bottom', color: '#f43f5e' }} /> Moderator Control Center</h1>
           <p>Manage, upload notes, review contributions, and curate student resources.</p>
         </div>
         <div className="mod-badge">Moderator Access</div>
@@ -236,28 +241,28 @@ const ModeratorPanel = () => {
           <form onSubmit={handleFormSubmit} className="mod-upload-form">
             <div className="form-grid">
               <div className="form-group">
-                <label>📚 Select Course</label>
+                <label><BookOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Course</label>
                 <select value={course} onChange={(e) => setCourse(e.target.value)}>
                   {COURSES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                 </select>
               </div>
 
               <div className="form-group">
-                <label>📂 Select Segment</label>
+                <label><FolderOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Segment</label>
                 <select value={segment} onChange={(e) => setSegment(e.target.value)}>
                   {SEGMENTS.map(s => <option key={s} value={s}>Segment {s}</option>)}
                 </select>
               </div>
 
               <div className="form-group">
-                <label>📝 Select Exam Term</label>
+                <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Exam Term</label>
                 <select value={examType} onChange={(e) => setExamType(e.target.value)}>
                   {EXAM_TYPES.map(e => <option key={e.value} value={e.value}>{e.label}</option>)}
                 </select>
               </div>
 
               <div className="form-group">
-                <label>📋 Select Note Type</label>
+                <label><BookOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Note Type</label>
                 <select value={contentType} onChange={(e) => setContentType(e.target.value)}>
                   {CONTENT_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                 </select>
@@ -265,7 +270,7 @@ const ModeratorPanel = () => {
             </div>
 
             <div className="form-group">
-              <label>📌 Note Title (Auto-generated, editable)</label>
+              <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Note Title (Auto-generated, editable)</label>
               <input 
                 type="text" 
                 value={title} 
@@ -276,7 +281,7 @@ const ModeratorPanel = () => {
             </div>
 
             <div className="form-group">
-              <label>📄 Description / Context (Optional)</label>
+              <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Description / Context (Optional)</label>
               <textarea 
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)} 
@@ -286,7 +291,7 @@ const ModeratorPanel = () => {
             </div>
 
             <div className="form-group">
-              <label>📤 Select Files (Images or PDFs)</label>
+              <label><Upload size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Files (Images or PDFs)</label>
               <div className="dropzone">
                 <input 
                   type="file" 

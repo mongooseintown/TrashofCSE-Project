@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
   Sparkles, ArrowRight, Play, Check, Star, 
   Layers, Activity, BookOpen, ChevronDown, 
-  ShieldAlert, Layout, HelpCircle, Sun, Moon 
+  ShieldAlert, Layout, HelpCircle, Sun, Moon,
+  Terminal, Cpu, Shield, User
 } from 'lucide-react';
 import './Home.css';
 
@@ -39,12 +40,12 @@ const Home = () => {
   };
 
   const partnerLogos = [
-    { name: 'Vite', icon: '⚡' },
-    { name: 'React', icon: '⚛️' },
-    { name: 'ReactFlow', icon: '🔗' },
-    { name: 'Tailwind', icon: '🎨' },
-    { name: 'Framer', icon: '✨' },
-    { name: 'GitHub', icon: '🐙' }
+    { name: 'Vite', icon: <Terminal size={14} /> },
+    { name: 'React', icon: <Cpu size={14} /> },
+    { name: 'ReactFlow', icon: <Layers size={14} /> },
+    { name: 'Tailwind', icon: <Layout size={14} /> },
+    { name: 'Framer', icon: <Sparkles size={14} /> },
+    { name: 'GitHub', icon: <Shield size={14} /> }
   ];
 
   const faqs = [
@@ -79,7 +80,7 @@ const Home = () => {
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-badge">
-            <span className="badge-icon">🚀</span>
+            <span className="badge-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Sparkles size={14} style={{ color: '#ff8a00' }} /></span>
             <span>Compiler Visualization just arrived!</span>
           </div>
           
@@ -363,7 +364,7 @@ const Home = () => {
               "The handwritten notes inside Segment 04 saved me during midterms. The visual parsing tables made predictive LL(1) tables so easy to build."
             </p>
             <div className="testimonial-user">
-              <span className="user-avatar">🎓</span>
+              <span className="user-avatar" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: '50%', width: '36px', height: '36px' }}><User size={18} style={{ color: '#eb5e28' }} /></span>
               <div>
                 <h4>Fahim Ahmed</h4>
                 <span>CSE Student, UIU</span>
@@ -376,7 +377,7 @@ const Home = () => {
               "Code generation always felt like black magic until I saw the visual flow mapping stack allocation vs heap allocation. Absolutely recommended!"
             </p>
             <div className="testimonial-user">
-              <span className="user-avatar">🎓</span>
+              <span className="user-avatar" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: '50%', width: '36px', height: '36px' }}><User size={18} style={{ color: '#eb5e28' }} /></span>
               <div>
                 <h4>Nusrat Jahan</h4>
                 <span>SWE Major, NSU</span>

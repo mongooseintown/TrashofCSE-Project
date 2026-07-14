@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { X, Upload, CheckCircle, AlertCircle } from 'lucide-react';
+import { X, Upload, CheckCircle, AlertCircle, UploadCloud, FileText, BookOpen, GraduationCap } from 'lucide-react';
 import { getApiUrl } from '../config';
 import './StudentContributionModal.css';
 
 const EXAM_TYPES = [
-  { value: 'mid', label: '📝 Mid Term' },
-  { value: 'final', label: '📋 Final Exam' }
+  { value: 'mid', label: 'Mid Term' },
+  { value: 'final', label: 'Final Exam' }
 ];
 
 const CONTENT_TYPES = [
-  { value: 'handnote', label: '✍️ Handnote' },
-  { value: 'pdf', label: "📄 Sir's PDF" },
-  { value: 'slides', label: '📊 Slides' },
-  { value: 'topper-note', label: '🏆 Topper Note' },
-  { value: 'suggestion', label: '💡 Suggestion' },
-  { value: 'pq-solve', label: '📝 Prev. Question Solve' }
+  { value: 'handnote', label: 'Handnote' },
+  { value: 'pdf', label: "Sir's PDF" },
+  { value: 'slides', label: 'Slides' },
+  { value: 'topper-note', label: 'Topper Note' },
+  { value: 'suggestion', label: 'Suggestion' },
+  { value: 'pq-solve', label: 'Prev. Question Solve' }
 ];
 
 const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
@@ -37,7 +37,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
   useEffect(() => {
     if (isOpen) {
       const activeCourse = courseNames[course] || course.toUpperCase();
-      const activeType = CONTENT_TYPES.find(t => t.value === contentType)?.label.replace(/[📄✍️📊🏆💡📝]\s?/, '').trim();
+      const activeType = CONTENT_TYPES.find(t => t.value === contentType)?.label || 'Material';
       setTitle(`${activeCourse} - Segment ${segment} - ${activeType}`);
       setStatus(null);
     }
@@ -99,7 +99,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
         {/* Header */}
         <div className="contrib-modal-header">
           <div>
-            <h3>📤 Contribute Academic Notes</h3>
+            <h3><UploadCloud size={20} style={{ display: 'inline-block', marginRight: '0.5rem', verticalAlign: 'middle', color: '#e52e71' }} /> Contribute Academic Notes</h3>
             <p>Help your peers by sharing verified notes for Segment {segment}</p>
           </div>
           <button className="close-btn" onClick={onClose}>
@@ -125,14 +125,14 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
 
             <div className="form-row">
               <div className="form-col">
-                <label>📝 Exam Term</label>
+                <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Exam Term</label>
                 <select value={examType} onChange={(e) => setExamType(e.target.value)}>
                   {EXAM_TYPES.map(e => <option key={e.value} value={e.value}>{e.label}</option>)}
                 </select>
               </div>
 
               <div className="form-col">
-                <label>📋 Resource Type</label>
+                <label><BookOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Resource Type</label>
                 <select value={contentType} onChange={(e) => setContentType(e.target.value)}>
                   {CONTENT_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                 </select>
@@ -140,7 +140,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
             </div>
 
             <div className="form-col">
-              <label>📌 Document Title</label>
+              <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Document Title</label>
               <input 
                 type="text" 
                 value={title} 
@@ -151,7 +151,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
             </div>
 
             <div className="form-col">
-              <label>📄 Extra Details (e.g. topic coverage, specific instructions)</label>
+              <label><FileText size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Extra Details (e.g. topic coverage, specific instructions)</label>
               <textarea 
                 value={description} 
                 onChange={(e) => setDescription(e.target.value)} 
@@ -161,7 +161,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
             </div>
 
             <div className="form-col">
-              <label>📤 Upload Files (Images or PDF)</label>
+              <label><Upload size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Upload Files (Images or PDF)</label>
               <div className="file-dropzone">
                 <input 
                   type="file" 
