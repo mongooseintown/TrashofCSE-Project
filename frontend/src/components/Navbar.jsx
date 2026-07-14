@@ -67,7 +67,7 @@ const Navbar = () => {
         
         {/* Top Row: Brand & Mobile Menu Trigger */}
         <div className="nav-top-row">
-          <div className="nav-logo-group" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/')}>
+          <div className="nav-logo-group" onClick={() => navigate('/')}>
             <div className="nav-logo">
               <img src="/logo.png" alt="Logo" />
             </div>
