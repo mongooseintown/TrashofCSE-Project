@@ -113,9 +113,18 @@ function AppContent() {
           {/* Compiler Routes (Open to all students) */}
           <Route path="/compiler" element={<PrivateRoute><CompilerHub /></PrivateRoute>} />
           <Route path="/compiler/segment-07" element={<PrivateRoute><CompilerSegment07 /></PrivateRoute>} />
+          
           <Route path="/compiler/segment-06" element={<PrivateRoute><CompilerSegment06 /></PrivateRoute>} />
           <Route path="/compilersegment-06/:topicId" element={<PrivateRoute><TopicPage /></PrivateRoute>} />
+          
           <Route path="/compiler/segment-04" element={<PrivateRoute><CompilerSegment04 /></PrivateRoute>} />
+          <Route path="/compilersegment-04" element={<PrivateRoute><CompilerSegment04 /></PrivateRoute>} />
+          <Route path="/compilersegment-04/:topicId" element={<PrivateRoute><TopicPage /></PrivateRoute>} />
+          
+          <Route path="/compiler/segment-08" element={<PrivateRoute><CompilerSegment08 /></PrivateRoute>} />
+          <Route path="/compilersegment-08" element={<PrivateRoute><CompilerSegment08 /></PrivateRoute>} />
+          <Route path="/compilersegment-08/:topicId" element={<PrivateRoute><TopicPage /></PrivateRoute>} />
+          
           <Route path="/compiler/locked" element={<CompilerLocked />} />
 
           {/* Computer Architecture Routes */}
