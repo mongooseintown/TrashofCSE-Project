@@ -382,3 +382,83 @@
   transform: none;
   box-shadow: none;
 }
+
+/* ========================================================
+   Light Theme Overrides for Profile Page
+   ======================================================== */
+[data-theme="light"] .profile-header h1 {
+  background: linear-gradient(135deg, #070707 0%, #666666 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .profile-back-btn {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .profile-back-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .profile-sidebar-card,
+[data-theme="light"] .profile-settings-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .profile-email-badge {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .profile-meta-info {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .input-with-icon input {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .input-with-icon input:focus {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: #000000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .form-group select {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+[data-theme="light"] .form-group select:focus {
+  background-color: rgba(0, 0, 0, 0.02);
+  border-color: #000000;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .form-group select option {
+  background: #ffffff;
+  color: #070707;
+}
+
+[data-theme="light"] .btn-profile-submit {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .btn-profile-submit:hover {
+  background: #222222;
+}
+
+[data-theme="light"] .btn-profile-submit:disabled {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.35);
+}

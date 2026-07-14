@@ -431,3 +431,158 @@
   color: var(--text-muted, #7c8798);
   font-size: 0.95rem;
 }
+
+/* Custom Form Input/Select Styling for Moderator Panel */
+.mod-upload-form select,
+.mod-upload-form input[type="text"],
+.mod-upload-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  color: var(--text-primary, #ffffff);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.mod-upload-form select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+}
+
+.mod-upload-form select option {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.mod-upload-form select:focus,
+.mod-upload-form input[type="text"]:focus,
+.mod-upload-form textarea:focus {
+  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mod-upload-form label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary, #b4bbc6);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* ========================================================
+   Light Theme Overrides for Moderator Panel
+   ======================================================== */
+[data-theme="light"] .mod-panel-header {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .mod-panel-header h1 {
+  background: linear-gradient(135deg, #070707 0%, #555555 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .stat-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .stat-card:hover {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .mod-tabs-row {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .mod-upload-form select,
+[data-theme="light"] .mod-upload-form input[type="text"],
+[data-theme="light"] .mod-upload-form textarea {
+  background: rgba(0, 0, 0, 0.015);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+}
+
+[data-theme="light"] .mod-upload-form select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+[data-theme="light"] .mod-upload-form select option {
+  background-color: #ffffff;
+  color: #070707;
+}
+
+[data-theme="light"] .mod-upload-form select:focus,
+[data-theme="light"] .mod-upload-form input[type="text"]:focus,
+[data-theme="light"] .mod-upload-form textarea:focus {
+  border-color: #000000;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .dropzone {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.005);
+}
+
+[data-theme="light"] .dropzone:hover {
+  border-color: #000000;
+  background: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="light"] .dropzone p {
+  color: #070707;
+}
+
+[data-theme="light"] .selected-files-list {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .submit-btn {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .submit-btn:hover:not(:disabled) {
+  background: #222222;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .table-responsive {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .mod-table th {
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .mod-table td {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .mod-table tr:hover td {
+  background: rgba(0, 0, 0, 0.01);
+}
+
+[data-theme="light"] .mod-table td.bold {
+  color: #070707;
+}
+
+[data-theme="light"] .mod-table .user-name {
+  color: #070707;
+}

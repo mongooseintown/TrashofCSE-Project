@@ -273,7 +273,7 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border-primary);
   border-radius: 12px;
-  padding: 0.75rem 1.5rem 0.75rem 2.4rem;
+  padding: 0.75rem 2rem 0.75rem 2.4rem;
   color: #fff;
   font-size: 0.88rem;
   outline: none;
@@ -282,6 +282,10 @@
   appearance: none;
   -webkit-appearance: none;
   min-width: 150px;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1.25rem;
 }
 
 .filter-select-wrapper select:focus {
@@ -338,4 +342,94 @@
   .dashboard-sidebar-column {
     position: static;
   }
+}
+
+/* Option dropdown style to fix the white text on white background browser bug */
+.filter-select-wrapper select option {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+[data-theme="light"] .filter-select-wrapper select option {
+  background-color: #ffffff;
+  color: #070707;
+}
+
+/* ========================================================
+   Light Theme Overrides for Dashboard
+   ======================================================== */
+[data-theme="light"] .dashboard-banner {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .welcome-title {
+  background: linear-gradient(135deg, #070707 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .workspace-title {
+  color: #070707;
+}
+
+[data-theme="light"] .gear-icon-container {
+  background: rgba(0, 0, 0, 0.04);
+  color: #070707;
+}
+
+[data-theme="light"] .signed-in-text strong {
+  color: #070707;
+}
+
+[data-theme="light"] .hub-title-block h3 {
+  color: #070707;
+}
+
+[data-theme="light"] .hub-header-icon {
+  color: #000000;
+}
+
+[data-theme="light"] .hub-contribute-btn {
+  background: #000000;
+  border-color: #000000;
+  color: #ffffff;
+}
+
+[data-theme="light"] .hub-contribute-btn:hover {
+  background: #222222;
+  border-color: #222222;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .search-input {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+}
+
+[data-theme="light"] .search-input:focus {
+  border-color: #000000;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .filter-select-wrapper select {
+  background: rgba(0, 0, 0, 0.01);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  background-size: 1.25rem;
+}
+
+[data-theme="light"] .filter-select-wrapper select:focus {
+  border-color: #000000;
+}
+
+[data-theme="light"] .hub-empty-state p {
+  color: #070707;
+}
+
+[data-theme="light"] .empty-sparkle-icon {
+  color: #000000;
 }
