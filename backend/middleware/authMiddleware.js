@@ -36,4 +36,12 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+const privileged = (req, res, next) => {
+  if (req.user && (req.user.isAdmin || req.user.isModerator)) {
+    next();
+  } else {
+    res.status(403).json({ message: 'Access denied: Admin or Moderator access required' });
+  }
+};
+
+module.exports = { protect, privileged };

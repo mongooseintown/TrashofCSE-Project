@@ -23,6 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
 app.use('/api/notifications', require('./routes/notificationRoutes'));
+app.use('/api/materials', require('./routes/materialRoutes'));
 
 app.get('/', (req, res) => {
     res.send('API is running...');

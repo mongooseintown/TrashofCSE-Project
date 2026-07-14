@@ -1,3 +1,4 @@
+import DynamicUploadsSection from '../components/DynamicUploadsSection';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Lock } from 'lucide-react';
@@ -55,6 +56,7 @@ const EEESegment05 = () => {
           Materials for Magnetic Circuits & Inductance are currently being compiled. They will be unlocked shortly.
         </p>
       </div>
+      <DynamicUploadsSection course="eee" segment="05" />
     </div>
   );
 };

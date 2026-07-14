@@ -82,6 +82,9 @@ import Sidebar from './components/Sidebar';
 import ActiveUsersWidget from './components/ActiveUsersWidget';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
+import ModeratorRoute from './components/ModeratorRoute';
+import ModeratorPanel from './pages/ModeratorPanel';
+import DynamicSegmentViewer from './pages/DynamicSegmentViewer';
 import CompilerLocked from './pages/CompilerLocked';
 import CommunityFeed from './pages/CommunityFeed';
 import './App.css';
@@ -188,6 +191,10 @@ function AppContent() {
           <Route path="/eee/strain-gauge-pq" element={<PrivateRoute><StrainGaugePQNote /></PrivateRoute>} />
           <Route path="/eee/thermocouple-pq" element={<PrivateRoute><ThermocouplePQNote /></PrivateRoute>} />
           <Route path="/eee/thermistor-pq" element={<PrivateRoute><ThermistorPQNote /></PrivateRoute>} />
+
+          {/* Moderator & Upload Viewer Routes */}
+          <Route path="/moderator-panel" element={<ModeratorRoute><ModeratorPanel /></ModeratorRoute>} />
+          <Route path="/materials/view/:materialId" element={<PrivateRoute><DynamicSegmentViewer /></PrivateRoute>} />
 
           {/* Auth Routes */}
           <Route path="/login" element={<Login />} />

@@ -8,7 +8,8 @@ import {
   PanelLeft, 
   Lock,
   GraduationCap,
-  MessageSquare
+  MessageSquare,
+  Shield
 } from 'lucide-react';
 import './Sidebar.css';
 
@@ -56,6 +57,7 @@ const Sidebar = () => {
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isModerator, setIsModerator] = useState(false);
   const [semester, setSemester] = useState('');
 
   const updateSidebarUser = () => {
@@ -64,6 +66,7 @@ const Sidebar = () => {
       try {
         const parsed = JSON.parse(storedUser);
         setIsAdmin(!!parsed.isAdmin);
+        setIsModerator(!!parsed.isModerator || !!parsed.isAdmin || parsed.email === 'khaledbinnasir1714412140@gmail.com');
         setSemester(parsed.semester || '');
       } catch (err) {
         console.error('Error parsing user in Sidebar:', err);
@@ -134,6 +137,29 @@ const Sidebar = () => {
               <span className="sidebar-label">Community Feed</span>
             )}
           </div>
+
+          {/* Moderator Panel link */}
+          {isModerator && (
+            <div 
+              className={`sidebar-item ${isActive('/moderator-panel') ? 'active' : ''}`}
+              onClick={() => navigate('/moderator-panel')}
+              style={{
+                background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(225, 29, 72, 0.08) 100%)',
+                border: '1px solid rgba(244, 63, 94, 0.15)',
+                margin: '0.2rem 0.5rem 0.5rem 0.5rem',
+                borderRadius: '8px'
+              }}
+            >
+              <div className="sidebar-icon icon-pink" style={{ color: '#f43f5e' }}>
+                <Shield size={18} />
+              </div>
+              {!isCollapsed && (
+                <span className="sidebar-label" style={{ color: '#f43f5e', fontWeight: 700 }}>
+                  Moderator Panel
+                </span>
+              )}
+            </div>
+          )}
 
           <div className="sidebar-divider"></div>
 

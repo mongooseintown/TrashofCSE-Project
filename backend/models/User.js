@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isModerator: {
+    type: Boolean,
+    default: false,
+  },
   department: {
     type: String,
     default: '',
