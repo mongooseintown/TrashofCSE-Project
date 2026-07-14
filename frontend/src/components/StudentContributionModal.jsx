@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Upload, CheckCircle, AlertCircle, UploadCloud, FileText, BookOpen, GraduationCap } from 'lucide-react';
+import { X, Upload, CheckCircle, AlertCircle, UploadCloud, FileText, BookOpen, GraduationCap, FolderOpen } from 'lucide-react';
 import { getApiUrl } from '../config';
 import './StudentContributionModal.css';
 
@@ -18,6 +18,8 @@ const CONTENT_TYPES = [
 ];
 
 const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
+  const [selectedCourse, setSelectedCourse] = useState(course || 'eee');
+  const [selectedSegment, setSelectedSegment] = useState(segment || '04');
   const [examType, setExamType] = useState('mid');
   const [contentType, setContentType] = useState('handnote');
   const [title, setTitle] = useState('');
@@ -35,13 +37,18 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
   };
 
   useEffect(() => {
+    if (course) setSelectedCourse(course);
+    if (segment) setSelectedSegment(segment);
+  }, [course, segment]);
+
+  useEffect(() => {
     if (isOpen) {
-      const activeCourse = courseNames[course] || course.toUpperCase();
+      const activeCourse = courseNames[selectedCourse] || selectedCourse.toUpperCase();
       const activeType = CONTENT_TYPES.find(t => t.value === contentType)?.label || 'Material';
-      setTitle(`${activeCourse} - Segment ${segment} - ${activeType}`);
+      setTitle(`${activeCourse} - Segment ${selectedSegment} - ${activeType}`);
       setStatus(null);
     }
-  }, [isOpen, course, segment, contentType]);
+  }, [isOpen, selectedCourse, selectedSegment, contentType]);
 
   if (!isOpen) return null;
 
@@ -60,9 +67,9 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
     setStatus(null);
 
     const formData = new FormData();
-    formData.append('course', course);
+    formData.append('course', selectedCourse);
     formData.append('examType', examType);
-    formData.append('segment', segment);
+    formData.append('segment', selectedSegment);
     formData.append('contentType', contentType);
     formData.append('title', title);
     formData.append('description', description);
@@ -100,7 +107,7 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
         <div className="contrib-modal-header">
           <div>
             <h3><UploadCloud size={20} style={{ display: 'inline-block', marginRight: '0.5rem', verticalAlign: 'middle', color: '#e52e71' }} /> Contribute Academic Notes</h3>
-            <p>Help your peers by sharing verified notes for Segment {segment}</p>
+            <p>Help your peers by sharing verified notes {segment ? `for Segment ${segment}` : ''}</p>
           </div>
           <button className="close-btn" onClick={onClose}>
             <X size={20} />
@@ -120,6 +127,32 @@ const StudentContributionModal = ({ isOpen, onClose, course, segment }) => {
             {status?.type === 'error' && (
               <div className="status-banner error">
                 <AlertCircle size={16} /> <span>{status.text}</span>
+              </div>
+            )}
+
+            {/* If opened globally from Dashboard without pre-defined course/segment */}
+            {(!course || !segment) && (
+              <div className="form-row">
+                <div className="form-col">
+                  <label><BookOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Course</label>
+                  <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)}>
+                    <option value="eee">EEE-2421</option>
+                    <option value="ca">CSE-3523 (CA)</option>
+                    <option value="compiler">CSE-3527 (Compiler)</option>
+                    <option value="sad">CSE-3611 (SAD)</option>
+                  </select>
+                </div>
+
+                <div className="form-col">
+                  <label><FolderOpen size={13} style={{ display: 'inline-block', marginRight: '0.3rem', verticalAlign: 'middle' }} /> Select Segment</label>
+                  <select value={selectedSegment} onChange={(e) => setSelectedSegment(e.target.value)}>
+                    <option value="04">Segment 04</option>
+                    <option value="05">Segment 05</option>
+                    <option value="06">Segment 06</option>
+                    <option value="07">Segment 07</option>
+                    <option value="08">Segment 08</option>
+                  </select>
+                </div>
               </div>
             )}
 

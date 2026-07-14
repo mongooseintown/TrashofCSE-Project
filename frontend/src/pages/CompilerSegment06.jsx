@@ -1,4 +1,3 @@
-import DynamicUploadsSection from '../components/DynamicUploadsSection';
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -47,8 +46,8 @@ const CompilerSegment06 = () => {
   }, [navigate]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'var(--bg-primary)' }}>
-      <div className="roadmap-container" style={{ height: '75vh', minHeight: '500px', flexShrink: 0, position: 'relative' }}>
+    <div className="roadmap-container">
+      
         
       <ReactFlow
         nodes={nodes}
@@ -70,8 +69,7 @@ const CompilerSegment06 = () => {
         <Background variant="dots" gap={12} size={1} color="rgba(255, 255, 255, 0.1)" />
       </ReactFlow>
     
-      </div>
-      <DynamicUploadsSection course="compiler" segment="06" />
+      
     </div>
   );
 };

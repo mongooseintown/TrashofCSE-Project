@@ -1,4 +1,3 @@
-import DynamicUploadsSection from '../components/DynamicUploadsSection';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
@@ -100,7 +99,6 @@ const CASegment06 = () => {
           </div>
         ))}
       </div>
-      <DynamicUploadsSection course="ca" segment="06" />
     </div>
   );
 };
