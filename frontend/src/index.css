@@ -122,16 +122,20 @@ body {
 }
 
 /* Translucent Containers so Body Background shows through */
+.app-container,
+.lp-container,
 .dashboard-container,
 .eee-container,
 .feed-container,
 .profile-container,
-.login-container,
-.register-container,
-.lp-container,
+.login-page-container,
+.register-page-container,
 .compiler-container,
 .compiler-segment-container,
-.sad-container {
+.sad-container,
+.mod-panel-container,
+.topic-page-container,
+.segment-viewer-container {
   background: transparent !important;
   background-image: none !important;
 }
