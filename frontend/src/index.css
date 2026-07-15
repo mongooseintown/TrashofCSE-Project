@@ -63,9 +63,77 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
+
+  /* Exact user pattern background */
+  --mx: 0;
+  --my: 0;
+  --a-x: calc(var(--mx) * 8px);
+  --a-y: calc(var(--my) * 8px);
+  --b-x: calc(var(--mx) * -6px);
+  --b-y: calc(var(--my) * -6px);
+  --c-x: calc(var(--mx) * 4px);
+  --c-y: calc(var(--my) * 4px);
+
+  background:
+    repeating-linear-gradient(
+        45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #100f0f 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #100f0f 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #100f0f 0 calc(300% / 13)
+      )
+      calc(0px + var(--c-x)) calc(0px + var(--c-y)),
+    repeating-linear-gradient(
+        45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #100f0f 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #100f0f 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #100f0f 0 calc(300% / 13)
+      )
+      calc(32px + var(--a-x)) calc(32px + var(--a-y)),
+    repeating-linear-gradient(
+        -45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #100f0f 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #100f0f 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #100f0f 0 calc(300% / 13)
+      )
+      calc(0px + var(--b-x)) calc(0px + var(--b-y)),
+    repeating-linear-gradient(
+        -45deg,
+        #0000 calc(-650% / 13) calc(50% / 13),
+        #100f0f 0 calc(100% / 13),
+        #0000 0 calc(150% / 13),
+        #100f0f 0 calc(200% / 13),
+        #0000 0 calc(250% / 13),
+        #100f0f 0 calc(300% / 13)
+      )
+      calc(32px + var(--a-x)) calc(32px + var(--a-y)) #1e1e1e;
+
+  background-size: 64px 64px;
+}
+
+/* Translucent Containers so Body Background shows through */
+.dashboard-container,
+.eee-container,
+.feed-container,
+.profile-container,
+.login-container,
+.register-container,
+.lp-container,
+.compiler-container,
+.compiler-segment-container,
+.sad-container {
+  background: transparent !important;
+  background-image: none !important;
 }
 
 /* Topic Content Card Overrides for responsive Theme Mode */
