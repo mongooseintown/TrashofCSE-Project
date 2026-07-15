@@ -59,11 +59,11 @@
 .post-creator-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 18px;
+  border-radius: 28px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px var(--shadow-primary);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .post-textarea {
@@ -182,11 +182,11 @@
 .post-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 18px;
+  border-radius: 28px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px var(--shadow-primary);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: transform 0.2s ease;
 }
 
@@ -527,7 +527,7 @@
   padding: 4rem 2rem;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: 18px;
+  border-radius: 28px;
   text-align: center;
   color: var(--text-secondary);
 }
@@ -555,4 +555,112 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+/* ========================================================
+   Light Theme Overrides for Community Feed
+   ======================================================== */
+[data-theme="light"] .feed-header h1 {
+  background: linear-gradient(135deg, #070707 0%, #555555 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .post-textarea {
+  background: rgba(0, 0, 0, 0.015);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+}
+
+[data-theme="light"] .post-textarea:focus {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: #000000;
+}
+
+[data-theme="light"] .tag-badge {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .tag-badge.selected {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+[data-theme="light"] .post-submit-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+[data-theme="light"] .post-submit-btn:hover:not(:disabled) {
+  background: #222222;
+}
+
+[data-theme="light"] .author-avatar {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+[data-theme="light"] .author-name {
+  color: #070707;
+}
+
+[data-theme="light"] .post-content {
+  color: #070707;
+}
+
+[data-theme="light"] .interaction-btn {
+  background: rgba(0, 0, 0, 0.015);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] .interaction-btn:hover {
+  background: rgba(0, 0, 0, 0.035);
+  color: #000000;
+}
+
+[data-theme="light"] .interaction-btn.active {
+  background: rgba(0, 0, 0, 0.06);
+  color: #000000;
+}
+
+[data-theme="light"] .comments-section {
+  border-top-color: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.005);
+}
+
+[data-theme="light"] .comment-input-row input {
+  background: rgba(0, 0, 0, 0.015);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #070707;
+}
+
+[data-theme="light"] .comment-input-row input:focus {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: #000000;
+}
+
+[data-theme="light"] .comment-submit-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+[data-theme="light"] .comment-submit-btn:hover:not(:disabled) {
+  background: #222222;
+}
+
+[data-theme="light"] .comment-item {
+  border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .comment-author-avatar {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+[data-theme="light"] .comment-author-name {
+  color: #070707;
 }

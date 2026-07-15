@@ -23,7 +23,7 @@
   background-color: var(--nav-bg);
   border: 1px solid var(--nav-border);
   border-top: none;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 24px 24px;
   box-shadow: 
     0 12px 30px -10px var(--shadow-nav),
     inset 0 -1px 0px rgba(255, 255, 255, 0.05);
@@ -35,6 +35,8 @@
     border-color 0.3s ease, 
     box-shadow 0.3s ease;
   overflow: visible;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 /* Outward shoulder curve fillets */
@@ -43,20 +45,20 @@
   content: '';
   position: absolute;
   top: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   pointer-events: none;
   transition: background 0.3s ease;
 }
 
 .glass-nav::before {
-  left: -20px;
-  background: radial-gradient(circle at bottom left, transparent 20px, var(--nav-bg-solid) 20px);
+  left: -24px;
+  background: radial-gradient(circle at bottom left, transparent 24px, var(--nav-bg-solid) 24px);
 }
 
 .glass-nav::after {
-  right: -20px;
-  background: radial-gradient(circle at bottom right, transparent 20px, var(--nav-bg-solid) 20px);
+  right: -24px;
+  background: radial-gradient(circle at bottom right, transparent 24px, var(--nav-bg-solid) 24px);
 }
 
 /* Top horizontal bar containing logo and mobile trigger button */

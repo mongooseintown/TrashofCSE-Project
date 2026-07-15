@@ -54,11 +54,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .product-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 30px 60px var(--shadow-primary);
+  box-shadow: 0 30px 60px var(--shadow-primary), 0 0 30px rgba(255, 255, 255, 0.04);
   border-color: var(--border-secondary);
 }
 

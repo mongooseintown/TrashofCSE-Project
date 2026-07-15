@@ -14,15 +14,17 @@
 }
 
 .contrib-modal-content {
-  background: #12141a;
+  background: rgba(18, 20, 26, 0.65);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  border-radius: 28px;
   width: 100%;
   max-width: 580px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
   animation: modalFadeIn 0.3s ease-out;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @keyframes modalFadeIn {
@@ -265,9 +267,11 @@
    Light Theme Overrides for Student Contribution Modal
    ======================================================== */
 [data-theme="light"] .contrib-modal-content {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.65);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 [data-theme="light"] .contrib-modal-header {
