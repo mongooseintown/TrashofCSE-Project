@@ -94,15 +94,15 @@ import { ReactLenis } from 'lenis/react';
 function AppContent() {
   const location = useLocation();
   const token = localStorage.getItem('token');
-  const storedUser = localStorage.getItem('user');
   const isLoggedIn = !!(token && storedUser);
+  const showSidebar = isLoggedIn && location.pathname !== '/';
 
   return (
     <div className="App">
       <Navbar />
 
-      <div className={`app-container ${isLoggedIn ? 'has-sidebar' : ''}`}>
-        {isLoggedIn && <Sidebar />}
+      <div className={`app-container ${showSidebar ? 'has-sidebar' : ''}`}>
+        {showSidebar && <Sidebar />}
         <div className="app-main-content">
           <Routes>
             <Route path="/" element={<Home />} />
