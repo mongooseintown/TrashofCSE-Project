@@ -31,6 +31,7 @@
   --node-text: #ffffff;
   --node-bg: rgba(255, 255, 255, 0.08);
   --node-border: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(18, 18, 18, 0.76);
 }
 
 [data-theme="light"] {
@@ -59,6 +60,7 @@
   --node-text: #070707;
   --node-bg: rgba(0, 0, 0, 0.05);
   --node-border: rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(248, 248, 248, 0.78);
 }
 
 body {
@@ -181,7 +183,7 @@ body {
 .profile-card,
 .modal-card,
 .modal-content {
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: var(--glass-bg) !important;
   backdrop-filter: blur(150px) !important;
   -webkit-backdrop-filter: blur(150px) !important;
   border-radius: 20px !important;
