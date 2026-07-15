@@ -94,6 +94,7 @@ import { ReactLenis } from 'lenis/react';
 function AppContent() {
   const location = useLocation();
   const token = localStorage.getItem('token');
+  const storedUser = localStorage.getItem('user');
   const isLoggedIn = !!(token && storedUser);
   const showSidebar = isLoggedIn && location.pathname !== '/';
 
