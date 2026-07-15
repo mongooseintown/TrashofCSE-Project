@@ -90,49 +90,110 @@ body {
 }
 
 /* Glassmorphism Effect */
-.glass-card {
-  width: 240px;
-  height: 360px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.glass-card,
+.product-card,
+.dashboard-card,
+.shared-hub-card,
+.register-card,
+.login-card,
+.profile-sidebar-card,
+.profile-settings-card,
+.stat-card,
+.mod-content-card,
+.note-image-card,
+.note-card,
+.feed-card,
+.post-card,
+.creator-card,
+.student-card,
+.profile-card,
+.modal-card,
+.modal-content {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(50px) !important;
+  -webkit-backdrop-filter: blur(50px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0px 0px rgba(255, 255, 255, 0);
-  position: relative;
-  overflow: hidden;
+    inset 0 0 0px 0px rgba(255, 255, 255, 0) !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
+/* Specific class definitions for glass-card */
+.glass-card {
+  width: 240px !important;
+  height: 360px !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.glass-card::before,
+.product-card::before,
+.dashboard-card::before,
+.shared-hub-card::before,
+.register-card::before,
+.login-card::before,
+.profile-sidebar-card::before,
+.profile-settings-card::before,
+.stat-card::before,
+.mod-content-card::before,
+.note-image-card::before,
+.note-card::before,
+.feed-card::before,
+.post-card::before,
+.creator-card::before,
+.student-card::before,
+.profile-card::before,
+.modal-card::before,
+.modal-content::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 1px !important;
   background: linear-gradient(
     90deg,
     transparent,
     rgba(255, 255, 255, 0.8),
     transparent
-  );
+  ) !important;
+  z-index: 10 !important;
 }
 
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
+.glass-card::after,
+.product-card::after,
+.dashboard-card::after,
+.shared-hub-card::after,
+.register-card::after,
+.login-card::after,
+.profile-sidebar-card::after,
+.profile-settings-card::after,
+.stat-card::after,
+.mod-content-card::after,
+.note-image-card::after,
+.note-card::after,
+.feed-card::after,
+.post-card::after,
+.creator-card::after,
+.student-card::after,
+.profile-card::after,
+.modal-card::after,
+.modal-content::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.8),
     transparent,
     rgba(255, 255, 255, 0.3)
-  );
+  ) !important;
+  z-index: 10 !important;
 }
