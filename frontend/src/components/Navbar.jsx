@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
-import { Sun, Moon, LogOut, Menu, X } from 'lucide-react';
+import { LogOut, Menu, X } from 'lucide-react';
 import NotificationPanel from './NotificationPanel';
 
 import { getApiUrl } from '../config';
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const handleThemeChange = () => {
-      setTheme(localStorage.getItem('theme') || 'dark');
-    };
-    window.addEventListener('theme-change', handleThemeChange);
-    return () => window.removeEventListener('theme-change', handleThemeChange);
-  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,12 +24,6 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    window.dispatchEvent(new Event('theme-change'));
-  };
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token');
@@ -100,10 +86,7 @@ const Navbar = () => {
 
             {isLoggedIn && <NotificationPanel />}
             
-            <button className="btn-nav-theme-toggle" onClick={toggleTheme} title="Toggle Mode">
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              <span className="theme-toggle-text-mobile">Toggle Theme</span>
-            </button>
+
           </div>
 
           {/* Right CTA Button */}

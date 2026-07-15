@@ -219,8 +219,8 @@ function AppContent() {
 
 function App() {
   React.useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
     
     // Disable native scroll restoration so reloads start at the top
     if ('scrollRestoration' in history) {
