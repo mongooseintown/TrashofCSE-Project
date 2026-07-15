@@ -194,12 +194,12 @@ body {
 .profile-card,
 .modal-card,
 .modal-content {
-  background: rgba(255, 255, 255, 0) !important;
-  backdrop-filter: blur(18px) !important;
-  -webkit-backdrop-filter: blur(18px) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.59) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(12, 12, 12, 0.75) !important;
+  backdrop-filter: blur(100px) !important;
+  -webkit-backdrop-filter: blur(100px) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -208,7 +208,7 @@ body {
 .glass-card {
   width: 240px !important;
   height: 360px !important;
-  border: 1px solid rgba(255, 255, 255, 0.59) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 .glass-card::before,
