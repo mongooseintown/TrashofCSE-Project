@@ -6,8 +6,8 @@
 }
 
 :root {
-  --bg-primary: #0b0b0b;
-  --bg-landing: #070707;
+  --bg-primary: #000000;
+  --bg-landing: #000000;
   --bg-secondary: rgba(255, 255, 255, 0.02);
   --bg-secondary-hover: rgba(255, 255, 255, 0.04);
   --text-primary: #ffffff;
@@ -70,69 +70,7 @@ body {
   background: var(--bg-primary, #1e1e1e);
 }
 
-.App::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -10;
-  
-  /* Exact user pattern background */
-  --mx: 0;
-  --my: 0;
-  --a-x: calc(var(--mx) * 8px);
-  --a-y: calc(var(--my) * 8px);
-  --b-x: calc(var(--mx) * -6px);
-  --b-y: calc(var(--my) * -6px);
-  --c-x: calc(var(--mx) * 4px);
-  --c-y: calc(var(--my) * 4px);
-
-  background:
-    repeating-linear-gradient(
-        45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #100f0f 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #100f0f 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #100f0f 0 calc(300% / 13)
-      )
-      calc(0px + var(--c-x)) calc(0px + var(--c-y)),
-    repeating-linear-gradient(
-        45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #100f0f 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #100f0f 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #100f0f 0 calc(300% / 13)
-      )
-      calc(32px + var(--a-x)) calc(32px + var(--a-y)),
-    repeating-linear-gradient(
-        -45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #100f0f 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #100f0f 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #100f0f 0 calc(300% / 13)
-      )
-      calc(0px + var(--b-x)) calc(0px + var(--b-y)),
-    repeating-linear-gradient(
-        -45deg,
-        #0000 calc(-650% / 13) calc(50% / 13),
-        #100f0f 0 calc(100% / 13),
-        #0000 0 calc(150% / 13),
-        #100f0f 0 calc(200% / 13),
-        #0000 0 calc(250% / 13),
-        #100f0f 0 calc(300% / 13)
-      )
-      calc(32px + var(--a-x)) calc(32px + var(--a-y)) #1e1e1e;
-
-  background-size: 64px 64px;
-}
+/* Background pattern removed in favor of solid black background */
 
 /* Translucent Containers so Body Background shows through */
 .app-container,
@@ -206,8 +144,8 @@ body {
 .post-creator-card,
 .sad-locked-overlay {
   background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(50px) !important;
-  -webkit-backdrop-filter: blur(50px) !important;
+  backdrop-filter: blur(150px) !important;
+  -webkit-backdrop-filter: blur(150px) !important;
   border-radius: 20px !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow: 
