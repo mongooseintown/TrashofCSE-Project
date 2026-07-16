@@ -193,13 +193,28 @@ body {
 .student-card,
 .profile-card,
 .modal-card,
-.modal-content {
-  background: rgba(12, 12, 12, 0.75) !important;
-  backdrop-filter: blur(60px) !important;
-  -webkit-backdrop-filter: blur(60px) !important;
+.modal-content,
+.lp-cta-card,
+.lp-testimonial-card,
+.lp-pricing-card,
+.lp-faq-item,
+.lp-dashboard-mockup,
+.lp-form-mockup,
+.lp-filter-mockup,
+.timeline-content,
+.contrib-modal-content,
+.post-creator-card,
+.sad-locked-overlay {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(50px) !important;
+  -webkit-backdrop-filter: blur(50px) !important;
   border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 0px 0px rgba(255, 255, 255, 0) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -208,7 +223,6 @@ body {
 .glass-card {
   width: 240px !important;
   height: 360px !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 .glass-card::before,
@@ -229,7 +243,18 @@ body {
 .student-card::before,
 .profile-card::before,
 .modal-card::before,
-.modal-content::before {
+.modal-content::before,
+.lp-cta-card::before,
+.lp-testimonial-card::before,
+.lp-pricing-card::before,
+.lp-faq-item::before,
+.lp-dashboard-mockup::before,
+.lp-form-mockup::before,
+.lp-filter-mockup::before,
+.timeline-content::before,
+.contrib-modal-content::before,
+.post-creator-card::before,
+.sad-locked-overlay::before {
   content: '' !important;
   position: absolute !important;
   top: 0 !important;
@@ -243,6 +268,7 @@ body {
     transparent
   ) !important;
   z-index: 10 !important;
+  pointer-events: none !important;
 }
 
 .glass-card::after,
@@ -263,7 +289,18 @@ body {
 .student-card::after,
 .profile-card::after,
 .modal-card::after,
-.modal-content::after {
+.modal-content::after,
+.lp-cta-card::after,
+.lp-testimonial-card::after,
+.lp-pricing-card::after,
+.lp-faq-item::after,
+.lp-dashboard-mockup::after,
+.lp-form-mockup::after,
+.lp-filter-mockup::after,
+.timeline-content::after,
+.contrib-modal-content::after,
+.post-creator-card::after,
+.sad-locked-overlay::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important;
@@ -277,4 +314,5 @@ body {
     rgba(255, 255, 255, 0.3)
   ) !important;
   z-index: 10 !important;
+  pointer-events: none !important;
 }
