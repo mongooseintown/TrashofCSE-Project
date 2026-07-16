@@ -83,8 +83,8 @@
 /* Sidebar Profile Card */
 .profile-sidebar-card {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 2.5rem 2rem;
@@ -167,8 +167,8 @@
 /* Settings Edit Form Card */
 .profile-settings-card {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 2.5rem;
@@ -404,12 +404,12 @@
 
 [data-theme="light"] .profile-sidebar-card,
 [data-theme="light"] .profile-settings-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 0, 0, 0.08);
   border-radius: 28px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 [data-theme="light"] .profile-email-badge {

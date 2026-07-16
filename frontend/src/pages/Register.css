@@ -36,8 +36,8 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7);
   z-index: 1;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 /* Left side Spotlight Banner */
@@ -318,11 +318,11 @@
 }
 
 [data-theme="light"] .register-card {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 [data-theme="light"] .register-banner {

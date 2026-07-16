@@ -19,8 +19,8 @@
   border-radius: 28px;
   margin-bottom: 2rem;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .mod-panel-header h1 {
@@ -69,8 +69,8 @@
   justify-content: space-between;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .stat-card:hover {
@@ -138,8 +138,8 @@
   border-radius: 28px;
   padding: 2.5rem;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .card-title {
@@ -594,9 +594,9 @@
 }
 
 [data-theme="light"] .mod-content-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }

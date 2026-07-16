@@ -29,8 +29,8 @@
   padding: 40px 60px;
   border-radius: 20px;
   background: var(--node-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   border: 1px solid var(--node-border);
   box-shadow: 0 10px 25px -5px var(--shadow-primary);
   color: var(--node-text);

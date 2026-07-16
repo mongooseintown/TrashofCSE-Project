@@ -24,14 +24,14 @@
   --nav-border: rgba(255, 255, 255, 0.08);
   --nav-btn-bg: #ffffff;
   --nav-btn-text: #070707;
-  --card-bg: rgba(255, 255, 255, 0.02);
-  --card-border: rgba(255, 255, 255, 0.06);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.08);
   --shadow-primary: rgba(0, 0, 0, 0.5);
   --shadow-nav: rgba(0, 0, 0, 0.3);
   --node-text: #ffffff;
   --node-bg: rgba(255, 255, 255, 0.08);
   --node-border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(18, 18, 18, 0.76);
+  --glass-bg: rgba(18, 18, 18, 0.15);
 }
 
 [data-theme="light"] {
@@ -53,14 +53,14 @@
   --nav-border: rgba(0, 0, 0, 0.08);
   --nav-btn-bg: #070707;
   --nav-btn-text: #ffffff;
-  --card-bg: rgba(0, 0, 0, 0.015);
+  --card-bg: rgba(0, 0, 0, 0.02);
   --card-border: rgba(0, 0, 0, 0.08);
   --shadow-primary: rgba(0, 0, 0, 0.15);
   --shadow-nav: rgba(0, 0, 0, 0.08);
   --node-text: #070707;
   --node-bg: rgba(0, 0, 0, 0.05);
   --node-border: rgba(0, 0, 0, 0.1);
-  --glass-bg: rgba(248, 248, 248, 0.78);
+  --glass-bg: rgba(248, 248, 248, 0.15);
 }
 
 body {
@@ -195,8 +195,8 @@ body {
 .modal-card,
 .modal-content {
   background: rgba(12, 12, 12, 0.75) !important;
-  backdrop-filter: blur(100px) !important;
-  -webkit-backdrop-filter: blur(100px) !important;
+  backdrop-filter: blur(60px) !important;
+  -webkit-backdrop-filter: blur(60px) !important;
   border-radius: 20px !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;

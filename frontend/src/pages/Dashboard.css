@@ -59,8 +59,8 @@
   align-items: center;
   gap: 1.2rem;
   text-align: center;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .workspace-title {
@@ -154,8 +154,8 @@
   padding: 2.5rem;
   box-shadow: 0 30px 60px -15px var(--shadow-primary);
   min-height: 500px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .hub-header {

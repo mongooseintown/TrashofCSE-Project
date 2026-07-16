@@ -31,8 +31,8 @@
   padding: 3rem 2rem;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   
   /* The crisp glass edge */
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -282,11 +282,11 @@
    Light Theme Overrides for Login View
    ======================================================== */
 [data-theme="light"] .login-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 [data-theme="light"] .login-header h1 {

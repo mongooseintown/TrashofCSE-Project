@@ -62,13 +62,13 @@
   border-radius: 28px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px var(--shadow-primary);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .post-textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border-primary);
   border-radius: 12px;
   padding: 1rem;
@@ -83,7 +83,7 @@
 
 .post-textarea:focus {
   border-color: #3b82f6;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.12);
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
 }
 
@@ -185,8 +185,8 @@
   border-radius: 28px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px var(--shadow-primary);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
   transition: transform 0.2s ease;
 }
 
@@ -398,7 +398,7 @@
 
 .comment-input {
   flex: 1;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border-primary);
   color: var(--text-primary);
   font-size: 0.85rem;
@@ -410,7 +410,7 @@
 
 .comment-input:focus {
   border-color: #3b82f6;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 .comment-submit-btn {

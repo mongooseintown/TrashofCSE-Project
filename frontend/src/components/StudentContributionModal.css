@@ -5,7 +5,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(60px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,8 +23,8 @@
   overflow-y: auto;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
   animation: modalFadeIn 0.3s ease-out;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 @keyframes modalFadeIn {
@@ -267,11 +267,11 @@
    Light Theme Overrides for Student Contribution Modal
    ======================================================== */
 [data-theme="light"] .contrib-modal-content {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.12);
   border-color: rgba(0, 0, 0, 0.08);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 [data-theme="light"] .contrib-modal-header {

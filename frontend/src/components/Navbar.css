@@ -35,8 +35,8 @@
     border-color 0.3s ease, 
     box-shadow 0.3s ease;
   overflow: visible;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 /* Outward shoulder curve fillets */
