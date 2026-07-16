@@ -32,8 +32,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution (Purpose of Activation Tree):</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution (Purpose of Activation Tree):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-activation-tree-purpose.png" 
@@ -42,7 +42,7 @@ const CompilerSegment07 = () => {
               />
             </div>
 
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Fibonacci Function Activation Tree Drawing n=8):</span>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Fibonacci Function Activation Tree Drawing n=8):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-factorial-n8-ans.jpg" 
@@ -62,8 +62,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution (Role of a Control Stack):</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution (Role of a Control Stack):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-control-stack-role.jpg" 
@@ -72,7 +72,7 @@ const CompilerSegment07 = () => {
               />
             </div>
             
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Activation Tree Drawing):</span>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Activation Tree Drawing):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-control-stack-tree.jpg" 
@@ -92,8 +92,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-expr-transform-ans.jpg" 
@@ -113,8 +113,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-fibonacci-activation-ans.jpg" 
@@ -134,8 +134,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-expr-ast-ans.jpg" 
@@ -155,8 +155,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution (Activation Tree Definition):</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution (Activation Tree Definition):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-activation-tree-ans.jpg" 
@@ -165,7 +165,7 @@ const CompilerSegment07 = () => {
               />
             </div>
             
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Memory Allocation Strategies):</span>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Memory Allocation Strategies):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-mem-strategies-ans.jpg" 
@@ -174,7 +174,7 @@ const CompilerSegment07 = () => {
               />
             </div>
 
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Factorial Function Activation Tree Drawing n=6):</span>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold', marginTop: '1.5rem', display: 'block' }}>Answer / Solution (Factorial Function Activation Tree Drawing n=6):</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-factorial-activation-ans.jpg" 
@@ -194,8 +194,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-expr-dag-ans.jpg" 
@@ -215,8 +215,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-dynamic-storage-ans.jpg" 
@@ -236,8 +236,8 @@ const CompilerSegment07 = () => {
               className="note-handnote-img" 
             />
           </div>
-          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '1.5rem' }}>
-            <span className="note-image-caption" style={{ color: '#ff5b22', fontWeight: 'bold' }}>Answer / Solution:</span>
+          <div style={{ marginTop: '1.5rem', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '1.5rem' }}>
+            <span className="note-image-caption" style={{ color: '#ffffff', fontWeight: 'bold' }}>Answer / Solution:</span>
             <div className="note-img-wrapper">
               <img 
                 src="/cg-seg7-expression-ans.jpg" 

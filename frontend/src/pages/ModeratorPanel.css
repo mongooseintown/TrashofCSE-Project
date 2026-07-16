@@ -300,8 +300,8 @@
 }
 
 .mod-alert.success {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #34d399;
 }
 
@@ -400,13 +400,13 @@
 }
 
 .approve-btn-inline {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #10b981;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
 }
 
 .approve-btn-inline:hover {
-  background: #10b981;
+  background: #ffffff;
   color: #fff;
 }
 

@@ -23,7 +23,7 @@ const RTDNote = () => {
 
       {/* YouTube Video Embed Player */}
       <div className="rtd-video-section" style={{ margin: '0 auto 3rem auto', maxWidth: '850px' }}>
-        <span className="note-image-caption" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem', color: '#ff5b22', fontWeight: 'bold', fontSize: '1.1rem' }}>
+        <span className="note-image-caption" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem', color: '#ffffff', fontWeight: 'bold', fontSize: '1.1rem' }}>
           {/* YouTube Icon */}
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>

@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+html {
+  filter: grayscale(100%) !important;
+}
+
 :root {
   --bg-primary: #000000;
   --bg-landing: #000000;
@@ -106,10 +110,10 @@ body {
 }
 
 /* Maintain original orange color contrast for important labels */
-.topic-content-container strong[style*="#ff5b22"],
-.topic-content-container strong[style*="255, 91, 34"],
-.topic-content-container strong[style*="rgb(255, 91, 34)"] {
-  color: #ff5b22 !important;
+.topic-content-container strong[style*="#ffffff"],
+.topic-content-container strong[style*="255, 255, 255"],
+.topic-content-container strong[style*="rgb(255, 255, 255)"] {
+  color: #ffffff !important;
 }
 
 /* Glassmorphism Effect */
