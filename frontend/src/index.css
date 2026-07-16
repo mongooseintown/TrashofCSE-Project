@@ -147,16 +147,10 @@ body {
 .contrib-modal-content,
 .post-creator-card,
 .sad-locked-overlay {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.05) 100%) !important;
-  backdrop-filter: blur(1000px) !important;
-  -webkit-backdrop-filter: blur(1000px) !important;
-  border-radius: 24px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.25),
-    inset 0 0 24px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  background: var(--card-bg) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--card-border) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
   position: relative !important;
   overflow: hidden !important;
 }
@@ -165,96 +159,4 @@ body {
 .glass-card {
   width: 240px !important;
   height: 360px !important;
-}
-
-.glass-card::before,
-.product-card::before,
-.dashboard-card::before,
-.shared-hub-card::before,
-.register-card::before,
-.login-card::before,
-.profile-sidebar-card::before,
-.profile-settings-card::before,
-.stat-card::before,
-.mod-content-card::before,
-.note-image-card::before,
-.note-card::before,
-.feed-card::before,
-.post-card::before,
-.creator-card::before,
-.student-card::before,
-.profile-card::before,
-.modal-card::before,
-.modal-content::before,
-.lp-cta-card::before,
-.lp-testimonial-card::before,
-.lp-pricing-card::before,
-.lp-faq-item::before,
-.lp-dashboard-mockup::before,
-.lp-form-mockup::before,
-.lp-filter-mockup::before,
-.timeline-content::before,
-.contrib-modal-content::before,
-.post-creator-card::before,
-.sad-locked-overlay::before {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 1px !important;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-  ) !important;
-  z-index: 10 !important;
-  pointer-events: none !important;
-}
-
-.glass-card::after,
-.product-card::after,
-.dashboard-card::after,
-.shared-hub-card::after,
-.register-card::after,
-.login-card::after,
-.profile-sidebar-card::after,
-.profile-settings-card::after,
-.stat-card::after,
-.mod-content-card::after,
-.note-image-card::after,
-.note-card::after,
-.feed-card::after,
-.post-card::after,
-.creator-card::after,
-.student-card::after,
-.profile-card::after,
-.modal-card::after,
-.modal-content::after,
-.lp-cta-card::after,
-.lp-testimonial-card::after,
-.lp-pricing-card::after,
-.lp-faq-item::after,
-.lp-dashboard-mockup::after,
-.lp-form-mockup::after,
-.lp-filter-mockup::after,
-.timeline-content::after,
-.contrib-modal-content::after,
-.post-creator-card::after,
-.sad-locked-overlay::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 1px !important;
-  height: 100% !important;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.8),
-    transparent,
-    rgba(255, 255, 255, 0.3)
-  ) !important;
-  z-index: 10 !important;
-  pointer-events: none !important;
 }
