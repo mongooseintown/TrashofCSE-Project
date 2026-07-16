@@ -90,11 +90,25 @@ const Home = () => {
     const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 5000);
     camera.position.z = PERSPECTIVE_DEPTH;
 
+    // WebGL Scene and Renderer (rendered behind the glass cards)
+    const webglScene = new THREE.Scene();
+    const webglRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    webglRenderer.setSize(window.innerWidth, window.innerHeight);
+    webglRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    webglRenderer.domElement.style.position = 'absolute';
+    webglRenderer.domElement.style.top = '0';
+    webglRenderer.domElement.style.left = '0';
+    webglRenderer.domElement.style.zIndex = '0';
+    webglRenderer.domElement.style.pointerEvents = 'none';
+    canvasRef.current.appendChild(webglRenderer.domElement);
+
+    // CSS3D Renderer (foreground cards)
     const renderer = new CSS3DRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.style.position = 'absolute';
     renderer.domElement.style.top = '0';
     renderer.domElement.style.left = '0';
+    renderer.domElement.style.zIndex = '1';
     canvasRef.current.appendChild(renderer.domElement);
 
     const wheelGroup = new THREE.Group();
@@ -124,6 +138,146 @@ const Home = () => {
       }
     });
 
+    // ─── PROCEDURAL 3D MESH/NETWORK GRAPH GENERATION ───
+    const spherePositions = [];
+    const gridPositions = [];
+    const torusPositions = [];
+    const helixPositions = [];
+    const galaxyPositions = [];
+    const pyramidPositions = [];
+    const nodeCount = 150;
+
+    for (let i = 0; i < nodeCount; i++) {
+      // 1. Sphere shape (Hero)
+      const u = Math.random();
+      const v = Math.random();
+      const theta = u * 2.0 * Math.PI;
+      const phi = Math.acos(2.0 * v - 1.0);
+      const r = 260;
+      spherePositions.push({
+        x: r * Math.sin(phi) * Math.cos(theta),
+        y: r * Math.sin(phi) * Math.sin(theta),
+        z: r * Math.cos(phi)
+      });
+
+      // 2. Planar/Roadmap grid shape (Features)
+      gridPositions.push({
+        x: ((i % 12) - 6) * 55,
+        y: (Math.floor(i / 12) % 12 - 6) * 55,
+        z: (Math.floor(i / 144) - 0.5) * 120
+      });
+
+      // 3. Torus shape (Testimonials)
+      const torusTheta = (i / nodeCount) * Math.PI * 2;
+      const torusPhi = Math.random() * Math.PI * 2;
+      const torusR = 280;
+      const torusr = 70;
+      torusPositions.push({
+        x: (torusR + torusr * Math.cos(torusPhi)) * Math.cos(torusTheta),
+        y: (torusR + torusr * Math.cos(torusPhi)) * Math.sin(torusTheta),
+        z: torusr * Math.sin(torusPhi)
+      });
+
+      // 4. Helix shape (Pricing)
+      const helixAngle = 0.22 * i;
+      helixPositions.push({
+        x: 130 * Math.cos(helixAngle),
+        y: 3.6 * i - 270,
+        z: 130 * Math.sin(helixAngle)
+      });
+
+      // 5. Galaxy shape (FAQ)
+      const galR = Math.random() * 450 + 60;
+      const galTheta = Math.random() * Math.PI * 2;
+      galaxyPositions.push({
+        x: galR * Math.cos(galTheta),
+        y: (Math.random() - 0.5) * 120,
+        z: galR * Math.sin(galTheta)
+      });
+
+      // 6. Pyramidal node cluster (Footer)
+      const level = Math.floor(i / 30);
+      const levelHeight = (level - 2.5) * 100;
+      const levelRadius = (5 - level) * 60;
+      const pyrAngle = (i % 30) * (Math.PI * 2 / 30);
+      pyramidPositions.push({
+        x: levelRadius * Math.cos(pyrAngle),
+        y: levelHeight,
+        z: levelRadius * Math.sin(pyrAngle)
+      });
+    }
+
+    const shapes = [
+      spherePositions,
+      gridPositions,
+      torusPositions,
+      helixPositions,
+      galaxyPositions,
+      pyramidPositions
+    ];
+
+    const currentPositions = [];
+    for (let i = 0; i < nodeCount; i++) {
+      currentPositions.push({
+        x: spherePositions[i].x,
+        y: spherePositions[i].y,
+        z: spherePositions[i].z
+      });
+    }
+
+    const pointsGeometry = new THREE.BufferGeometry();
+    const positionsArray = new Float32Array(nodeCount * 3);
+    for (let i = 0; i < nodeCount; i++) {
+      positionsArray[i * 3] = currentPositions[i].x;
+      positionsArray[i * 3 + 1] = currentPositions[i].y;
+      positionsArray[i * 3 + 2] = currentPositions[i].z;
+    }
+    pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positionsArray, 3));
+
+    const createGlowTexture = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+      grad.addColorStop(0.2, 'rgba(255, 91, 34, 0.8)');
+      grad.addColorStop(0.5, 'rgba(255, 91, 34, 0.15)');
+      grad.addColorStop(1, 'rgba(255, 91, 34, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 64, 64);
+      return new THREE.CanvasTexture(canvas);
+    };
+
+    const pointsMaterial = new THREE.PointsMaterial({
+      size: window.innerWidth < 768 ? 16 : 24,
+      map: createGlowTexture(),
+      transparent: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
+
+    const totalLines = nodeCount * 2;
+    const linesGeometry = new THREE.BufferGeometry();
+    const linesPositions = new Float32Array(totalLines * 2 * 3);
+    linesGeometry.setAttribute('position', new THREE.BufferAttribute(linesPositions, 3));
+
+    const linesMaterial = new THREE.LineBasicMaterial({
+      color: 0xff5b22,
+      transparent: true,
+      opacity: 0.25,
+      blending: THREE.AdditiveBlending
+    });
+
+    const linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
+
+    const webglGroup = new THREE.Group();
+    webglGroup.add(pointsMesh);
+    webglGroup.add(linesMesh);
+    webglScene.add(webglGroup);
+
     let currentIndex = 0;
     let isAnimating = false;
 
@@ -141,6 +295,28 @@ const Home = () => {
         duration: ANIM_SPEED,
         ease: "power2.inOut",
         onComplete: () => isAnimating = false
+      });
+
+      // Animate WebGL Group slightly in space
+      gsap.to(webglGroup.rotation, {
+        y: index * 0.4,
+        x: index * 0.2,
+        duration: ANIM_SPEED + 0.4,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+
+      // Morph 3D network shape to match current section theme
+      const targetShape = shapes[currentIndex];
+      currentPositions.forEach((pos, i) => {
+        gsap.to(pos, {
+          x: targetShape[i].x,
+          y: targetShape[i].y,
+          z: targetShape[i].z,
+          duration: ANIM_SPEED + 0.4,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
       });
       
       nodes.forEach((node, i) => {
@@ -182,7 +358,47 @@ const Home = () => {
     let animationFrameId;
     function animate() {
       animationFrameId = requestAnimationFrame(animate);
+
+      // WebGL Geometry Vertex Updates for points
+      const posAttr = pointsGeometry.getAttribute('position');
+      const posArray = posAttr.array;
+      for (let i = 0; i < nodeCount; i++) {
+        posArray[i * 3] = currentPositions[i].x;
+        posArray[i * 3 + 1] = currentPositions[i].y;
+        posArray[i * 3 + 2] = currentPositions[i].z;
+      }
+      posAttr.needsUpdate = true;
+
+      // WebGL Geometry Vertex Updates for lines
+      const linePosAttr = linesGeometry.getAttribute('position');
+      const linePosArray = linePosAttr.array;
+      let lineIdx = 0;
+      for (let i = 0; i < nodeCount; i++) {
+        const p1 = currentPositions[i];
+        const p2 = currentPositions[(i + 1) % nodeCount];
+        linePosArray[lineIdx++] = p1.x;
+        linePosArray[lineIdx++] = p1.y;
+        linePosArray[lineIdx++] = p1.z;
+        linePosArray[lineIdx++] = p2.x;
+        linePosArray[lineIdx++] = p2.y;
+        linePosArray[lineIdx++] = p2.z;
+
+        const p3 = currentPositions[(i + 3) % nodeCount];
+        linePosArray[lineIdx++] = p1.x;
+        linePosArray[lineIdx++] = p1.y;
+        linePosArray[lineIdx++] = p1.z;
+        linePosArray[lineIdx++] = p3.x;
+        linePosArray[lineIdx++] = p3.y;
+        linePosArray[lineIdx++] = p3.z;
+      }
+      linePosAttr.needsUpdate = true;
+
+      // Slow continuous floating rotations
+      webglGroup.rotation.y += 0.0015;
+      webglGroup.rotation.x += 0.0007;
+
       renderer.render(scene, camera);
+      webglRenderer.render(webglScene, camera);
     }
     animate();
 
@@ -192,6 +408,8 @@ const Home = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      webglRenderer.setSize(window.innerWidth, window.innerHeight);
+      webglRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       
       radius = (window.innerHeight / 2) / Math.tan(angleStep / 2);
       wheelGroup.position.z = -radius;
@@ -206,9 +424,19 @@ const Home = () => {
       window.removeEventListener('keydown', handleKeydown);
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
-      if (canvasRef.current && canvasRef.current.contains(renderer.domElement)) {
-        canvasRef.current.removeChild(renderer.domElement);
+      if (canvasRef.current) {
+        if (canvasRef.current.contains(renderer.domElement)) {
+          canvasRef.current.removeChild(renderer.domElement);
+        }
+        if (canvasRef.current.contains(webglRenderer.domElement)) {
+          canvasRef.current.removeChild(webglRenderer.domElement);
+        }
       }
+      pointsGeometry.dispose();
+      pointsMaterial.dispose();
+      linesGeometry.dispose();
+      linesMaterial.dispose();
+      webglRenderer.dispose();
     };
   }, []);
 
