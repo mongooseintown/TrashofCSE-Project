@@ -284,7 +284,7 @@ body.home-active {
 }
 
 .lp-dashboard-mockup {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 28px;
   width: 100%;
@@ -322,7 +322,7 @@ body.home-active {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background: rgba(13, 13, 13, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(60px);
   -webkit-backdrop-filter: blur(60px);
 }
@@ -743,7 +743,7 @@ body.home-active {
 
 /* ─── Feature Mockups (GLASSMORPHISM) ─── */
 .lp-form-mockup {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 26px;
   padding: 1.5rem;
@@ -889,7 +889,7 @@ body.home-active {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   display: flex;
@@ -904,7 +904,7 @@ body.home-active {
 .lp-wheel-node:hover {
   border-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 [data-theme="light"] .lp-wheel-node {
@@ -928,7 +928,7 @@ body.home-active {
 
 /* ─── Filter Widget Mockup (GLASSMORPHISM) ─── */
 .lp-filter-mockup {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 26px;
   padding: 1.5rem;
@@ -1067,7 +1067,7 @@ body.home-active {
 
 /* ─── TESTIMONIALS SECTION (GLASSMORPHISM) ─── */
 .lp-testimonials-section {
-  background: rgba(13, 13, 13, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   padding: 8rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -1089,7 +1089,7 @@ body.home-active {
 }
 
 .lp-testimonial-card {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 26px;
   padding: 2.2rem;
@@ -1203,7 +1203,7 @@ body.home-active {
 }
 
 .lp-pricing-card {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 3rem 2.2rem;
@@ -1389,7 +1389,7 @@ body.home-active {
 }
 
 .lp-faq-item {
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
   padding: 1.5rem;
@@ -1456,7 +1456,7 @@ body.home-active {
 
 .lp-cta-card {
   position: relative;
-  background: rgba(17, 17, 17, 0.12);
+  background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 32px;
   padding: 5rem 2rem;

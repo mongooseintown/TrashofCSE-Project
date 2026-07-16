@@ -31,7 +31,7 @@
   --node-text: #ffffff;
   --node-bg: rgba(255, 255, 255, 0.08);
   --node-border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(18, 18, 18, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="light"] {
