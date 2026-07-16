@@ -147,10 +147,15 @@ body {
 .contrib-modal-content,
 .post-creator-card,
 .sad-locked-overlay {
-  background: linear-gradient(135deg, #ffffff 0%, #aaaaaa 50%, #000000 100%) !important;
-  border-radius: 32px !important;
-  border: 1px solid var(--card-border) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(120px) !important;
+  -webkit-backdrop-filter: blur(120px) !important;
+  border-radius: 40px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 4px 12px rgba(255, 255, 255, 0.08),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.2) !important;
   position: relative !important;
   overflow: hidden !important;
 }
