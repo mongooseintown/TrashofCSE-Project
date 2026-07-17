@@ -186,7 +186,7 @@ const CommunityFeed = () => {
 
   const getAvatarBgColor = (name) => {
     const colors = [
-      '#ef4444', '#f97316', '#f59e0b', '#ffffff', 
+      '#ef4444', '#f97316', '#f59e0b', '#10b981', 
       '#06b6d4', '#3b82f6', '#6366f1', '#8b5cf6', '#ec4899'
     ];
     let sum = 0;

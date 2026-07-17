@@ -16,7 +16,7 @@ const Home = () => {
       textAlign: 'center',
       padding: '20px'
     }}>
-      <Wrench size={64} style={{ marginBottom: '20px', color: '#ffffff' }} />
+      <Wrench size={64} style={{ marginBottom: '20px', color: '#ff5b22' }} />
       <h1 style={{ fontSize: '3rem', margin: '0 0 10px 0', letterSpacing: '-0.5px' }}>Under Construction</h1>
       <p style={{ fontSize: '1.2rem', color: '#aaaaaa', maxWidth: '500px' }}>
         We are working on bringing something new and creative. Check back soon!

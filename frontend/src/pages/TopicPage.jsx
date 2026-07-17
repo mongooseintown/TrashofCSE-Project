@@ -12,9 +12,9 @@ const topicContent = {
         <img src="/cg-seg6-type-conversion-implicit.png" alt="Implicit Type Conversion Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example: Apply Type Checking and Coercion Rules for Grammar (Ex-6.5)</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Apply Type Checking and Coercion Rules for Grammar (Ex-6.5)</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-type-conversion-coercion-ex.png" alt="Semantic Coercion Rules for E1 op E2" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -81,9 +81,9 @@ const topicContent = {
         <img src="/cg-seg6-sdt-intro-ans.png" alt="Syntax-Directed Translation Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Common SDT Exam Question Types & Tracing Checklist:</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Common SDT Exam Question Types & Tracing Checklist:</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-sdt-question-types.png" alt="SDT Question Types and Tracing Checklist" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -110,18 +110,18 @@ const topicContent = {
         <img src="/cg-seg6-syntax-tree.png" alt="Syntax Tree Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 1: Syntax Tree for Nested Expression `a + a + (a + a + a + (a + a + a + a))`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 1: Syntax Tree for Nested Expression `a + a + (a + a + a + (a + a + a + a))`</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-syntax-tree-nested-ex.png" alt="Nested Expression Syntax Tree Example" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
         </div>
       </div>
 
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 2: Parse Tree vs. Abstract Syntax Tree (AST) for `a + b * 1 + 10`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 2: Parse Tree vs. Abstract Syntax Tree (AST) for `a + b * 1 + 10`</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-syntax-tree-ast-calc-q.png" alt="Grammar semantic rules and LMD trace steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -141,9 +141,9 @@ const topicContent = {
         <img src="/cg-seg6-syntax-tree-construction.png" alt="Construction Method of Syntax Tree" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example: Construction of Syntax Tree for `a - 4 + c`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example: Construction of Syntax Tree for `a - 4 + c`</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-syntax-tree-ex-code.png" alt="Syntax Tree Construction Example Code steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -163,9 +163,9 @@ const topicContent = {
         <img src="/cg-seg6-dag-definition.png" alt="DAG Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 1: Syntax Tree vs. DAG comparison for `a + a * (b - c) + (b - c) * d`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 1: Syntax Tree vs. DAG comparison for `a + a * (b - c) + (b - c) * d`</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-dag-ex-steps.png" alt="Syntax Tree and DAG Construction Steps" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -175,9 +175,9 @@ const topicContent = {
         </div>
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 2: Syntax Tree vs. DAG comparison for Assignment `i := i + 10`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 2: Syntax Tree vs. DAG comparison for Assignment `i := i + 10`</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-syntax-tree-vs-dag-assignment-ex.png" alt="Syntax Tree vs DAG Assignment Solution Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -204,9 +204,9 @@ const topicContent = {
         <img src="/cg-seg6-inherited-attribute.png" alt="Inherited Attribute Definition" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 1: SDD & Dependency Graph for Declarations</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 1: SDD & Dependency Graph for Declarations</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-inh-declaration-q.png" alt="Declaration SDD Problem Statement" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -216,9 +216,9 @@ const topicContent = {
         </div>
       </div>
       
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 2: Step-by-Step Inheritance Tracing for `int a, b, c`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 2: Step-by-Step Inheritance Tracing for `int a, b, c`</strong>
         </p>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <img src="/cg-seg6-inh-trace-abc-1.png" alt="Trace Steps of Inherited type computation for a, b, c" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -228,9 +228,9 @@ const topicContent = {
         </div>
       </div>
 
-      <div style={{ borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
+      <div style={{ borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem', marginTop: '2rem' }}>
         <p style={{ color: '#ddd', fontSize: '1.2rem', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          <strong style={{ color: '#ffffff', fontSize: '1.3rem' }}>Example 3: Step-by-Step Parse tree & Annotated Tree for `int a, b`</strong>
+          <strong style={{ color: '#ff5b22', fontSize: '1.3rem' }}>Example 3: Step-by-Step Parse tree & Annotated Tree for `int a, b`</strong>
         </p>
         <div style={{ textAlign: 'center' }}>
           <img src="/cg-seg6-inh-trace-ab-3.png" alt="Parse tree and Annotated Tree diagram for a, b" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
@@ -256,8 +256,8 @@ const topicContent = {
       <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
         <img src="/cg-seg6-annotated-parse-tree-calc.png" alt="Annotated Parse Tree Example Specification" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
-      <div style={{ textAlign: 'center', borderTop: '2px dashed rgba(255, 255, 255, 0.3)', paddingTop: '2rem' }}>
-        <span style={{ color: '#ffffff', fontWeight: 'bold', display: 'block', marginBottom: '1.5rem', fontSize: '1.2rem' }}>Annotated Parse Tree Drawing Solution:</span>
+      <div style={{ textAlign: 'center', borderTop: '2px dashed rgba(255, 91, 34, 0.3)', paddingTop: '2rem' }}>
+        <span style={{ color: '#ff5b22', fontWeight: 'bold', display: 'block', marginBottom: '1.5rem', fontSize: '1.2rem' }}>Annotated Parse Tree Drawing Solution:</span>
         <img src="/cg-seg6-annotated-parse-tree-calc-diagram.png" alt="Annotated Parse Tree Drawing Solution Diagram" style={{ width: '100%', maxWidth: '1000px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)' }} />
       </div>
     </div>

@@ -6,7 +6,7 @@ const contentTypeConfig = {
   pdf: { label: "Sir's PDF", icon: <FileText size={14} />, color: '#3b82f6' },
   handnote: { label: 'Handnote', icon: <BookOpen size={14} />, color: '#8b5cf6' },
   slides: { label: 'Slides', icon: <Image size={14} />, color: '#f59e0b' },
-  'topper-note': { label: 'Topper Note', icon: <Award size={14} />, color: '#ffffff' },
+  'topper-note': { label: 'Topper Note', icon: <Award size={14} />, color: '#10b981' },
   suggestion: { label: 'Suggestion', icon: <Lightbulb size={14} />, color: '#ef4444' },
   'pq-solve': { label: 'Prev. Q. Solve', icon: <GraduationCap size={14} />, color: '#06b6d4' },
 };

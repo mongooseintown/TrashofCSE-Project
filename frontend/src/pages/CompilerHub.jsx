@@ -97,7 +97,7 @@ const CompilerHub = () => {
         {/* Card 3: Compiler Segment 07 */}
         <div className="product-card" onClick={() => navigate('/compiler/segment-07')}>
           <div className="card-img-container">
-            <span className="card-tag-badge" style={{ background: '#ffffff', borderColor: '#ff7242' }}>Previous Q</span>
+            <span className="card-tag-badge" style={{ background: '#ff5b22', borderColor: '#ff7242' }}>Previous Q</span>
             <div className="card-logo-badge">CSE</div>
             
             <img 
@@ -124,7 +124,7 @@ const CompilerHub = () => {
 
           <div className="card-footer-row">
             <span className="price-pill">CSE 310</span>
-            <button className="buy-pill-btn" style={{ background: 'linear-gradient(135deg, #ffffff 0%, #ff7242 100%)' }} onClick={(e) => {
+            <button className="buy-pill-btn" style={{ background: 'linear-gradient(135deg, #ff5b22 0%, #ff7242 100%)' }} onClick={(e) => {
               e.stopPropagation();
               navigate('/compiler/segment-07');
             }}>

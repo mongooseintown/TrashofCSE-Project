@@ -168,9 +168,9 @@ const Register = () => {
 
           {success && (
             <div style={{
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              color: '#ffffff',
+              background: 'rgba(16, 185, 129, 0.1)',
+              border: '1px solid rgba(16, 185, 129, 0.2)',
+              color: '#10b981',
               padding: '0.8rem 1rem',
               borderRadius: '12px',
               fontSize: '0.85rem',
