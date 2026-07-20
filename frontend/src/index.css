@@ -143,9 +143,9 @@ body {
 .contrib-modal-content,
 .post-creator-card,
 .sad-locked-overlay {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(50px) !important;
-  -webkit-backdrop-filter: blur(50px) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(90px) !important;
+  -webkit-backdrop-filter: blur(90px) !important;
   border-radius: 20px !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   box-shadow:
