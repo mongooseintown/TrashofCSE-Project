@@ -25,50 +25,55 @@ const features = [
   {
     icon: <FileSearch size={20} />,
     title: 'Segment-wise Notes',
-    text: 'Organized academic resources by subject, segment, topic, and previous question focus.',
+    text: 'Organized academic resources by course, segment and past paper focus.',
   },
   {
     icon: <UploadCloud size={20} />,
-    title: 'Student Contributions',
-    text: 'Students can submit notes while moderators keep the published library clean and useful.',
+    title: 'Verified Uploads',
+    text: 'Student contributions are reviewed before they appear in the shared library.',
   },
   {
     icon: <MessageSquareText size={20} />,
     title: 'Community Feed',
-    text: 'A private student space for questions, suggestions, bugs, comments, and quick help.',
+    text: 'Ask questions, report bugs, and share study tips with your batchmates.',
   },
 ];
 
 const stats = [
-  ['04', 'Core Courses'],
-  ['05+', 'Academic Segments'],
-  ['100+', 'Visual Resources'],
+  ['04', 'Core subjects'],
+  ['05+', 'Exam-ready segments'],
+  ['100+', 'Study assets'],
 ];
 
 const Home = () => {
   return (
     <main className="landing-page">
       <section className="landing-hero" id="top">
-        <div className="hero-grid">
+        <div className="hero-shell">
           <div className="hero-copy">
-            <div className="hero-kicker">
-              <Sparkles size={15} />
-              IIUC CSE study command center
-            </div>
+            <span className="hero-label">
+              <Sparkles size={14} /> IIUC CSE private study hub
+            </span>
 
-            <h1>TrashofCSE</h1>
-            <p className="hero-lead">
-              A focused academic hub for CSE students to find notes, previous question solves,
-              segment resources, and shared study material without digging through scattered files.
+            <h1>Study the right notes, faster.</h1>
+            <p className="hero-text">
+              TrashofCSE brings Compiler, CA, EEE and SAD material into a clean workspace with
+              verified uploads, segment-focused notes, and a student-first dashboard.
             </p>
 
             <div className="hero-actions">
               <Link to="/login" className="primary-action">
-                Enter Dashboard <ArrowRight size={18} />
+                Go to dashboard <ArrowRight size={18} />
               </Link>
               <Link to="/register" className="secondary-action">
-                Create Account
+                Create account
               </Link>
+            </div>
+
+            <div className="hero-badges">
+              <span>Moderated student uploads</span>
+              <span>Course and segment filters</span>
+              <span>Private batch access</span>
             </div>
 
             <div className="hero-stats" aria-label="Platform highlights">
@@ -82,28 +87,53 @@ const Home = () => {
           </div>
 
           <div className="hero-visual" aria-label="TrashofCSE dashboard preview">
-            <div className="mockup-shell">
-              <div className="mockup-topbar">
+            <div className="visual-card">
+              <div className="visual-topbar">
                 <span></span>
                 <span></span>
                 <span></span>
-                <p>trashofcse.app</p>
               </div>
-              <img src="/trashofcse-mockup.png" alt="TrashofCSE dashboard mockup" />
+              <div className="visual-body">
+                <div className="visual-sidebar">
+                  <div className="visual-tag">Compiler</div>
+                  <div className="visual-item">Segment 06</div>
+                  <div className="visual-item">Segment 08</div>
+                  <div className="visual-item active">Segment 05</div>
+                  <div className="visual-item">Saved Notes</div>
+                </div>
+                <div className="visual-main">
+                  <div className="visual-header">
+                    <div>
+                      <p>Approved uploads</p>
+                      <strong>Books, slides, PQ solves</strong>
+                    </div>
+                    <span>Updated Today</span>
+                  </div>
+                  <div className="visual-grid">
+                    <div className="visual-panel">
+                      <h4>CA Segment 08</h4>
+                      <p>DMA, handshaking, cache mapping.</p>
+                    </div>
+                    <div className="visual-panel">
+                      <h4>EEE PQ Bank</h4>
+                      <p>Thermocouple, RTD, DVM solved papers.</p>
+                    </div>
+                    <div className="visual-panel">
+                      <h4>Compiler Notes</h4>
+                      <p>Parser walkthroughs and code generation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="scroll-hint">
-          <span>Built for repeated study sessions</span>
-          <div></div>
-        </div>
       </section>
 
-      <section className="landing-section course-section" id="features">
+      <section className="landing-section course-section" id="library">
         <div className="section-heading">
           <span>Library</span>
-          <h2>Everything arranged the way students actually search.</h2>
+          <h2>Organized for fast exam prep.</h2>
         </div>
 
         <div className="course-grid">
@@ -120,48 +150,47 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="landing-section split-section" id="achievements">
-        <div className="panel-copy">
-          <span className="section-eyebrow">Workflow</span>
-          <h2>From exam panic to one clean route.</h2>
+      <section className="landing-section workflow-section" id="workflow">
+        <div className="workflow-copy">
+          <span className="section-eyebrow">How it works</span>
+          <h2>One study workflow for every course.</h2>
           <p>
-            TrashofCSE keeps the important academic material close: official PDFs,
-            handnotes, diagrams, solved questions, and class contributions under one login.
+            Pick your course, open the right segment, and stay in a curated space for verified notes
+            and student contributions.
           </p>
-
-          <ul className="check-list">
-            <li><CheckCircle2 size={18} /> Private student dashboard</li>
-            <li><CheckCircle2 size={18} /> Moderator-reviewed uploads</li>
-            <li><CheckCircle2 size={18} /> Fast access to segment resources</li>
-          </ul>
         </div>
 
-        <div className="workflow-panel">
-          <div className="workflow-item active">
-            <Layers3 size={19} />
+        <div className="workflow-cards">
+          <div className="workflow-card active">
+            <Layers3 size={20} />
             <div>
-              <strong>Select Course</strong>
-              <span>Compiler, CA, EEE, SAD</span>
+              <h3>Structured access</h3>
+              <p>Course, segment, exam type and content filters make searching simple.</p>
             </div>
           </div>
-          <div className="workflow-item">
-            <FileSearch size={19} />
+          <div className="workflow-card">
+            <FileSearch size={20} />
             <div>
-              <strong>Open Segment</strong>
-              <span>Topic notes and visual explanations</span>
+              <h3>Clear content</h3>
+              <p>Notes, slides and previous questions are grouped for each topic.</p>
             </div>
           </div>
-          <div className="workflow-item">
-            <ShieldCheck size={19} />
+          <div className="workflow-card">
+            <ShieldCheck size={20} />
             <div>
-              <strong>Use Verified Uploads</strong>
-              <span>Reviewed materials from students and moderators</span>
+              <h3>Verified uploads</h3>
+              <p>Moderators review new material before it enters the library.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="landing-section feature-section">
+      <section className="landing-section feature-section" id="features">
+        <div className="section-heading">
+          <span>Features</span>
+          <h2>Everything built for focused student study.</h2>
+        </div>
+
         <div className="feature-grid">
           {features.map((feature) => (
             <article className="feature-card" key={feature.title}>
@@ -173,12 +202,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="landing-section final-cta" id="pricing">
-        <GraduationCap size={34} />
-        <h2>Study smarter with your batch resources in one place.</h2>
-        <p>No subscriptions. No marketing noise. Just a focused academic workspace for the courses you keep opening before exams.</p>
+      <section className="landing-section final-cta" id="start">
+        <div className="cta-copy">
+          <GraduationCap size={34} />
+          <h2>Start studying from a smarter place.</h2>
+          <p>No subscriptions, no noise — only the course material your batch actually needs.</p>
+        </div>
         <Link to="/register" className="primary-action">
-          Start Using TrashofCSE <ArrowRight size={18} />
+          Join TrashofCSE <ArrowRight size={18} />
         </Link>
       </section>
     </main>
