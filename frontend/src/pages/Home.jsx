@@ -25,17 +25,17 @@ const features = [
   {
     icon: <FileSearch size={20} />,
     title: 'Segment-wise Notes',
-    text: 'Organized academic resources by course, segment and past paper focus.',
+    text: 'Every topic is grouped by course, segment, and exam focus so students can find the right material without wasting time.',
   },
   {
     icon: <UploadCloud size={20} />,
     title: 'Verified Uploads',
-    text: 'Student contributions are reviewed before they appear in the shared library.',
+    text: 'Reliable student contributions move through a moderation process, giving the library a cleaner and more dependable study experience.',
   },
   {
     icon: <MessageSquareText size={20} />,
     title: 'Community Feed',
-    text: 'Ask questions, report bugs, and share study tips with your batchmates.',
+    text: 'A focused discussion space for questions, bug reports, suggestions, and peer support throughout the semester.',
   },
 ];
 
@@ -57,8 +57,10 @@ const Home = () => {
 
             <h1>Study the right notes, faster.</h1>
             <p className="hero-text">
-              TrashofCSE brings Compiler, CA, EEE and SAD material into a clean workspace with
-              verified uploads, segment-focused notes, and a student-first dashboard.
+              TrashofCSE is a dependable academic workspace for IIUC students, designed to bring
+              compiler, computer architecture, EEE, and SAD resources into one organized place.
+              It helps learners move from scattered files to a structured, reliable study flow with
+              curated notes, verified uploads, and faster access to what matters most before exams.
             </p>
 
             <div className="hero-actions">
@@ -133,7 +135,11 @@ const Home = () => {
       <section className="landing-section course-section" id="library">
         <div className="section-heading">
           <span>Library</span>
-          <h2>Organized for fast exam prep.</h2>
+          <h2>Built for clarity, speed, and exam confidence.</h2>
+          <p className="section-subtext">
+            Whether students are revising a single segment or preparing for a full course review,
+            the platform keeps resources clear, searchable, and ready to use.
+          </p>
         </div>
 
         <div className="course-grid">
@@ -153,10 +159,11 @@ const Home = () => {
       <section className="landing-section workflow-section" id="workflow">
         <div className="workflow-copy">
           <span className="section-eyebrow">How it works</span>
-          <h2>One study workflow for every course.</h2>
+          <h2>One dependable workflow for every course.</h2>
           <p>
-            Pick your course, open the right segment, and stay in a curated space for verified notes
-            and student contributions.
+            Students can move from topic discovery to revision quickly, using a consistent process:
+            choose the course, open the segment, review well-organized materials, and continue with
+            confidence.
           </p>
         </div>
 
@@ -188,7 +195,11 @@ const Home = () => {
       <section className="landing-section feature-section" id="features">
         <div className="section-heading">
           <span>Features</span>
-          <h2>Everything built for focused student study.</h2>
+          <h2>Designed to support serious study habits.</h2>
+          <p className="section-subtext">
+            The experience balances usability and trust, giving students a calm and focused platform for
+            revision, discussion, and resource discovery.
+          </p>
         </div>
 
         <div className="feature-grid">
@@ -205,8 +216,8 @@ const Home = () => {
       <section className="landing-section final-cta" id="start">
         <div className="cta-copy">
           <GraduationCap size={34} />
-          <h2>Start studying from a smarter place.</h2>
-          <p>No subscriptions, no noise — only the course material your batch actually needs.</p>
+          <h2>Start studying from a smarter, more reliable place.</h2>
+          <p>No clutter, no confusion — just a polished academic workspace built for serious revision and steady progress.</p>
         </div>
         <Link to="/register" className="primary-action">
           Join TrashofCSE <ArrowRight size={18} />
