@@ -19,6 +19,7 @@ const courses = [
   { code: 'CSE-3523', name: 'Computer Architecture', detail: 'cache, DMA, datapath, memory systems' },
   { code: 'EEE-2421', name: 'EEE Resources', detail: 'transducers, RTD, DVM, instrumentation' },
   { code: 'CSE-3611', name: 'System Analysis', detail: 'security, requirements, design notes' },
+  { code: 'EEE-SEG5', name: 'EEE Segment 5', detail: 'measurement, instrumentation, errors, accuracy and precision' },
 ];
 
 const features = [
