@@ -400,6 +400,88 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
+/* ---------------- SEMESTER ROADMAP GRID ---------------- */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+}
+
+.roadmap-card {
+  padding: 2rem;
+  background: #08090d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 69, 0, 0.4);
+}
+
+.roadmap-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.roadmap-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(255, 69, 0, 0.08);
+  border: 1px solid rgba(255, 69, 0, 0.25);
+  display: grid;
+  place-items: center;
+}
+
+.roadmap-year {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #FF5500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.roadmap-sem {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.roadmap-card h3 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0 0 0.8rem;
+}
+
+.roadmap-card p {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  margin: 0 0 1.5rem;
+  flex-grow: 1;
+}
+
+.roadmap-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.roadmap-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 /* ---------------- COMPARISON MATRIX ---------------- */
 .comparison-grid {
   display: grid;

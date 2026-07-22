@@ -8,7 +8,9 @@ import {
   ChevronDown,
   Cpu,
   Database,
+  FileCode2,
   Globe,
+  GraduationCap,
   Layers,
   MessageSquareText,
   ShieldCheck,
@@ -35,7 +37,50 @@ const staggerContainer = {
   },
 };
 
+const semesterRoadmap = [
+  {
+    year: '1st Year',
+    semesters: 'Semesters 1 & 2',
+    icon: <BookOpen size={22} color="#FF4500" />,
+    title: 'Foundational Engineering',
+    courses: 'Structured C Programming, Basic EEE, Engineering Physics, Differential Calculus, Discrete Mathematics.',
+    status: 'Indexed & Ready',
+  },
+  {
+    year: '2nd Year',
+    semesters: 'Semesters 3 & 4',
+    icon: <FileCode2 size={22} color="#FF4500" />,
+    title: 'Data & System Core',
+    courses: 'Data Structures, Algorithms, Object-Oriented Programming, Digital Logic Design, Microprocessors.',
+    status: 'Verified Solutions',
+  },
+  {
+    year: '3rd Year',
+    semesters: 'Semesters 5 & 6',
+    icon: <Cpu size={22} color="#FF4500" />,
+    title: 'Advanced Architecture & Compilers',
+    courses: 'Computer Architecture (CSE-3523), Compiler Design (CSE-3527), System Analysis (SAD), EEE Transducers.',
+    status: 'Complete Exam Bank',
+  },
+  {
+    year: '4th Year',
+    semesters: 'Semesters 7 & 8',
+    icon: <GraduationCap size={22} color="#FF4500" />,
+    title: 'Specialized Electives & Thesis',
+    courses: 'Artificial Intelligence, Machine Learning, Computer Networks, Database Systems, Thesis Guidance & Defense.',
+    status: 'Active Contributions',
+  },
+];
+
 const faqs = [
+  {
+    q: 'Is TrashofCSE specifically designed for IIUC CSE students?',
+    a: 'Yes! TrashofCSE is tailored specifically to the syllabus, course codes, and exam formats of the Department of Computer Science & Engineering at International Islamic University Chittagong (IIUC).',
+  },
+  {
+    q: 'Does it cover all 8 semesters of the CSE degree?',
+    a: 'Absolutely. We cover all academic years from 1st Semester (Freshman Fundamentals) to 8th Semester (Senior Thesis & Advanced Electives), categorized by subject and segment.',
+  },
   {
     q: 'How do I create an account on TrashofCSE?',
     a: 'Registration is restricted to IIUC student domains (cXXXXXX@ugrad.iiuc.ac.bd). Simply sign up with your university email to get instant access to all course segments.',
@@ -47,14 +92,6 @@ const faqs = [
   {
     q: 'How does the Realtime Active Users widget work?',
     a: 'Our platform uses WebSocket presence tracking to show online batchmates in real-time, making it easy to coordinate group study sessions during exam week.',
-  },
-  {
-    q: 'Can I upload my own class handnotes or slides?',
-    a: 'Absolulely! Registered students can use the "Student Contribution Modal" on their dashboard to upload PDF/Image notes directly for moderation review.',
-  },
-  {
-    q: 'Is there access restriction for specific courses?',
-    a: 'Core courses like Computer Architecture, EEE, and SAD are open to all logged-in students. Admin-restricted subjects are protected for course security.',
   },
 ];
 
@@ -83,16 +120,16 @@ const Home = () => {
           <motion.div className="tech-hero-left" variants={fadeInUp}>
             <div className="tech-badge">
               <span className="badge-dot" />
-              <span>SYSTEM ARCHITECTURE // ACADEMIC ENGINE</span>
+              <span>IIUC CSE // SEMESTER 1 TO 8 ACADEMIC VAULT</span>
             </div>
 
             <h1 className="tech-title">
-              The Brain Behind Your <span className="highlight-orange">CSE Journey</span>
+              The Complete Academic Engine For <span className="highlight-orange">IIUC CSE Students</span>
             </h1>
 
             <p className="tech-subtitle">
-              A high-performance knowledge system built for IIUC CSE students.
-              Unified segment notes, verified exam solves, real-time batch presence, and structured revision.
+              Covering all 8 Semesters — from 1st Year Fundamentals to 4th Year Advanced Systems & Thesis.
+              Unified segment notes, verified previous question solves, real-time batch presence, and structured exam preparation.
             </p>
 
             <div className="tech-cta-group">
@@ -100,14 +137,14 @@ const Home = () => {
                 Get Started Free <ArrowRight size={18} />
               </Link>
               <Link to="/register" className="tech-btn-secondary">
-                Create Account
+                Create IIUC Account
               </Link>
             </div>
 
             <div className="tech-hero-tags">
-              <span><Check size={14} color="#FF4500" /> Segment-Wise Indexing</span>
+              <span><Check size={14} color="#FF4500" /> Sem 1 to 8 Covered</span>
+              <span><Check size={14} color="#FF4500" /> IIUC Exam Pattern Aligned</span>
               <span><Check size={14} color="#FF4500" /> Moderator Verification</span>
-              <span><Check size={14} color="#FF4500" /> 0.2s Search Latency</span>
             </div>
           </motion.div>
 
@@ -118,14 +155,14 @@ const Home = () => {
                 <span className="dot red" />
                 <span className="dot yellow" />
                 <span className="dot green" />
-                <span className="strip-title">trashofcse // core-pipeline.v2</span>
+                <span className="strip-title">iiuc-cse // semester-pipeline.v8</span>
               </div>
               <div className="visual-tree-content">
                 <div className="tree-node root-node">
                   <Cpu size={22} className="node-icon-orange" />
                   <div>
-                    <strong>CSE Knowledge Core</strong>
-                    <span>Status: Active // 99.9% Uptime</span>
+                    <strong>IIUC CSE Academic Vault</strong>
+                    <span>Semesters 1 - 8 // 100% Indexed</span>
                   </div>
                 </div>
 
@@ -139,28 +176,28 @@ const Home = () => {
                   <div className="branch-card">
                     <Terminal size={18} />
                     <div>
-                      <strong>Compiler Design</strong>
-                      <span>Segment 04, 06, 07, 08</span>
+                      <strong>Sem 1 & 2 Foundations</strong>
+                      <span>C Prog, Physics, Math, Basic EEE</span>
                     </div>
-                    <span className="badge-orange">84% Solved</span>
+                    <span className="badge-gray">Complete</span>
                   </div>
 
                   <div className="branch-card active-branch">
                     <Layers size={18} />
                     <div>
-                      <strong>Computer Architecture</strong>
-                      <span>Cache, DMA, Datapath</span>
+                      <strong>Sem 3, 4, 5 & 6 Core Systems</strong>
+                      <span>Compiler, CA, Algo, SAD, DLD</span>
                     </div>
-                    <span className="badge-green">Verified</span>
+                    <span className="badge-orange">Verified</span>
                   </div>
 
                   <div className="branch-card">
-                    <Zap size={18} />
+                    <GraduationCap size={18} />
                     <div>
-                      <strong>EEE & Transducers</strong>
-                      <span>RTD, DVM, Thermocouple</span>
+                      <strong>Sem 7 & 8 Senior Electives</strong>
+                      <span>AI, ML, Networks & Thesis</span>
                     </div>
-                    <span className="badge-gray">Complete</span>
+                    <span className="badge-green">Active</span>
                   </div>
                 </div>
               </div>
@@ -179,21 +216,55 @@ const Home = () => {
       >
         <div className="metrics-grid">
           <motion.div className="metric-box" variants={fadeInUp}>
-            <strong className="metric-value">100%</strong>
-            <span className="metric-label">Verified Course Content</span>
+            <strong className="metric-value highlight-orange">Sem 1-8</strong>
+            <span className="metric-label">Full Academic Syllabus Covered</span>
           </motion.div>
           <motion.div className="metric-box" variants={fadeInUp}>
-            <strong className="metric-value highlight-orange">0.2s</strong>
-            <span className="metric-label">Instant Note Search Latency</span>
+            <strong className="metric-value">100%</strong>
+            <span className="metric-label">IIUC Exam Pattern Aligned</span>
+          </motion.div>
+          <motion.div className="metric-box" variants={fadeInUp}>
+            <strong className="metric-value">0.2s</strong>
+            <span className="metric-label">Instant Search Latency</span>
           </motion.div>
           <motion.div className="metric-box" variants={fadeInUp}>
             <strong className="metric-value">500+</strong>
-            <span className="metric-label">Active CSE Batchmates</span>
+            <span className="metric-label">Active IIUC CSE Batchmates</span>
           </motion.div>
-          <motion.div className="metric-box" variants={fadeInUp}>
-            <strong className="metric-value">24/7</strong>
-            <span className="metric-label">Realtime Presence & Support</span>
-          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* NEW SECTION: Semester 1 to 8 Academic Roadmap */}
+      <motion.section 
+        className="tech-section roadmap-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header center" variants={fadeInUp}>
+          <span className="tech-sub-tag">SEMESTER COVERAGE</span>
+          <h2>All 8 Semesters Structured In One Place</h2>
+          <p>Whether you are a 1st-year freshman or a 4th-year senior preparing for graduation, TrashofCSE has you covered.</p>
+        </motion.div>
+
+        <div className="roadmap-grid">
+          {semesterRoadmap.map((item, index) => (
+            <motion.div className="roadmap-card" key={index} variants={fadeInUp}>
+              <div className="roadmap-top">
+                <div className="roadmap-icon">{item.icon}</div>
+                <div>
+                  <span className="roadmap-year">{item.year}</span>
+                  <h4 className="roadmap-sem">{item.semesters}</h4>
+                </div>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.courses}</p>
+              <div className="roadmap-footer">
+                <span className="roadmap-status">{item.status}</span>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </motion.section>
 
@@ -207,7 +278,7 @@ const Home = () => {
       >
         <motion.div className="section-header center" variants={fadeInUp}>
           <span className="tech-sub-tag">SYSTEM COMPARISON</span>
-          <h2>Simplicity and Speed for Your Semester Workflow</h2>
+          <h2>Simplicity and Speed for Your IIUC Academic Workflow</h2>
           <p>Ditch scattered messenger files and unverified drives for a unified academic portal.</p>
         </motion.div>
 
@@ -218,7 +289,7 @@ const Home = () => {
             <h3>Scattered, Unverified Study Material</h3>
             <p>Moving between 10+ Facebook groups and Google Drive links leads to missing topics and exam panic.</p>
             <ul className="comp-list">
-              <li><span className="cross">✕</span> Unorganized PDF files with no segment tagging</li>
+              <li><span className="cross">✕</span> Unorganized PDF files with no semester tagging</li>
               <li><span className="cross">✕</span> Unverified previous question answers</li>
               <li><span className="cross">✕</span> Slow manual scrolling to find exam topics</li>
               <li><span className="cross">✕</span> No real-time peer coordination</li>
@@ -229,9 +300,9 @@ const Home = () => {
           <motion.div className="comparison-card good" variants={fadeInUp}>
             <div className="card-tag good-tag">TRASHOFCSE ENGINE</div>
             <h3>Structured, Verified Knowledge Pipeline</h3>
-            <p>Every slide, note, and question solve is indexed by subject, segment, and exam importance.</p>
+            <p>Every slide, note, and question solve is indexed by semester, course, and exam importance.</p>
             <ul className="comp-list">
-              <li><span className="check">✓</span> 100% Segment-indexed course architecture</li>
+              <li><span className="check">✓</span> Sem 1-8 indexed course architecture</li>
               <li><span className="check">✓</span> Moderator-approved student note uploads</li>
               <li><span className="check">✓</span> Instant search & high-res note viewer</li>
               <li><span className="check">✓</span> Live active presence widget for batchmates</li>
@@ -288,7 +359,7 @@ const Home = () => {
           <motion.div className="bento-card bento-medium" variants={fadeInUp}>
             <div className="bento-icon-wrapper"><MessageSquareText size={24} color="#FF4500" /></div>
             <h3>Realtime Community Feed</h3>
-            <p>Ask questions, post code snippets, share exam tips, and reply in threaded peer discussions.</p>
+            <p>Ask questions, post code snippets, share exam tips, and reply in threaded peer discussions across all semesters.</p>
           </motion.div>
 
           {/* Bento Card 5: Realtime Presence */}
@@ -298,47 +369,6 @@ const Home = () => {
             <p>Instant WebSocket tracking shows online batchmates for effortless revision sessions.</p>
           </motion.div>
         </div>
-      </motion.section>
-
-      {/* System Architecture Flowchart */}
-      <motion.section 
-        className="tech-section architecture-section"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={staggerContainer}
-      >
-        <motion.div className="section-header center" variants={fadeInUp}>
-          <span className="tech-sub-tag">DATA FLOW</span>
-          <h2>System Architecture Pipeline</h2>
-          <p>How student contributions turn into verified academic resources.</p>
-        </motion.div>
-
-        <motion.div className="arch-flow-container" variants={fadeInUp}>
-          <div className="arch-step">
-            <UploadCloud size={28} className="arch-icon" />
-            <strong>1. Student Upload</strong>
-            <span>Handnotes, slides & question solutions</span>
-          </div>
-          <div className="arch-arrow">→</div>
-          <div className="arch-step highlight-step">
-            <ShieldCheck size={28} className="arch-icon-orange" />
-            <strong>2. Moderator Shield</strong>
-            <span>Quality check & domain verification</span>
-          </div>
-          <div className="arch-arrow">→</div>
-          <div className="arch-step">
-            <Database size={28} className="arch-icon" />
-            <strong>3. Segment Indexer</strong>
-            <span>Course & topic categorization</span>
-          </div>
-          <div className="arch-arrow">→</div>
-          <div className="arch-step">
-            <BookOpen size={28} className="arch-icon" />
-            <strong>4. Instant Access</strong>
-            <span>0.2s search & high-res note viewer</span>
-          </div>
-        </motion.div>
       </motion.section>
 
       {/* Technical Benchmark Table */}
@@ -366,6 +396,12 @@ const Home = () => {
             </thead>
             <tbody>
               <tr>
+                <td>Sem 1 - 8 Academic Coverage</td>
+                <td>✕ Partial</td>
+                <td>✕ No</td>
+                <td className="highlight-col text-orange">✓ Sem 1 to 8 Covered</td>
+              </tr>
+              <tr>
                 <td>Segment-wise Indexing</td>
                 <td>✕ No</td>
                 <td>✕ No</td>
@@ -389,12 +425,6 @@ const Home = () => {
                 <td>Basic Chat</td>
                 <td className="highlight-col text-orange">✓ WebSocket Widget</td>
               </tr>
-              <tr>
-                <td>Exam Question Bank Solves</td>
-                <td>Scattered</td>
-                <td>Missing</td>
-                <td className="highlight-col text-orange">✓ Full Solved Bank</td>
-              </tr>
             </tbody>
           </table>
         </motion.div>
@@ -410,7 +440,7 @@ const Home = () => {
       >
         <motion.div className="section-header center" variants={fadeInUp}>
           <span className="tech-sub-tag">PLATFORM ACCESS</span>
-          <h2>Access Plans For Every CSE Student</h2>
+          <h2>Access Plans For Every IIUC Student</h2>
         </motion.div>
 
         <div className="tiers-grid">
@@ -420,7 +450,7 @@ const Home = () => {
             <h3>Free Account</h3>
             <p className="tier-price">0 BDT <span>/ forever</span></p>
             <ul className="tier-features">
-              <li><Check size={16} color="#FF4500" /> Complete segment notes access</li>
+              <li><Check size={16} color="#FF4500" /> Sem 1 to 8 notes & slides access</li>
               <li><Check size={16} color="#FF4500" /> High-res note & slide viewer</li>
               <li><Check size={16} color="#FF4500" /> Live active presence widget</li>
               <li><Check size={16} color="#FF4500" /> Community feed discussion</li>
@@ -513,8 +543,8 @@ const Home = () => {
       >
         <div className="final-banner">
           <div className="banner-glow" />
-          <h2>Built For CSE Students Who Value Speed & Accuracy</h2>
-          <p>Join hundreds of IIUC batchmates studying smarter with verified segment notes.</p>
+          <h2>Built For IIUC CSE Students Across Semesters 1 to 8</h2>
+          <p>Join hundreds of IIUC batchmates studying smarter with verified course notes and solved question banks.</p>
           <div className="banner-btn-group">
             <Link to="/register" className="tech-btn-primary">
               Join TrashofCSE Engine <ArrowRight size={18} />
@@ -527,8 +557,8 @@ const Home = () => {
       <footer className="tech-footer">
         <div className="footer-shell">
           <div className="footer-brand">
-            <strong className="brand-title">TRASHOFCSE // PORTAL</strong>
-            <p>IIUC CSE Academic Knowledge Engine. Designed for speed, verification, and exam mastery.</p>
+            <strong className="brand-title">TRASHOFCSE // IIUC CSE PORTAL</strong>
+            <p>The All-in-One Academic Knowledge Engine for IIUC CSE Students (Semesters 1 - 8). Designed for speed, verification, and exam mastery.</p>
           </div>
           <div className="footer-links">
             <div className="link-col">
@@ -546,7 +576,7 @@ const Home = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 TrashofCSE. All Rights Reserved.</span>
+          <span>© 2026 TrashofCSE (IIUC CSE Dept). All Rights Reserved.</span>
           <span className="status-online"><span className="pulse-dot" /> System Status: Operational</span>
         </div>
       </footer>
