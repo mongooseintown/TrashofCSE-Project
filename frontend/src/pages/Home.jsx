@@ -1,240 +1,556 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
   BookOpen,
-  CheckCircle2,
-  FileSearch,
-  GraduationCap,
-  Layers3,
+  Check,
+  ChevronDown,
+  Cpu,
+  Database,
+  Globe,
+  Layers,
   MessageSquareText,
   ShieldCheck,
   Sparkles,
+  Terminal,
   UploadCloud,
+  Zap,
 } from 'lucide-react';
 import './Home.css';
 
-const courses = [
-  { code: 'CSE-3527', name: 'Compiler Design', detail: 'segments, parsers, CFG, code generation' },
-  { code: 'CSE-3523', name: 'Computer Architecture', detail: 'cache, DMA, datapath, memory systems' },
-  { code: 'EEE-2421', name: 'EEE Resources', detail: 'transducers, RTD, DVM, instrumentation' },
-  { code: 'CSE-3611', name: 'System Analysis', detail: 'security, requirements, design notes' },
-  { code: 'EEE-SEG5', name: 'EEE Segment 5', detail: 'measurement, instrumentation, errors, accuracy and precision' },
-];
+// Framer Motion Animation Variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
 
-const features = [
-  {
-    icon: <FileSearch size={20} />,
-    title: 'Segment-wise Notes',
-    text: 'Every topic is grouped by course, segment, and exam focus so students can find the right material without wasting time.',
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
   },
-  {
-    icon: <UploadCloud size={20} />,
-    title: 'Verified Uploads',
-    text: 'Reliable student contributions move through a moderation process, giving the library a cleaner and more dependable study experience.',
-  },
-  {
-    icon: <MessageSquareText size={20} />,
-    title: 'Community Feed',
-    text: 'A focused discussion space for questions, code snippets, suggestions, and peer support throughout the semester.',
-  },
-  {
-    icon: <ShieldCheck size={20} />,
-    title: 'Moderator Shield',
-    text: 'Admin and moderator verification guarantees spam-free content, verified user accounts, and reliable note solutions.',
-  },
-  {
-    icon: <Sparkles size={20} />,
-    title: 'Live Active Presence',
-    text: 'Track online batchmates in real-time, enabling synchronous study sessions and instant peer collaboration.',
-  },
-];
+};
 
-const stats = [
-  ['04+', 'Core Subjects'],
-  ['10+', 'Exam Segments'],
-  ['100+', 'Verified Notes'],
+const faqs = [
+  {
+    q: 'How do I create an account on TrashofCSE?',
+    a: 'Registration is restricted to IIUC student domains (cXXXXXX@ugrad.iiuc.ac.bd). Simply sign up with your university email to get instant access to all course segments.',
+  },
+  {
+    q: 'Are the study notes and PQ solves verified?',
+    a: 'Yes. All student contributions pass through a dedicated moderator shield before being published to the main course library to ensure accuracy and quality.',
+  },
+  {
+    q: 'How does the Realtime Active Users widget work?',
+    a: 'Our platform uses WebSocket presence tracking to show online batchmates in real-time, making it easy to coordinate group study sessions during exam week.',
+  },
+  {
+    q: 'Can I upload my own class handnotes or slides?',
+    a: 'Absolulely! Registered students can use the "Student Contribution Modal" on their dashboard to upload PDF/Image notes directly for moderation review.',
+  },
+  {
+    q: 'Is there access restriction for specific courses?',
+    a: 'Core courses like Computer Architecture, EEE, and SAD are open to all logged-in students. Admin-restricted subjects are protected for course security.',
+  },
 ];
 
 const Home = () => {
-  return (
-    <main className="landing-page">
-      <section className="landing-hero" id="top">
-        <div className="hero-shell">
-          <div className="hero-copy">
-            <span className="hero-label">
-              <Sparkles size={14} /> IIUC CSE private study hub
-            </span>
+  const [openFaq, setOpenFaq] = useState(null);
 
-            <h1>Study the right notes, faster.</h1>
-            <p className="hero-text">
-              TrashofCSE is a dependable academic workspace for IIUC students, designed to bring
-              compiler, computer architecture, EEE, and SAD resources into one organized place.
-              It helps learners move from scattered files to a structured, reliable study flow with
-              curated notes, verified uploads, and faster access to what matters most before exams.
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  return (
+    <div className="tech-landing-container">
+      {/* Background Tech Grid Lines & Ambient Light */}
+      <div className="tech-grid-overlay" />
+      <div className="ambient-orange-glow top-glow" />
+      <div className="ambient-orange-glow mid-glow" />
+
+      {/* Hero Section */}
+      <motion.section 
+        className="tech-hero"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
+        <div className="tech-hero-shell">
+          <motion.div className="tech-hero-left" variants={fadeInUp}>
+            <div className="tech-badge">
+              <span className="badge-dot" />
+              <span>SYSTEM ARCHITECTURE // ACADEMIC ENGINE</span>
+            </div>
+
+            <h1 className="tech-title">
+              The Brain Behind Your <span className="highlight-orange">CSE Journey</span>
+            </h1>
+
+            <p className="tech-subtitle">
+              A high-performance knowledge system built for IIUC CSE students.
+              Unified segment notes, verified exam solves, real-time batch presence, and structured revision.
             </p>
 
-            <div className="hero-actions">
-              <Link to="/login" className="primary-action">
-                Go to dashboard <ArrowRight size={18} />
+            <div className="tech-cta-group">
+              <Link to="/login" className="tech-btn-primary">
+                Get Started Free <ArrowRight size={18} />
               </Link>
-              <Link to="/register" className="secondary-action">
-                Create account
+              <Link to="/register" className="tech-btn-secondary">
+                Create Account
               </Link>
             </div>
 
-            <div className="hero-badges">
-              <span>Moderated student uploads</span>
-              <span>Course and segment filters</span>
-              <span>Private batch access</span>
+            <div className="tech-hero-tags">
+              <span><Check size={14} color="#FF4500" /> Segment-Wise Indexing</span>
+              <span><Check size={14} color="#FF4500" /> Moderator Verification</span>
+              <span><Check size={14} color="#FF4500" /> 0.2s Search Latency</span>
             </div>
+          </motion.div>
 
-            <div className="hero-stats" aria-label="Platform highlights">
-              {stats.map(([value, label]) => (
-                <div className="hero-stat" key={label}>
-                  <strong>{value}</strong>
-                  <span>{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="hero-visual" aria-label="TrashofCSE dashboard preview">
-            <div className="visual-card">
-              <div className="visual-topbar">
-                <span></span>
-                <span></span>
-                <span></span>
+          {/* Hero Visual: Technical Tree / Node Diagram */}
+          <motion.div className="tech-hero-right" variants={fadeInUp}>
+            <div className="tech-visual-box">
+              <div className="visual-header-strip">
+                <span className="dot red" />
+                <span className="dot yellow" />
+                <span className="dot green" />
+                <span className="strip-title">trashofcse // core-pipeline.v2</span>
               </div>
-              <div className="visual-body">
-                <div className="visual-sidebar">
-                  <div className="visual-tag">Compiler</div>
-                  <div className="visual-item">Segment 06</div>
-                  <div className="visual-item">Segment 08</div>
-                  <div className="visual-item active">Segment 05</div>
-                  <div className="visual-item">Saved Notes</div>
+              <div className="visual-tree-content">
+                <div className="tree-node root-node">
+                  <Cpu size={22} className="node-icon-orange" />
+                  <div>
+                    <strong>CSE Knowledge Core</strong>
+                    <span>Status: Active // 99.9% Uptime</span>
+                  </div>
                 </div>
-                <div className="visual-main">
-                  <div className="visual-header">
+
+                <div className="tree-connector-lines">
+                  <div className="line line-1" />
+                  <div className="line line-2" />
+                  <div className="line line-3" />
+                </div>
+
+                <div className="tree-branches">
+                  <div className="branch-card">
+                    <Terminal size={18} />
                     <div>
-                      <p>Approved uploads</p>
-                      <strong>Books, slides, PQ solves</strong>
+                      <strong>Compiler Design</strong>
+                      <span>Segment 04, 06, 07, 08</span>
                     </div>
-                    <span>Updated Today</span>
+                    <span className="badge-orange">84% Solved</span>
                   </div>
-                  <div className="visual-grid">
-                    <div className="visual-panel">
-                      <h4>CA Segment 08</h4>
-                      <p>DMA, handshaking, cache mapping.</p>
+
+                  <div className="branch-card active-branch">
+                    <Layers size={18} />
+                    <div>
+                      <strong>Computer Architecture</strong>
+                      <span>Cache, DMA, Datapath</span>
                     </div>
-                    <div className="visual-panel">
-                      <h4>EEE PQ Bank</h4>
-                      <p>Thermocouple, RTD, DVM solved papers.</p>
+                    <span className="badge-green">Verified</span>
+                  </div>
+
+                  <div className="branch-card">
+                    <Zap size={18} />
+                    <div>
+                      <strong>EEE & Transducers</strong>
+                      <span>RTD, DVM, Thermocouple</span>
                     </div>
-                    <div className="visual-panel">
-                      <h4>Compiler Notes</h4>
-                      <p>Parser walkthroughs and code generation.</p>
-                    </div>
+                    <span className="badge-gray">Complete</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="landing-section course-section" id="library">
-        <div className="section-heading">
-          <span>Library</span>
-          <h2>Built for clarity, speed, and exam confidence.</h2>
-          <p className="section-subtext">
-            Whether students are revising a single segment or preparing for a full course review,
-            the platform keeps resources clear, searchable, and ready to use.
-          </p>
+      {/* Metrics Bar */}
+      <motion.section 
+        className="tech-metrics-bar"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        variants={staggerContainer}
+      >
+        <div className="metrics-grid">
+          <motion.div className="metric-box" variants={fadeInUp}>
+            <strong className="metric-value">100%</strong>
+            <span className="metric-label">Verified Course Content</span>
+          </motion.div>
+          <motion.div className="metric-box" variants={fadeInUp}>
+            <strong className="metric-value highlight-orange">0.2s</strong>
+            <span className="metric-label">Instant Note Search Latency</span>
+          </motion.div>
+          <motion.div className="metric-box" variants={fadeInUp}>
+            <strong className="metric-value">500+</strong>
+            <span className="metric-label">Active CSE Batchmates</span>
+          </motion.div>
+          <motion.div className="metric-box" variants={fadeInUp}>
+            <strong className="metric-value">24/7</strong>
+            <span className="metric-label">Realtime Presence & Support</span>
+          </motion.div>
         </div>
+      </motion.section>
 
-        <div className="course-grid">
-          {courses.map((course) => (
-            <article className="course-card" key={course.code}>
-              <div className="course-card-top">
-                <BookOpen size={20} />
-                <span>{course.code}</span>
+      {/* Comparison Section (Without vs With) */}
+      <motion.section 
+        className="tech-section comparison-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header center" variants={fadeInUp}>
+          <span className="tech-sub-tag">SYSTEM COMPARISON</span>
+          <h2>Simplicity and Speed for Your Semester Workflow</h2>
+          <p>Ditch scattered messenger files and unverified drives for a unified academic portal.</p>
+        </motion.div>
+
+        <div className="comparison-grid">
+          {/* Without TrashofCSE */}
+          <motion.div className="comparison-card bad" variants={fadeInUp}>
+            <div className="card-tag bad-tag">TRADITIONAL DRIVE / MESSENGER</div>
+            <h3>Scattered, Unverified Study Material</h3>
+            <p>Moving between 10+ Facebook groups and Google Drive links leads to missing topics and exam panic.</p>
+            <ul className="comp-list">
+              <li><span className="cross">✕</span> Unorganized PDF files with no segment tagging</li>
+              <li><span className="cross">✕</span> Unverified previous question answers</li>
+              <li><span className="cross">✕</span> Slow manual scrolling to find exam topics</li>
+              <li><span className="cross">✕</span> No real-time peer coordination</li>
+            </ul>
+          </motion.div>
+
+          {/* With TrashofCSE */}
+          <motion.div className="comparison-card good" variants={fadeInUp}>
+            <div className="card-tag good-tag">TRASHOFCSE ENGINE</div>
+            <h3>Structured, Verified Knowledge Pipeline</h3>
+            <p>Every slide, note, and question solve is indexed by subject, segment, and exam importance.</p>
+            <ul className="comp-list">
+              <li><span className="check">✓</span> 100% Segment-indexed course architecture</li>
+              <li><span className="check">✓</span> Moderator-approved student note uploads</li>
+              <li><span className="check">✓</span> Instant search & high-res note viewer</li>
+              <li><span className="check">✓</span> Live active presence widget for batchmates</li>
+            </ul>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Bento Feature Showcase */}
+      <motion.section 
+        className="tech-section bento-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header" variants={fadeInUp}>
+          <span className="tech-sub-tag">CORE CAPABILITIES</span>
+          <h2>Everything You Need To Master CSE Courses</h2>
+        </motion.div>
+
+        <div className="bento-grid">
+          {/* Bento Card 1: Large Featured */}
+          <motion.div className="bento-card bento-large" variants={fadeInUp}>
+            <div className="bento-badge">COMPILER DESIGN (CSE-3527)</div>
+            <h3>Syntax Trees, Parsers & Code Gen</h3>
+            <p>Comprehensive breakdown of Segment 04, 06, 07 & 08 with detailed CFG diagrams and code generation algorithms.</p>
+            <div className="bento-graphic-box">
+              <div className="graphic-bar-label">
+                <span>Parser State Accuracy</span>
+                <strong>84% Completed</strong>
               </div>
-              <h3>{course.name}</h3>
-              <p>{course.detail}</p>
-            </article>
+              <div className="graphic-progress-bar">
+                <div className="progress-fill" style={{ width: '84%' }} />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Bento Card 2: Computer Architecture */}
+          <motion.div className="bento-card" variants={fadeInUp}>
+            <div className="bento-icon-wrapper"><Cpu size={24} color="#FF4500" /></div>
+            <h3>Computer Architecture</h3>
+            <p>Cache mapping, DMA, multicycle datapath, and handshaking protocols with Shafiullah Sir & Amanullah Sir exam guides.</p>
+          </motion.div>
+
+          {/* Bento Card 3: EEE & Transducers */}
+          <motion.div className="bento-card" variants={fadeInUp}>
+            <div className="bento-icon-wrapper"><Zap size={24} color="#FF4500" /></div>
+            <h3>EEE & Transducer Bank</h3>
+            <p>Solved Question banks for RTD, Thermocouple, DVM, Strain Gauges, and Stepper Motors.</p>
+          </motion.div>
+
+          {/* Bento Card 4: Community Feed */}
+          <motion.div className="bento-card bento-medium" variants={fadeInUp}>
+            <div className="bento-icon-wrapper"><MessageSquareText size={24} color="#FF4500" /></div>
+            <h3>Realtime Community Feed</h3>
+            <p>Ask questions, post code snippets, share exam tips, and reply in threaded peer discussions.</p>
+          </motion.div>
+
+          {/* Bento Card 5: Realtime Presence */}
+          <motion.div className="bento-card" variants={fadeInUp}>
+            <div className="bento-icon-wrapper"><Globe size={24} color="#FF4500" /></div>
+            <h3>Live Active Presence</h3>
+            <p>Instant WebSocket tracking shows online batchmates for effortless revision sessions.</p>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* System Architecture Flowchart */}
+      <motion.section 
+        className="tech-section architecture-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header center" variants={fadeInUp}>
+          <span className="tech-sub-tag">DATA FLOW</span>
+          <h2>System Architecture Pipeline</h2>
+          <p>How student contributions turn into verified academic resources.</p>
+        </motion.div>
+
+        <motion.div className="arch-flow-container" variants={fadeInUp}>
+          <div className="arch-step">
+            <UploadCloud size={28} className="arch-icon" />
+            <strong>1. Student Upload</strong>
+            <span>Handnotes, slides & question solutions</span>
+          </div>
+          <div className="arch-arrow">→</div>
+          <div className="arch-step highlight-step">
+            <ShieldCheck size={28} className="arch-icon-orange" />
+            <strong>2. Moderator Shield</strong>
+            <span>Quality check & domain verification</span>
+          </div>
+          <div className="arch-arrow">→</div>
+          <div className="arch-step">
+            <Database size={28} className="arch-icon" />
+            <strong>3. Segment Indexer</strong>
+            <span>Course & topic categorization</span>
+          </div>
+          <div className="arch-arrow">→</div>
+          <div className="arch-step">
+            <BookOpen size={28} className="arch-icon" />
+            <strong>4. Instant Access</strong>
+            <span>0.2s search & high-res note viewer</span>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      {/* Technical Benchmark Table */}
+      <motion.section 
+        className="tech-section table-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header" variants={fadeInUp}>
+          <span className="tech-sub-tag">BENCHMARKS</span>
+          <h2>State Of The Art On Academic Portals</h2>
+        </motion.div>
+
+        <motion.div className="table-wrapper" variants={fadeInUp}>
+          <table className="tech-benchmark-table">
+            <thead>
+              <tr>
+                <th>Feature Matrix</th>
+                <th>Drive Folders</th>
+                <th>Messenger Groups</th>
+                <th className="highlight-col">TrashofCSE Engine</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Segment-wise Indexing</td>
+                <td>✕ No</td>
+                <td>✕ No</td>
+                <td className="highlight-col text-orange">✓ 100% Segmented</td>
+              </tr>
+              <tr>
+                <td>Moderation & Verification</td>
+                <td>Unverified</td>
+                <td>Spam Prone</td>
+                <td className="highlight-col text-orange">✓ Moderator Shield</td>
+              </tr>
+              <tr>
+                <td>Search Latency</td>
+                <td>Slow Manual</td>
+                <td>Unindexed</td>
+                <td className="highlight-col text-orange">✓ 0.2 Seconds</td>
+              </tr>
+              <tr>
+                <td>Real-time Batch Presence</td>
+                <td>✕ None</td>
+                <td>Basic Chat</td>
+                <td className="highlight-col text-orange">✓ WebSocket Widget</td>
+              </tr>
+              <tr>
+                <td>Exam Question Bank Solves</td>
+                <td>Scattered</td>
+                <td>Missing</td>
+                <td className="highlight-col text-orange">✓ Full Solved Bank</td>
+              </tr>
+            </tbody>
+          </table>
+        </motion.div>
+      </motion.section>
+
+      {/* Access Plans / Tier Cards */}
+      <motion.section 
+        className="tech-section tiers-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header center" variants={fadeInUp}>
+          <span className="tech-sub-tag">PLATFORM ACCESS</span>
+          <h2>Access Plans For Every CSE Student</h2>
+        </motion.div>
+
+        <div className="tiers-grid">
+          {/* Tier 1: Student */}
+          <motion.div className="tier-card" variants={fadeInUp}>
+            <div className="tier-badge">STUDENT ACCESS</div>
+            <h3>Free Account</h3>
+            <p className="tier-price">0 BDT <span>/ forever</span></p>
+            <ul className="tier-features">
+              <li><Check size={16} color="#FF4500" /> Complete segment notes access</li>
+              <li><Check size={16} color="#FF4500" /> High-res note & slide viewer</li>
+              <li><Check size={16} color="#FF4500" /> Live active presence widget</li>
+              <li><Check size={16} color="#FF4500" /> Community feed discussion</li>
+            </ul>
+            <Link to="/register" className="tier-btn-outline">Sign Up Now</Link>
+          </motion.div>
+
+          {/* Tier 2: Contributor (Highlighted) */}
+          <motion.div className="tier-card tier-featured" variants={fadeInUp}>
+            <div className="tier-badge orange-badge">CONTRIBUTOR</div>
+            <h3>Verified Student</h3>
+            <p className="tier-price">Active <span>/ IIUC Domain</span></p>
+            <ul className="tier-features">
+              <li><Check size={16} color="#FF4500" /> Everything in Student Tier</li>
+              <li><Check size={16} color="#FF4500" /> Upload handnotes & question solves</li>
+              <li><Check size={16} color="#FF4500" /> Contributor badge on profile</li>
+              <li><Check size={16} color="#FF4500" /> Fast-track moderation queue</li>
+            </ul>
+            <Link to="/register" className="tier-btn-solid">Get Started</Link>
+          </motion.div>
+
+          {/* Tier 3: Admin / Moderator */}
+          <motion.div className="tier-card" variants={fadeInUp}>
+            <div className="tier-badge">MODERATION</div>
+            <h3>Admin & Moderator</h3>
+            <p className="tier-price">Restricted <span>/ Staff</span></p>
+            <ul className="tier-features">
+              <li><Check size={16} color="#FF4500" /> Moderator Dashboard access</li>
+              <li><Check size={16} color="#FF4500" /> Verify student note uploads</li>
+              <li><Check size={16} color="#FF4500" /> Manage user accounts & bans</li>
+              <li><Check size={16} color="#FF4500" /> Course lock & security controls</li>
+            </ul>
+            <Link to="/login" className="tier-btn-outline">Moderator Login</Link>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* FAQ Accordion Section */}
+      <motion.section 
+        className="tech-section faq-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={staggerContainer}
+      >
+        <motion.div className="section-header center" variants={fadeInUp}>
+          <span className="tech-sub-tag">HELP & SUPPORT</span>
+          <h2>Frequently Asked Questions</h2>
+        </motion.div>
+
+        <div className="faq-container">
+          {faqs.map((faq, index) => (
+            <motion.div 
+              className={`faq-item ${openFaq === index ? 'active' : ''}`}
+              key={index}
+              variants={fadeInUp}
+            >
+              <button 
+                className="faq-question"
+                onClick={() => toggleFaq(index)}
+              >
+                <span>{faq.q}</span>
+                <ChevronDown className={`faq-chevron ${openFaq === index ? 'rotate' : ''}`} size={20} />
+              </button>
+              <AnimatePresence>
+                {openFaq === index && (
+                  <motion.div 
+                    className="faq-answer"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p>{faq.a}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-      <section className="landing-section workflow-section" id="workflow">
-        <div className="workflow-copy">
-          <span className="section-eyebrow">How it works</span>
-          <h2>One dependable workflow for every course.</h2>
-          <p>
-            Students can move from topic discovery to revision quickly, using a consistent process:
-            choose the course, open the segment, review well-organized materials, and continue with
-            confidence.
-          </p>
-        </div>
-
-        <div className="workflow-cards">
-          <div className="workflow-card active">
-            <Layers3 size={20} />
-            <div>
-              <h3>Structured access</h3>
-              <p>Course, segment, exam type and content filters make searching simple.</p>
-            </div>
-          </div>
-          <div className="workflow-card">
-            <FileSearch size={20} />
-            <div>
-              <h3>Clear content</h3>
-              <p>Notes, slides and previous questions are grouped for each topic.</p>
-            </div>
-          </div>
-          <div className="workflow-card">
-            <ShieldCheck size={20} />
-            <div>
-              <h3>Verified uploads</h3>
-              <p>Moderators review new material before it enters the library.</p>
-            </div>
+      {/* Final CTA Banner */}
+      <motion.section 
+        className="tech-section final-banner-section"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        variants={fadeInUp}
+      >
+        <div className="final-banner">
+          <div className="banner-glow" />
+          <h2>Built For CSE Students Who Value Speed & Accuracy</h2>
+          <p>Join hundreds of IIUC batchmates studying smarter with verified segment notes.</p>
+          <div className="banner-btn-group">
+            <Link to="/register" className="tech-btn-primary">
+              Join TrashofCSE Engine <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      <section className="landing-section feature-section" id="features">
-        <div className="section-heading">
-          <span>Features</span>
-          <h2>Designed to support serious study habits.</h2>
-          <p className="section-subtext">
-            The experience balances usability and trust, giving students a calm and focused platform for
-            revision, discussion, and resource discovery.
-          </p>
+      {/* Minimal Technical Footer */}
+      <footer className="tech-footer">
+        <div className="footer-shell">
+          <div className="footer-brand">
+            <strong className="brand-title">TRASHOFCSE // PORTAL</strong>
+            <p>IIUC CSE Academic Knowledge Engine. Designed for speed, verification, and exam mastery.</p>
+          </div>
+          <div className="footer-links">
+            <div className="link-col">
+              <strong>Navigation</strong>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+              <Link to="/dashboard">Dashboard</Link>
+            </div>
+            <div className="link-col">
+              <strong>Courses</strong>
+              <Link to="/compiler">Compiler Design</Link>
+              <Link to="/computer-architecture">Computer Architecture</Link>
+              <Link to="/eee">EEE Resources</Link>
+            </div>
+          </div>
         </div>
-
-        <div className="feature-grid">
-          {features.map((feature) => (
-            <article className="feature-card" key={feature.title}>
-              <div className="feature-icon">{feature.icon}</div>
-              <h3>{feature.title}</h3>
-              <p>{feature.text}</p>
-            </article>
-          ))}
+        <div className="footer-bottom">
+          <span>© 2026 TrashofCSE. All Rights Reserved.</span>
+          <span className="status-online"><span className="pulse-dot" /> System Status: Operational</span>
         </div>
-      </section>
-
-      <section className="landing-section final-cta" id="start">
-        <div className="cta-copy">
-          <GraduationCap size={34} />
-          <h2>Start studying from a smarter, more reliable place.</h2>
-          <p>No clutter, no confusion — just a polished academic workspace built for serious revision and steady progress.</p>
-        </div>
-        <Link to="/register" className="primary-action">
-          Join TrashofCSE <ArrowRight size={18} />
-        </Link>
-      </section>
-    </main>
+      </footer>
+    </div>
   );
 };
 
