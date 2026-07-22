@@ -21,10 +21,25 @@ import {
 } from 'lucide-react';
 import './Home.css';
 
-// Framer Motion Animation Variants
+// Framer Motion Directional Animation Variants
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.88 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const staggerContainer = {
@@ -32,7 +47,7 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.14,
     },
   },
 };
@@ -117,7 +132,8 @@ const Home = () => {
         variants={staggerContainer}
       >
         <div className="tech-hero-shell">
-          <motion.div className="tech-hero-left" variants={fadeInUp}>
+          {/* Hero Left: Slides in from LEFT */}
+          <motion.div className="tech-hero-left" variants={fadeInLeft}>
             <div className="tech-badge">
               <span className="badge-dot" />
               <span>IIUC CSE // SEMESTER 1 TO 8 ACADEMIC VAULT</span>
@@ -148,8 +164,8 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Hero Visual: Technical Tree / Node Diagram */}
-          <motion.div className="tech-hero-right" variants={fadeInUp}>
+          {/* Hero Right Visual: Slides in from RIGHT */}
+          <motion.div className="tech-hero-right" variants={fadeInRight}>
             <div className="tech-visual-box">
               <div className="visual-header-strip">
                 <span className="dot red" />
@@ -206,35 +222,35 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Metrics Bar */}
+      {/* Metrics Bar: Scales in from CENTER */}
       <motion.section 
         className="tech-metrics-bar"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
-        variants={staggerContainer}
+        variants={scaleIn}
       >
         <div className="metrics-grid">
-          <motion.div className="metric-box" variants={fadeInUp}>
+          <div className="metric-box">
             <strong className="metric-value highlight-orange">Sem 1-8</strong>
             <span className="metric-label">Full Academic Syllabus Covered</span>
-          </motion.div>
-          <motion.div className="metric-box" variants={fadeInUp}>
+          </div>
+          <div className="metric-box">
             <strong className="metric-value">100%</strong>
             <span className="metric-label">IIUC Exam Pattern Aligned</span>
-          </motion.div>
-          <motion.div className="metric-box" variants={fadeInUp}>
+          </div>
+          <div className="metric-box">
             <strong className="metric-value">0.2s</strong>
             <span className="metric-label">Instant Search Latency</span>
-          </motion.div>
-          <motion.div className="metric-box" variants={fadeInUp}>
+          </div>
+          <div className="metric-box">
             <strong className="metric-value">500+</strong>
             <span className="metric-label">Active IIUC CSE Batchmates</span>
-          </motion.div>
+          </div>
         </div>
       </motion.section>
 
-      {/* NEW SECTION: Semester 1 to 8 Academic Roadmap */}
+      {/* Semester 1 to 8 Academic Roadmap: Alternating Left / Right Cards */}
       <motion.section 
         className="tech-section roadmap-section"
         initial="hidden"
@@ -250,7 +266,11 @@ const Home = () => {
 
         <div className="roadmap-grid">
           {semesterRoadmap.map((item, index) => (
-            <motion.div className="roadmap-card" key={index} variants={fadeInUp}>
+            <motion.div 
+              className="roadmap-card" 
+              key={index} 
+              variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
+            >
               <div className="roadmap-top">
                 <div className="roadmap-icon">{item.icon}</div>
                 <div>
@@ -268,7 +288,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Comparison Section (Without vs With) */}
+      {/* Comparison Section: Left Card from LEFT, Right Card from RIGHT */}
       <motion.section 
         className="tech-section comparison-section"
         initial="hidden"
@@ -283,8 +303,8 @@ const Home = () => {
         </motion.div>
 
         <div className="comparison-grid">
-          {/* Without TrashofCSE */}
-          <motion.div className="comparison-card bad" variants={fadeInUp}>
+          {/* Without TrashofCSE: Slides from LEFT */}
+          <motion.div className="comparison-card bad" variants={fadeInLeft}>
             <div className="card-tag bad-tag">TRADITIONAL DRIVE / MESSENGER</div>
             <h3>Scattered, Unverified Study Material</h3>
             <p>Moving between 10+ Facebook groups and Google Drive links leads to missing topics and exam panic.</p>
@@ -296,8 +316,8 @@ const Home = () => {
             </ul>
           </motion.div>
 
-          {/* With TrashofCSE */}
-          <motion.div className="comparison-card good" variants={fadeInUp}>
+          {/* With TrashofCSE: Slides from RIGHT */}
+          <motion.div className="comparison-card good" variants={fadeInRight}>
             <div className="card-tag good-tag">TRASHOFCSE ENGINE</div>
             <h3>Structured, Verified Knowledge Pipeline</h3>
             <p>Every slide, note, and question solve is indexed by semester, course, and exam importance.</p>
@@ -311,7 +331,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Bento Feature Showcase */}
+      {/* Bento Feature Showcase: Staggered Entrance */}
       <motion.section 
         className="tech-section bento-section"
         initial="hidden"
@@ -325,8 +345,8 @@ const Home = () => {
         </motion.div>
 
         <div className="bento-grid">
-          {/* Bento Card 1: Large Featured */}
-          <motion.div className="bento-card bento-large" variants={fadeInUp}>
+          {/* Bento Card 1: Large Featured - Slides from LEFT */}
+          <motion.div className="bento-card bento-large" variants={fadeInLeft}>
             <div className="bento-badge">COMPILER DESIGN (CSE-3527)</div>
             <h3>Syntax Trees, Parsers & Code Gen</h3>
             <p>Comprehensive breakdown of Segment 04, 06, 07 & 08 with detailed CFG diagrams and code generation algorithms.</p>
@@ -341,29 +361,29 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Bento Card 2: Computer Architecture */}
-          <motion.div className="bento-card" variants={fadeInUp}>
+          {/* Bento Card 2: Computer Architecture - Slides from RIGHT */}
+          <motion.div className="bento-card" variants={fadeInRight}>
             <div className="bento-icon-wrapper"><Cpu size={24} color="#FF4500" /></div>
             <h3>Computer Architecture</h3>
             <p>Cache mapping, DMA, multicycle datapath, and handshaking protocols with Shafiullah Sir & Amanullah Sir exam guides.</p>
           </motion.div>
 
-          {/* Bento Card 3: EEE & Transducers */}
-          <motion.div className="bento-card" variants={fadeInUp}>
+          {/* Bento Card 3: EEE & Transducers - Slides from LEFT */}
+          <motion.div className="bento-card" variants={fadeInLeft}>
             <div className="bento-icon-wrapper"><Zap size={24} color="#FF4500" /></div>
             <h3>EEE & Transducer Bank</h3>
             <p>Solved Question banks for RTD, Thermocouple, DVM, Strain Gauges, and Stepper Motors.</p>
           </motion.div>
 
-          {/* Bento Card 4: Community Feed */}
-          <motion.div className="bento-card bento-medium" variants={fadeInUp}>
+          {/* Bento Card 4: Community Feed - Scales In */}
+          <motion.div className="bento-card bento-medium" variants={scaleIn}>
             <div className="bento-icon-wrapper"><MessageSquareText size={24} color="#FF4500" /></div>
             <h3>Realtime Community Feed</h3>
             <p>Ask questions, post code snippets, share exam tips, and reply in threaded peer discussions across all semesters.</p>
           </motion.div>
 
-          {/* Bento Card 5: Realtime Presence */}
-          <motion.div className="bento-card" variants={fadeInUp}>
+          {/* Bento Card 5: Realtime Presence - Slides from RIGHT */}
+          <motion.div className="bento-card" variants={fadeInRight}>
             <div className="bento-icon-wrapper"><Globe size={24} color="#FF4500" /></div>
             <h3>Live Active Presence</h3>
             <p>Instant WebSocket tracking shows online batchmates for effortless revision sessions.</p>
@@ -371,7 +391,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Technical Benchmark Table */}
+      {/* Technical Benchmark Table: Scales In */}
       <motion.section 
         className="tech-section table-section"
         initial="hidden"
@@ -384,7 +404,7 @@ const Home = () => {
           <h2>State Of The Art On Academic Portals</h2>
         </motion.div>
 
-        <motion.div className="table-wrapper" variants={fadeInUp}>
+        <motion.div className="table-wrapper" variants={scaleIn}>
           <table className="tech-benchmark-table">
             <thead>
               <tr>
@@ -430,7 +450,7 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
-      {/* Access Plans / Tier Cards */}
+      {/* Access Plans / Tier Cards: Left from LEFT, Center Scale UP, Right from RIGHT */}
       <motion.section 
         className="tech-section tiers-section"
         initial="hidden"
@@ -444,8 +464,8 @@ const Home = () => {
         </motion.div>
 
         <div className="tiers-grid">
-          {/* Tier 1: Student */}
-          <motion.div className="tier-card" variants={fadeInUp}>
+          {/* Tier 1: Student - Slides from LEFT */}
+          <motion.div className="tier-card" variants={fadeInLeft}>
             <div className="tier-badge">STUDENT ACCESS</div>
             <h3>Free Account</h3>
             <p className="tier-price">0 BDT <span>/ forever</span></p>
@@ -458,8 +478,8 @@ const Home = () => {
             <Link to="/register" className="tier-btn-outline">Sign Up Now</Link>
           </motion.div>
 
-          {/* Tier 2: Contributor (Highlighted) */}
-          <motion.div className="tier-card tier-featured" variants={fadeInUp}>
+          {/* Tier 2: Contributor - Scales IN & Rises UP */}
+          <motion.div className="tier-card tier-featured" variants={scaleIn}>
             <div className="tier-badge orange-badge">CONTRIBUTOR</div>
             <h3>Verified Student</h3>
             <p className="tier-price">Active <span>/ IIUC Domain</span></p>
@@ -472,8 +492,8 @@ const Home = () => {
             <Link to="/register" className="tier-btn-solid">Get Started</Link>
           </motion.div>
 
-          {/* Tier 3: Admin / Moderator */}
-          <motion.div className="tier-card" variants={fadeInUp}>
+          {/* Tier 3: Admin / Moderator - Slides from RIGHT */}
+          <motion.div className="tier-card" variants={fadeInRight}>
             <div className="tier-badge">MODERATION</div>
             <h3>Admin & Moderator</h3>
             <p className="tier-price">Restricted <span>/ Staff</span></p>
@@ -488,7 +508,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* FAQ Accordion Section */}
+      {/* FAQ Accordion Section: Alternating Left & Right Entrance */}
       <motion.section 
         className="tech-section faq-section"
         initial="hidden"
@@ -506,7 +526,7 @@ const Home = () => {
             <motion.div 
               className={`faq-item ${openFaq === index ? 'active' : ''}`}
               key={index}
-              variants={fadeInUp}
+              variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
             >
               <button 
                 className="faq-question"
@@ -533,7 +553,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Final CTA Banner */}
+      {/* Final CTA Banner: Rises from BOTTOM */}
       <motion.section 
         className="tech-section final-banner-section"
         initial="hidden"
