@@ -21,25 +21,73 @@ import {
 } from 'lucide-react';
 import './Home.css';
 
-// Framer Motion Directional Animation Variants
+// Framer Motion Directional Animation Variants (Appear First + Slide In / Slide Out + Disappear)
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.65, 
+      ease: [0.16, 1, 0.3, 1],
+      opacity: { duration: 0.25, ease: 'easeOut' }
+    } 
+  },
 };
 
 const fadeInLeft = {
-  hidden: { opacity: 0, x: -60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { 
+    opacity: 0, 
+    x: -80,
+    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      duration: 0.65, 
+      ease: [0.16, 1, 0.3, 1],
+      opacity: { duration: 0.25, ease: 'easeOut' }
+    } 
+  },
 };
 
 const fadeInRight = {
-  hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { 
+    opacity: 0, 
+    x: 80,
+    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { 
+      duration: 0.65, 
+      ease: [0.16, 1, 0.3, 1],
+      opacity: { duration: 0.25, ease: 'easeOut' }
+    } 
+  },
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.88 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.84,
+    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1],
+      opacity: { duration: 0.25, ease: 'easeOut' }
+    } 
+  },
 };
 
 const staggerContainer = {
@@ -227,7 +275,7 @@ const Home = () => {
         className="tech-metrics-bar"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ margin: '-50px' }}
         variants={scaleIn}
       >
         <div className="metrics-grid">
@@ -255,7 +303,7 @@ const Home = () => {
         className="tech-section roadmap-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -293,7 +341,7 @@ const Home = () => {
         className="tech-section comparison-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -336,7 +384,7 @@ const Home = () => {
         className="tech-section bento-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header" variants={fadeInUp}>
@@ -396,7 +444,7 @@ const Home = () => {
         className="tech-section table-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header" variants={fadeInUp}>
@@ -455,7 +503,7 @@ const Home = () => {
         className="tech-section tiers-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -513,7 +561,7 @@ const Home = () => {
         className="tech-section faq-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ margin: '-100px' }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -558,7 +606,7 @@ const Home = () => {
         className="tech-section final-banner-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-50px' }}
+        viewport={{ margin: '-50px' }}
         variants={fadeInUp}
       >
         <div className="final-banner">
