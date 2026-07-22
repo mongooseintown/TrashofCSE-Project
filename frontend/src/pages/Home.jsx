@@ -36,14 +36,24 @@ const features = [
   {
     icon: <MessageSquareText size={20} />,
     title: 'Community Feed',
-    text: 'A focused discussion space for questions, bug reports, suggestions, and peer support throughout the semester.',
+    text: 'A focused discussion space for questions, code snippets, suggestions, and peer support throughout the semester.',
+  },
+  {
+    icon: <ShieldCheck size={20} />,
+    title: 'Moderator Shield',
+    text: 'Admin and moderator verification guarantees spam-free content, verified user accounts, and reliable note solutions.',
+  },
+  {
+    icon: <Sparkles size={20} />,
+    title: 'Live Active Presence',
+    text: 'Track online batchmates in real-time, enabling synchronous study sessions and instant peer collaboration.',
   },
 ];
 
 const stats = [
-  ['04', 'Core subjects'],
-  ['05+', 'Exam-ready segments'],
-  ['100+', 'Study assets'],
+  ['04+', 'Core Subjects'],
+  ['10+', 'Exam Segments'],
+  ['100+', 'Verified Notes'],
 ];
 
 const Home = () => {
