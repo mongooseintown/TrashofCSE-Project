@@ -21,20 +21,18 @@ import {
 } from 'lucide-react';
 import './Home.css';
 
-// Framer Motion Directional Animation Variants (Appear First + Slide In / Slide Out + Disappear)
+// Framer Motion Directional Animation Variants (Appear & Slide In / Reversible Exit)
 const fadeInUp = {
   hidden: { 
     opacity: 0, 
-    y: 50,
-    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+    y: 40,
   },
   visible: { 
     opacity: 1, 
     y: 0, 
     transition: { 
-      duration: 0.65, 
-      ease: [0.16, 1, 0.3, 1],
-      opacity: { duration: 0.25, ease: 'easeOut' }
+      duration: 0.6, 
+      ease: [0.22, 1, 0.36, 1],
     } 
   },
 };
@@ -42,16 +40,14 @@ const fadeInUp = {
 const fadeInLeft = {
   hidden: { 
     opacity: 0, 
-    x: -80,
-    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+    x: -50,
   },
   visible: { 
     opacity: 1, 
     x: 0, 
     transition: { 
-      duration: 0.65, 
-      ease: [0.16, 1, 0.3, 1],
-      opacity: { duration: 0.25, ease: 'easeOut' }
+      duration: 0.6, 
+      ease: [0.22, 1, 0.36, 1],
     } 
   },
 };
@@ -59,16 +55,14 @@ const fadeInLeft = {
 const fadeInRight = {
   hidden: { 
     opacity: 0, 
-    x: 80,
-    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+    x: 50,
   },
   visible: { 
     opacity: 1, 
     x: 0, 
     transition: { 
-      duration: 0.65, 
-      ease: [0.16, 1, 0.3, 1],
-      opacity: { duration: 0.25, ease: 'easeOut' }
+      duration: 0.6, 
+      ease: [0.22, 1, 0.36, 1],
     } 
   },
 };
@@ -76,16 +70,14 @@ const fadeInRight = {
 const scaleIn = {
   hidden: { 
     opacity: 0, 
-    scale: 0.84,
-    transition: { duration: 0.35, ease: [0.4, 0, 1, 1] }
+    scale: 0.9,
   },
   visible: { 
     opacity: 1, 
     scale: 1, 
     transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1],
-      opacity: { duration: 0.25, ease: 'easeOut' }
+      duration: 0.55, 
+      ease: [0.22, 1, 0.36, 1],
     } 
   },
 };
@@ -95,7 +87,7 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.14,
+      staggerChildren: 0.12,
     },
   },
 };
@@ -275,26 +267,26 @@ const Home = () => {
         className="tech-metrics-bar"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-50px' }}
+        viewport={{ amount: 0.15 }}
         variants={scaleIn}
       >
         <div className="metrics-grid">
-          <div className="metric-box">
+          <motion.div className="metric-box" variants={scaleIn}>
             <strong className="metric-value highlight-orange">Sem 1-8</strong>
             <span className="metric-label">Full Academic Syllabus Covered</span>
-          </div>
-          <div className="metric-box">
+          </motion.div>
+          <motion.div className="metric-box" variants={scaleIn}>
             <strong className="metric-value">100%</strong>
             <span className="metric-label">IIUC Exam Pattern Aligned</span>
-          </div>
-          <div className="metric-box">
+          </motion.div>
+          <motion.div className="metric-box" variants={scaleIn}>
             <strong className="metric-value">0.2s</strong>
             <span className="metric-label">Instant Search Latency</span>
-          </div>
-          <div className="metric-box">
+          </motion.div>
+          <motion.div className="metric-box" variants={scaleIn}>
             <strong className="metric-value">500+</strong>
             <span className="metric-label">Active IIUC CSE Batchmates</span>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -303,7 +295,7 @@ const Home = () => {
         className="tech-section roadmap-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -317,6 +309,9 @@ const Home = () => {
             <motion.div 
               className="roadmap-card" 
               key={index} 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ amount: 0.15 }}
               variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
             >
               <div className="roadmap-top">
@@ -341,7 +336,7 @@ const Home = () => {
         className="tech-section comparison-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -352,7 +347,13 @@ const Home = () => {
 
         <div className="comparison-grid">
           {/* Without TrashofCSE: Slides from LEFT */}
-          <motion.div className="comparison-card bad" variants={fadeInLeft}>
+          <motion.div 
+            className="comparison-card bad" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInLeft}
+          >
             <div className="card-tag bad-tag">TRADITIONAL DRIVE / MESSENGER</div>
             <h3>Scattered, Unverified Study Material</h3>
             <p>Moving between 10+ Facebook groups and Google Drive links leads to missing topics and exam panic.</p>
@@ -365,7 +366,13 @@ const Home = () => {
           </motion.div>
 
           {/* With TrashofCSE: Slides from RIGHT */}
-          <motion.div className="comparison-card good" variants={fadeInRight}>
+          <motion.div 
+            className="comparison-card good" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInRight}
+          >
             <div className="card-tag good-tag">TRASHOFCSE ENGINE</div>
             <h3>Structured, Verified Knowledge Pipeline</h3>
             <p>Every slide, note, and question solve is indexed by semester, course, and exam importance.</p>
@@ -384,7 +391,7 @@ const Home = () => {
         className="tech-section bento-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header" variants={fadeInUp}>
@@ -394,7 +401,13 @@ const Home = () => {
 
         <div className="bento-grid">
           {/* Bento Card 1: Large Featured - Slides from LEFT */}
-          <motion.div className="bento-card bento-large" variants={fadeInLeft}>
+          <motion.div 
+            className="bento-card bento-large" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInLeft}
+          >
             <div className="bento-badge">COMPILER DESIGN (CSE-3527)</div>
             <h3>Syntax Trees, Parsers & Code Gen</h3>
             <p>Comprehensive breakdown of Segment 04, 06, 07 & 08 with detailed CFG diagrams and code generation algorithms.</p>
@@ -410,28 +423,52 @@ const Home = () => {
           </motion.div>
 
           {/* Bento Card 2: Computer Architecture - Slides from RIGHT */}
-          <motion.div className="bento-card" variants={fadeInRight}>
+          <motion.div 
+            className="bento-card" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInRight}
+          >
             <div className="bento-icon-wrapper"><Cpu size={24} color="#FF4500" /></div>
             <h3>Computer Architecture</h3>
             <p>Cache mapping, DMA, multicycle datapath, and handshaking protocols with Shafiullah Sir & Amanullah Sir exam guides.</p>
           </motion.div>
 
           {/* Bento Card 3: EEE & Transducers - Slides from LEFT */}
-          <motion.div className="bento-card" variants={fadeInLeft}>
+          <motion.div 
+            className="bento-card" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInLeft}
+          >
             <div className="bento-icon-wrapper"><Zap size={24} color="#FF4500" /></div>
             <h3>EEE & Transducer Bank</h3>
             <p>Solved Question banks for RTD, Thermocouple, DVM, Strain Gauges, and Stepper Motors.</p>
           </motion.div>
 
           {/* Bento Card 4: Community Feed - Scales In */}
-          <motion.div className="bento-card bento-medium" variants={scaleIn}>
+          <motion.div 
+            className="bento-card bento-medium" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={scaleIn}
+          >
             <div className="bento-icon-wrapper"><MessageSquareText size={24} color="#FF4500" /></div>
             <h3>Realtime Community Feed</h3>
             <p>Ask questions, post code snippets, share exam tips, and reply in threaded peer discussions across all semesters.</p>
           </motion.div>
 
           {/* Bento Card 5: Realtime Presence - Slides from RIGHT */}
-          <motion.div className="bento-card" variants={fadeInRight}>
+          <motion.div 
+            className="bento-card" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInRight}
+          >
             <div className="bento-icon-wrapper"><Globe size={24} color="#FF4500" /></div>
             <h3>Live Active Presence</h3>
             <p>Instant WebSocket tracking shows online batchmates for effortless revision sessions.</p>
@@ -444,7 +481,7 @@ const Home = () => {
         className="tech-section table-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header" variants={fadeInUp}>
@@ -452,7 +489,13 @@ const Home = () => {
           <h2>State Of The Art On Academic Portals</h2>
         </motion.div>
 
-        <motion.div className="table-wrapper" variants={scaleIn}>
+        <motion.div 
+          className="table-wrapper" 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.15 }}
+          variants={scaleIn}
+        >
           <table className="tech-benchmark-table">
             <thead>
               <tr>
@@ -503,7 +546,7 @@ const Home = () => {
         className="tech-section tiers-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -513,7 +556,13 @@ const Home = () => {
 
         <div className="tiers-grid">
           {/* Tier 1: Student - Slides from LEFT */}
-          <motion.div className="tier-card" variants={fadeInLeft}>
+          <motion.div 
+            className="tier-card" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInLeft}
+          >
             <div className="tier-badge">STUDENT ACCESS</div>
             <h3>Free Account</h3>
             <p className="tier-price">0 BDT <span>/ forever</span></p>
@@ -527,7 +576,13 @@ const Home = () => {
           </motion.div>
 
           {/* Tier 2: Contributor - Scales IN & Rises UP */}
-          <motion.div className="tier-card tier-featured" variants={scaleIn}>
+          <motion.div 
+            className="tier-card tier-featured" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={scaleIn}
+          >
             <div className="tier-badge orange-badge">CONTRIBUTOR</div>
             <h3>Verified Student</h3>
             <p className="tier-price">Active <span>/ IIUC Domain</span></p>
@@ -541,7 +596,13 @@ const Home = () => {
           </motion.div>
 
           {/* Tier 3: Admin / Moderator - Slides from RIGHT */}
-          <motion.div className="tier-card" variants={fadeInRight}>
+          <motion.div 
+            className="tier-card" 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ amount: 0.15 }}
+            variants={fadeInRight}
+          >
             <div className="tier-badge">MODERATION</div>
             <h3>Admin & Moderator</h3>
             <p className="tier-price">Restricted <span>/ Staff</span></p>
@@ -561,7 +622,7 @@ const Home = () => {
         className="tech-section faq-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-100px' }}
+        viewport={{ amount: 0.15 }}
         variants={staggerContainer}
       >
         <motion.div className="section-header center" variants={fadeInUp}>
@@ -574,6 +635,9 @@ const Home = () => {
             <motion.div 
               className={`faq-item ${openFaq === index ? 'active' : ''}`}
               key={index}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ amount: 0.15 }}
               variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
             >
               <button 
@@ -606,7 +670,7 @@ const Home = () => {
         className="tech-section final-banner-section"
         initial="hidden"
         whileInView="visible"
-        viewport={{ margin: '-50px' }}
+        viewport={{ amount: 0.15 }}
         variants={fadeInUp}
       >
         <div className="final-banner">
