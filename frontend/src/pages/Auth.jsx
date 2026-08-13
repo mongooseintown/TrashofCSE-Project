@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, LogIn, KeyRound } from 'lucide-react';
 import { auth, googleProvider } from '../firebase';
-import { signInWithRedirect, getRedirectResult } from 'firebase/auth';
+import { signInWithRedirect, onAuthStateChanged } from 'firebase/auth';
 import { getApiUrl } from '../config';
 import './Auth.css';
 
@@ -21,13 +21,11 @@ const AuthPage = () => {
       return;
     }
 
-    // 2. Check if returning from Google Redirect
-    const checkRedirectResult = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result) {
-          setLoading(true);
-          const user = result.user;
+    // 2. Listen to Firebase auth state
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setLoading(true);
+        try {
           const userEmail = user.email;
           const name = user.displayName || userEmail.split('@')[0];
 
@@ -52,7 +50,7 @@ const AuthPage = () => {
           const data = await response.json();
 
           if (!response.ok) {
-            throw new Error(data.message || 'Authentication failed');
+            throw new Error(data.message || 'Backend authentication failed. Is MongoDB running?');
           }
 
           localStorage.setItem('token', data.token);
@@ -63,21 +61,19 @@ const AuthPage = () => {
             department: data.department || '', 
             isAdmin: data.isAdmin || false 
           }));
+          window.dispatchEvent(new Event('profile-update'));
           navigate('/dashboard');
-        }
-      } catch (err) {
-        let errMsg = err.message || 'Social authentication error';
-        // Handle specific redirect errors if necessary
-        setError(errMsg);
-      } finally {
-        // Only set loading false if we didn't navigate away
-        if (!localStorage.getItem('token')) {
+        } catch (err) {
+          console.error("Auth error:", err);
+          setError(err.message || 'Social authentication error');
           setLoading(false);
         }
+      } else {
+        setLoading(false);
       }
-    };
+    });
 
-    checkRedirectResult();
+    return () => unsubscribe();
   }, [navigate]);
 
   const handleGoogleLogin = () => {
