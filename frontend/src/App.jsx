@@ -6,8 +6,7 @@ import CompilerHub from './pages/CompilerHub';
 import CompilerSegment07 from './pages/CompilerSegment07';
 import CompilerSegment06 from './pages/CompilerSegment06';
 import TopicPage from './pages/TopicPage';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import AuthPage from './pages/Auth';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import EEE from './pages/EEE';
@@ -88,6 +87,7 @@ import DynamicSegmentViewer from './pages/DynamicSegmentViewer';
 import CompilerLocked from './pages/CompilerLocked';
 import CommunityFeed from './pages/CommunityFeed';
 import './App.css';
+import CustomCursor from './components/CustomCursor';
 
 import { ReactLenis } from 'lenis/react';
 
@@ -100,6 +100,7 @@ function AppContent() {
 
   return (
     <div className="App">
+      <CustomCursor />
       <Navbar />
 
       <div className={`app-container ${showSidebar ? 'has-sidebar' : ''}`}>
@@ -207,8 +208,9 @@ function AppContent() {
           <Route path="/materials/view/:materialId" element={<PrivateRoute><DynamicSegmentViewer /></PrivateRoute>} />
 
           {/* Auth Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/register" element={<AuthPage />} />
+          <Route path="/auth" element={<AuthPage />} />
         </Routes>
         </div>
       </div>

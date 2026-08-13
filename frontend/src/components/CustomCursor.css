@@ -1,0 +1,44 @@
+/* Hide default cursor across the entire app */
+* {
+  cursor: none !important;
+}
+
+/* Tiny dot exactly on the mouse point */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px; /* Center */
+  background-color: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+/* Glowing flashlight effect behind the cursor */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  margin: -150px 0 0 -150px; /* Center */
+  background: radial-gradient(
+    circle, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 30%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  filter: blur(10px);
+}
+
+/* Keep cursor pointer on links and buttons, but we still hide the native cursor above */
+a, button, input, select, textarea, .seo-btn-primary, .seo-btn-secondary, .seo-btn-outline, .hoverable-card, .seo-logo-item {
+  cursor: none !important;
+}
