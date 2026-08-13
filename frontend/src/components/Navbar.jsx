@@ -5,6 +5,8 @@ import { LogOut, Menu, X } from 'lucide-react';
 import NotificationPanel from './NotificationPanel';
 
 import { getApiUrl } from '../config';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +42,14 @@ const Navbar = () => {
         console.error('Logout request failed:', err);
       }
     }
+    
+    // Clear Firebase Auth state
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error('Firebase sign out failed:', err);
+    }
+
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsLoggedIn(false);
