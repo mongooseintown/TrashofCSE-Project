@@ -87,8 +87,6 @@ import DynamicSegmentViewer from './pages/DynamicSegmentViewer';
 import CompilerLocked from './pages/CompilerLocked';
 import CommunityFeed from './pages/CommunityFeed';
 import './App.css';
-import CustomCursor from './components/CustomCursor';
-
 import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
@@ -100,7 +98,6 @@ function AppContent() {
 
   return (
     <div className="App">
-      <CustomCursor />
       <Navbar />
 
       <div className={`app-container ${showSidebar ? 'has-sidebar' : ''}`}>
