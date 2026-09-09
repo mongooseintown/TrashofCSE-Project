@@ -1,356 +1,72 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Terminal, BookOpen, GraduationCap, CheckCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, Check, ChevronDown, Clock3, Layers3, Menu, Sparkles, Star, Target, Users } from 'lucide-react';
 import './Home.css';
 
-const Home = () => {
+const subjects = [
+  { name: 'Compiler Design', code: 'CSE 401', accent: 'coral', detail: 'Parsing, grammars & optimization' },
+  { name: 'Computer Architecture', code: 'CSE 305', accent: 'blue', detail: 'Pipelines, memory & datapaths' },
+  { name: 'Data Structures', code: 'CSE 203', accent: 'yellow', detail: 'Trees, graphs & algorithms' },
+  { name: 'System Analysis', code: 'CSE 309', accent: 'violet', detail: 'DFD, ERD & software design' },
+];
+
+const faqs = [
+  ['Is TrashOfCSE free?', 'Yes. Every note, solved question, and roadmap is available for free to engineering students.'],
+  ['Do I need an account?', 'Create an account to save your progress and keep your study roadmap in one place.'],
+  ['Who reviews the notes?', 'Senior students and contributors review materials before they reach the library.'],
+];
+
+const reveal = { hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } };
+
+function Reveal({ children, className = '', delay = 0 }) {
+  return <motion.div className={className} variants={reveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} transition={{ delay }}>{children}</motion.div>;
+}
+
+export default function Home() {
   const navigate = useNavigate();
   const [activeFaq, setActiveFaq] = useState(0);
-
-  const toggleFaq = (index) => {
-    setActiveFaq(activeFaq === index ? -1 : index);
-  };
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
+  const { scrollY } = useScroll();
+  const heroDrift = useTransform(scrollY, [0, 700], [0, 150]);
+  const orbDrift = useTransform(scrollY, [0, 700], [0, -90]);
 
   return (
-    <div className="elegant-home">
-      
-      {/* 1. HERO SECTION */}
-      <section className="elegant-hero">
-        <div className="elegant-hero-left">
-          <motion.h1 
-            initial="hidden" animate="visible" variants={fadeUp}
-            className="elegant-hero-title"
-          >
-            Students are <em className="accent-italic">lazy</em> <br />
-            at studying.
-          </motion.h1>
-          <motion.p 
-            initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.1 }}
-            className="elegant-hero-subtitle"
-          >
-            TrashOfCSE does the heavy lifting for you. We curate the best notes, solve previous questions, and organize everything into an intuitive platform so you can just focus on learning.
-          </motion.p>
-          <motion.div 
-            initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.2 }}
-            className="elegant-hero-actions"
-          >
-            <button className="elegant-btn-primary" onClick={() => navigate('/login')}>Start studying</button>
-            <button className="elegant-btn-outline" onClick={() => navigate('/login')}>Browse topics</button>
+    <main className="landing-page">
+      <section className="landing-hero">
+        <div className="hero-grid" aria-hidden="true" />
+        <motion.div className="hero-orb orb-one" style={{ y: orbDrift }} aria-hidden="true" />
+        <motion.div className="hero-orb orb-two" style={{ y: heroDrift }} aria-hidden="true" />
+        <div className="hero-copy">
+          <motion.div initial="hidden" animate="visible" variants={reveal} className="eyebrow"><span className="eyebrow-dot" /> THE STUDY SPACE FOR CSE</motion.div>
+          <motion.h1 initial="hidden" animate="visible" variants={reveal} transition={{ delay: 0.08 }} className="hero-title">Your syllabus,<br /><span>finally sorted.</span></motion.h1>
+          <motion.p initial="hidden" animate="visible" variants={reveal} transition={{ delay: 0.16 }} className="hero-description">Notes that make sense. Previous questions with real solutions. A calmer way to prepare for your next exam.</motion.p>
+          <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ delay: 0.24 }} className="hero-actions">
+            <button className="button button-primary" onClick={() => navigate('/login')}>Start learning <ArrowRight size={17} /></button>
+            <a className="text-link" href="#library">Explore the library <span>↓</span></a>
           </motion.div>
-          <motion.p 
-            initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.3 }}
-            className="elegant-hero-note"
-          >
-            Join thousands of engineering students mastering their syllabus today.
-          </motion.p>
+          <motion.div initial="hidden" animate="visible" variants={reveal} transition={{ delay: 0.32 }} className="hero-proof"><div className="proof-avatars"><i /><i /><i /><i /></div><span><strong>15,000+</strong> students study smarter here</span></motion.div>
         </div>
-        
-        <div className="elegant-hero-right">
-           <motion.div 
-             className="elegant-mock-card mock-before"
-             initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}
-           >
-              <div className="mock-header">
-                <span className="mock-dot red"></span>
-                <span className="mock-title">Without TrashOfCSE</span>
-              </div>
-              <ul className="mock-list error">
-                <li><span>✖</span> Endlessly searching for notes</li>
-                <li><span>✖</span> Unsolved previous questions</li>
-                <li><span>✖</span> Messy drive links</li>
-              </ul>
-           </motion.div>
-
-           <motion.div 
-             className="elegant-mock-card mock-after"
-             initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
-           >
-              <div className="mock-header">
-                <span className="mock-dot green"></span>
-                <span className="mock-title">With TrashOfCSE</span>
-              </div>
-              <ul className="mock-list success">
-                <li><CheckCircle size={14}/> Structured semester topics</li>
-                <li><CheckCircle size={14}/> Solved previous questions</li>
-                <li><CheckCircle size={14}/> Intuitive reading interface</li>
-                <li><CheckCircle size={14}/> High average grades</li>
-              </ul>
-           </motion.div>
-        </div>
+        <motion.div className="hero-dashboard" style={{ y: heroDrift }} initial={{ opacity: 0, scale: .94, rotate: 2 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 1, delay: .25, ease: 'easeOut' }}>
+          <div className="dashboard-top"><div className="window-dots"><i /><i /><i /></div><span>trashofcse / dashboard</span><div className="live-pill"><span /> LIVE</div></div>
+          <div className="dashboard-body"><aside><div className="mini-logo">T<span>O</span>C</div><div className="side-item active"><Layers3 size={15} /> Overview</div><div className="side-item"><BookOpen size={15} /> My library</div><div className="side-item"><Target size={15} /> Progress</div><div className="side-item"><Users size={15} /> Community</div></aside><div className="dash-main"><div className="dash-greeting"><div><small>MONDAY, 07 APRIL</small><h3>Good evening, Rafi.</h3></div><div className="dash-avatar">R</div></div><div className="progress-card"><div><span className="card-label">YOUR PROGRESS</span><strong>Keep the streak alive.</strong><p>3 chapters completed this week</p></div><div className="progress-ring"><span>68<small>%</small></span></div></div><div className="dash-heading"><span>Continue learning</span><a href="#library">View all <ArrowRight size={12} /></a></div><div className="dash-courses"><div className="course course-coral"><span>CD</span><div><b>Compiler Design</b><small>Chapter 04 · 72% done</small></div><ArrowRight size={14} /></div><div className="course course-blue"><span>CA</span><div><b>Computer Architecture</b><small>Chapter 02 · 34% done</small></div><ArrowRight size={14} /></div></div></div></div>
+        </motion.div>
+        <div className="hero-scroll">SCROLL TO EXPLORE <span /></div>
       </section>
 
-      {/* 2. TICKER */}
-      <div className="elegant-ticker">
-        <div className="ticker-track">
-           <span>Compiler Design</span> <span className="ticker-dot">•</span>
-           <span>Computer Architecture</span> <span className="ticker-dot">•</span>
-           <span>EEE</span> <span className="ticker-dot">•</span>
-           <span>System Analysis</span> <span className="ticker-dot">•</span>
-           <span>Data Structures</span> <span className="ticker-dot">•</span>
-           <span>Compiler Design</span> <span className="ticker-dot">•</span>
-           <span>Computer Architecture</span>
-        </div>
-      </div>
+      <section className="marquee" aria-label="Available subjects"><div className="marquee-track"><span>Compiler Design</span><b>✦</b><span>Data Structures</span><b>✦</b><span>Computer Architecture</span><b>✦</b><span>System Analysis</span><b>✦</b><span>EEE</span><b>✦</b><span>Compiler Design</span><b>✦</b><span>Data Structures</span></div></section>
 
-      {/* 3. FEATURE CARDS (2-Column) */}
-      <section className="elegant-section">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header center">
-            <span className="elegant-eyebrow">EFFICIENCY</span>
-            <h2>Study minus the stress,<br/>minus the hassle.</h2>
-            <p>Our platform aggregates all the fragmented materials into one cohesive flow.</p>
-         </motion.div>
+      <section className="section library-section" id="library"><Reveal className="section-heading"><span className="section-kicker">ONE PLACE. ZERO CHAOS.</span><h2>Everything you need<br /><em>to get it.</em></h2><p>We turn scattered PDFs and impossible-to-follow lectures into a focused study flow.</p></Reveal><div className="feature-grid"><Reveal className="feature-card feature-large"><div className="feature-icon coral-icon"><BookOpen size={20} /></div><span className="feature-number">01</span><h3>Notes that respect<br />your time.</h3><p>Clear, concise and built around what actually appears in your exam. No filler, no wandering.</p><a href="#subjects" className="feature-link">Browse notes <ArrowRight size={15} /></a><div className="paper-stack" aria-hidden="true"><div /><div /><div /></div></Reveal><Reveal className="feature-card feature-dark" delay={.1}><div className="feature-icon cream-icon"><Clock3 size={20} /></div><span className="feature-number">02</span><h3>Past papers,<br />solved properly.</h3><p>See the thinking behind every answer and walk into your exam knowing what to expect.</p><a href="#subjects" className="feature-link">See solutions <ArrowRight size={15} /></a><div className="mini-chart" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /></div></Reveal><Reveal className="feature-card feature-wide" delay={.15}><div><div className="feature-icon yellow-icon"><Target size={20} /></div><span className="feature-number">03</span><h3>A roadmap that<br />keeps you moving.</h3><p>Choose a subject, track your chapters, and know exactly what to study next.</p><a href="#roadmap" className="feature-link">Build your roadmap <ArrowRight size={15} /></a></div><div className="roadmap-lines" aria-hidden="true"><div><span className="done">✓</span><b>Lexical analysis</b><small>Completed</small></div><div><span className="done">✓</span><b>Syntax analysis</b><small>Completed</small></div><div><span className="current">3</span><b>Intermediate code</b><small>Up next</small></div></div></Reveal></div></section>
 
-         <div className="elegant-feature-split">
-            <motion.div className="elegant-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-               <span className="elegant-tag">Curated Notes</span>
-               <h3>Deep Coverage</h3>
-               <p>Access notes that have been vetted by top scorers and professors. No more relying on incomplete handouts.</p>
-               <span className="elegant-link">Explore notes <ArrowRight size={14}/></span>
-            </motion.div>
-            <motion.div className="elegant-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.2 }}>
-               <span className="elegant-tag">Solutions</span>
-               <h3>Previous Questions</h3>
-               <p>We provide detailed, step-by-step solutions to past exams so you know exactly what to expect.</p>
-               <span className="elegant-link">View solutions <ArrowRight size={14}/></span>
-            </motion.div>
-         </div>
-      </section>
+      <section className="section subjects-section" id="subjects"><Reveal className="section-heading split-heading"><div><span className="section-kicker">THE LIBRARY</span><h2>Pick a topic.<br /><em>Make it yours.</em></h2></div><p>From first lecture to final revision, study material that speaks your language.</p></Reveal><div className="subject-list">{subjects.map((subject, index) => <Reveal key={subject.name} delay={index * .06}><a href="/login" className={`subject-row subject-${subject.accent}`}><span className="subject-index">0{index + 1}</span><div className="subject-symbol">{subject.name.slice(0, 1)}</div><div className="subject-info"><small>{subject.code}</small><h3>{subject.name}</h3><p>{subject.detail}</p></div><ArrowRight className="subject-arrow" size={21} /></a></Reveal>)}</div></section>
 
-      {/* 4. CAPABILITIES (Bento Grid) */}
-      <section className="elegant-section">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header">
-            <span className="elegant-eyebrow">QUALITY MATTERS</span>
-            <h2>Human readable<br/>and exam oriented.</h2>
-         </motion.div>
+      <section className="statement-section" id="roadmap"><motion.div style={{ y: useTransform(scrollY, [1000, 1800], [50, -40]) }} className="statement-card"><Sparkles size={18} /><p>Good grades are not<br /><em>a personality trait.</em></p><span>— they are a system.</span></motion.div></section>
 
-         <div className="elegant-bento-grid">
-            <motion.div className="elegant-card bento-wide" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-               <span className="elegant-tag">Accuracy</span>
-               <h3>Verified by Seniors</h3>
-               <p>Content is rigorously reviewed by top graduates to ensure accuracy and relevance to your current syllabus.</p>
-            </motion.div>
-            <motion.div className="elegant-card bento-wide" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.1 }}>
-               <span className="elegant-tag">Speed</span>
-               <h3>Faster Preparation</h3>
-               <p>Cut your exam prep time in half by studying exactly what matters.</p>
-            </motion.div>
-            <motion.div className="elegant-card bento-full code-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.2 }}>
-               <div className="code-header">
-                 <Terminal size={14}/> TrashOfCSE Logic
-               </div>
-               <pre>
-<code>{`// A typical study session
-const session = new StudySession({
-  subject: "Computer Architecture",
-  focus: "Pipelining",
-  mode: "Intense"
-});
+      <section className="section results-section" id="achievements"><Reveal className="section-heading center-heading"><span className="section-kicker">BUILT FOR THE BUSY ONES</span><h2>More clarity.<br /><em>Less cramming.</em></h2></Reveal><div className="stats-row"><div><strong>15k<span>+</span></strong><small>students learning</small></div><div><strong>150<span>+</span></strong><small>topics covered</small></div><div><strong>100<span>%</span></strong><small>free to access</small></div></div></section>
 
-await session.loadTrashOfCSENotes();
-session.execute(); // Results: A+ Guaranteed`}</code>
-               </pre>
-            </motion.div>
-         </div>
-      </section>
+      <section className="section faq-section" id="faq"><Reveal className="faq-intro"><span className="section-kicker">GOOD TO KNOW</span><h2>Questions,<br /><em>answered.</em></h2><p>Still curious? We like that. Here are the basics.</p></Reveal><div className="faq-list">{faqs.map(([question, answer], index) => <div className={`faq-item ${activeFaq === index ? 'is-open' : ''}`} key={question}><button onClick={() => setActiveFaq(activeFaq === index ? -1 : index)}><span>{question}</span><ChevronDown size={18} /></button>{activeFaq === index && <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>{answer}</motion.p>}</div>)}</div></section>
 
-      {/* 5. USE CASES GRID (3x2) */}
-      <section className="elegant-section">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header">
-            <span className="elegant-eyebrow">SUBJECTS</span>
-            <h2>Master the topics you need to pass, fast.</h2>
-            <p>We continually update our repository for the hardest engineering subjects.</p>
-         </motion.div>
-
-         <div className="elegant-usecases-grid">
-            {[
-              { title: "Compiler Design", desc: "Lexical analysis, parsing, and optimization techniques simplified." },
-              { title: "Computer Architecture", desc: "Datapaths, pipelining, and memory hierarchy breakdowns." },
-              { title: "Electrical Engineering", desc: "Circuits, electronics, and digital logic made intuitive." },
-              { title: "System Analysis", desc: "DFDs, ERDs, and software engineering principles." },
-              { title: "Data Structures", desc: "Trees, graphs, and algorithmic problem solving." },
-              { title: "Mathematics", desc: "Calculus and linear algebra notes for engineers." }
-            ].map((uc, i) => (
-              <motion.div key={i} className="elegant-card subtle-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.1 }}>
-                 <h3>{uc.title}</h3>
-                 <p>{uc.desc}</p>
-                 <span className="elegant-link small">Read more <ArrowRight size={12}/></span>
-              </motion.div>
-            ))}
-         </div>
-         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-           <button className="elegant-btn-outline">View all subjects <ArrowRight size={16}/></button>
-         </div>
-      </section>
-
-      {/* 6. STATS / ROI */}
-      <section className="elegant-section elegant-stats-section">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header center">
-            <span className="elegant-eyebrow">IMPACT</span>
-            <h2>Study exactly what you need.</h2>
-            <p>Our students consistently outperform the curve using our targeted materials.</p>
-         </motion.div>
-
-         <div className="elegant-stats-row">
-            <div className="elegant-stat">
-               <h4>15K+</h4>
-               <p>Active Students</p>
-            </div>
-            <div className="elegant-stat">
-               <h4>150+</h4>
-               <p>Topics Covered</p>
-            </div>
-            <div className="elegant-stat">
-               <h4>A+</h4>
-               <p>Average Grade</p>
-            </div>
-            <div className="elegant-stat">
-               <h4>100%</h4>
-               <p>Free Access</p>
-            </div>
-         </div>
-         
-         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-           <button className="elegant-btn-primary">Get started</button>
-         </div>
-      </section>
-
-      {/* 7. BIG VISUAL */}
-      <section className="elegant-section center-visual">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header center">
-            <span className="elegant-eyebrow">INTERFACE</span>
-            <h2>Build your roadmap</h2>
-            <p>Select your subjects and we will generate the perfect study path for you.</p>
-         </motion.div>
-
-         <motion.div className="elegant-big-mockup" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }}>
-            <div className="big-mock-header">
-               <span></span><span></span><span></span>
-            </div>
-            <div className="big-mock-body">
-               <div className="mock-sidebar">
-                  <div className="mock-line"></div>
-                  <div className="mock-line"></div>
-                  <div className="mock-line"></div>
-               </div>
-               <div className="mock-main">
-                  <div className="mock-title-bar">
-                     <h2>Compiler Design: Chapter 4</h2>
-                     <div className="mock-badge">Verified</div>
-                  </div>
-                  <div className="mock-content-area">
-                     <div className="mock-para"></div>
-                     <div className="mock-para short"></div>
-                     <div className="mock-box"></div>
-                  </div>
-               </div>
-            </div>
-         </motion.div>
-      </section>
-
-      {/* 8. COMMUNITY REVIEWS */}
-      <section className="elegant-section">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header center">
-            <span className="elegant-eyebrow">TESTIMONIALS</span>
-            <h2>Join the community</h2>
-            <p>Hear from students who have transformed their grades.</p>
-         </motion.div>
-
-         <div className="elegant-reviews-grid">
-            {[1,2,3,4].map((r) => (
-              <motion.div key={r} className="elegant-card review-card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: r * 0.1 }}>
-                 <div className="review-author">
-                    <div className="avatar"></div>
-                    <div>
-                      <strong>Student 0{r}</strong>
-                      <span>CSE Dept.</span>
-                    </div>
-                 </div>
-                 <p>"This platform completely changed how I prepare for exams. The notes are concise and the PQ solutions are lifesavers."</p>
-              </motion.div>
-            ))}
-         </div>
-      </section>
-
-      {/* 9. FAQ */}
-      <section className="elegant-section elegant-faq-section">
-         <div className="elegant-faq-left">
-            <span className="elegant-eyebrow">SUPPORT</span>
-            <h2>Frequently asked questions.</h2>
-            <p>Everything you need to know about the product and how it works. Can't find the answer? Contact us.</p>
-         </div>
-         <div className="elegant-faq-right">
-            {[
-              "Is this platform completely free?",
-              "Do I need to create an account?",
-              "Are the notes updated regularly?",
-              "How are the previous questions solved?"
-            ].map((q, i) => (
-              <div key={i} className={`elegant-faq-item ${activeFaq === i ? 'active' : ''}`} onClick={() => toggleFaq(i)}>
-                 <div className="elegant-faq-q">
-                    {q}
-                    <span className="elegant-faq-icon"><ChevronDown size={18}/></span>
-                 </div>
-                 {activeFaq === i && (
-                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="elegant-faq-a">
-                       Yes, the platform is free. You just need to authenticate with Google to access all the study materials and features.
-                    </motion.div>
-                 )}
-              </div>
-            ))}
-         </div>
-      </section>
-
-      {/* 10. FOOTER CTA */}
-      <section className="elegant-footer-cta">
-         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="elegant-section-header center">
-            <span className="elegant-eyebrow" style={{ color: '#e57e6c' }}>GET STARTED</span>
-            <h2 style={{ fontSize: '4rem', marginBottom: '2rem' }}>Stop stressing.<br/>Start studying.</h2>
-            <button className="elegant-btn-primary">Start studying</button>
-         </motion.div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="elegant-footer">
-         <div className="elegant-footer-content">
-            <div className="footer-brand">
-               <h3>TrashOfCSE</h3>
-               <p>The ultimate hub for engineering students.</p>
-            </div>
-            <div className="footer-links">
-               <div>
-                  <h4>Product</h4>
-                  <span>Subjects</span>
-                  <span>PQ Solutions</span>
-                  <span>Pricing</span>
-               </div>
-               <div>
-                  <h4>Company</h4>
-                  <span>About</span>
-                  <span>Blog</span>
-                  <span>Contact</span>
-               </div>
-               <div>
-                  <h4>Legal</h4>
-                  <span>Terms</span>
-                  <span>Privacy</span>
-               </div>
-            </div>
-         </div>
-         <div className="footer-bottom">
-            <span>© 2026 TrashOfCSE. All rights reserved.</span>
-            <div className="social-links">
-               <span>Twitter</span> • <span>Discord</span>
-            </div>
-         </div>
-      </footer>
-    </div>
+      <section className="final-cta"><div className="cta-grid" aria-hidden="true" /><Reveal className="cta-content"><span className="section-kicker">YOUR NEXT CHAPTER STARTS HERE</span><h2>Study less lost.<br /><em>Learn more.</em></h2><button className="button button-primary" onClick={() => navigate('/login')}>Enter the library <ArrowRight size={17} /></button></Reveal></section>
+      <footer className="landing-footer"><div><div className="footer-mark">T<span>O</span>C</div><p>Make the syllabus make sense.</p></div><div className="footer-links"><a href="#library">Library</a><a href="#subjects">Subjects</a><a href="#faq">FAQ</a><a href="/login">Sign in</a></div><small>© 2026 TrashOfCSE</small></footer>
+    </main>
   );
-};
-
-export default Home;
+}
