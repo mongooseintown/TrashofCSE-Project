@@ -1,44 +1,83 @@
-/* Hide default cursor across the entire app */
-* {
-  cursor: none !important;
-}
+* { cursor: none !important; }
 
-/* Tiny dot exactly on the mouse point */
-.cursor-dot {
+.custom-cursor,
+.custom-cursor * { cursor: none !important; }
+
+.cursor-page,
+.cursor-trail {
   position: fixed;
   top: 0;
   left: 0;
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px; /* Center */
-  background-color: #ffffff;
-  border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
-  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
 }
 
-/* Glowing flashlight effect behind the cursor */
-.cursor-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 300px;
-  margin: -150px 0 0 -150px; /* Center */
-  background: radial-gradient(
-    circle, 
-    rgba(255, 255, 255, 0.15) 0%, 
-    rgba(255, 255, 255, 0.05) 30%, 
-    transparent 70%
-  );
+.cursor-page {
+  width: 22px;
+  height: 28px;
+  border: 1.5px solid #f06b58;
+  border-radius: 3px 5px 5px 3px;
+  background: #f4f5f0;
+  box-shadow: 3px 3px 0 #10151b;
+  transition: width .25s cubic-bezier(.22,1,.36,1), height .25s cubic-bezier(.22,1,.36,1), background .25s, transform .25s;
+}
+
+.cursor-page-fold {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  background: #f06b58;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.cursor-page-line {
+  position: absolute;
+  left: 5px;
+  width: 9px;
+  height: 1px;
+  background: #10151b;
+  opacity: .65;
+}
+
+.line-one { top: 12px; }
+.line-two { top: 16px; width: 6px; }
+
+.cursor-trail {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(240, 107, 88, .38);
   border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  filter: blur(10px);
+  transition: width .25s, height .25s, border-color .25s, background .25s;
 }
 
-/* Keep cursor pointer on links and buttons, but we still hide the native cursor above */
-a, button, input, select, textarea, .seo-btn-primary, .seo-btn-secondary, .seo-btn-outline, .hoverable-card, .seo-logo-item {
-  cursor: none !important;
+.cursor-page b {
+  position: absolute;
+  left: 30px;
+  top: 5px;
+  color: #10151b;
+  font: 500 8px 'DM Mono', monospace;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+.is-hovering .cursor-page {
+  width: 30px;
+  height: 37px;
+  background: #f3c85b;
+  transform: translate(-50%, -50%) rotate(-8deg);
+}
+
+.is-hovering .cursor-trail {
+  width: 72px;
+  height: 72px;
+  border-color: #f06b58;
+  background: rgba(240, 107, 88, .08);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  * { cursor: auto !important; }
+  .custom-cursor { display: none; }
 }
