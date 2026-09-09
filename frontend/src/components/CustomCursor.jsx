@@ -7,51 +7,37 @@ const interactiveSelector = 'a, button, input, select, textarea, [role="button"]
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [hoverLabel, setHoverLabel] = useState('');
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  const trailX = useSpring(cursorX, { damping: 28, stiffness: 260, mass: 0.35 });
-  const trailY = useSpring(cursorY, { damping: 28, stiffness: 260, mass: 0.35 });
+  const [label, setLabel] = useState('');
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
+  const beamX = useSpring(x, { damping: 30, stiffness: 240, mass: 0.28 });
+  const beamY = useSpring(y, { damping: 30, stiffness: 240, mass: 0.28 });
 
   useEffect(() => {
-    const moveCursor = (event) => {
-      cursorX.set(event.clientX);
-      cursorY.set(event.clientY);
+    const move = (event) => {
+      x.set(event.clientX);
+      y.set(event.clientY);
       setIsVisible(true);
-
       const target = event.target.closest?.(interactiveSelector);
-      if (!target) {
-        setIsHovering(false);
-        setHoverLabel('');
-        return;
-      }
-
-      setIsHovering(true);
-      setHoverLabel(target.dataset.cursor || (target.tagName === 'BUTTON' ? 'GO' : 'OPEN'));
+      setIsHovering(Boolean(target));
+      setLabel(target?.dataset.cursor || (target ? 'FOCUS' : ''));
     };
-    const hideCursor = () => setIsVisible(false);
-    const showCursor = () => setIsVisible(true);
-
-    window.addEventListener('mousemove', moveCursor, { passive: true });
-    window.addEventListener('mouseleave', hideCursor);
-    window.addEventListener('mouseenter', showCursor);
+    const hide = () => setIsVisible(false);
+    window.addEventListener('mousemove', move, { passive: true });
+    window.addEventListener('mouseleave', hide);
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      window.removeEventListener('mouseleave', hideCursor);
-      window.removeEventListener('mouseenter', showCursor);
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseleave', hide);
     };
-  }, [cursorX, cursorY]);
+  }, [x, y]);
 
   if (!isVisible) return null;
-
   return (
     <div className={`custom-cursor ${isHovering ? 'is-hovering' : ''}`} aria-hidden="true">
-      <motion.div className="cursor-trail" style={{ x: trailX, y: trailY }} />
-      <motion.div className="cursor-page" style={{ x: cursorX, y: cursorY }}>
-        <span className="cursor-page-fold" />
-        <span className="cursor-page-line line-one" />
-        <span className="cursor-page-line line-two" />
-        {isHovering && <b>{hoverLabel}</b>}
+      <motion.div className="cursor-beam" style={{ x: beamX, y: beamY }}>
+        <span className="beam-core" />
+        <span className="beam-tick" />
+        {isHovering && <b>{label}</b>}
       </motion.div>
     </div>
   );
