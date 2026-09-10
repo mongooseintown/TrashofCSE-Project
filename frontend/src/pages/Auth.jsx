@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, LogIn, KeyRound } from 'lucide-react';
 import { auth, googleProvider } from '../firebase';
-import { signInWithRedirect, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth';
 import { getApiUrl } from '../config';
 import './Auth.css';
 
@@ -12,76 +12,116 @@ const AuthPage = () => {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [isRedirecting, setIsRedirecting] = useState(false);
+  const isProcessingRef = useRef(false);
+
+  const handleBackendAuth = async (firebaseUser) => {
+    if (!firebaseUser || !firebaseUser.email || isProcessingRef.current) return;
+    isProcessingRef.current = true;
+    setLoading(true);
+    setError('');
+
+    try {
+      const userEmail = firebaseUser.email.trim().toLowerCase();
+      const name = firebaseUser.displayName || userEmail.split('@')[0];
+
+      const response = await fetch(getApiUrl('/api/auth/social'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          fullName: name,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Backend authentication failed. Is backend server reachable?');
+      }
+
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify({
+        fullName: data.fullName,
+        email: data.email,
+        semester: data.semester || '',
+        department: data.department || '',
+        isAdmin: data.isAdmin || false,
+      }));
+
+      window.dispatchEvent(new Event('profile-update'));
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      console.error("Auth error:", err);
+      setError(err.message || 'Social authentication error');
+      isProcessingRef.current = false;
+      setLoading(false);
+      setIsRedirecting(false);
+    }
+  };
 
   useEffect(() => {
-    // 1. Check if already logged in via our token
+    // 1. Check if already logged in
     const token = localStorage.getItem('token');
     if (token) {
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
       return;
     }
 
-    // 2. Listen to Firebase auth state
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setLoading(true);
-        try {
-          const userEmail = user.email;
-          const name = user.displayName || userEmail.split('@')[0];
-
-          if (!userEmail) {
-            throw new Error('No email address associated with this social account.');
-          }
-
-          const normalizedEmail = userEmail.trim().toLowerCase();
-
-          // Call backend social route
-          const response = await fetch(getApiUrl('/api/auth/social'), {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email: normalizedEmail,
-              fullName: name
-            }),
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(data.message || 'Backend authentication failed. Is MongoDB running?');
-          }
-
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({ 
-            fullName: data.fullName, 
-            email: data.email, 
-            semester: data.semester || '', 
-            department: data.department || '', 
-            isAdmin: data.isAdmin || false 
-          }));
-          window.dispatchEvent(new Event('profile-update'));
-          navigate('/dashboard');
-        } catch (err) {
-          console.error("Auth error:", err);
-          setError(err.message || 'Social authentication error');
-          setLoading(false);
+    // 2. Check for redirect result if returned from redirect flow
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result && result.user) {
+          handleBackendAuth(result.user);
         }
-      } else {
-        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Redirect auth error:", err);
+        setError(err.message || 'Redirect authentication failed');
+      });
+
+    // 3. Listen to Firebase auth state
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user && !localStorage.getItem('token')) {
+        handleBackendAuth(user);
       }
     });
 
     return () => unsubscribe();
   }, [navigate]);
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setError('');
-    setIsRedirecting(true);
-    setTimeout(() => {
-      signInWithRedirect(auth, googleProvider);
-    }, 600);
+    setLoading(true);
+
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      if (result && result.user) {
+        await handleBackendAuth(result.user);
+      }
+    } catch (err) {
+      console.error("Google sign in error:", err);
+      if (err.code === 'auth/popup-blocked') {
+        setIsRedirecting(true);
+        try {
+          await signInWithRedirect(auth, googleProvider);
+        } catch (redirectErr) {
+          setError(redirectErr.message);
+          setLoading(false);
+          setIsRedirecting(false);
+        }
+        return;
+      }
+      if (err.code === 'auth/popup-closed-by-user') {
+        setError('Sign-in popup was closed.');
+      } else if (err.code === 'auth/unauthorized-domain') {
+        setError('Domain not authorized in Firebase Console (Authentication > Settings > Authorized domains).');
+      } else {
+        setError(err.message || 'Google sign in failed');
+      }
+      setLoading(false);
+    }
   };
 
   return (
