@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import CompilerSegment04 from './pages/CompilerSegment04';
 import CompilerSegment08 from './pages/CompilerSegment08';
 import CompilerHub from './pages/CompilerHub';
@@ -7,7 +7,6 @@ import CompilerSegment07 from './pages/CompilerSegment07';
 import CompilerSegment06 from './pages/CompilerSegment06';
 import TopicPage from './pages/TopicPage';
 import AuthPage from './pages/Auth';
-import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import EEE from './pages/EEE';
 import PVCellNote from './pages/PVCellNote';
@@ -87,7 +86,6 @@ import DynamicSegmentViewer from './pages/DynamicSegmentViewer';
 import CompilerLocked from './pages/CompilerLocked';
 import CommunityFeed from './pages/CommunityFeed';
 import './App.css';
-import CustomCursor from './components/CustomCursor';
 
 import { ReactLenis } from 'lenis/react';
 
@@ -96,18 +94,17 @@ function AppContent() {
   const token = localStorage.getItem('token');
   const storedUser = localStorage.getItem('user');
   const isLoggedIn = !!(token && storedUser);
-  const showSidebar = isLoggedIn && location.pathname !== '/';
+  const showSidebar = isLoggedIn;
 
   return (
     <div className="App">
-      <CustomCursor />
       <Navbar />
 
       <div className={`app-container ${showSidebar ? 'has-sidebar' : ''}`}>
         {showSidebar && <Sidebar />}
         <div className="app-main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
             <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
             <Route path="/feed" element={<PrivateRoute><CommunityFeed /></PrivateRoute>} />

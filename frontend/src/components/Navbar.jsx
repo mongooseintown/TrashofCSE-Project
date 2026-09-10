@@ -54,7 +54,7 @@ const Navbar = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
     window.dispatchEvent(new Event('profile-update'));
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -63,7 +63,7 @@ const Navbar = () => {
         
         {/* Top Row: Brand & Mobile Menu Trigger */}
         <div className="nav-top-row">
-          <div className="nav-logo-group" onClick={() => navigate('/')}>
+          <div className="nav-logo-group" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>
             <div className="nav-logo">
               <img src="/logo.png" alt="Logo" />
             </div>
@@ -79,18 +79,11 @@ const Navbar = () => {
         <div className="nav-menu-content">
           {/* Center Links */}
           <div className="nav-links">
-            {isLoggedIn ? (
+            {isLoggedIn && (
               <>
                 <Link to="/dashboard" className="nav-link">Dashboard</Link>
                 <Link to="/feed" className="nav-link">Feed</Link>
                 <Link to="/profile" className="nav-link">Profile</Link>
-              </>
-            ) : (
-              <>
-                <a href="/#features" className="nav-link">Features</a>
-                <a href="/#achievements" className="nav-link">Benefits</a>
-                <a href="/#pricing" className="nav-link">Pricing</a>
-                <a href="/#faq" className="nav-link">FAQ</a>
               </>
             )}
 
