@@ -4,8 +4,6 @@ import {
   LogOut, 
   Search, 
   BookOpen, 
-  Plus, 
-  Folder, 
   Sparkles, 
   Cpu, 
   Terminal, 
@@ -13,42 +11,167 @@ import {
   LayoutGrid, 
   ArrowRight, 
   User, 
-  ExternalLink,
-  Layers,
-  FileText,
-  MessageSquare
+  Layers, 
+  FileText, 
+  MessageSquare,
+  BookmarkCheck,
+  Compass
 } from 'lucide-react';
 import './Dashboard.css';
-import { getApiUrl } from '../config';
-import DynamicNoteCard from '../components/DynamicNoteCard';
+
+const CURATED_TOPICS = [
+  // Computer Architecture
+  {
+    id: 'ca-single-multi',
+    title: 'Single-Cycle vs Multi-Cycle Datapath',
+    course: 'ca',
+    courseName: 'CSE-3523 (CA)',
+    segment: '05',
+    category: 'Architecture',
+    path: '/computer-architecture/single-vs-multi-cycle',
+    desc: 'Core comparison of clock cycles, CPI, execution equations and hardware differences'
+  },
+  {
+    id: 'ca-pq-solve',
+    title: 'Previous Question Solve (Mahir & Shafiul)',
+    course: 'ca',
+    courseName: 'CSE-3523 (CA)',
+    segment: '06',
+    category: 'Exam Solve',
+    path: '/computer-architecture/segment-06/previous-question-solve',
+    desc: 'Complete detailed step-by-step solutions for segment 06 exam questions'
+  },
+  {
+    id: 'ca-cache-mapping',
+    title: 'Cache Memory & Cache Mapping Techniques',
+    course: 'ca',
+    courseName: 'CSE-3523 (CA)',
+    segment: '07',
+    category: 'Memory Hierarchy',
+    path: '/computer-architecture/segment-07/cache-mapping',
+    desc: 'Direct, Associative, and Set-Associative mapping calculations & tag formats'
+  },
+  {
+    id: 'ca-tlb-pagefault',
+    title: 'TLB & Page Fault Handling Mechanisms',
+    course: 'ca',
+    courseName: 'CSE-3523 (CA)',
+    segment: '07',
+    category: 'Virtual Memory',
+    path: '/computer-architecture/segment-07/tlb',
+    desc: 'Translation Lookaside Buffer flow, page tables, and page fault resolution'
+  },
+  {
+    id: 'ca-dma-handshake',
+    title: 'DMA & Handshaking Protocol',
+    course: 'ca',
+    courseName: 'CSE-3523 (CA)',
+    segment: '08',
+    category: 'I/O Interface',
+    path: '/computer-architecture/segment-08/dma',
+    desc: 'Direct Memory Access cycles, bus arbitration, and asynchronous handshaking'
+  },
+  // Compiler Design
+  {
+    id: 'compiler-seg04',
+    title: 'Lexical Analysis & Symbol Tables',
+    course: 'compiler',
+    courseName: 'CSE-3527 (Compiler)',
+    segment: '04',
+    category: 'Front-End',
+    path: '/compiler/segment-04',
+    desc: 'Tokenization, regular expressions, transition diagrams and symbol tables'
+  },
+  {
+    id: 'compiler-seg06',
+    title: 'Syntax Analysis & Top-Down Parsing',
+    course: 'compiler',
+    courseName: 'CSE-3527 (Compiler)',
+    segment: '06',
+    category: 'Parsing',
+    path: '/compiler/segment-06',
+    desc: 'LL(1) parsing tables, FIRST and FOLLOW set computations'
+  },
+  {
+    id: 'compiler-seg07',
+    title: 'Bottom-Up Parsing & LR Parsers',
+    course: 'compiler',
+    courseName: 'CSE-3527 (Compiler)',
+    segment: '07',
+    category: 'Parsing',
+    path: '/compiler/segment-07',
+    desc: 'Shift-reduce parsing, LR(0), SLR(1), and LALR parser construction'
+  },
+  {
+    id: 'compiler-seg08',
+    title: 'Code Generation & Optimization',
+    course: 'compiler',
+    courseName: 'CSE-3527 (Compiler)',
+    segment: '08',
+    category: 'Back-End',
+    path: '/compiler/segment-08',
+    desc: 'Three-address code, intermediate representations, and register allocation'
+  },
+  // EEE & Instrumentation
+  {
+    id: 'eee-dfm-pq',
+    title: 'Digital Frequency Meter (DFM) Exam Solve',
+    course: 'eee',
+    courseName: 'EEE-2421',
+    segment: '08',
+    category: 'Exam Solve',
+    path: '/eee/dfm-pq',
+    desc: 'Previous exam questions, time base circuitry, and counter mechanics'
+  },
+  {
+    id: 'eee-strain-gauge',
+    title: 'Strain Gauge & Wheatstone Bridge Circuits',
+    course: 'eee',
+    courseName: 'EEE-2421',
+    segment: '05',
+    category: 'Transducers',
+    path: '/eee/strain-gauge',
+    desc: 'Gauge factor calculations, quarter/half/full bridge circuit analysis'
+  },
+  {
+    id: 'eee-thermocouple-math',
+    title: 'Thermocouple & RTD Mathematical Solves',
+    course: 'eee',
+    courseName: 'EEE-2421',
+    segment: '06',
+    category: 'Math & Circuit',
+    path: '/eee/thermocouple-math',
+    desc: 'Seebeck effect equations, temperature coefficient of resistance & formulas'
+  },
+  {
+    id: 'eee-pv-cell',
+    title: 'Photovoltaic (PV) Cells & Opto-Electronics',
+    course: 'eee',
+    courseName: 'EEE-2421',
+    segment: '07',
+    category: 'Opto-Electronics',
+    path: '/eee/pv-cell',
+    desc: 'Solar cell I-V characteristics, fill factor calculations, and efficiencies'
+  },
+  // SAD
+  {
+    id: 'sad-seg08',
+    title: 'System Analysis & Design Methodologies',
+    course: 'sad',
+    courseName: 'CSE-3611 (SAD)',
+    segment: '08',
+    category: 'Systems',
+    path: '/system-analysis-design/segment-08',
+    desc: 'Data Flow Diagrams (DFD), system requirements, and architectural modeling'
+  }
+];
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  
-  // Dynamic uploads state
-  const [uploads, setUploads] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [courseFilter, setCourseFilter] = useState('all');
   const [segmentFilter, setSegmentFilter] = useState('all');
-
-  const fetchApprovedUploads = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const res = await fetch(getApiUrl('/api/materials?status=approved'), {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setUploads(data);
-      }
-    } catch (err) {
-      console.error('Error fetching approved materials on dashboard:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -57,38 +180,29 @@ const Dashboard = () => {
     if (!token || !storedUser) {
       navigate('/login');
     } else {
-      setUser(JSON.parse(storedUser));
-      fetchApprovedUploads();
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        setUser(null);
+      }
     }
   }, [navigate]);
 
-  const handleLogout = async () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        await fetch(getApiUrl('/api/auth/logout'), {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-      } catch (err) {
-        console.error('Logout request failed:', err);
-      }
-    }
+  const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     window.dispatchEvent(new Event('profile-update'));
     navigate('/login');
   };
 
-  // Filter uploads client-side
-  const filteredUploads = uploads.filter((u) => {
-    const matchesSearch = u.title.toLowerCase().includes(search.toLowerCase()) || 
-      (u.description && u.description.toLowerCase().includes(search.toLowerCase()));
-    const matchesCourse = courseFilter === 'all' || u.course === courseFilter;
-    const matchesSegment = segmentFilter === 'all' || u.segment === segmentFilter;
+  // Filter curated topics in real-time
+  const filteredTopics = CURATED_TOPICS.filter((t) => {
+    const matchesSearch = 
+      t.title.toLowerCase().includes(search.toLowerCase()) || 
+      t.desc.toLowerCase().includes(search.toLowerCase()) ||
+      t.category.toLowerCase().includes(search.toLowerCase());
+    const matchesCourse = courseFilter === 'all' || t.course === courseFilter;
+    const matchesSegment = segmentFilter === 'all' || t.segment === segmentFilter;
     return matchesSearch && matchesCourse && matchesSegment;
   });
 
@@ -156,7 +270,7 @@ const Dashboard = () => {
             Welcome back, <span className="dash-hero-name">{user ? user.fullName.split(' ')[0] : 'Student'}</span>
           </h1>
           <p className="dash-hero-subtitle">
-            Curated notes, exam solutions, and peer resources for your semester.
+            Curated engineering notes, solved exam questions, and syllabus guides.
           </p>
         </div>
 
@@ -248,8 +362,8 @@ const Dashboard = () => {
 
             <div className="dash-profile-stats">
               <div className="dash-stat-box">
-                <span className="dash-stat-num">{uploads.length}</span>
-                <span className="dash-stat-label">Materials</span>
+                <span className="dash-stat-num">{CURATED_TOPICS.length}</span>
+                <span className="dash-stat-label">Topics</span>
               </div>
               <div className="dash-stat-box">
                 <span className="dash-stat-num">4</span>
@@ -309,7 +423,7 @@ const Dashboard = () => {
 
         </aside>
 
-        {/* RIGHT COLUMN: Shared Resources Hub */}
+        {/* RIGHT COLUMN: Curated Topic Directory (100% Coded Notes) */}
         <main className="dash-right-col">
           <div className="dash-hub-card">
             
@@ -317,10 +431,10 @@ const Dashboard = () => {
             <div className="dash-hub-header">
               <div>
                 <h3 className="dash-hub-title">
-                  <BookOpen size={20} className="dash-hub-icon" /> Shared Resources Hub
+                  <Compass size={20} className="dash-hub-icon" /> Syllabus & Topic Directory
                 </h3>
                 <p className="dash-hub-subtitle">
-                  Class notes, slides, and exam preparation guides curated for CSE.
+                  Browse and instantly open lecture notes, solved past papers, and diagrams.
                 </p>
               </div>
             </div>
@@ -335,7 +449,7 @@ const Dashboard = () => {
                   type="text" 
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search resources by title or keyword..."
+                  placeholder="Search by topic title, concept or exam solve..."
                   className="dash-search-input"
                 />
               </div>
@@ -346,15 +460,15 @@ const Dashboard = () => {
                   <BookOpen size={14} />
                   <select value={courseFilter} onChange={(e) => setCourseFilter(e.target.value)}>
                     <option value="all">All Courses</option>
-                    <option value="eee">EEE-2421</option>
-                    <option value="ca">CSE-3523 (CA)</option>
                     <option value="compiler">CSE-3527 (Compiler)</option>
+                    <option value="ca">CSE-3523 (CA)</option>
+                    <option value="eee">EEE-2421</option>
                     <option value="sad">CSE-3611 (SAD)</option>
                   </select>
                 </div>
 
                 <div className="dash-select-wrap">
-                  <Folder size={14} />
+                  <BookmarkCheck size={14} />
                   <select value={segmentFilter} onChange={(e) => setSegmentFilter(e.target.value)}>
                     <option value="all">All Segments</option>
                     <option value="04">Segment 04</option>
@@ -368,28 +482,38 @@ const Dashboard = () => {
 
             </div>
 
-            {/* Resources Content List */}
-            {loading ? (
-              <div className="dash-hub-loading">
-                <div className="dash-spinner"></div>
-                <p>Loading shared materials...</p>
-              </div>
-            ) : filteredUploads.length === 0 ? (
+            {/* Topic Directory List */}
+            {filteredTopics.length === 0 ? (
               <div className="dash-hub-empty">
                 <div className="dash-empty-sparkle">
                   <Sparkles size={28} />
                 </div>
-                <h4>No materials found</h4>
-                <p>Try adjusting your search query or filters to discover resources.</p>
+                <h4>No topics found</h4>
+                <p>Try searching for a different keyword like "MIPS", "TLB", "Parsing", or "RTD".</p>
               </div>
             ) : (
               <div className="dash-hub-grid">
-                {filteredUploads.map((upload) => (
-                  <DynamicNoteCard
-                    key={upload._id}
-                    upload={upload}
-                    onClick={() => navigate(`/materials/view/${upload._id}`)}
-                  />
+                {filteredTopics.map((topic) => (
+                  <div
+                    key={topic.id}
+                    className="dash-topic-card"
+                    onClick={() => navigate(topic.path)}
+                  >
+                    <div className="dash-topic-top">
+                      <span className="dash-topic-tag">{topic.category}</span>
+                      <span className="dash-topic-seg">Seg {topic.segment}</span>
+                    </div>
+
+                    <h4 className="dash-topic-title">{topic.title}</h4>
+                    <p className="dash-topic-desc">{topic.desc}</p>
+
+                    <div className="dash-topic-footer">
+                      <span className="dash-topic-course">{topic.courseName}</span>
+                      <span className="dash-topic-link">
+                        Read Note <ArrowRight size={13} />
+                      </span>
+                    </div>
+                  </div>
                 ))}
               </div>
             )}

@@ -137,29 +137,6 @@ const Sidebar = () => {
             )}
           </div>
 
-          {/* Moderator Panel link */}
-          {isModerator && (
-            <div 
-              className={`sidebar-item ${isActive('/moderator-panel') ? 'active' : ''}`}
-              onClick={() => navigate('/moderator-panel')}
-              style={{
-                background: 'linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(225, 29, 72, 0.08) 100%)',
-                border: '1px solid rgba(244, 63, 94, 0.15)',
-                margin: '0.2rem 0.5rem 0.5rem 0.5rem',
-                borderRadius: '8px'
-              }}
-            >
-              <div className="sidebar-icon icon-pink" style={{ color: '#f43f5e' }}>
-                <Shield size={18} />
-              </div>
-              {!isCollapsed && (
-                <span className="sidebar-label" style={{ color: '#f43f5e', fontWeight: 700 }}>
-                  Moderator Panel
-                </span>
-              )}
-            </div>
-          )}
-
           <div className="sidebar-divider"></div>
 
           {!semester ? (

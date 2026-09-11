@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Bell, X, Check, CheckCheck, Upload, Megaphone, Settings, Info, Trash2 } from 'lucide-react';
+import { Bell, X, Check, CheckCheck, BookOpen, Megaphone, Settings, Info, Trash2 } from 'lucide-react';
 import { getApiUrl } from '../config';
 import './NotificationPanel.css';
 
 const typeIcons = {
-  upload: <Upload size={18} />,
+  material: <BookOpen size={18} />,
   update: <Settings size={18} />,
   announcement: <Megaphone size={18} />,
   system: <Info size={18} />,
 };
 
 const typeColors = {
-  upload: '#3b82f6',
+  material: '#3b82f6',
   update: '#f59e0b',
   announcement: '#8b5cf6',
   system: '#6b7280',
