@@ -30,47 +30,88 @@ import {
   X,
   Terminal,
   Cpu,
-  Database
+  Database,
+  Check,
+  RotateCcw
 } from 'lucide-react';
 import './Dashboard.css';
 
-/* ──────────── CSE STUDY GOALS ──────────── */
-const DEFAULT_CSE_GOALS = [
-  { id: 'g1', text: 'Master Binary Search Trees & Graph BFS/DFS traversal', done: true, tag: 'Algorithms' },
-  { id: 'g2', text: 'Solve past 3 years Midterm Exam question papers', done: true, tag: 'Exam Solves' },
+/* ──────────── CURATED CSE COURSES WITH REAL TOPICS ──────────── */
+const CSE_COURSE_CATALOG = [
+  {
+    id: 'cse211',
+    code: 'CSE-211',
+    title: 'Data Structures & Algorithms',
+    semester: '3rd',
+    topics: [
+      { id: 'cse211_t1', name: 'Asymptotic Complexity & Big-O' },
+      { id: 'cse211_t2', name: 'Singly & Doubly Linked Lists' },
+      { id: 'cse211_t3', name: 'Stack & Queue Applications' },
+      { id: 'cse211_t4', name: 'Binary Search Trees & AVL Rotations' },
+      { id: 'cse211_t5', name: 'Graph Traversals (BFS & DFS)' },
+      { id: 'cse211_t6', name: 'Dijkstra Shortest Path & Prim MST' },
+      { id: 'cse211_t7', name: 'Dynamic Programming (Knapsack & LCS)' },
+      { id: 'cse211_t8', name: 'Heap Sort & Priority Queues' },
+    ]
+  },
+  {
+    id: 'cse311',
+    code: 'CSE-311',
+    title: 'Database Management Systems',
+    semester: '5th',
+    topics: [
+      { id: 'cse311_t1', name: 'Relational Model & ER Modeling' },
+      { id: 'cse311_t2', name: 'Relational Algebra & Tuple Calculus' },
+      { id: 'cse311_t3', name: 'Advanced SQL Queries & Joins' },
+      { id: 'cse311_t4', name: 'Functional Dependencies & Normalization (3NF/BCNF)' },
+      { id: 'cse311_t5', name: 'Transaction Management & ACID' },
+      { id: 'cse311_t6', name: 'Concurrency Control & 2PL' },
+    ]
+  },
+  {
+    id: 'cse313',
+    code: 'CSE-313',
+    title: 'Operating Systems & Architecture',
+    semester: '5th',
+    topics: [
+      { id: 'cse313_t1', name: 'Process Lifecycle & PCB Context Switch' },
+      { id: 'cse313_t2', name: 'Inter-Process Communication & POSIX Threads' },
+      { id: 'cse313_t3', name: 'CPU Scheduling Algorithms' },
+      { id: 'cse313_t4', name: 'Process Synchronization & Semaphores' },
+      { id: 'cse313_t5', name: 'Deadlock Detection & Banker\'s Algorithm' },
+      { id: 'cse313_t6', name: 'Virtual Memory & Page Replacement (LRU/FIFO)' },
+    ]
+  },
+  {
+    id: 'cse223',
+    code: 'CSE-223',
+    title: 'Object Oriented Programming (Java/C++)',
+    semester: '4th',
+    topics: [
+      { id: 'cse223_t1', name: 'Classes, Objects & Encapsulation' },
+      { id: 'cse223_t2', name: 'Inheritance & Abstract Classes' },
+      { id: 'cse223_t3', name: 'Polymorphism & Interface Contracts' },
+      { id: 'cse223_t4', name: 'Exception Handling & Custom Exceptions' },
+      { id: 'cse223_t5', name: 'Java Collections Framework' },
+      { id: 'cse223_t6', name: 'Multithreading & Concurrency' },
+    ]
+  }
+];
+
+/* ──────────── INITIAL ACADEMIC GOALS ──────────── */
+const INITIAL_GOALS = [
+  { id: 'g1', text: 'Master Binary Search Trees & Graph BFS/DFS traversal', done: false, tag: 'Algorithms' },
+  { id: 'g2', text: 'Solve past 3 years Midterm Exam question papers', done: false, tag: 'Exam Solves' },
   { id: 'g3', text: 'Complete DBMS SQL Joins, Triggers & Normalization (3NF/BCNF)', done: false, tag: 'Database' },
   { id: 'g4', text: 'Revise Operating Systems CPU Scheduling & Banker\'s Algorithm', done: false, tag: 'OS' },
   { id: 'g5', text: 'Build OOP Java/C++ Design Patterns & Socket Programming demo', done: false, tag: 'OOP' },
 ];
 
-/* ──────────── WEEKLY CSE STUDY & LAB HOURS ──────────── */
-const WEEK_DATA = {
-  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-  coding: [3.5, 4.0, 2.5, 5.0, 4.5, 6.0, 4.0], // Coding / Lab hours
-  theory: [2.0, 3.0, 3.5, 2.5, 4.0, 3.5, 2.5], // Theory revision hours
-};
-
-/* ──────────── GITHUB-STYLE REVISION HEATMAP MATRIX (Last 28 Days) ──────────── */
-const GENERATE_HEATMAP = () => {
-  const levels = [0, 1, 2, 3, 4, 1, 3, 2, 4, 3, 4, 2, 1, 4, 3, 2, 4, 4, 3, 2, 4, 1, 2, 3, 4, 3, 4, 4];
-  const today = new Date();
-  return levels.map((level, i) => {
-    const d = new Date(today);
-    d.setDate(d.getDate() - (27 - i));
-    const count = level === 0 ? 0 : level * 2 + 1;
-    return {
-      day: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      level,
-      count,
-    };
-  });
-};
-
-/* ──────────── CSE ACADEMIC TASKS IN PROCESS ──────────── */
-const DEFAULT_TASKS = [
-  { id: 't1', title: 'CSE-211: Implement AVL Tree Rotations & Heap Sort', date: 'Due Tomorrow', iconType: 'code', dept: 'Lab Code' },
-  { id: 't2', title: 'CSE-311: Normalize Library DB Schema to BCNF', date: 'Due Friday', iconType: 'database', dept: 'Theory' },
-  { id: 't3', title: 'CSE-313: Simulate Multi-level Feedback Queue Scheduling', date: 'Oct 15', iconType: 'cpu', dept: 'System' },
+/* ──────────── INITIAL TASKS ──────────── */
+const INITIAL_TASKS = [
+  { id: 't1', title: 'CSE-211: Implement AVL Tree Rotations & Heap Sort', date: 'Upcoming', iconType: 'code', dept: 'Lab Code' },
+  { id: 't2', title: 'CSE-311: Normalize Library DB Schema to BCNF', date: 'Upcoming', iconType: 'database', dept: 'Theory' },
+  { id: 't3', title: 'CSE-313: Simulate Multi-level Feedback Queue Scheduling', date: 'Upcoming', iconType: 'cpu', dept: 'System' },
 ];
 
 const renderTaskIcon = (type) => {
@@ -89,72 +130,42 @@ const renderTaskIcon = (type) => {
   }
 };
 
-/* ──────────── CORE CSE COURSES & SYLLABUS HUB ──────────── */
-const CSE_COURSES = [
-  {
-    id: 'c1',
-    code: 'CSE-211',
-    title: 'Data Structures & Algorithms',
-    semester: '3rd',
-    status: 'In progress',
-    progress: 78,
-    desc: 'Covered: Asymptotic Analysis, Linked Lists, Trees, Graphs, Dijkstra, Dynamic Programming, Heap.',
-    topicsCount: '24 Topics',
-    solves: '18 Lab Solves • 4 Mid Solves'
-  },
-  {
-    id: 'c2',
-    code: 'CSE-311',
-    title: 'Database Management Systems',
-    semester: '5th',
-    status: 'In progress',
-    progress: 65,
-    desc: 'Covered: Relational Algebra, SQL DDL/DML, 1NF/2NF/3NF/BCNF, Concurrency, ACID Properties.',
-    topicsCount: '19 Topics',
-    solves: '14 Lab Solves • 3 Final Solves'
-  },
-  {
-    id: 'c3',
-    code: 'CSE-313',
-    title: 'Operating Systems & Architecture',
-    semester: '5th',
-    status: 'In progress',
-    progress: 52,
-    desc: 'Covered: Process Lifecycle, IPC, POSIX Threads, Deadlock Avoidance, Page Replacement Algorithms.',
-    topicsCount: '16 Topics',
-    solves: '10 Lab Solves • 2 Mid Solves'
-  },
-  {
-    id: 'c4',
-    code: 'CSE-223',
-    title: 'Object Oriented Programming (Java/C++)',
-    semester: '4th',
-    status: 'Completed',
-    progress: 100,
-    desc: 'Covered: Encapsulation, Polymorphism, Abstract Classes, Generics, Collections Framework, GUI.',
-    topicsCount: '22 Topics',
-    solves: '28 Lab Solves • 6 Exam Solves'
-  },
-];
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+
+  // Student's real tracked topics: Map of topicId => boolean
+  const [completedTopics, setCompletedTopics] = useState(() => {
+    const saved = localStorage.getItem('student_completed_topics');
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  // Student's real target goals
   const [goals, setGoals] = useState(() => {
-    const saved = localStorage.getItem('cse_goals');
-    return saved ? JSON.parse(saved) : DEFAULT_CSE_GOALS;
+    const saved = localStorage.getItem('student_study_goals');
+    return saved ? JSON.parse(saved) : INITIAL_GOALS;
   });
+
+  // Student's real tasks
   const [tasks, setTasks] = useState(() => {
-    const saved = localStorage.getItem('cse_tasks');
-    return saved ? JSON.parse(saved) : DEFAULT_TASKS;
+    const saved = localStorage.getItem('student_academic_tasks');
+    return saved ? JSON.parse(saved) : INITIAL_TASKS;
   });
+
+  // Student's real study activity log: Map of dateStr "YYYY-MM-DD" => study sessions count
+  const [activityLog, setActivityLog] = useState(() => {
+    const saved = localStorage.getItem('student_activity_log');
+    if (saved) return JSON.parse(saved);
+    // Initial activity log: mark today as 1 active session if they just logged in
+    const todayStr = new Date().toISOString().split('T')[0];
+    return { [todayStr]: 1 };
+  });
+
   const [selectedSemester, setSelectedSemester] = useState('All');
   const [showAddTask, setShowAddTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
-  const [activeTab, setActiveTab] = useState('heatmap'); // 'heatmap' or 'chart'
-
-  const canvasRef = useRef(null);
-  const heatmapData = useMemo(() => GENERATE_HEATMAP(), []);
+  const [activeTab, setActiveTab] = useState('heatmap'); // 'heatmap' or 'checklist'
+  const [expandedCourse, setExpandedCourse] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -170,80 +181,53 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
+  // Persist student's real progress
   useEffect(() => {
-    localStorage.setItem('cse_goals', JSON.stringify(goals));
+    localStorage.setItem('student_completed_topics', JSON.stringify(completedTopics));
+  }, [completedTopics]);
+
+  useEffect(() => {
+    localStorage.setItem('student_study_goals', JSON.stringify(goals));
   }, [goals]);
 
   useEffect(() => {
-    localStorage.setItem('cse_tasks', JSON.stringify(tasks));
+    localStorage.setItem('student_academic_tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  // Draw weekly chart when chart tab active
   useEffect(() => {
-    if (activeTab !== 'chart') return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const W = canvas.width;
-    const H = canvas.height;
-    ctx.clearRect(0, 0, W, H);
+    localStorage.setItem('student_activity_log', JSON.stringify(activityLog));
+  }, [activityLog]);
 
-    const maxVal = 7;
-    const padL = 15, padR = 15, padT = 20, padB = 25;
-    const chartW = W - padL - padR;
-    const chartH = H - padT - padB;
-    const stepX = chartW / (WEEK_DATA.labels.length - 1);
+  // Record an actual study action for today
+  const recordStudyAction = () => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    setActivityLog(prev => ({
+      ...prev,
+      [todayStr]: (prev[todayStr] || 0) + 1
+    }));
+  };
 
-    const drawLine = (data, color, fill) => {
-      ctx.beginPath();
-      data.forEach((val, i) => {
-        const x = padL + i * stepX;
-        const y = padT + chartH - (val / maxVal) * chartH;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 2.5;
-      ctx.lineJoin = 'round';
-      ctx.lineCap = 'round';
-      ctx.stroke();
-
-      if (fill) {
-        ctx.lineTo(padL + (data.length - 1) * stepX, padT + chartH);
-        ctx.lineTo(padL, padT + chartH);
-        ctx.closePath();
-        const grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-        grad.addColorStop(0, fill);
-        grad.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.fillStyle = grad;
-        ctx.fill();
+  // Toggle a topic studied by the student
+  const toggleTopic = (topicId) => {
+    setCompletedTopics(prev => {
+      const isNowCompleted = !prev[topicId];
+      if (isNowCompleted) {
+        recordStudyAction();
       }
+      return { ...prev, [topicId]: isNowCompleted };
+    });
+  };
 
-      // Peak point
-      const peakIdx = data.indexOf(Math.max(...data));
-      const px = padL + peakIdx * stepX;
-      const py = padT + chartH - (data[peakIdx] / maxVal) * chartH;
-      ctx.beginPath();
-      ctx.arc(px, py, 4, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(px, py, 2, 0, Math.PI * 2);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
-
-      ctx.font = '600 10px Inter, sans-serif';
-      ctx.fillStyle = color;
-      ctx.textAlign = 'center';
-      ctx.fillText(`${data[peakIdx]}h`, px, py - 8);
-    };
-
-    drawLine(WEEK_DATA.coding, '#111111', 'rgba(17,17,17,0.06)');
-    drawLine(WEEK_DATA.theory, '#9ca3af', 'rgba(156,163,175,0.04)');
-  }, [activeTab]);
-
+  // Toggle a target goal
   const toggleGoal = (id) => {
-    setGoals(prev => prev.map(g => g.id === id ? { ...g, done: !g.done } : g));
+    setGoals(prev => prev.map(g => {
+      if (g.id === id) {
+        const isNowDone = !g.done;
+        if (isNowDone) recordStudyAction();
+        return { ...g, done: isNowDone };
+      }
+      return g;
+    }));
   };
 
   const handleAddTask = (e) => {
@@ -259,6 +243,7 @@ const Dashboard = () => {
     setTasks([newTask, ...tasks]);
     setNewTaskTitle('');
     setShowAddTask(false);
+    recordStudyAction();
   };
 
   const removeTask = (id, e) => {
@@ -266,12 +251,73 @@ const Dashboard = () => {
     setTasks(tasks.filter(t => t.id !== id));
   };
 
-  const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
-  const filteredCourses = selectedSemester === 'All' 
-    ? CSE_COURSES 
-    : CSE_COURSES.filter(c => c.semester === selectedSemester);
+  // Compute real dynamic statistics
+  const totalCatalogTopics = useMemo(() => {
+    return CSE_COURSE_CATALOG.reduce((acc, c) => acc + c.topics.length, 0);
+  }, []);
 
+  const masteredTopicsCount = useMemo(() => {
+    return Object.values(completedTopics).filter(Boolean).length;
+  }, [completedTopics]);
+
+  const realCoveragePercentage = totalCatalogTopics > 0 
+    ? Math.round((masteredTopicsCount / totalCatalogTopics) * 100) 
+    : 0;
+
+  // Real ring stroke offset: 251.3 is circumference (2 * pi * 40)
+  const ringOffset = 251.3 - (251.3 * realCoveragePercentage) / 100;
+
+  // Build real 28-day GitHub heatmap from student's activity log
+  const heatmapData = useMemo(() => {
+    const today = new Date();
+    const result = [];
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      const count = activityLog[dateStr] || 0;
+      let level = 0;
+      if (count >= 4) level = 4;
+      else if (count === 3) level = 3;
+      else if (count === 2) level = 2;
+      else if (count === 1) level = 1;
+
+      result.push({
+        day: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+        dateStr,
+        level,
+        count
+      });
+    }
+    return result;
+  }, [activityLog]);
+
+  // Compute real study streak
+  const currentStreak = useMemo(() => {
+    let streak = 0;
+    const today = new Date();
+    for (let i = 0; i < 60; i++) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      if (activityLog[dateStr] && activityLog[dateStr] > 0) {
+        streak++;
+      } else if (i === 0) {
+        // If today hasn't been logged yet, check yesterday
+        continue;
+      } else {
+        break;
+      }
+    }
+    return streak;
+  }, [activityLog]);
+
+  const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
   const completedGoalsCount = goals.filter(g => g.done).length;
+
+  const filteredCourses = selectedSemester === 'All' 
+    ? CSE_COURSE_CATALOG 
+    : CSE_COURSE_CATALOG.filter(c => c.semester === selectedSemester);
 
   return (
     <div className="idraft-root">
@@ -282,7 +328,7 @@ const Dashboard = () => {
           <h1 className="idraft-greeting">Hi, {studentName}!</h1>
           <div className="idraft-sub-badge">
             <GraduationCap size={14} />
-            <span>Trash of CSE • {user?.department || 'CSE'} Dept ({user?.semester ? `${user.semester} Sem` : 'Academic Track'})</span>
+            <span>Trash of CSE • {user?.department || 'CSE'} Dept ({user?.semester ? `${user.semester} Sem` : 'Active Track'})</span>
           </div>
         </div>
 
@@ -299,160 +345,152 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* ═══════ ROW 1: THREE ACADEMIC STAT CARDS ═══════ */}
+      {/* ═══════ ROW 1: THREE REAL ACADEMIC STAT CARDS ═══════ */}
       <div className="idraft-row-3">
 
-        {/* Card 1: CSE Overall Academic Progress */}
+        {/* Card 1: CSE Overall Academic Progress (Attained through student check-offs) */}
         <div className="idraft-card overall-card">
           <div className="idraft-card-header">
-            <h3>CSE Academic Progress</h3>
+            <h3>Student Academic Attainment</h3>
             <div className="idraft-card-actions">
-              <span className="live-pulse-dot" title="Real-time Tracking"></span>
+              <span className="live-pulse-dot" title="Live Student Progress"></span>
             </div>
           </div>
 
           <div className="overall-big-stats">
             <div className="overall-big-num">
-              <span className="big-number">48</span>
-              <span className="big-label">Topics Mastered<br/>Across Syllabus</span>
+              <span className="big-number">{masteredTopicsCount}</span>
+              <span className="big-label">Topics Mastered<br/>By Studying</span>
             </div>
             <div className="overall-big-num">
-              <span className="big-number accent">2</span>
-              <span className="big-label">Pending Lab<br/>Solves</span>
+              <span className="big-number accent">{tasks.length}</span>
+              <span className="big-label">Active Academic<br/>Deadlines</span>
             </div>
           </div>
 
           <div className="overall-mini-stats">
-            <div className="mini-stat-box" title="Core Engineering Courses">
+            <div className="mini-stat-box" title="Enrolled Core Courses">
               <BookOpen size={16} />
-              <span className="mini-num">8</span>
+              <span className="mini-num">{CSE_COURSE_CATALOG.length}</span>
               <span className="mini-label">Core Courses</span>
             </div>
-            <div className="mini-stat-box" title="Lab Code Submissions">
-              <Code2 size={16} />
-              <span className="mini-num">24</span>
-              <span className="mini-label">Lab Solves</span>
-            </div>
-            <div className="mini-stat-box" title="Midterm & Final Exam Solves">
+            <div className="mini-stat-box" title="Goals Attained">
               <CheckCircle2 size={16} />
-              <span className="mini-num">12</span>
-              <span className="mini-label">Exam Solves</span>
+              <span className="mini-num">{completedGoalsCount}</span>
+              <span className="mini-label">Goals Done</span>
+            </div>
+            <div className="mini-stat-box" title="Total Topics In Curriculum">
+              <Code2 size={16} />
+              <span className="mini-num">{totalCatalogTopics}</span>
+              <span className="mini-label">Total Topics</span>
             </div>
           </div>
         </div>
 
-        {/* Card 2: Revision Activity & GitHub Heatmap */}
+        {/* Card 2: Real Study Activity & GitHub Heatmap */}
         <div className="idraft-card weekly-card">
           <div className="idraft-card-header">
-            <h3>Revision Activity</h3>
-            <div className="view-switch-btns">
-              <button 
-                className={`switch-btn ${activeTab === 'heatmap' ? 'active' : ''}`}
-                onClick={() => setActiveTab('heatmap')}
-                title="GitHub-style Activity Matrix"
-              >
-                Streak
-              </button>
-              <button 
-                className={`switch-btn ${activeTab === 'chart' ? 'active' : ''}`}
-                onClick={() => setActiveTab('chart')}
-                title="Weekly Study Hours"
-              >
-                Hours
-              </button>
-            </div>
+            <h3>Revision Activity Matrix</h3>
+            <button 
+              className="quick-log-btn"
+              onClick={recordStudyAction}
+              title="Click to record that you studied right now"
+            >
+              <Check size={13} /> Log Session
+            </button>
           </div>
 
-          {activeTab === 'heatmap' ? (
-            <div className="heatmap-container">
-              <div className="heatmap-subhead">
-                <span className="streak-badge"><Flame size={13} color="#f97316" /> 14 Day Study Streak</span>
-                <span className="heatmap-note">GitHub Style Revision Matrix</span>
-              </div>
-              <div className="github-heatmap-grid">
-                {heatmapData.map((slot, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`heatmap-box level-${slot.level}`}
-                    title={`${slot.day}: ${slot.count} revision sessions & code commits`}
-                  />
-                ))}
-              </div>
-              <div className="heatmap-footer">
-                <span>Less</span>
-                <div className="heatmap-legend-boxes">
-                  <span className="heatmap-box level-0"></span>
-                  <span className="heatmap-box level-1"></span>
-                  <span className="heatmap-box level-2"></span>
-                  <span className="heatmap-box level-3"></span>
-                  <span className="heatmap-box level-4"></span>
-                </div>
-                <span>More Activity</span>
-              </div>
+          <div className="heatmap-container">
+            <div className="heatmap-subhead">
+              <span className="streak-badge">
+                <Flame size={13} color="#f97316" /> {currentStreak} Day Study Streak
+              </span>
+              <span className="heatmap-note">GitHub Style Activity Matrix</span>
             </div>
-          ) : (
-            <>
-              <div className="weekly-legend">
-                <span className="legend-dot dark"></span> <span>Lab / Code</span>
-                <span className="legend-dot light"></span> <span>Theory Revision</span>
+            
+            <div className="github-heatmap-grid">
+              {heatmapData.map((slot, idx) => (
+                <div 
+                  key={idx} 
+                  className={`heatmap-box level-${slot.level}`}
+                  title={`${slot.day}: ${slot.count} study & revision sessions completed`}
+                />
+              ))}
+            </div>
+
+            <div className="heatmap-footer">
+              <span>Less</span>
+              <div className="heatmap-legend-boxes">
+                <span className="heatmap-box level-0"></span>
+                <span className="heatmap-box level-1"></span>
+                <span className="heatmap-box level-2"></span>
+                <span className="heatmap-box level-3"></span>
+                <span className="heatmap-box level-4"></span>
               </div>
-              <div className="weekly-chart-container">
-                <canvas ref={canvasRef} width={320} height={130} className="weekly-canvas"></canvas>
-              </div>
-              <div className="weekly-days-row">
-                {WEEK_DATA.labels.map((d, i) => (
-                  <span key={i} className={`weekly-day ${i >= 5 ? 'highlight' : ''}`}>{d}</span>
-                ))}
-              </div>
-            </>
-          )}
+              <span>More Active</span>
+            </div>
+          </div>
         </div>
 
-        {/* Card 3: Semester Syllabus Progress Ring */}
+        {/* Card 3: Real Syllabus Coverage Ring (Dynamically computed from actual topics studied) */}
         <div className="idraft-card month-card">
           <div className="idraft-card-header">
-            <h3>Syllabus Coverage</h3>
+            <h3>Curriculum Coverage</h3>
             <TrendingUp size={16} />
           </div>
 
-          <p className="month-compare">84% On-Track For Midterm Exams</p>
+          <p className="month-compare">
+            {masteredTopicsCount === 0 
+              ? 'Start studying topics below to increase coverage'
+              : `${masteredTopicsCount} of ${totalCatalogTopics} topics mastered`}
+          </p>
 
           <div className="month-body">
             <div className="month-legend-list">
-              <div className="month-leg-item"><span className="mleg-dot dark"></span> Core Theory</div>
-              <div className="month-leg-item"><span className="mleg-dot gray"></span> Lab Problem Sets</div>
-              <div className="month-leg-item"><span className="mleg-dot light"></span> Previous Solves</div>
+              <div className="month-leg-item">
+                <span className="mleg-dot dark"></span> Mastered ({masteredTopicsCount})
+              </div>
+              <div className="month-leg-item">
+                <span className="mleg-dot gray"></span> Remaining ({totalCatalogTopics - masteredTopicsCount})
+              </div>
+              <div className="month-leg-item">
+                <span className="mleg-dot light"></span> Total ({totalCatalogTopics})
+              </div>
             </div>
 
             <div className="month-ring-container">
               <svg viewBox="0 0 100 100" className="month-ring-svg">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="#f0f0f0" strokeWidth="8" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#111111" strokeWidth="8" 
-                  strokeDasharray="251.3" strokeDashoffset="55" strokeLinecap="round"
-                  transform="rotate(-90 50 50)" />
-                <circle cx="50" cy="50" r="32" fill="none" stroke="#9ca3af" strokeWidth="6" 
-                  strokeDasharray="201" strokeDashoffset="70" strokeLinecap="round"
-                  transform="rotate(-90 50 50)" />
-                <circle cx="50" cy="50" r="24" fill="none" stroke="#e5e7eb" strokeWidth="5" 
-                  strokeDasharray="150" strokeDashoffset="60" strokeLinecap="round"
-                  transform="rotate(-90 50 50)" />
+                <circle 
+                  cx="50" 
+                  cy="50" 
+                  r="40" 
+                  fill="none" 
+                  stroke="#111111" 
+                  strokeWidth="8" 
+                  strokeDasharray="251.3" 
+                  strokeDashoffset={ringOffset} 
+                  strokeLinecap="round"
+                  transform="rotate(-90 50 50)" 
+                  style={{ transition: 'stroke-dashoffset 0.5s ease' }}
+                />
               </svg>
               <div className="month-ring-label">
-                <span className="ring-pct">78%</span>
-                <span className="ring-sub">completed</span>
+                <span className="ring-pct">{realCoveragePercentage}%</span>
+                <span className="ring-sub">Attained</span>
               </div>
             </div>
           </div>
 
           <div className="month-bottom-row">
             <button className="month-share-btn" onClick={() => navigate('/feed')}>
-              <Share2 size={14} /> Discuss in Feed
+              <Share2 size={14} /> Share Feed
             </button>
             <button 
               className="month-download-btn"
-              onClick={() => alert("Syllabus & solved papers outline synced.")}
+              onClick={() => alert(`Your study progress: ${realCoveragePercentage}% curriculum mastered across ${CSE_COURSE_CATALOG.length} courses.`)}
             >
-              Routine / Syllabus <Download size={14} />
+              View Summary <Download size={14} />
             </button>
           </div>
         </div>
@@ -461,7 +499,7 @@ const Dashboard = () => {
       {/* ═══════ ROW 2: STUDY GOALS & ACTIVE TASKS ═══════ */}
       <div className="idraft-row-2">
 
-        {/* Month Goals */}
+        {/* Study Goals (Interactive Checklist) */}
         <div className="idraft-card goals-card">
           <div className="idraft-card-header">
             <h3>CSE Academic Target Goals ({completedGoalsCount}/{goals.length})</h3>
@@ -540,12 +578,14 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* ═══════ ROW 3: CURATED CSE COURSES & SYLLABUS FAST-TRACKS ═══════ */}
+      {/* ═══════ ROW 3: INTERACTIVE CSE COURSES (STUDENT CHECKS TOPICS AS THEY STUDY) ═══════ */}
       <div className="idraft-card projects-section">
         <div className="idraft-card-header projects-header">
           <div>
             <h3>Active CSE Courses & Syllabus Hub</h3>
-            <p className="projects-subtitle">Curated theory topics, lab problem sets, and past year question solves</p>
+            <p className="projects-subtitle">
+              Mark topics as studied to build your genuine academic progress and light up your streak
+            </p>
           </div>
           <div className="projects-controls">
             <span className="sem-filter-label">Filter:</span>
@@ -562,37 +602,76 @@ const Dashboard = () => {
         </div>
 
         <div className="projects-grid">
-          {filteredCourses.map(course => (
-            <div key={course.id} className="project-card-item">
-              <div className="project-item-top">
-                <div className="course-code-badge">{course.code}</div>
-                <span className="course-sem-badge">{course.semester} Semester</span>
-              </div>
-              <h4 className="course-card-title">{course.title}</h4>
-              
-              <div className="course-progress-bar-wrap">
-                <div className="course-progress-label">
-                  <span>Coverage</span>
-                  <span>{course.progress}%</span>
-                </div>
-                <div className="course-progress-track">
-                  <div 
-                    className="course-progress-fill" 
-                    style={{ width: `${course.progress}%` }}
-                  />
-                </div>
-              </div>
+          {filteredCourses.map(course => {
+            const courseMasteredCount = course.topics.filter(t => completedTopics[t.id]).length;
+            const coursePercentage = course.topics.length > 0 
+              ? Math.round((courseMasteredCount / course.topics.length) * 100) 
+              : 0;
+            const isExpanded = expandedCourse === course.id;
 
-              <p className="project-desc">{course.desc}</p>
-              
-              <div className="course-card-footer">
-                <span className="course-solves-info">
-                  <FileText size={13} /> {course.solves}
-                </span>
-                <span className="course-topics-pill">{course.topicsCount}</span>
+            return (
+              <div key={course.id} className="project-card-item">
+                <div className="project-item-top">
+                  <div className="course-code-badge">{course.code}</div>
+                  <span className="course-sem-badge">{course.semester} Semester</span>
+                </div>
+                
+                <h4 className="course-card-title">{course.title}</h4>
+                
+                {/* Real dynamic progress based on student checkoffs */}
+                <div className="course-progress-bar-wrap">
+                  <div className="course-progress-label">
+                    <span>{courseMasteredCount} of {course.topics.length} topics mastered</span>
+                    <span>{coursePercentage}%</span>
+                  </div>
+                  <div className="course-progress-track">
+                    <div 
+                      className="course-progress-fill" 
+                      style={{ width: `${coursePercentage}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Interactive Topics Checklist */}
+                <div className="course-topics-checklist">
+                  <div className="course-topics-list-head">
+                    <span>Syllabus Topics:</span>
+                    <button 
+                      className="toggle-expand-btn"
+                      onClick={() => setExpandedCourse(isExpanded ? null : course.id)}
+                    >
+                      {isExpanded ? 'Collapse Topics' : `View All (${course.topics.length})`}
+                    </button>
+                  </div>
+
+                  <div className={`topics-items-container ${isExpanded ? 'expanded' : 'compact'}`}>
+                    {(isExpanded ? course.topics : course.topics.slice(0, 3)).map(topic => {
+                      const isDone = !!completedTopics[topic.id];
+                      return (
+                        <div 
+                          key={topic.id} 
+                          className={`topic-checkbox-row ${isDone ? 'done' : ''}`}
+                          onClick={() => toggleTopic(topic.id)}
+                        >
+                          <div className={`topic-check-square ${isDone ? 'checked' : ''}`}>
+                            {isDone && <Check size={12} />}
+                          </div>
+                          <span className="topic-name-text">{topic.name}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="course-card-footer">
+                  <span className="course-solves-info">
+                    <CheckCircle2 size={13} /> {coursePercentage === 100 ? 'Course Mastered' : `${coursePercentage}% Complete`}
+                  </span>
+                  <span className="course-topics-pill">{course.topics.length} Modules</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
