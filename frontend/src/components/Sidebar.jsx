@@ -1,72 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { 
-  Zap, 
-  Terminal, 
-  Cpu,
+  LayoutDashboard,
   PanelLeftClose, 
   PanelLeft, 
-  Lock,
   GraduationCap,
   MessageSquare,
-  Shield
+  User,
+  Sparkles
 } from 'lucide-react';
 import './Sidebar.css';
-
-// Semester-to-courses mapping based on IIUC CSE syllabus
-const SEMESTER_COURSES = {
-  '5th': [
-    { 
-      label: 'EEE-2421', 
-      path: '/eee', 
-      icon: <Zap size={18} />, 
-      colorClass: 'icon-blue' 
-    },
-    { 
-      label: 'CSE-3527', 
-      path: '/compiler', 
-      icon: <Terminal size={18} />, 
-      colorClass: 'icon-teal'
-    },
-    { 
-      label: 'CSE-3523', 
-      path: '/computer-architecture', 
-      icon: <Cpu size={18} />, 
-      colorClass: 'icon-purple'
-    },
-    { 
-      label: 'CSE-3611 (SAD)', 
-      path: '/system-analysis-design', 
-      icon: <GraduationCap size={18} />, 
-      colorClass: 'icon-pink'
-    },
-  ],
-  '6th': [
-    { 
-      label: 'CSE-3611 (SAD)', 
-      path: '/system-analysis-design', 
-      icon: <GraduationCap size={18} />, 
-      colorClass: 'icon-pink'
-    },
-  ],
-};
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isModerator, setIsModerator] = useState(false);
-  const [semester, setSemester] = useState('');
+  const [user, setUser] = useState(null);
 
   const updateSidebarUser = () => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
-        const parsed = JSON.parse(storedUser);
-        setIsAdmin(!!parsed.isAdmin);
-        setIsModerator(!!parsed.isModerator || !!parsed.isAdmin || parsed.email === 'khaledbinnasir1714412140@gmail.com');
-        setSemester(parsed.semester || '');
+        setUser(JSON.parse(storedUser));
       } catch (err) {
         console.error('Error parsing user in Sidebar:', err);
       }
@@ -74,16 +29,10 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    // Run initially and on location changes
     updateSidebarUser();
-
-    // Listen to custom events to react to updates immediately without full page refresh
     window.addEventListener('profile-update', updateSidebarUser);
-    window.addEventListener('theme-change', updateSidebarUser);
-
     return () => {
       window.removeEventListener('profile-update', updateSidebarUser);
-      window.removeEventListener('theme-change', updateSidebarUser);
     };
   }, [location]);
 
@@ -94,25 +43,14 @@ const Sidebar = () => {
     }, 100);
   };
 
-  const handleNav = (path, requiresAdmin = false) => {
-    if (requiresAdmin && !isAdmin) {
-      navigate('/compiler/locked');
-    } else {
-      navigate(path);
-    }
-  };
-
-  const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/');
-
-  // Get courses for current semester
-  const courses = SEMESTER_COURSES[semester] || [];
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
       <div className={`glass-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
         {/* Header */}
         <div className="sidebar-header">
-          {!isCollapsed && <span className="sidebar-title">Portal Navigator</span>}
+          {!isCollapsed && <span className="sidebar-title">Student Portal</span>}
           <button 
             className="sidebar-toggle-btn" 
             onClick={toggleSidebar}
@@ -124,7 +62,20 @@ const Sidebar = () => {
 
         {/* Menu */}
         <div className="sidebar-menu">
-          {/* Global Community Feed link */}
+          {/* Dashboard */}
+          <div 
+            className={`sidebar-item ${isActive('/dashboard') ? 'active' : ''}`}
+            onClick={() => navigate('/dashboard')}
+          >
+            <div className="sidebar-icon icon-teal">
+              <LayoutDashboard size={18} />
+            </div>
+            {!isCollapsed && (
+              <span className="sidebar-label">Dashboard</span>
+            )}
+          </div>
+
+          {/* Community Feed */}
           <div 
             className={`sidebar-item ${isActive('/feed') ? 'active' : ''}`}
             onClick={() => navigate('/feed')}
@@ -137,67 +88,32 @@ const Sidebar = () => {
             )}
           </div>
 
+          {/* Student Profile */}
+          <div 
+            className={`sidebar-item ${isActive('/profile') ? 'active' : ''}`}
+            onClick={() => navigate('/profile')}
+          >
+            <div className="sidebar-icon icon-purple">
+              <User size={18} />
+            </div>
+            {!isCollapsed && (
+              <span className="sidebar-label">Student Profile</span>
+            )}
+          </div>
+
           <div className="sidebar-divider"></div>
 
-          {!semester ? (
-            // Case 1: No semester selected
-            !isCollapsed && (
-              <div className="sidebar-no-semester">
-                <div className="no-sem-icon">
-                  <GraduationCap size={32} />
-                </div>
-                <h3>Select Your Semester</h3>
-                <p>
-                  Head over to your profile and choose your current semester to unlock semester-wise course navigation.
-                </p>
-                <button 
-                  className="no-sem-btn"
-                  onClick={() => navigate('/profile')}
-                >
-                  Go to Profile
-                </button>
+          {/* Fresh Workspace State */}
+          {!isCollapsed && (
+            <div className="sidebar-no-semester">
+              <div className="no-sem-icon">
+                <Sparkles size={26} />
               </div>
-            )
-          ) : courses.length > 0 ? (
-            // Case 2: Semester selected and has courses
-            courses.map((item, idx) => (
-              <div 
-                key={idx}
-                className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}
-                onClick={() => handleNav(item.path, item.requiresAdmin)}
-              >
-                <div className={`sidebar-icon ${item.colorClass}`}>
-                  {item.icon}
-                </div>
-                {!isCollapsed && (
-                  <span className="sidebar-label">
-                    {item.label}
-                    {item.requiresAdmin && !isAdmin && (
-                      <Lock size={11} className="sidebar-lock-icon" />
-                    )}
-                  </span>
-                )}
-              </div>
-            ))
-          ) : (
-            // Case 3: Semester selected but no courses available yet
-            !isCollapsed && (
-              <div className="sidebar-no-semester">
-                <div className="no-sem-icon">
-                  <GraduationCap size={32} />
-                </div>
-                <h3>No Courses Available</h3>
-                <p>
-                  No courses have been added to the syllabus for this semester yet. Check back later or contact your department moderator.
-                </p>
-                <button 
-                  className="no-sem-btn"
-                  onClick={() => navigate('/profile')}
-                >
-                  Change Semester
-                </button>
-              </div>
-            )
+              <h3>Fresh Workspace</h3>
+              <p>
+                All old syllabus content has been cleared. When you're ready, manually code your courses and lecture notes.
+              </p>
+            </div>
           )}
         </div>
 
@@ -209,7 +125,7 @@ const Sidebar = () => {
         )}
       </div>
 
-      {/* Mobile Drawer Trigger Tab (shows when sidebar collapsed on mobile) */}
+      {/* Mobile Drawer Trigger */}
       {isCollapsed && (
         <button 
           className="sidebar-mobile-expand-btn"
