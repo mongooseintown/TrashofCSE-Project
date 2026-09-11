@@ -1,6 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, User, Mail, Calendar, Shield, Save, Key, Eye, EyeOff } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  User, 
+  Mail, 
+  Calendar, 
+  Shield, 
+  Save, 
+  Key, 
+  Eye, 
+  EyeOff, 
+  GraduationCap, 
+  Sparkles, 
+  CheckCircle2, 
+  AlertCircle,
+  Building,
+  Hash,
+  Compass,
+  MessageSquare
+} from 'lucide-react';
 import { getApiUrl } from '../config';
 import './Profile.css';
 
@@ -77,7 +95,6 @@ const Profile = () => {
       return setError('Full Name cannot be empty');
     }
 
-    // Password validation if password section is open and fields have values
     const updatePassword = currentPassword || newPassword || confirmPassword;
     if (updatePassword) {
       if (!currentPassword) {
@@ -121,8 +138,16 @@ const Profile = () => {
       }
 
       // Update local storage and profile state
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify({ fullName: data.fullName, email: data.email, semester: data.semester || '', department: data.department || '', isAdmin: data.isAdmin || false }));
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+      localStorage.setItem('user', JSON.stringify({ 
+        fullName: data.fullName, 
+        email: data.email, 
+        semester: data.semester || '', 
+        department: data.department || '', 
+        isAdmin: data.isAdmin || false 
+      }));
       
       setProfile({
         ...profile,
@@ -137,7 +162,7 @@ const Profile = () => {
       setConfirmPassword('');
       setShowPasswordSection(false);
 
-      setSuccess('Profile updated successfully');
+      setSuccess('Profile and settings updated successfully!');
       
       // Dispatch events to update UI immediately
       window.dispatchEvent(new Event('profile-update'));
@@ -149,9 +174,10 @@ const Profile = () => {
   };
 
   const getInitials = (name) => {
-    if (!name) return 'U';
+    if (!name) return 'S';
     return name
       .split(' ')
+      .filter(Boolean)
       .map((n) => n[0])
       .slice(0, 2)
       .join('')
@@ -159,228 +185,337 @@ const Profile = () => {
   };
 
   const formatDate = (dateStr) => {
-    if (!dateStr) return '';
+    if (!dateStr) return 'Active Student';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
+      month: 'short',
       day: 'numeric',
     });
   };
 
   return (
-    <div className="profile-container">
-      {/* Header with Back Button */}
-      <div className="profile-header">
+    <div className="prof-root">
+      
+      {/* Top Header Bar */}
+      <div className="prof-nav-header">
         <button 
           onClick={() => navigate('/dashboard')} 
-          className="profile-back-btn"
+          className="prof-back-btn"
           title="Back to Dashboard"
         >
-          <ArrowLeft size={20} />
+          <ArrowLeft size={18} />
           <span>Dashboard</span>
         </button>
-        <h1>My Profile</h1>
+
+        <div className="prof-header-title-group">
+          <div className="prof-badge-pill">
+            <Sparkles size={13} /> Student Identity System
+          </div>
+          <h1 className="prof-page-title">Profile & Academic Settings</h1>
+        </div>
       </div>
 
       {loading ? (
-        <div className="profile-loading">
-          <div className="profile-spinner"></div>
-          <p>Loading profile details...</p>
+        <div className="prof-loading-state">
+          <div className="prof-loader"></div>
+          <p>Decrypting student profile credentials...</p>
         </div>
       ) : (
-        <div className="profile-layout">
-          {/* Left Column: User Card */}
-          <div className="profile-sidebar-card">
-            <div className="profile-avatar-gradient">
-              {getInitials(profile.fullName)}
+        <div className="prof-grid-container">
+          
+          {/* LEFT COLUMN: Cyber Student ID Badge */}
+          <aside className="prof-id-card">
+            
+            {/* Top Accent Strip */}
+            <div className="prof-id-top-bar">
+              <span className="prof-id-inst">INTERNATIONAL ISLAMIC UNIVERSITY CHITTAGONG</span>
+              <span className="prof-id-dot"></span>
             </div>
-            <h2>{profile.fullName}</h2>
-            <p className="profile-email-badge">
+
+            {/* Avatar Section */}
+            <div className="prof-avatar-outer">
+              <div className="prof-avatar-glow">
+                <div className="prof-avatar-circle">
+                  {getInitials(profile.fullName)}
+                </div>
+              </div>
+              <span className="prof-status-tag" title="Connected to Academic Gateway">
+                <span className="prof-beacon"></span> Active Scholar
+              </span>
+            </div>
+
+            {/* Name & Academic Rank */}
+            <h2 className="prof-card-name">{profile.fullName || 'Student'}</h2>
+            <p className="prof-card-email">
               <Mail size={14} />
               <span>{profile.email}</span>
             </p>
 
-            <div className="profile-meta-info">
-              <div className="profile-meta-row">
-                <Shield size={16} />
-                <div>
-                  <span className="meta-label">Role</span>
-                  <span className="meta-value">{profile.isAdmin ? 'Admin / Moderator' : 'IIUC Student'}</span>
+            {/* Chips & Tags */}
+            <div className="prof-chips-wrapper">
+              <span className="prof-chip sem">
+                <GraduationCap size={13} /> {profile.semester ? `${profile.semester} Semester` : 'Semester Unset'}
+              </span>
+              <span className="prof-chip dept">
+                <Building size={13} /> {profile.department || 'CSE Dept'}
+              </span>
+              {profile.isAdmin && (
+                <span className="prof-chip admin">
+                  <Shield size={13} /> Administrator
+                </span>
+              )}
+            </div>
+
+            <div className="prof-divider"></div>
+
+            {/* Academic Credential Details */}
+            <div className="prof-meta-list">
+              <div className="prof-meta-item">
+                <div className="prof-meta-icon">
+                  <Shield size={15} />
+                </div>
+                <div className="prof-meta-text">
+                  <span className="prof-meta-label">Access Tier</span>
+                  <span className="prof-meta-val">{profile.isAdmin ? 'Admin / Moderator Access' : 'Verified CSE Student'}</span>
                 </div>
               </div>
-              <div className="profile-meta-row">
-                <Calendar size={16} />
-                <div>
-                  <span className="meta-label">Member Since</span>
-                  <span className="meta-value">{formatDate(profile.createdAt)}</span>
+
+              <div className="prof-meta-item">
+                <div className="prof-meta-icon">
+                  <Calendar size={15} />
+                </div>
+                <div className="prof-meta-text">
+                  <span className="prof-meta-label">Registration Date</span>
+                  <span className="prof-meta-val">{formatDate(profile.createdAt)}</span>
+                </div>
+              </div>
+
+              <div className="prof-meta-item">
+                <div className="prof-meta-icon">
+                  <Compass size={15} />
+                </div>
+                <div className="prof-meta-text">
+                  <span className="prof-meta-label">Portal Status</span>
+                  <span className="prof-meta-val highlight">Encrypted • 100% Coded</span>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Settings Form */}
-          <div className="profile-settings-card">
-            <h2>Account Settings</h2>
-            <p className="settings-desc">Update your personal information and profile configurations.</p>
+            {/* Quick Links */}
+            <div className="prof-quick-actions">
+              <button onClick={() => navigate('/feed')} className="prof-id-action-btn">
+                <MessageSquare size={15} /> Open Feed
+              </button>
+              <button onClick={() => navigate('/dashboard')} className="prof-id-action-btn">
+                <Compass size={15} /> Open Dashboard
+              </button>
+            </div>
 
-            {error && <div className="profile-alert profile-alert-danger">{error}</div>}
-            {success && <div className="profile-alert profile-alert-success">{success}</div>}
+          </aside>
 
-            <form onSubmit={handleUpdateProfile} className="profile-form">
-              {/* Form Row: Name */}
-              <div className="form-group">
-                <label htmlFor="fullName">Full Name</label>
-                <div className="input-with-icon">
-                  <User size={18} />
-                  <input
-                    type="text"
-                    id="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Enter your full name"
-                    required
-                  />
+          {/* RIGHT COLUMN: Settings Form */}
+          <main className="prof-settings-panel">
+            
+            <div className="prof-settings-header">
+              <h2>Account & Academic Configurations</h2>
+              <p>Update your academic semester and credentials to calibrate the system.</p>
+            </div>
+
+            {/* Alerts */}
+            {error && (
+              <div className="prof-alert error">
+                <AlertCircle size={18} />
+                <span>{error}</span>
+              </div>
+            )}
+            {success && (
+              <div className="prof-alert success">
+                <CheckCircle2 size={18} />
+                <span>{success}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleUpdateProfile} className="prof-form">
+              
+              {/* SECTION 1: Personal Info */}
+              <div className="prof-form-section">
+                <h3 className="prof-section-heading">
+                  <User size={16} /> Personal Information
+                </h3>
+
+                <div className="prof-field-group">
+                  <label htmlFor="fullName">Full Legal Name</label>
+                  <div className="prof-input-wrap">
+                    <User size={18} className="prof-input-ico" />
+                    <input
+                      type="text"
+                      id="fullName"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="e.g. Khaled Bin Nasir"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="prof-field-row">
+                  <div className="prof-field-group">
+                    <label htmlFor="department">Engineering Department</label>
+                    <div className="prof-input-wrap">
+                      <Building size={18} className="prof-input-ico" />
+                      <select
+                        id="department"
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                      >
+                        <option value="">Select Department</option>
+                        <option value="CSE">Computer Science & Engineering (CSE)</option>
+                        <option value="EEE">Electrical & Electronic Engineering (EEE)</option>
+                        <option value="CCE">Computer & Communication Engineering (CCE)</option>
+                        <option value="ME">Mechanical Engineering (ME)</option>
+                        <option value="Civil">Civil Engineering</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="BBA">Business Administration</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="prof-field-group">
+                    <label htmlFor="semester">Current Academic Semester</label>
+                    <div className="prof-input-wrap">
+                      <GraduationCap size={18} className="prof-input-ico" />
+                      <select
+                        id="semester"
+                        value={semester}
+                        onChange={(e) => setSemester(e.target.value)}
+                      >
+                        <option value="">Select Semester</option>
+                        <option value="1st">1st Semester</option>
+                        <option value="2nd">2nd Semester</option>
+                        <option value="3rd">3rd Semester</option>
+                        <option value="4th">4th Semester</option>
+                        <option value="5th">5th Semester</option>
+                        <option value="6th">6th Semester</option>
+                        <option value="7th">7th Semester</option>
+                        <option value="8th">8th Semester</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Form Row: Department and Semester */}
-              <div className="form-row-grid">
-                <div className="form-group">
-                  <label htmlFor="department">Department</label>
-                  <select
-                    id="department"
-                    value={department}
-                    onChange={(e) => setDepartment(e.target.value)}
+              {/* SECTION 2: Security & Password */}
+              <div className="prof-form-section">
+                <div className="prof-pw-header">
+                  <h3 className="prof-section-heading">
+                    <Key size={16} /> Security & Authentication
+                  </h3>
+                  <button
+                    type="button"
+                    className="prof-pw-toggle-btn"
+                    onClick={() => setShowPasswordSection(!showPasswordSection)}
                   >
-                    <option value="">Select Department</option>
-                    <option value="CSE">Computer Science & Engineering (CSE)</option>
-                    <option value="EEE">Electrical & Electronic Engineering (EEE)</option>
-                    <option value="CCE">Computer & Communication Engineering (CCE)</option>
-                    <option value="ME">Mechanical Engineering (ME)</option>
-                    <option value="Civil">Civil Engineering</option>
-                    <option value="Pharmacy">Pharmacy</option>
-                    <option value="BBA">Business Administration</option>
-                  </select>
+                    {showPasswordSection ? 'Keep Existing Password' : 'Change Password'}
+                  </button>
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="semester">Current Semester</label>
-                  <select
-                    id="semester"
-                    value={semester}
-                    onChange={(e) => setSemester(e.target.value)}
-                  >
-                    <option value="">Select Semester</option>
-                    <option value="1st">1st Semester</option>
-                    <option value="2nd">2nd Semester</option>
-                    <option value="3rd">3rd Semester</option>
-                    <option value="4th">4th Semester</option>
-                    <option value="5th">5th Semester</option>
-                    <option value="6th">6th Semester</option>
-                    <option value="7th">7th Semester</option>
-                    <option value="8th">8th Semester</option>
-                  </select>
-                </div>
+                {showPasswordSection ? (
+                  <div className="prof-pw-expandable">
+                    <div className="prof-field-group">
+                      <label htmlFor="currentPassword">Current Password</label>
+                      <div className="prof-input-wrap">
+                        <Key size={18} className="prof-input-ico" />
+                        <input
+                          type={showPass.current ? 'text' : 'password'}
+                          id="currentPassword"
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                          placeholder="Enter your current password"
+                          required={showPasswordSection}
+                        />
+                        <button
+                          type="button"
+                          className="prof-eye-btn"
+                          onClick={() => setShowPass({ ...showPass, current: !showPass.current })}
+                        >
+                          {showPass.current ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="prof-field-row">
+                      <div className="prof-field-group">
+                        <label htmlFor="newPassword">New Password</label>
+                        <div className="prof-input-wrap">
+                          <Key size={18} className="prof-input-ico" />
+                          <input
+                            type={showPass.new ? 'text' : 'password'}
+                            id="newPassword"
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            placeholder="At least 6 characters"
+                            required={showPasswordSection}
+                          />
+                          <button
+                            type="button"
+                            className="prof-eye-btn"
+                            onClick={() => setShowPass({ ...showPass, new: !showPass.new })}
+                          >
+                            {showPass.new ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="prof-field-group">
+                        <label htmlFor="confirmPassword">Confirm New Password</label>
+                        <div className="prof-input-wrap">
+                          <Key size={18} className="prof-input-ico" />
+                          <input
+                            type={showPass.confirm ? 'text' : 'password'}
+                            id="confirmPassword"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Re-enter new password"
+                            required={showPasswordSection}
+                          />
+                          <button
+                            type="button"
+                            className="prof-eye-btn"
+                            onClick={() => setShowPass({ ...showPass, confirm: !showPass.confirm })}
+                          >
+                            {showPass.confirm ? <EyeOff size={16} /> : <Eye size={16} />}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="prof-pw-status-note">
+                    Your password was last encrypted and verified. Click above to update credentials.
+                  </p>
+                )}
               </div>
 
-              {/* Toggleable Password Section */}
-              <div className="password-section-toggle">
+              {/* Submit CTA */}
+              <div className="prof-submit-row">
                 <button
-                  type="button"
-                  className="btn-link-toggle"
-                  onClick={() => setShowPasswordSection(!showPasswordSection)}
+                  type="submit"
+                  className="prof-submit-btn"
+                  disabled={saving}
                 >
-                  <Key size={16} />
-                  <span>{showPasswordSection ? 'Cancel Password Change' : 'Change Password'}</span>
+                  <Save size={18} />
+                  <span>{saving ? 'Saving Configurations...' : 'Save Profile Changes'}</span>
                 </button>
               </div>
 
-              {showPasswordSection && (
-                <div className="password-fields-container">
-                  <div className="form-group">
-                    <label htmlFor="currentPassword">Current Password</label>
-                    <div className="input-with-icon">
-                      <Key size={18} />
-                      <input
-                        type={showPass.current ? 'text' : 'password'}
-                        id="currentPassword"
-                        value={currentPassword}
-                        onChange={(e) => setCurrentPassword(e.target.value)}
-                        placeholder="Enter your current password"
-                        required={showPasswordSection}
-                      />
-                      <button
-                        type="button"
-                        className="toggle-pw-btn"
-                        onClick={() => setShowPass({ ...showPass, current: !showPass.current })}
-                      >
-                        {showPass.current ? <EyeOff size={16} /> : <Eye size={16} />}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="form-row-grid">
-                    <div className="form-group">
-                      <label htmlFor="newPassword">New Password</label>
-                      <div className="input-with-icon">
-                        <Key size={18} />
-                        <input
-                          type={showPass.new ? 'text' : 'password'}
-                          id="newPassword"
-                          value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
-                          placeholder="At least 6 characters"
-                          required={showPasswordSection}
-                        />
-                        <button
-                          type="button"
-                          className="toggle-pw-btn"
-                          onClick={() => setShowPass({ ...showPass, new: !showPass.new })}
-                        >
-                          {showPass.new ? <EyeOff size={16} /> : <Eye size={16} />}
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="confirmPassword">Confirm New Password</label>
-                      <div className="input-with-icon">
-                        <Key size={18} />
-                        <input
-                          type={showPass.confirm ? 'text' : 'password'}
-                          id="confirmPassword"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
-                          placeholder="Re-enter new password"
-                          required={showPasswordSection}
-                        />
-                        <button
-                          type="button"
-                          className="toggle-pw-btn"
-                          onClick={() => setShowPass({ ...showPass, confirm: !showPass.confirm })}
-                        >
-                          {showPass.confirm ? <EyeOff size={16} /> : <Eye size={16} />}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="btn-profile-submit"
-                disabled={saving}
-              >
-                <Save size={18} />
-                <span>{saving ? 'Saving changes...' : 'Save Settings'}</span>
-              </button>
             </form>
-          </div>
+
+          </main>
+
         </div>
       )}
+
     </div>
   );
 };
