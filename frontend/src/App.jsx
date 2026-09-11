@@ -8,61 +8,30 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
-import { ReactLenis } from 'lenis/react';
 
 function AppContent() {
   const location = useLocation();
   const token = localStorage.getItem('token');
   const storedUser = localStorage.getItem('user');
   const isLoggedIn = !!(token && storedUser);
-  const showSidebar = isLoggedIn;
+  const isAuthPage = ['/login', '/signup', '/auth'].includes(location.pathname);
 
   return (
-    <div className="App">
-      <Navbar />
+    <div className="app-shell">
+      {!isAuthPage && <Navbar />}
 
-      <div className="app-layout">
-        {showSidebar && <Sidebar />}
+      <div className={`app-body ${isLoggedIn && !isAuthPage ? 'with-sidebar' : ''}`}>
+        {isLoggedIn && !isAuthPage && <Sidebar />}
 
-        <main className={`main-content ${showSidebar ? 'with-sidebar' : ''}`}>
+        <main className="app-main">
           <Routes>
-            {/* Landing & Dashboard */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            
-            {/* Auth Routes */}
             <Route path="/login" element={<AuthPage />} />
             <Route path="/signup" element={<AuthPage />} />
             <Route path="/auth" element={<AuthPage />} />
-
-            {/* Protected Core App Routes */}
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-
-            <Route
-              path="/feed"
-              element={
-                <PrivateRoute>
-                  <CommunityFeed />
-                </PrivateRoute>
-              }
-            />
-
-            {/* Fallback */}
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+            <Route path="/feed" element={<PrivateRoute><CommunityFeed /></PrivateRoute>} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </main>
@@ -73,11 +42,9 @@ function AppContent() {
 
 function App() {
   return (
-    <ReactLenis root>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
-    </ReactLenis>
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 

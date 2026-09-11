@@ -1,242 +1,30 @@
-/* Index CSS */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg-primary: #000000;
-  --bg-landing: #000000;
-  --bg-secondary: rgba(255, 255, 255, 0.02);
-  --bg-secondary-hover: rgba(255, 255, 255, 0.04);
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.6);
-  --text-muted: rgba(255, 255, 255, 0.35);
-  --border-primary: rgba(255, 255, 255, 0.06);
-  --border-secondary: rgba(255, 255, 255, 0.1);
-  --button-bg: #ffffff;
-  --button-text: #070707;
-  --nav-bg: rgba(28, 28, 30, 0.75);
-  --nav-bg-solid: #1c1c1e;
-  --nav-link: rgba(255, 255, 255, 0.65);
-  --nav-link-hover: #ffffff;
-  --nav-border: rgba(255, 255, 255, 0.08);
-  --nav-btn-bg: #ffffff;
-  --nav-btn-text: #070707;
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --shadow-primary: rgba(0, 0, 0, 0.5);
-  --shadow-nav: rgba(0, 0, 0, 0.3);
-  --node-text: #ffffff;
-  --node-bg: rgba(255, 255, 255, 0.08);
-  --node-border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(255, 255, 255, 0.06);
-}
-
-[data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-landing: #f7f7f7;
-  --bg-secondary: rgba(0, 0, 0, 0.02);
-  --bg-secondary-hover: rgba(0, 0, 0, 0.05);
-  --text-primary: #070707;
-  --text-secondary: rgba(0, 0, 0, 0.6);
-  --text-muted: rgba(0, 0, 0, 0.4);
-  --border-primary: rgba(0, 0, 0, 0.08);
-  --border-secondary: rgba(0, 0, 0, 0.15);
-  --button-bg: #070707;
-  --button-text: #ffffff;
-  --nav-bg: rgba(255, 255, 255, 0.75);
-  --nav-bg-solid: #ffffff;
-  --nav-link: rgba(7, 7, 7, 0.65);
-  --nav-link-hover: #070707;
-  --nav-border: rgba(0, 0, 0, 0.08);
-  --nav-btn-bg: #070707;
-  --nav-btn-text: #ffffff;
-  --card-bg: rgba(0, 0, 0, 0.02);
-  --card-border: rgba(0, 0, 0, 0.08);
-  --shadow-primary: rgba(0, 0, 0, 0.15);
-  --shadow-nav: rgba(0, 0, 0, 0.08);
-  --node-text: #070707;
-  --node-bg: rgba(0, 0, 0, 0.05);
-  --node-border: rgba(0, 0, 0, 0.1);
-  --glass-bg: rgba(248, 248, 248, 0.15);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bg: #f2f2f2;
+  --text: #1a1a1a;
+  --text-secondary: #888;
+  --card: #ffffff;
+  --card-border: rgba(0,0,0,0.04);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  --accent: #1a1a1a;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --sidebar-w: 250px;
+  --sidebar-collapsed: 70px;
+  --nav-h: 60px;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text-primary);
-  transition: color 0.3s ease;
-  background: var(--bg-primary, #1e1e1e);
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Background pattern removed in favor of solid black background */
-
-/* Translucent Containers so Body Background shows through */
-.app-container,
-.lp-container,
-.dashboard-container,
-.eee-container,
-.feed-container,
-.profile-container,
-.login-page-container,
-.register-page-container,
-.compiler-container,
-.compiler-segment-container,
-.sad-container,
-.mod-panel-container,
-.topic-page-container,
-.segment-viewer-container {
-  background: transparent !important;
-  background-image: none !important;
-}
-
-/* Topic Content Card Overrides for responsive Theme Mode */
-.topic-content-container > div {
-  background: var(--card-bg) !important;
-  border: 1px solid var(--card-border) !important;
-}
-
-.topic-content-container p {
-  color: var(--text-secondary) !important;
-}
-
-.topic-content-container strong {
-  color: var(--text-primary) !important;
-}
-
-/* Maintain original orange color contrast for important labels */
-.topic-content-container strong[style*="#ff5b22"],
-.topic-content-container strong[style*="255, 91, 34"],
-.topic-content-container strong[style*="rgb(255, 91, 34)"] {
-  color: #ff5b22 !important;
-}
-
-/* Glassmorphism Effect */
-.glass-card,
-.product-card,
-.dashboard-card,
-.shared-hub-card,
-.register-card,
-.login-card,
-.profile-sidebar-card,
-.profile-settings-card,
-.stat-card,
-.mod-content-card,
-.note-image-card,
-.note-card,
-.feed-card,
-.post-card,
-.creator-card,
-.student-card,
-.profile-card,
-.modal-card,
-.modal-content,
-.lp-cta-card,
-.lp-testimonial-card,
-.lp-pricing-card,
-.lp-faq-item,
-.lp-dashboard-mockup,
-.lp-form-mockup,
-.lp-filter-mockup,
-.timeline-content,
-.contrib-modal-content,
-.post-creator-card,
-.sad-locked-overlay {
-  background: rgba(255, 255, 255, 0.04) !important;
-  backdrop-filter: blur(90px) !important;
-  -webkit-backdrop-filter: blur(90px) !important;
-  border-radius: 20px !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 0 rgba(255, 255, 255, 0) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.glass-card::before,
-.product-card::before,
-.dashboard-card::before,
-.shared-hub-card::before,
-.register-card::before,
-.login-card::before,
-.profile-sidebar-card::before,
-.profile-settings-card::before,
-.stat-card::before,
-.mod-content-card::before,
-.note-image-card::before,
-.note-card::before,
-.feed-card::before,
-.post-card::before,
-.creator-card::before,
-.student-card::before,
-.profile-card::before,
-.modal-card::before,
-.modal-content::before,
-.lp-cta-card::before,
-.lp-testimonial-card::before,
-.lp-pricing-card::before,
-.lp-faq-item::before,
-.lp-dashboard-mockup::before,
-.lp-form-mockup::before,
-.lp-filter-mockup::before,
-.timeline-content::before,
-.contrib-modal-content::before,
-.post-creator-card::before,
-.sad-locked-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-}
-
-.glass-card::after,
-.product-card::after,
-.dashboard-card::after,
-.shared-hub-card::after,
-.register-card::after,
-.login-card::after,
-.profile-sidebar-card::after,
-.profile-settings-card::after,
-.stat-card::after,
-.mod-content-card::after,
-.note-image-card::after,
-.note-card::after,
-.feed-card::after,
-.post-card::after,
-.creator-card::after,
-.student-card::after,
-.profile-card::after,
-.modal-card::after,
-.modal-content::after,
-.lp-cta-card::after,
-.lp-testimonial-card::after,
-.lp-pricing-card::after,
-.lp-faq-item::after,
-.lp-dashboard-mockup::after,
-.lp-form-mockup::after,
-.lp-filter-mockup::after,
-.timeline-content::after,
-.contrib-modal-content::after,
-.post-creator-card::after,
-.sad-locked-overlay::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent, rgba(255, 255, 255, 0.3));
-}
-
-/* Specific class definitions for glass-card */
-.glass-card {
-  width: 240px !important;
-  height: 360px !important;
-}
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font); }

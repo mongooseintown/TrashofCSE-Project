@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import './Navbar.css';
 import { LogOut, Menu, X } from 'lucide-react';
-import NotificationPanel from './NotificationPanel';
-
 import { getApiUrl } from '../config';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
+import './Navbar.css';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,18 +12,15 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
     setIsLoggedIn(!!(token && storedUser));
   }, [location]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [location.pathname]);
-
 
   const handleLogout = async () => {
     const token = localStorage.getItem('token');
@@ -33,23 +28,11 @@ const Navbar = () => {
       try {
         await fetch(getApiUrl('/api/auth/logout'), {
           method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
         });
-      } catch (err) {
-        console.error('Logout request failed:', err);
-      }
+      } catch (err) {}
     }
-    
-    // Clear Firebase Auth state
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.error('Firebase sign out failed:', err);
-    }
-
+    try { await signOut(auth); } catch (err) {}
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsLoggedIn(false);
@@ -58,57 +41,38 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`glass-nav-container ${isOpen ? 'is-nav-open' : ''}`}>
-      <nav className={`glass-nav ${isOpen ? 'is-open' : ''}`}>
-        
-        {/* Top Row: Brand & Mobile Menu Trigger */}
-        <div className="nav-top-row">
-          <div className="nav-logo-group" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>
-            <div className="nav-logo">
-              <img src="/logo.png" alt="Logo" />
-            </div>
-            <span className="nav-brand-text">TrashofCSE</span>
-          </div>
-
-          <button className="nav-mobile-toggle" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle Navigation">
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+    <nav className="idraft-nav">
+      <div className="idraft-nav-inner">
+        <div className="idraft-nav-brand" onClick={() => navigate(isLoggedIn ? '/dashboard' : '/login')}>
+          <img src="/logo.png" alt="Logo" className="idraft-nav-logo" />
+          <span className="idraft-nav-name">TrashofCSE</span>
         </div>
-        
-        {/* Unfolding Menu Content */}
-        <div className="nav-menu-content">
-          {/* Center Links */}
-          <div className="nav-links">
-            {isLoggedIn && (
-              <>
-                <Link to="/dashboard" className="nav-link">Dashboard</Link>
-                <Link to="/feed" className="nav-link">Feed</Link>
-                <Link to="/profile" className="nav-link">Profile</Link>
-              </>
-            )}
 
-            {isLoggedIn && <NotificationPanel />}
-            
+        <button className="idraft-nav-mobile-toggle" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
 
-          </div>
+        <div className={`idraft-nav-menu ${isOpen ? 'open' : ''}`}>
+          {isLoggedIn && (
+            <div className="idraft-nav-links">
+              <Link to="/dashboard" className={`idraft-nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}>Dashboard</Link>
+              <Link to="/feed" className={`idraft-nav-link ${location.pathname === '/feed' ? 'active' : ''}`}>Feed</Link>
+              <Link to="/profile" className={`idraft-nav-link ${location.pathname === '/profile' ? 'active' : ''}`}>Profile</Link>
+            </div>
+          )}
 
-          {/* Right CTA Button */}
-          <div className="nav-actions">
+          <div className="idraft-nav-actions">
             {isLoggedIn ? (
-              <button className="btn-nav-logout" onClick={handleLogout}>
-                <LogOut size={16} />
-                <span>Log Out</span>
+              <button className="idraft-nav-logout" onClick={handleLogout}>
+                <LogOut size={16} /> Log Out
               </button>
             ) : (
-              <Link to="/login" className="btn-nav-logout" style={{ textDecoration: 'none' }}>
-                <span>Sign In</span>
-              </Link>
+              <Link to="/login" className="idraft-nav-signin">Sign In</Link>
             )}
           </div>
         </div>
-
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
