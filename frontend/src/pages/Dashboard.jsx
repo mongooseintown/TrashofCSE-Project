@@ -27,7 +27,10 @@ import {
   Sparkles,
   Flame,
   FileText,
-  X
+  X,
+  Terminal,
+  Cpu,
+  Database
 } from 'lucide-react';
 import './Dashboard.css';
 
@@ -65,10 +68,26 @@ const GENERATE_HEATMAP = () => {
 
 /* ──────────── CSE ACADEMIC TASKS IN PROCESS ──────────── */
 const DEFAULT_TASKS = [
-  { id: 't1', title: 'CSE-211: Implement AVL Tree Rotations & Heap Sort', date: 'Due Tomorrow', icon: '💻', dept: 'Lab Code' },
-  { id: 't2', title: 'CSE-311: Normalize Library DB Schema to BCNF', date: 'Due Friday', icon: '📊', dept: 'Theory' },
-  { id: 't3', title: 'CSE-313: Simulate Multi-level Feedback Queue Scheduling', date: 'Oct 15', icon: '⚙️', dept: 'System' },
+  { id: 't1', title: 'CSE-211: Implement AVL Tree Rotations & Heap Sort', date: 'Due Tomorrow', iconType: 'code', dept: 'Lab Code' },
+  { id: 't2', title: 'CSE-311: Normalize Library DB Schema to BCNF', date: 'Due Friday', iconType: 'database', dept: 'Theory' },
+  { id: 't3', title: 'CSE-313: Simulate Multi-level Feedback Queue Scheduling', date: 'Oct 15', iconType: 'cpu', dept: 'System' },
 ];
+
+const renderTaskIcon = (type) => {
+  switch (type) {
+    case 'code':
+    case 'lab':
+      return <Code2 size={18} />;
+    case 'db':
+    case 'database':
+      return <Database size={18} />;
+    case 'system':
+    case 'cpu':
+      return <Cpu size={18} />;
+    default:
+      return <Terminal size={18} />;
+  }
+};
 
 /* ──────────── CORE CSE COURSES & SYLLABUS HUB ──────────── */
 const CSE_COURSES = [
@@ -234,7 +253,7 @@ const Dashboard = () => {
       id: 't_' + Date.now(),
       title: newTaskTitle.trim(),
       date: 'Today',
-      icon: '📌',
+      iconType: 'terminal',
       dept: 'Custom'
     };
     setTasks([newTask, ...tasks]);
@@ -498,7 +517,9 @@ const Dashboard = () => {
             {tasks.map(task => (
               <div key={task.id} className="task-item-card">
                 <div className="task-item-top">
-                  <span className="task-emoji">{task.icon}</span>
+                  <div className="task-icon-badge">
+                    {renderTaskIcon(task.iconType || task.icon)}
+                  </div>
                   <button className="task-del-btn" onClick={(e) => removeTask(task.id, e)} title="Remove Task">
                     <Trash2 size={13} />
                   </button>
