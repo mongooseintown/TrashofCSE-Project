@@ -5,6 +5,11 @@ const dotenv = require('dotenv');
 const dns = require('dns');
 
 dns.setDefaultResultOrder('ipv4first');
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+  console.warn('DNS setServers error:', e);
+}
 dotenv.config();
 
 const app = express();
@@ -15,7 +20,10 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
-mongoose.connect(process.env.MONGO_URI)
+const rawUri = process.env.MONGO_URI || '';
+const mongoUri = rawUri.replace(/\/trashofcse(\?|$)/i, '/TrashofCSE$1');
+
+mongoose.connect(mongoUri)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 

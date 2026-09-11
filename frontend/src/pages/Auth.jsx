@@ -93,33 +93,15 @@ const AuthPage = () => {
 
   const handleGoogleLogin = async () => {
     setError('');
+    setIsRedirecting(true);
     setLoading(true);
 
     try {
-      const result = await signInWithPopup(auth, googleProvider);
-      if (result && result.user) {
-        await handleBackendAuth(result.user);
-      }
+      await signInWithRedirect(auth, googleProvider);
     } catch (err) {
-      console.error("Google sign in error:", err);
-      if (err.code === 'auth/popup-blocked') {
-        setIsRedirecting(true);
-        try {
-          await signInWithRedirect(auth, googleProvider);
-        } catch (redirectErr) {
-          setError(redirectErr.message);
-          setLoading(false);
-          setIsRedirecting(false);
-        }
-        return;
-      }
-      if (err.code === 'auth/popup-closed-by-user') {
-        setError('Sign-in popup was closed.');
-      } else if (err.code === 'auth/unauthorized-domain') {
-        setError('Domain not authorized in Firebase Console (Authentication > Settings > Authorized domains).');
-      } else {
-        setError(err.message || 'Google sign in failed');
-      }
+      console.error("Google redirect error:", err);
+      setError(err.message || 'Google sign-in redirect failed');
+      setIsRedirecting(false);
       setLoading(false);
     }
   };
