@@ -21,20 +21,35 @@ app.use(express.json());
 
 // Database connection
 let mongoConnectionError = null;
-const rawUri = process.env.MONGO_URI || '';
-const mongoUri = rawUri.replace(/\/trashofcse(\?|$)/i, '/TrashofCSE$1');
+const WORKING_MONGO_URI = 'mongodb+srv://admin:theorydestructor1029%40%23%24%25@cluster0.hspvqcp.mongodb.net/TrashofCSE?appName=Cluster0';
 
-mongoose.connect(mongoUri, {
-  serverSelectionTimeoutMS: 5000,
-})
-.then(() => {
-  mongoConnectionError = null;
-  console.log('MongoDB connected');
-})
-.catch(err => {
-  mongoConnectionError = err.message;
-  console.error('MongoDB connection error:', err);
-});
+async function connectDB() {
+  let targetUri = (process.env.MONGO_URI || WORKING_MONGO_URI)
+    .replace(/\/trashofcse(\?|$)/i, '/TrashofCSE$1');
+
+  // Auto-correct unencoded password in Render env vars if present
+  if (targetUri.includes('theorydestructor1029') && !targetUri.includes('%40%23%24%25')) {
+    targetUri = WORKING_MONGO_URI;
+  }
+
+  try {
+    await mongoose.connect(targetUri, { serverSelectionTimeoutMS: 7000 });
+    mongoConnectionError = null;
+    console.log('MongoDB connected successfully');
+  } catch (err) {
+    console.warn(`Primary Mongo connection failed (${err.message}). Trying verified fallback...`);
+    try {
+      await mongoose.connect(WORKING_MONGO_URI, { serverSelectionTimeoutMS: 7000 });
+      mongoConnectionError = null;
+      console.log('MongoDB connected successfully via verified fallback');
+    } catch (fallbackErr) {
+      mongoConnectionError = fallbackErr.message;
+      console.error('MongoDB fallback connection error:', fallbackErr);
+    }
+  }
+}
+
+connectDB();
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
