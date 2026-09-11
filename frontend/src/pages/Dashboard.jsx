@@ -20,44 +20,122 @@ import {
   ArrowRight,
   LayoutGrid,
   List,
-  ChevronDown
+  ChevronDown,
+  BookOpen,
+  Code2,
+  GraduationCap,
+  Sparkles,
+  Flame,
+  FileText,
+  X
 } from 'lucide-react';
 import './Dashboard.css';
 
-/* ──────────── STUDY GOALS (Month Goals) ──────────── */
-const DEFAULT_GOALS = [
-  { id: 'g1', text: 'Complete all mid-term revision notes', done: true },
-  { id: 'g2', text: 'Practice 3 previous year papers', done: false },
-  { id: 'g3', text: 'Finish assignment submissions', done: false },
-  { id: 'g4', text: 'Read reference textbook chapters', done: false },
+/* ──────────── CSE STUDY GOALS ──────────── */
+const DEFAULT_CSE_GOALS = [
+  { id: 'g1', text: 'Master Binary Search Trees & Graph BFS/DFS traversal', done: true, tag: 'Algorithms' },
+  { id: 'g2', text: 'Solve past 3 years Midterm Exam question papers', done: true, tag: 'Exam Solves' },
+  { id: 'g3', text: 'Complete DBMS SQL Joins, Triggers & Normalization (3NF/BCNF)', done: false, tag: 'Database' },
+  { id: 'g4', text: 'Revise Operating Systems CPU Scheduling & Banker\'s Algorithm', done: false, tag: 'OS' },
+  { id: 'g5', text: 'Build OOP Java/C++ Design Patterns & Socket Programming demo', done: false, tag: 'OOP' },
 ];
 
-/* ──────────── WEEKLY DATA (line-chart simulation) ──────────── */
+/* ──────────── WEEKLY CSE STUDY & LAB HOURS ──────────── */
 const WEEK_DATA = {
-  labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-  study:   [2, 3, 2, 4, 3, 5, 4],
-  revision:[1, 2, 3, 2, 4, 3, 2],
+  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  coding: [3.5, 4.0, 2.5, 5.0, 4.5, 6.0, 4.0], // Coding / Lab hours
+  theory: [2.0, 3.0, 3.5, 2.5, 4.0, 3.5, 2.5], // Theory revision hours
 };
 
-/* ──────────── TASKS IN PROCESS ──────────── */
+/* ──────────── GITHUB-STYLE REVISION HEATMAP MATRIX (Last 28 Days) ──────────── */
+const GENERATE_HEATMAP = () => {
+  const levels = [0, 1, 2, 3, 4, 1, 3, 2, 4, 3, 4, 2, 1, 4, 3, 2, 4, 4, 3, 2, 4, 1, 2, 3, 4, 3, 4, 4];
+  const today = new Date();
+  return levels.map((level, i) => {
+    const d = new Date(today);
+    d.setDate(d.getDate() - (27 - i));
+    const count = level === 0 ? 0 : level * 2 + 1;
+    return {
+      day: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      level,
+      count,
+    };
+  });
+};
+
+/* ──────────── CSE ACADEMIC TASKS IN PROCESS ──────────── */
 const DEFAULT_TASKS = [
-  { id: 't1', title: 'Prepare for Midterm Exam', date: 'Today', icon: '📋' },
-  { id: 't2', title: 'Submit Lab Assignment by Friday', date: new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'2-digit', year:'numeric' }), icon: '📤' },
+  { id: 't1', title: 'CSE-211: Implement AVL Tree Rotations & Heap Sort', date: 'Due Tomorrow', icon: '💻', dept: 'Lab Code' },
+  { id: 't2', title: 'CSE-311: Normalize Library DB Schema to BCNF', date: 'Due Friday', icon: '📊', dept: 'Theory' },
+  { id: 't3', title: 'CSE-313: Simulate Multi-level Feedback Queue Scheduling', date: 'Oct 15', icon: '⚙️', dept: 'System' },
 ];
 
-/* ──────────── LAST PROJECTS / RECENT ACTIVITY ──────────── */
-const RECENT_ITEMS = [
-  { id: 'p1', title: 'Study Plan', status: 'In progress', desc: 'Done: Set weekly study timetable; Allocate revision slots; Buy …', color: '#1a1a1a' },
-  { id: 'p2', title: 'Lab Report', status: 'Completed', desc: 'Done: Data collection; Analysis; Conclusion written; Submitted.', color: '#1a1a1a' },
-  { id: 'p3', title: 'Group Project', status: 'In progress', desc: 'Done: Research phase complete; Starting prototype phase …', color: '#1a1a1a' },
+/* ──────────── CORE CSE COURSES & SYLLABUS HUB ──────────── */
+const CSE_COURSES = [
+  {
+    id: 'c1',
+    code: 'CSE-211',
+    title: 'Data Structures & Algorithms',
+    semester: '3rd',
+    status: 'In progress',
+    progress: 78,
+    desc: 'Covered: Asymptotic Analysis, Linked Lists, Trees, Graphs, Dijkstra, Dynamic Programming, Heap.',
+    topicsCount: '24 Topics',
+    solves: '18 Lab Solves • 4 Mid Solves'
+  },
+  {
+    id: 'c2',
+    code: 'CSE-311',
+    title: 'Database Management Systems',
+    semester: '5th',
+    status: 'In progress',
+    progress: 65,
+    desc: 'Covered: Relational Algebra, SQL DDL/DML, 1NF/2NF/3NF/BCNF, Concurrency, ACID Properties.',
+    topicsCount: '19 Topics',
+    solves: '14 Lab Solves • 3 Final Solves'
+  },
+  {
+    id: 'c3',
+    code: 'CSE-313',
+    title: 'Operating Systems & Architecture',
+    semester: '5th',
+    status: 'In progress',
+    progress: 52,
+    desc: 'Covered: Process Lifecycle, IPC, POSIX Threads, Deadlock Avoidance, Page Replacement Algorithms.',
+    topicsCount: '16 Topics',
+    solves: '10 Lab Solves • 2 Mid Solves'
+  },
+  {
+    id: 'c4',
+    code: 'CSE-223',
+    title: 'Object Oriented Programming (Java/C++)',
+    semester: '4th',
+    status: 'Completed',
+    progress: 100,
+    desc: 'Covered: Encapsulation, Polymorphism, Abstract Classes, Generics, Collections Framework, GUI.',
+    topicsCount: '22 Topics',
+    solves: '28 Lab Solves • 6 Exam Solves'
+  },
 ];
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [goals, setGoals] = useState(DEFAULT_GOALS);
-  const [tasks, setTasks] = useState(DEFAULT_TASKS);
+  const [goals, setGoals] = useState(() => {
+    const saved = localStorage.getItem('cse_goals');
+    return saved ? JSON.parse(saved) : DEFAULT_CSE_GOALS;
+  });
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem('cse_tasks');
+    return saved ? JSON.parse(saved) : DEFAULT_TASKS;
+  });
+  const [selectedSemester, setSelectedSemester] = useState('All');
+  const [showAddTask, setShowAddTask] = useState(false);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [activeTab, setActiveTab] = useState('heatmap'); // 'heatmap' or 'chart'
+
   const canvasRef = useRef(null);
+  const heatmapData = useMemo(() => GENERATE_HEATMAP(), []);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -73,8 +151,17 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  // Draw the weekly progress chart on canvas
   useEffect(() => {
+    localStorage.setItem('cse_goals', JSON.stringify(goals));
+  }, [goals]);
+
+  useEffect(() => {
+    localStorage.setItem('cse_tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  // Draw weekly chart when chart tab active
+  useEffect(() => {
+    if (activeTab !== 'chart') return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -82,8 +169,8 @@ const Dashboard = () => {
     const H = canvas.height;
     ctx.clearRect(0, 0, W, H);
 
-    const maxVal = 6;
-    const padL = 10, padR = 10, padT = 20, padB = 20;
+    const maxVal = 7;
+    const padL = 15, padR = 15, padT = 20, padB = 25;
     const chartW = W - padL - padR;
     const chartH = H - padT - padB;
     const stepX = chartW / (WEEK_DATA.labels.length - 1);
@@ -113,7 +200,7 @@ const Dashboard = () => {
         ctx.fill();
       }
 
-      // Draw highlighted dot on the peak
+      // Peak point
       const peakIdx = data.indexOf(Math.max(...data));
       const px = padL + peakIdx * stepX;
       const py = padT + chartH - (data[peakIdx] / maxVal) * chartH;
@@ -126,169 +213,241 @@ const Dashboard = () => {
       ctx.fillStyle = '#fff';
       ctx.fill();
 
-      // Label at peak
-      ctx.font = '600 11px Inter, sans-serif';
+      ctx.font = '600 10px Inter, sans-serif';
       ctx.fillStyle = color;
       ctx.textAlign = 'center';
-      ctx.fillText(`+${data[peakIdx]}`, px, py - 10);
+      ctx.fillText(`${data[peakIdx]}h`, px, py - 8);
     };
 
-    drawLine(WEEK_DATA.study, '#1a1a1a', 'rgba(26,26,26,0.06)');
-    drawLine(WEEK_DATA.revision, '#b0b0b0', 'rgba(176,176,176,0.04)');
-  }, []);
+    drawLine(WEEK_DATA.coding, '#111111', 'rgba(17,17,17,0.06)');
+    drawLine(WEEK_DATA.theory, '#9ca3af', 'rgba(156,163,175,0.04)');
+  }, [activeTab]);
 
   const toggleGoal = (id) => {
     setGoals(prev => prev.map(g => g.id === id ? { ...g, done: !g.done } : g));
   };
 
-  const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Student';
-  const completedGoals = goals.filter(g => g.done).length;
+  const handleAddTask = (e) => {
+    e.preventDefault();
+    if (!newTaskTitle.trim()) return;
+    const newTask = {
+      id: 't_' + Date.now(),
+      title: newTaskTitle.trim(),
+      date: 'Today',
+      icon: '📌',
+      dept: 'Custom'
+    };
+    setTasks([newTask, ...tasks]);
+    setNewTaskTitle('');
+    setShowAddTask(false);
+  };
 
-  // Compute stats
-  const totalTopics = 19;
-  const inProgress = 14;
-  const completed = 11;
-  const monthPct = 120;
+  const removeTask = (id, e) => {
+    e.stopPropagation();
+    setTasks(tasks.filter(t => t.id !== id));
+  };
+
+  const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
+  const filteredCourses = selectedSemester === 'All' 
+    ? CSE_COURSES 
+    : CSE_COURSES.filter(c => c.semester === selectedSemester);
+
+  const completedGoalsCount = goals.filter(g => g.done).length;
 
   return (
     <div className="idraft-root">
 
       {/* ═══════ TOP BAR ═══════ */}
       <div className="idraft-topbar">
-        <h1 className="idraft-greeting">Hi, {studentName}!</h1>
+        <div className="idraft-greeting-group">
+          <h1 className="idraft-greeting">Hi, {studentName}!</h1>
+          <div className="idraft-sub-badge">
+            <GraduationCap size={14} />
+            <span>Trash of CSE • {user?.department || 'CSE'} Dept ({user?.semester ? `${user.semester} Sem` : 'Academic Track'})</span>
+          </div>
+        </div>
+
         <div className="idraft-topbar-actions">
           <button className="idraft-create-btn" onClick={() => navigate('/feed')}>
-            <Plus size={16} /> Create
+            <Plus size={16} /> Community Post
           </button>
-          <button className="idraft-icon-btn"><Search size={18} /></button>
-          <button className="idraft-icon-btn"><Bell size={18} /></button>
-          <div className="idraft-avatar-sm">
-            {user?.fullName ? user.fullName.charAt(0).toUpperCase() : 'S'}
+          <button className="idraft-icon-btn" onClick={() => navigate('/profile')} title="Settings & Profile">
+            <Pencil size={16} />
+          </button>
+          <div className="idraft-avatar-sm" onClick={() => navigate('/profile')}>
+            {studentName.charAt(0).toUpperCase()}
           </div>
         </div>
       </div>
 
-      {/* ═══════ ROW 1: THREE INFO CARDS ═══════ */}
+      {/* ═══════ ROW 1: THREE ACADEMIC STAT CARDS ═══════ */}
       <div className="idraft-row-3">
 
-        {/* Card 1: Overall Information */}
+        {/* Card 1: CSE Overall Academic Progress */}
         <div className="idraft-card overall-card">
           <div className="idraft-card-header">
-            <h3>Overall Information</h3>
+            <h3>CSE Academic Progress</h3>
             <div className="idraft-card-actions">
-              <Share2 size={15} />
-              <MoreVertical size={15} />
+              <span className="live-pulse-dot" title="Real-time Tracking"></span>
             </div>
           </div>
 
           <div className="overall-big-stats">
             <div className="overall-big-num">
-              <span className="big-number">43</span>
-              <span className="big-label">Tasks done<br/>for all time</span>
+              <span className="big-number">48</span>
+              <span className="big-label">Topics Mastered<br/>Across Syllabus</span>
             </div>
             <div className="overall-big-num">
               <span className="big-number accent">2</span>
-              <span className="big-label">projects are<br/>stopped</span>
+              <span className="big-label">Pending Lab<br/>Solves</span>
             </div>
           </div>
 
           <div className="overall-mini-stats">
-            <div className="mini-stat-box">
-              <Eye size={16} />
-              <span className="mini-num">28</span>
-              <span className="mini-label">Projects</span>
+            <div className="mini-stat-box" title="Core Engineering Courses">
+              <BookOpen size={16} />
+              <span className="mini-num">8</span>
+              <span className="mini-label">Core Courses</span>
             </div>
-            <div className="mini-stat-box">
-              <Clock3 size={16} />
-              <span className="mini-num">14</span>
-              <span className="mini-label">In Progress</span>
+            <div className="mini-stat-box" title="Lab Code Submissions">
+              <Code2 size={16} />
+              <span className="mini-num">24</span>
+              <span className="mini-label">Lab Solves</span>
             </div>
-            <div className="mini-stat-box">
+            <div className="mini-stat-box" title="Midterm & Final Exam Solves">
               <CheckCircle2 size={16} />
-              <span className="mini-num">11</span>
-              <span className="mini-label">Completed</span>
+              <span className="mini-num">12</span>
+              <span className="mini-label">Exam Solves</span>
             </div>
           </div>
         </div>
 
-        {/* Card 2: Weekly Progress */}
+        {/* Card 2: Revision Activity & GitHub Heatmap */}
         <div className="idraft-card weekly-card">
           <div className="idraft-card-header">
-            <h3>Weekly progress</h3>
-            <button className="idraft-refresh-btn">↻</button>
+            <h3>Revision Activity</h3>
+            <div className="view-switch-btns">
+              <button 
+                className={`switch-btn ${activeTab === 'heatmap' ? 'active' : ''}`}
+                onClick={() => setActiveTab('heatmap')}
+                title="GitHub-style Activity Matrix"
+              >
+                Streak
+              </button>
+              <button 
+                className={`switch-btn ${activeTab === 'chart' ? 'active' : ''}`}
+                onClick={() => setActiveTab('chart')}
+                title="Weekly Study Hours"
+              >
+                Hours
+              </button>
+            </div>
           </div>
 
-          <div className="weekly-legend">
-            <span className="legend-dot dark"></span> <span>Sport</span>
-            <span className="legend-dot light"></span> <span>Study</span>
-          </div>
-
-          <div className="weekly-chart-container">
-            <canvas ref={canvasRef} width={320} height={140} className="weekly-canvas"></canvas>
-          </div>
-
-          <div className="weekly-days-row">
-            {WEEK_DATA.labels.map((d, i) => (
-              <span key={i} className={`weekly-day ${i >= 5 ? 'highlight' : ''}`}>{d}</span>
-            ))}
-          </div>
+          {activeTab === 'heatmap' ? (
+            <div className="heatmap-container">
+              <div className="heatmap-subhead">
+                <span className="streak-badge"><Flame size={13} color="#f97316" /> 14 Day Study Streak</span>
+                <span className="heatmap-note">GitHub Style Revision Matrix</span>
+              </div>
+              <div className="github-heatmap-grid">
+                {heatmapData.map((slot, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`heatmap-box level-${slot.level}`}
+                    title={`${slot.day}: ${slot.count} revision sessions & code commits`}
+                  />
+                ))}
+              </div>
+              <div className="heatmap-footer">
+                <span>Less</span>
+                <div className="heatmap-legend-boxes">
+                  <span className="heatmap-box level-0"></span>
+                  <span className="heatmap-box level-1"></span>
+                  <span className="heatmap-box level-2"></span>
+                  <span className="heatmap-box level-3"></span>
+                  <span className="heatmap-box level-4"></span>
+                </div>
+                <span>More Activity</span>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="weekly-legend">
+                <span className="legend-dot dark"></span> <span>Lab / Code</span>
+                <span className="legend-dot light"></span> <span>Theory Revision</span>
+              </div>
+              <div className="weekly-chart-container">
+                <canvas ref={canvasRef} width={320} height={130} className="weekly-canvas"></canvas>
+              </div>
+              <div className="weekly-days-row">
+                {WEEK_DATA.labels.map((d, i) => (
+                  <span key={i} className={`weekly-day ${i >= 5 ? 'highlight' : ''}`}>{d}</span>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Card 3: Month Progress */}
+        {/* Card 3: Semester Syllabus Progress Ring */}
         <div className="idraft-card month-card">
           <div className="idraft-card-header">
-            <h3>Month progress</h3>
+            <h3>Syllabus Coverage</h3>
             <TrendingUp size={16} />
           </div>
 
-          <p className="month-compare">+20% compared to last month*</p>
+          <p className="month-compare">84% On-Track For Midterm Exams</p>
 
           <div className="month-body">
             <div className="month-legend-list">
-              <div className="month-leg-item"><span className="mleg-dot dark"></span> Sport</div>
-              <div className="month-leg-item"><span className="mleg-dot gray"></span> Study</div>
-              <div className="month-leg-item"><span className="mleg-dot light"></span> Project</div>
+              <div className="month-leg-item"><span className="mleg-dot dark"></span> Core Theory</div>
+              <div className="month-leg-item"><span className="mleg-dot gray"></span> Lab Problem Sets</div>
+              <div className="month-leg-item"><span className="mleg-dot light"></span> Previous Solves</div>
             </div>
 
             <div className="month-ring-container">
               <svg viewBox="0 0 100 100" className="month-ring-svg">
                 <circle cx="50" cy="50" r="40" fill="none" stroke="#f0f0f0" strokeWidth="8" />
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#1a1a1a" strokeWidth="8" 
-                  strokeDasharray="251.3" strokeDashoffset="50" strokeLinecap="round"
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#111111" strokeWidth="8" 
+                  strokeDasharray="251.3" strokeDashoffset="55" strokeLinecap="round"
                   transform="rotate(-90 50 50)" />
-                <circle cx="50" cy="50" r="32" fill="none" stroke="#c0c0c0" strokeWidth="6" 
-                  strokeDasharray="201" strokeDashoffset="80" strokeLinecap="round"
+                <circle cx="50" cy="50" r="32" fill="none" stroke="#9ca3af" strokeWidth="6" 
+                  strokeDasharray="201" strokeDashoffset="70" strokeLinecap="round"
                   transform="rotate(-90 50 50)" />
-                <circle cx="50" cy="50" r="25" fill="none" stroke="#e0e0e0" strokeWidth="4" 
-                  strokeDasharray="157" strokeDashoffset="90" strokeLinecap="round"
+                <circle cx="50" cy="50" r="24" fill="none" stroke="#e5e7eb" strokeWidth="5" 
+                  strokeDasharray="150" strokeDashoffset="60" strokeLinecap="round"
                   transform="rotate(-90 50 50)" />
               </svg>
               <div className="month-ring-label">
-                <span className="ring-pct">120%</span>
-                <span className="ring-sub">complete</span>
+                <span className="ring-pct">78%</span>
+                <span className="ring-sub">completed</span>
               </div>
             </div>
           </div>
 
           <div className="month-bottom-row">
-            <button className="month-share-btn"><Share2 size={14} /></button>
-            <button className="month-download-btn">
-              Download Report <Download size={14} />
+            <button className="month-share-btn" onClick={() => navigate('/feed')}>
+              <Share2 size={14} /> Discuss in Feed
+            </button>
+            <button 
+              className="month-download-btn"
+              onClick={() => alert("Syllabus & solved papers outline synced.")}
+            >
+              Routine / Syllabus <Download size={14} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* ═══════ ROW 2: GOALS + TASKS ═══════ */}
+      {/* ═══════ ROW 2: STUDY GOALS & ACTIVE TASKS ═══════ */}
       <div className="idraft-row-2">
 
         {/* Month Goals */}
         <div className="idraft-card goals-card">
           <div className="idraft-card-header">
-            <h3>Month goals:</h3>
+            <h3>CSE Academic Target Goals ({completedGoalsCount}/{goals.length})</h3>
             <div className="idraft-card-actions">
               <Clock3 size={15} />
-              <Pencil size={15} />
             </div>
           </div>
 
@@ -299,7 +458,10 @@ const Dashboard = () => {
                   {goal.done && <CheckCircle2 size={18} />}
                   {!goal.done && <Circle size={18} />}
                 </div>
-                <span className={`goal-text ${goal.done ? 'done' : ''}`}>{goal.text}</span>
+                <div className="goal-content-wrap">
+                  <span className={`goal-text ${goal.done ? 'done' : ''}`}>{goal.text}</span>
+                  {goal.tag && <span className="goal-tag">{goal.tag}</span>}
+                </div>
               </div>
             ))}
           </div>
@@ -308,57 +470,106 @@ const Dashboard = () => {
         {/* Tasks in Process */}
         <div className="idraft-card tasks-card">
           <div className="idraft-card-header">
-            <h3>Task in process ({tasks.length})</h3>
-            <span className="tasks-open-archive">Open archive <ArrowRight size={13} /></span>
+            <h3>Academic Deadlines & Labs ({tasks.length})</h3>
+            <span className="tasks-open-archive" onClick={() => setShowAddTask(true)}>
+              + Quick Add
+            </span>
           </div>
+
+          {showAddTask && (
+            <form onSubmit={handleAddTask} className="task-add-inline-form">
+              <input
+                type="text"
+                placeholder="e.g. CSE-311: Submit Normalization ER Diagram..."
+                value={newTaskTitle}
+                onChange={(e) => setNewTaskTitle(e.target.value)}
+                autoFocus
+              />
+              <div className="task-add-inline-btns">
+                <button type="submit" className="task-btn-submit">Add</button>
+                <button type="button" className="task-btn-cancel" onClick={() => setShowAddTask(false)}>
+                  <X size={14} />
+                </button>
+              </div>
+            </form>
+          )}
 
           <div className="tasks-grid">
             {tasks.map(task => (
               <div key={task.id} className="task-item-card">
                 <div className="task-item-top">
                   <span className="task-emoji">{task.icon}</span>
-                  <button className="task-more-btn"><MoreHorizontal size={16} /></button>
+                  <button className="task-del-btn" onClick={(e) => removeTask(task.id, e)} title="Remove Task">
+                    <Trash2 size={13} />
+                  </button>
                 </div>
                 <h4 className="task-item-title">{task.title}</h4>
                 <div className="task-item-footer">
                   <span className="task-date">{task.date}</span>
-                  <span className="task-bell-icon"><Bell size={14} /></span>
+                  <span className="task-dept-tag">{task.dept}</span>
                 </div>
               </div>
             ))}
 
-            {/* Add Task Card (Dashed) */}
-            <div className="task-add-card">
+            <div className="task-add-card" onClick={() => setShowAddTask(true)}>
               <Plus size={20} />
-              <span>Add task</span>
+              <span>Add Study Task</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ═══════ ROW 3: LAST PROJECTS ═══════ */}
+      {/* ═══════ ROW 3: CURATED CSE COURSES & SYLLABUS FAST-TRACKS ═══════ */}
       <div className="idraft-card projects-section">
         <div className="idraft-card-header projects-header">
-          <h3>Last Projects</h3>
+          <div>
+            <h3>Active CSE Courses & Syllabus Hub</h3>
+            <p className="projects-subtitle">Curated theory topics, lab problem sets, and past year question solves</p>
+          </div>
           <div className="projects-controls">
-            <span className="projects-sort">Sort by <ChevronDown size={13} /></span>
-            <button className="projects-view-btn active"><LayoutGrid size={15} /></button>
-            <button className="projects-view-btn"><List size={15} /></button>
+            <span className="sem-filter-label">Filter:</span>
+            {['All', '3rd', '4th', '5th'].map(sem => (
+              <button 
+                key={sem}
+                className={`sem-filter-btn ${selectedSemester === sem ? 'active' : ''}`}
+                onClick={() => setSelectedSemester(sem)}
+              >
+                {sem}
+              </button>
+            ))}
           </div>
         </div>
 
         <div className="projects-grid">
-          {RECENT_ITEMS.map(item => (
-            <div key={item.id} className="project-card-item">
+          {filteredCourses.map(course => (
+            <div key={course.id} className="project-card-item">
               <div className="project-item-top">
-                <h4>{item.title}</h4>
-                <button className="project-time-btn"><Clock3 size={14} /></button>
+                <div className="course-code-badge">{course.code}</div>
+                <span className="course-sem-badge">{course.semester} Semester</span>
               </div>
-              <div className="project-status-row">
-                <span className={`project-status-dot ${item.status === 'Completed' ? 'done' : 'progress'}`}></span>
-                <span className="project-status-text">{item.status}</span>
+              <h4 className="course-card-title">{course.title}</h4>
+              
+              <div className="course-progress-bar-wrap">
+                <div className="course-progress-label">
+                  <span>Coverage</span>
+                  <span>{course.progress}%</span>
+                </div>
+                <div className="course-progress-track">
+                  <div 
+                    className="course-progress-fill" 
+                    style={{ width: `${course.progress}%` }}
+                  />
+                </div>
               </div>
-              <p className="project-desc">{item.desc}</p>
+
+              <p className="project-desc">{course.desc}</p>
+              
+              <div className="course-card-footer">
+                <span className="course-solves-info">
+                  <FileText size={13} /> {course.solves}
+                </span>
+                <span className="course-topics-pill">{course.topicsCount}</span>
+              </div>
             </div>
           ))}
         </div>
