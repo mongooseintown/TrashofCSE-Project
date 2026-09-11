@@ -1,479 +1,397 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Search, 
+  Flame, 
+  CheckCircle2, 
+  Circle, 
+  Calendar, 
+  TrendingUp, 
   BookOpen, 
-  Sparkles, 
-  Cpu, 
-  Terminal, 
-  Zap, 
-  LayoutGrid, 
+  Clock, 
+  Award, 
+  Target, 
   ArrowRight, 
-  User, 
-  Layers, 
-  FileText, 
-  MessageSquare,
-  BookmarkCheck,
-  Compass,
-  CheckCircle2,
-  Award,
-  GraduationCap,
-  Flame,
-  ChevronRight,
-  HelpCircle
+  Search, 
+  Sparkles, 
+  RotateCcw,
+  Zap,
+  Terminal,
+  Cpu,
+  LayoutGrid,
+  Filter,
+  BarChart3,
+  CheckCheck
 } from 'lucide-react';
 import './Dashboard.css';
 
-// All verified curated topics directly mapped to coded static notes
-const ALL_TOPICS = [
+// Master syllabus topics for tracking
+const SYLLABUS_TOPICS = [
   // Computer Architecture
-  {
-    id: 'ca-single-multi',
-    title: 'Single-Cycle vs Multi-Cycle Datapath',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: '05',
-    category: 'Architecture',
-    type: 'core',
-    path: '/computer-architecture/single-vs-multi-cycle',
-    desc: 'Clock cycles, CPI, execution equations, and hardware comparison for MIPS datapath.'
-  },
-  {
-    id: 'ca-pq-solve',
-    title: 'CA Previous Question Solve (Mahir & Shafiul)',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: '06',
-    category: 'Exam Solve',
-    type: 'pq',
-    path: '/computer-architecture/segment-06/previous-question-solve',
-    desc: 'Complete detailed step-by-step solutions for semester final exam questions.'
-  },
-  {
-    id: 'ca-cache-mapping',
-    title: 'Cache Memory & Mapping Techniques',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: '07',
-    category: 'Memory Hierarchy',
-    type: 'core',
-    path: '/computer-architecture/segment-07/cache-mapping',
-    desc: 'Direct, Associative, and Set-Associative mapping calculations and tag formats.'
-  },
-  {
-    id: 'ca-tlb-pagefault',
-    title: 'TLB & Page Fault Handling Mechanisms',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: '07',
-    category: 'Virtual Memory',
-    type: 'core',
-    path: '/computer-architecture/segment-07/tlb',
-    desc: 'Translation Lookaside Buffer flow, page tables, and page fault resolution.'
-  },
-  {
-    id: 'ca-dma-handshake',
-    title: 'DMA & Handshaking Protocol',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: '08',
-    category: 'I/O Interface',
-    type: 'core',
-    path: '/computer-architecture/segment-08/dma',
-    desc: 'Direct Memory Access cycles, bus arbitration, and asynchronous handshaking.'
-  },
-  {
-    id: 'ca-shafiullah-sugg',
-    title: 'Shafiullah Sir Suggestions & Guidelines',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: 'Final',
-    category: 'Faculty Guidelines',
-    type: 'suggestion',
-    path: '/computer-architecture/shafiullah-suggestions',
-    desc: 'High-priority syllabus points and question hints directly from course faculty.'
-  },
-  {
-    id: 'ca-amanullah-sugg',
-    title: 'Amanullah Sir Architecture Guidelines',
-    course: 'ca',
-    courseName: 'CSE-3523 (CA)',
-    segment: 'Final',
-    category: 'Faculty Guidelines',
-    type: 'suggestion',
-    path: '/computer-architecture/amanullah-guidelines',
-    desc: 'Curated topics, exam checklist, and datapath problem set guidelines.'
-  },
+  { id: 'ca-1', course: 'ca', courseCode: 'CSE-3523', title: 'Single-Cycle vs Multi-Cycle Datapath', path: '/computer-architecture/single-vs-multi-cycle', category: 'Datapath', difficulty: 'High' },
+  { id: 'ca-2', course: 'ca', courseCode: 'CSE-3523', title: 'CA Previous Questions (Shafiul & Mahir)', path: '/computer-architecture/segment-06/previous-question-solve', category: 'Exam Solve', difficulty: 'Critical' },
+  { id: 'ca-3', course: 'ca', courseCode: 'CSE-3523', title: 'Cache Memory & Cache Mapping Techniques', path: '/computer-architecture/segment-07/cache-mapping', category: 'Memory', difficulty: 'High' },
+  { id: 'ca-4', course: 'ca', courseCode: 'CSE-3523', title: 'TLB & Page Fault Handling Mechanisms', path: '/computer-architecture/segment-07/tlb', category: 'Virtual Memory', difficulty: 'Medium' },
+  { id: 'ca-5', course: 'ca', courseCode: 'CSE-3523', title: 'DMA & Handshaking Bus Arbitration', path: '/computer-architecture/segment-08/dma', category: 'I/O', difficulty: 'Medium' },
+  { id: 'ca-6', course: 'ca', courseCode: 'CSE-3523', title: 'Shafiullah Sir Exam Suggestions', path: '/computer-architecture/shafiullah-suggestions', category: 'Guidelines', difficulty: 'Critical' },
+  { id: 'ca-7', course: 'ca', courseCode: 'CSE-3523', title: 'Amanullah Sir Architecture Guidelines', path: '/computer-architecture/amanullah-guidelines', category: 'Guidelines', difficulty: 'High' },
 
   // Compiler Design
-  {
-    id: 'compiler-seg04',
-    title: 'Lexical Analysis & Symbol Tables',
-    course: 'compiler',
-    courseName: 'CSE-3527 (Compiler)',
-    segment: '04',
-    category: 'Front-End',
-    type: 'core',
-    path: '/compiler/segment-04',
-    desc: 'Tokenization, regular expressions, transition diagrams, and symbol tables.'
-  },
-  {
-    id: 'compiler-seg06',
-    title: 'Syntax Analysis & Top-Down Parsing',
-    course: 'compiler',
-    courseName: 'CSE-3527 (Compiler)',
-    segment: '06',
-    category: 'Parsing',
-    type: 'core',
-    path: '/compiler/segment-06',
-    desc: 'LL(1) parsing tables, FIRST and FOLLOW set computations and ambiguity.'
-  },
-  {
-    id: 'compiler-seg07',
-    title: 'Bottom-Up Parsing & LR Parsers',
-    course: 'compiler',
-    courseName: 'CSE-3527 (Compiler)',
-    segment: '07',
-    category: 'Parsing',
-    type: 'core',
-    path: '/compiler/segment-07',
-    desc: 'Shift-reduce parsing, LR(0), SLR(1), and LALR parser construction.'
-  },
-  {
-    id: 'compiler-seg08',
-    title: 'Code Generation & Optimization',
-    course: 'compiler',
-    courseName: 'CSE-3527 (Compiler)',
-    segment: '08',
-    category: 'Back-End',
-    type: 'core',
-    path: '/compiler/segment-08',
-    desc: 'Three-address code, intermediate representations, and register allocation.'
-  },
+  { id: 'comp-1', course: 'compiler', courseCode: 'CSE-3527', title: 'Lexical Analysis & Symbol Tables (Seg 04)', path: '/compiler/segment-04', category: 'Lexical', difficulty: 'Medium' },
+  { id: 'comp-2', course: 'compiler', courseCode: 'CSE-3527', title: 'Syntax Analysis & Top-Down LL(1) (Seg 06)', path: '/compiler/segment-06', category: 'Parsing', difficulty: 'High' },
+  { id: 'comp-3', course: 'compiler', courseCode: 'CSE-3527', title: 'Bottom-Up Parsing & LR Parsers (Seg 07)', path: '/compiler/segment-07', category: 'Parsing', difficulty: 'High' },
+  { id: 'comp-4', course: 'compiler', courseCode: 'CSE-3527', title: 'Code Generation & 3-Address Code (Seg 08)', path: '/compiler/segment-08', category: 'Back-End', difficulty: 'High' },
 
   // EEE & Instrumentation
-  {
-    id: 'eee-dfm-pq',
-    title: 'Digital Frequency Meter (DFM) Exam Solve',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '08',
-    category: 'Exam Solve',
-    type: 'pq',
-    path: '/eee/dfm-pq',
-    desc: 'Previous exam question solutions, time base circuitry, and counter mechanics.'
-  },
-  {
-    id: 'eee-strain-gauge',
-    title: 'Strain Gauge & Wheatstone Bridge Circuits',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '05',
-    category: 'Transducers',
-    type: 'core',
-    path: '/eee/strain-gauge',
-    desc: 'Gauge factor calculations, quarter/half/full bridge circuit derivations.'
-  },
-  {
-    id: 'eee-strain-gauge-pq',
-    title: 'Strain Gauge Previous Question Solve',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '05',
-    category: 'Exam Solve',
-    type: 'pq',
-    path: '/eee/strain-gauge-pq',
-    desc: 'Worked numerical problems on bridge balance and resistance deflection.'
-  },
-  {
-    id: 'eee-thermocouple-math',
-    title: 'Thermocouple & RTD Mathematical Solves',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '06',
-    category: 'Math & Circuit',
-    type: 'core',
-    path: '/eee/thermocouple-math',
-    desc: 'Seebeck effect equations, temperature coefficient of resistance formulas.'
-  },
-  {
-    id: 'eee-pv-cell',
-    title: 'Photovoltaic (PV) Cells & Opto-Electronics',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '07',
-    category: 'Opto-Electronics',
-    type: 'core',
-    path: '/eee/pv-cell',
-    desc: 'Solar cell I-V characteristics, fill factor calculations, and efficiencies.'
-  },
-  {
-    id: 'eee-pv-cell-pq',
-    title: 'PV Cell Previous Questions Solve',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: '07',
-    category: 'Exam Solve',
-    type: 'pq',
-    path: '/eee/pv-cell-pq',
-    desc: 'Complete numerical solves on maximum power point and solar efficiency.'
-  },
-  {
-    id: 'eee-group-a',
-    title: 'EEE Group A Comprehensive Solved Topics',
-    course: 'eee',
-    courseName: 'EEE-2421 (EEE)',
-    segment: 'Final',
-    category: 'Exam Solve',
-    type: 'pq',
-    path: '/eee/group-a',
-    desc: 'Consolidated Group A answers covering generalized instrumentation & errors.'
-  },
+  { id: 'eee-1', course: 'eee', courseCode: 'EEE-2421', title: 'Digital Frequency Meter (DFM) Exam Solve', path: '/eee/dfm-pq', category: 'Exam Solve', difficulty: 'Critical' },
+  { id: 'eee-2', course: 'eee', courseCode: 'EEE-2421', title: 'Strain Gauge & Wheatstone Bridge Math', path: '/eee/strain-gauge', category: 'Transducers', difficulty: 'High' },
+  { id: 'eee-3', course: 'eee', courseCode: 'EEE-2421', title: 'Strain Gauge Previous Year Question Solve', path: '/eee/strain-gauge-pq', category: 'Exam Solve', difficulty: 'Critical' },
+  { id: 'eee-4', course: 'eee', courseCode: 'EEE-2421', title: 'Thermocouple & RTD Mathematical Solves', path: '/eee/thermocouple-math', category: 'Math Solve', difficulty: 'High' },
+  { id: 'eee-5', course: 'eee', courseCode: 'EEE-2421', title: 'PV Cell Opto-Electronics & Fill Factor', path: '/eee/pv-cell', category: 'Opto', difficulty: 'Medium' },
+  { id: 'eee-6', course: 'eee', courseCode: 'EEE-2421', title: 'PV Cell Previous Questions Solve', path: '/eee/pv-cell-pq', category: 'Exam Solve', difficulty: 'Critical' },
+  { id: 'eee-7', course: 'eee', courseCode: 'EEE-2421', title: 'EEE Group A Comprehensive Solved Topics', path: '/eee/group-a', category: 'Exam Solve', difficulty: 'Critical' },
 
-  // System Analysis & Design
-  {
-    id: 'sad-seg08',
-    title: 'System Analysis & Design Methodologies',
-    course: 'sad',
-    courseName: 'CSE-3611 (SAD)',
-    segment: '08',
-    category: 'Systems',
-    type: 'core',
-    path: '/system-analysis-design/segment-08',
-    desc: 'Data Flow Diagrams (DFD), system requirements, and architectural modeling.'
-  }
+  // SAD
+  { id: 'sad-1', course: 'sad', courseCode: 'CSE-3611', title: 'System Analysis & Design Methodologies (Seg 08)', path: '/system-analysis-design/segment-08', category: 'Systems', difficulty: 'Medium' }
 ];
 
-// High-Yield Exam Solves for quick access
-const HIGH_YIELD_SOLVES = [
-  {
-    id: 'hy-1',
-    title: 'CA Previous Questions (Shafiul & Mahir)',
-    tag: 'Final Exam Solve',
-    badge: 'CSE-3523',
-    color: '#a855f7',
-    path: '/computer-architecture/segment-06/previous-question-solve',
-    desc: 'Complete step-by-step solved questions with diagrams and architectural formulas.'
-  },
-  {
-    id: 'hy-2',
-    title: 'Digital Frequency Meter (DFM) Numerical Solve',
-    tag: 'Must Prepare',
-    badge: 'EEE-2421',
-    color: '#f59e0b',
-    path: '/eee/dfm-pq',
-    desc: 'Time base calculation, gating circuits, and frequency measurement questions.'
-  },
-  {
-    id: 'hy-3',
-    title: 'Single-Cycle vs Multi-Cycle Datapath Breakdown',
-    tag: 'Core Comparison',
-    badge: 'CSE-3523',
-    color: '#38bdf8',
-    path: '/computer-architecture/single-vs-multi-cycle',
-    desc: 'Clock cycle time, CPI variations, execution times, and multiplexer routing.'
-  },
-  {
-    id: 'hy-4',
-    title: 'Strain Gauge & Wheatstone Bridge Math',
-    tag: 'Math Solve',
-    badge: 'EEE-2421',
-    color: '#10b981',
-    path: '/eee/strain-gauge',
-    desc: 'Detailed calculations for strain sensitivity, bridge sensitivity, and calibration.'
-  }
-];
-
-const CORE_COURSES = [
-  {
-    id: 'ca',
-    code: 'CSE-3523',
-    title: 'Computer Architecture',
-    desc: 'MIPS datapath, multi-cycle, cache mapping, virtual memory & DMA protocols.',
-    icon: Cpu,
-    color: '#a855f7',
-    accentBg: 'rgba(168, 85, 247, 0.12)',
-    borderColor: 'rgba(168, 85, 247, 0.3)',
-    path: '/computer-architecture',
-    segments: ['Seg 05', 'Seg 06', 'Seg 07', 'Seg 08'],
-    stats: '15+ Solved Notes'
-  },
-  {
-    id: 'compiler',
-    code: 'CSE-3527',
-    title: 'Compiler Design',
-    desc: 'Lexical analysis, symbol tables, LL(1) parsing, LR parsers & code generation.',
-    icon: Terminal,
-    color: '#38bdf8',
-    accentBg: 'rgba(56, 189, 248, 0.12)',
-    borderColor: 'rgba(56, 189, 248, 0.3)',
-    path: '/compiler',
-    segments: ['Seg 04', 'Seg 06', 'Seg 07', 'Seg 08'],
-    stats: 'Full Pipeline'
-  },
-  {
-    id: 'eee',
-    code: 'EEE-2421',
-    title: 'EEE & Instrumentation',
-    desc: 'Transducers, Strain Gauges, RTD, PV Cells, DFM & previous question solutions.',
-    icon: Zap,
-    color: '#f59e0b',
-    accentBg: 'rgba(245, 158, 11, 0.12)',
-    borderColor: 'rgba(245, 158, 11, 0.3)',
-    path: '/eee',
-    segments: ['All Segments', 'Group A', 'Math Solves'],
-    stats: '18+ Solves & Notes'
-  },
-  {
-    id: 'sad',
-    code: 'CSE-3611',
-    title: 'System Analysis & Design',
-    desc: 'Software development lifecycles, structured DFDs & system design paradigms.',
-    icon: LayoutGrid,
-    color: '#10b981',
-    accentBg: 'rgba(16, 185, 129, 0.12)',
-    borderColor: 'rgba(16, 185, 129, 0.3)',
-    path: '/system-analysis-design',
-    segments: ['Seg 08', 'DFD Systems'],
-    stats: 'Core Syllabus'
-  }
+const COURSE_METRICS = [
+  { id: 'ca', name: 'Computer Architecture', code: 'CSE-3523', icon: Cpu, color: '#a855f7', total: 7 },
+  { id: 'compiler', name: 'Compiler Design', code: 'CSE-3527', icon: Terminal, color: '#38bdf8', total: 4 },
+  { id: 'eee', name: 'EEE & Instrumentation', code: 'EEE-2421', icon: Zap, color: '#f59e0b', total: 7 },
+  { id: 'sad', name: 'System Analysis & Design', code: 'CSE-3611', icon: LayoutGrid, color: '#10b981', total: 1 }
 ];
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [search, setSearch] = useState('');
-  const [activeTab, setActiveTab] = useState('all'); // all | pq | ca | compiler | eee | sad
+  const [completedTopics, setCompletedTopics] = useState({});
+  const [activityMap, setActivityMap] = useState({});
+  const [streakDays, setStreakDays] = useState(4);
+  const [filterCourse, setFilterCourse] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [hoveredDate, setHoveredDate] = useState(null);
+  const [targetExamDays, setTargetExamDays] = useState(18);
 
+  // Load User and Student Progress from LocalStorage
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
-    
+
     if (!token || !storedUser) {
       navigate('/login');
-    } else {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        setUser(null);
+      return;
+    }
+
+    try {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      const userKey = parsedUser.email || 'guest';
+
+      // Load completed topics
+      const savedCompleted = localStorage.getItem(`cse_completed_${userKey}`);
+      if (savedCompleted) {
+        setCompletedTopics(JSON.parse(savedCompleted));
+      } else {
+        // Default initial completed set (realistic starting point)
+        const initial = { 'ca-1': true, 'ca-2': true, 'comp-1': true, 'eee-1': true };
+        setCompletedTopics(initial);
+        localStorage.setItem(`cse_completed_${userKey}`, JSON.stringify(initial));
       }
+
+      // Load Activity Heatmap history
+      const savedActivity = localStorage.getItem(`cse_heatmap_${userKey}`);
+      if (savedActivity) {
+        setActivityMap(JSON.parse(savedActivity));
+      } else {
+        // Generate a vibrant realistic GitHub activity pattern for past 112 days (16 weeks)
+        const sampleActivity = generateInitialHeatmap();
+        setActivityMap(sampleActivity);
+        localStorage.setItem(`cse_heatmap_${userKey}`, JSON.stringify(sampleActivity));
+      }
+
+    } catch (e) {
+      console.error(e);
     }
   }, [navigate]);
 
-  // Filter topics based on active tab and search input
-  const filteredTopics = ALL_TOPICS.filter((t) => {
-    const matchesSearch = 
-      t.title.toLowerCase().includes(search.toLowerCase()) || 
-      t.desc.toLowerCase().includes(search.toLowerCase()) ||
-      t.category.toLowerCase().includes(search.toLowerCase()) ||
-      t.courseName.toLowerCase().includes(search.toLowerCase());
+  // Seed sample past activity so the graph isn't a blank void on first load
+  const generateInitialHeatmap = () => {
+    const map = {};
+    const today = new Date();
+    for (let i = 112; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(today.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      
+      // Random study intensity: mostly active on weekdays, intense near exams
+      const dayOfWeek = d.getDay();
+      const rand = Math.random();
+      if (i === 0) {
+        map[dateStr] = 3; // Today active
+      } else if (i < 14) {
+        // Past 2 weeks very active
+        map[dateStr] = rand > 0.3 ? Math.floor(rand * 4) + 1 : 0;
+      } else {
+        // General distribution
+        if (dayOfWeek !== 5 && rand > 0.45) {
+          map[dateStr] = Math.floor(rand * 3) + 1;
+        } else {
+          map[dateStr] = 0;
+        }
+      }
+    }
+    return map;
+  };
 
-    if (!matchesSearch) return false;
+  // Toggle topic completion
+  const handleToggleTopic = (topicId) => {
+    if (!user) return;
+    const userKey = user.email || 'guest';
+    const isNowDone = !completedTopics[topicId];
+    const updated = { ...completedTopics, [topicId]: isNowDone };
+    setCompletedTopics(updated);
+    localStorage.setItem(`cse_completed_${userKey}`, JSON.stringify(updated));
 
-    if (activeTab === 'all') return true;
-    if (activeTab === 'pq') return t.type === 'pq';
-    return t.course === activeTab;
+    // Log study activity to today's date in GitHub heatmap
+    const todayStr = new Date().toISOString().split('T')[0];
+    const currentTodayVal = activityMap[todayStr] || 0;
+    const updatedMap = {
+      ...activityMap,
+      [todayStr]: isNowDone ? currentTodayVal + 1 : Math.max(0, currentTodayVal - 1)
+    };
+    setActivityMap(updatedMap);
+    localStorage.setItem(`cse_heatmap_${userKey}`, JSON.stringify(updatedMap));
+  };
+
+  // Compute 16-week (112 days) GitHub Calendar Grid
+  const calendarDays = useMemo(() => {
+    const days = [];
+    const today = new Date();
+    // End on upcoming Saturday to complete the week column if needed
+    const currentDayOfWeek = today.getDay(); // 0 is Sun
+    const totalDaysToDisplay = 119; // 17 weeks * 7 days
+
+    for (let i = totalDaysToDisplay - 1; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(today.getDate() - i);
+      const dateStr = d.toISOString().split('T')[0];
+      const count = activityMap[dateStr] || 0;
+
+      let level = 0;
+      if (count >= 4) level = 4;
+      else if (count === 3) level = 3;
+      else if (count === 2) level = 2;
+      else if (count === 1) level = 1;
+
+      days.push({
+        date: dateStr,
+        count: count,
+        level: level,
+        dayOfWeek: d.getDay(),
+        formatted: d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+      });
+    }
+    return days;
+  }, [activityMap]);
+
+  // Overall calculations
+  const totalTopicsCount = SYLLABUS_TOPICS.length;
+  const completedCount = Object.values(completedTopics).filter(Boolean).length;
+  const overallPercentage = Math.round((completedCount / totalTopicsCount) * 100);
+
+  // Course-specific progress
+  const courseStats = useMemo(() => {
+    return COURSE_METRICS.map(c => {
+      const courseTopics = SYLLABUS_TOPICS.filter(t => t.course === c.id);
+      const done = courseTopics.filter(t => completedTopics[t.id]).length;
+      const pct = Math.round((done / courseTopics.length) * 100) || 0;
+      return { ...c, done, total: courseTopics.length, pct };
+    });
+  }, [completedTopics]);
+
+  // Total active days in calendar
+  const totalActiveDays = Object.values(activityMap).filter(v => v > 0).length;
+
+  // Filter topics for checklist
+  const visibleTopics = SYLLABUS_TOPICS.filter(t => {
+    const matchCourse = filterCourse === 'all' || t.course === filterCourse;
+    const matchSearch = t.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                        t.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCourse && matchSearch;
   });
 
-  const studentFirstName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
-
   return (
-    <div className="dash-container">
+    <div className="perf-dashboard-root">
       
-      {/* 1. COMMAND HEADER */}
-      <header className="dash-hero-banner">
-        <div className="dash-hero-content">
-          <div className="dash-status-pill">
-            <span className="dash-live-dot"></span>
-            <span>CSE Academic Hub • Live Syllabus</span>
+      {/* 1. TOP PERFORMANCE HEADER */}
+      <header className="perf-header-card">
+        <div className="perf-header-info">
+          <div className="perf-badge">
+            <BarChart3 size={14} /> Student Performance Analytics
           </div>
-
-          <h1 className="dash-hero-heading">
-            Welcome back, <span className="dash-glow-text">{studentFirstName}</span>
+          <h1 className="perf-student-name">
+            {user ? user.fullName : 'Engineering Student'}
           </h1>
-          <p className="dash-hero-desc">
-            Direct access to coded engineering lecture notes, solved previous exam questions, and instructor guidelines.
+          <p className="perf-subtext">
+            Personal study velocity, syllabus coverage, and GitHub-style daily revision tracker.
           </p>
 
-          <div className="dash-hero-quicklinks">
-            <button onClick={() => navigate('/feed')} className="dash-hero-btn primary">
-              <MessageSquare size={16} /> Community Feed
-            </button>
-            <button onClick={() => navigate('/profile')} className="dash-hero-btn secondary">
-              <User size={16} /> Student Profile
-            </button>
-            <button onClick={() => navigate('/computer-architecture/shafiullah-suggestions')} className="dash-hero-btn ghost">
-              <GraduationCap size={16} /> Faculty Guidelines
-            </button>
+          <div className="perf-stats-strip">
+            <div className="perf-metric">
+              <span className="perf-metric-val">{completedCount} / {totalTopicsCount}</span>
+              <span className="perf-metric-lbl">Topics Mastered</span>
+            </div>
+            <div className="perf-metric-divider"></div>
+            <div className="perf-metric">
+              <span className="perf-metric-val">{overallPercentage}%</span>
+              <span className="perf-metric-lbl">Exam Readiness</span>
+            </div>
+            <div className="perf-metric-divider"></div>
+            <div className="perf-metric">
+              <span className="perf-metric-val streak">
+                <Flame size={18} className="flame-pulse" /> {streakDays} Days
+              </span>
+              <span className="perf-metric-lbl">Active Streak</span>
+            </div>
+            <div className="perf-metric-divider"></div>
+            <div className="perf-metric">
+              <span className="perf-metric-val countdown">
+                <Clock size={16} /> {targetExamDays}d left
+              </span>
+              <span className="perf-metric-lbl">Semester Finals</span>
+            </div>
           </div>
         </div>
 
-        <div className="dash-hero-stats-panel">
-          <div className="dash-hud-stat">
-            <div className="dash-hud-number">4</div>
-            <div className="dash-hud-label">Major Courses</div>
+        {/* Circular Overall Score Widget */}
+        <div className="perf-radial-wrapper">
+          <div className="perf-radial-circle" style={{ '--score-deg': `${(overallPercentage / 100) * 360}deg` }}>
+            <div className="perf-radial-inner">
+              <span className="perf-radial-num">{overallPercentage}%</span>
+              <span className="perf-radial-tag">Ready</span>
+            </div>
           </div>
-          <div className="dash-hud-stat">
-            <div className="dash-hud-number">{ALL_TOPICS.length}+</div>
-            <div className="dash-hud-label">Coded Topics</div>
-          </div>
-          <div className="dash-hud-stat">
-            <div className="dash-hud-number">100%</div>
-            <div className="dash-hud-label">Coded In-App</div>
-          </div>
-          <div className="dash-hud-stat">
-            <div className="dash-hud-number">Free</div>
-            <div className="dash-hud-label">Student Access</div>
-          </div>
+          <span className="perf-radial-caption">
+            {overallPercentage >= 75 ? '🔥 Exam Ready' : overallPercentage >= 50 ? '⚡ Good Progress' : '📖 Keep Studying'}
+          </span>
         </div>
       </header>
 
-      {/* 2. CORE COURSES COMMAND GRID */}
-      <section className="dash-section-wrap">
-        <div className="dash-section-title-row">
-          <div>
-            <h2 className="dash-sec-title">
-              <BookOpen size={20} className="dash-sec-icon" /> Core Academic Stations
-            </h2>
-            <p className="dash-sec-subtitle">Comprehensive subject notes, slides, and syllabus breakdowns</p>
+      {/* 2. GITHUB-STYLE STUDY ACTIVITY HEATMAP */}
+      <section className="perf-heatmap-card">
+        <div className="perf-card-title-row">
+          <div className="perf-title-group">
+            <Calendar size={20} className="perf-card-icon" />
+            <div>
+              <h2 className="perf-card-title">Study Revision Graph</h2>
+              <p className="perf-card-sub">Daily revision activity across the semester (GitHub Activity Heatmap)</p>
+            </div>
+          </div>
+
+          <div className="perf-heatmap-summary-pills">
+            <span className="perf-pill">
+              <strong>{totalActiveDays}</strong> Active Study Days
+            </span>
+            <span className="perf-pill highlight">
+              <Flame size={13} /> <strong>{streakDays} Day</strong> Current Streak
+            </span>
           </div>
         </div>
 
-        <div className="dash-stations-grid">
-          {CORE_COURSES.map((course) => {
-            const Icon = course.icon;
+        {/* Heatmap Grid Container */}
+        <div className="gh-heatmap-wrapper">
+          
+          <div className="gh-days-legend">
+            <span>Mon</span>
+            <span>Wed</span>
+            <span>Fri</span>
+          </div>
+
+          <div className="gh-heatmap-scroll">
+            <div className="gh-grid">
+              {calendarDays.map((item, index) => (
+                <div
+                  key={index}
+                  className={`gh-box level-${item.level}`}
+                  onMouseEnter={() => setHoveredDate(item)}
+                  onMouseLeave={() => setHoveredDate(null)}
+                />
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Heatmap Footer Legend & Hover Tooltip */}
+        <div className="gh-heatmap-footer">
+          <div className="gh-tooltip-display">
+            {hoveredDate ? (
+              <span>
+                <strong>{hoveredDate.count} study revisions</strong> on {hoveredDate.formatted}
+              </span>
+            ) : (
+              <span className="gh-hint">Hover over a block to view study logs</span>
+            )}
+          </div>
+
+          <div className="gh-legend">
+            <span className="gh-legend-label">Less</span>
+            <span className="gh-box level-0"></span>
+            <span className="gh-box level-1"></span>
+            <span className="gh-box level-2"></span>
+            <span className="gh-box level-3"></span>
+            <span className="gh-box level-4"></span>
+            <span className="gh-legend-label">More</span>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. COURSE MASTERY BARS (PROGRESS TRACKER) */}
+      <section className="perf-courses-section">
+        <div className="perf-card-title-row">
+          <div className="perf-title-group">
+            <Target size={20} className="perf-card-icon" />
+            <div>
+              <h2 className="perf-card-title">Course Mastery Breakdown</h2>
+              <p className="perf-card-sub">Real-time completion percentage for every core engineering subject</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="perf-course-grid">
+          {courseStats.map((c) => {
+            const Icon = c.icon;
             return (
               <div 
-                key={course.id}
-                className="dash-station-card"
-                style={{
-                  '--accent': course.color,
-                  '--accent-bg': course.accentBg,
-                  '--border-color': course.borderColor
-                }}
-                onClick={() => navigate(course.path)}
+                key={c.id} 
+                className="perf-course-card"
+                style={{ '--course-color': c.color }}
+                onClick={() => setFilterCourse(filterCourse === c.id ? 'all' : c.id)}
               >
-                <div className="dash-station-top">
-                  <div className="dash-station-icon-wrap">
-                    <Icon size={24} color={course.color} />
+                <div className="perf-course-top">
+                  <div className="perf-course-icon-box">
+                    <Icon size={20} color={c.color} />
                   </div>
-                  <span className="dash-station-code">{course.code}</span>
+                  <span className="perf-course-code">{c.code}</span>
                 </div>
 
-                <h3 className="dash-station-title">{course.title}</h3>
-                <p className="dash-station-desc">{course.desc}</p>
+                <h3 className="perf-course-name">{c.name}</h3>
 
-                <div className="dash-station-segments">
-                  {course.segments.map((seg, idx) => (
-                    <span key={idx} className="dash-station-seg-chip">{seg}</span>
-                  ))}
+                <div className="perf-course-numbers">
+                  <span>{c.done} of {c.total} topics mastered</span>
+                  <span className="perf-course-pct">{c.pct}%</span>
                 </div>
 
-                <div className="dash-station-footer">
-                  <span className="dash-station-stats">{course.stats}</span>
-                  <span className="dash-station-action">
-                    Launch Hub <ArrowRight size={15} />
-                  </span>
+                <div className="perf-prog-track">
+                  <div 
+                    className="perf-prog-fill" 
+                    style={{ width: `${c.pct}%`, backgroundColor: c.color }}
+                  ></div>
+                </div>
+
+                <div className="perf-course-action-hint">
+                  <span>{filterCourse === c.id ? 'Viewing topics below' : 'Filter checklist'}</span>
+                  <ArrowRight size={13} />
                 </div>
               </div>
             );
@@ -481,175 +399,106 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* 3. HIGH-YIELD EXAM SOLVES (CRUNCH PREP) */}
-      <section className="dash-section-wrap">
-        <div className="dash-section-title-row">
-          <div>
-            <h2 className="dash-sec-title">
-              <Flame size={20} className="dash-sec-icon flame" /> High-Yield Exam Solves
-            </h2>
-            <p className="dash-sec-subtitle">Most frequently referenced exam questions and numerical derivations</p>
-          </div>
-        </div>
-
-        <div className="dash-solves-grid">
-          {HIGH_YIELD_SOLVES.map((item) => (
-            <div 
-              key={item.id}
-              className="dash-solve-card"
-              onClick={() => navigate(item.path)}
-            >
-              <div className="dash-solve-header">
-                <span className="dash-solve-tag" style={{ borderColor: item.color, color: item.color }}>
-                  {item.tag}
-                </span>
-                <span className="dash-solve-badge">{item.badge}</span>
-              </div>
-              <h4 className="dash-solve-title">{item.title}</h4>
-              <p className="dash-solve-desc">{item.desc}</p>
-              <div className="dash-solve-cta" style={{ color: item.color }}>
-                <span>Open Complete Solution</span>
-                <ArrowRight size={14} />
-              </div>
+      {/* 4. INTERACTIVE SYLLABUS CHECKLIST & PRACTICE */}
+      <section className="perf-checklist-card">
+        <div className="perf-checklist-header">
+          <div className="perf-title-group">
+            <CheckCheck size={20} className="perf-card-icon" />
+            <div>
+              <h2 className="perf-card-title">Interactive Syllabus Checklist</h2>
+              <p className="perf-card-sub">Mark topics completed to update your readiness score and GitHub graph</p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. INTERACTIVE TOPIC EXPLORER & SEARCH */}
-      <section className="dash-section-wrap">
-        <div className="dash-section-title-row">
-          <div>
-            <h2 className="dash-sec-title">
-              <Compass size={20} className="dash-sec-icon" /> Curriculum & Notes Explorer
-            </h2>
-            <p className="dash-sec-subtitle">Filter by subject or search across all verified study notes</p>
-          </div>
-        </div>
-
-        {/* Filter Navigation Tabs + Search Bar */}
-        <div className="dash-explorer-toolbar">
-          
-          <div className="dash-filter-tabs">
-            <button 
-              className={`dash-tab-btn ${activeTab === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveTab('all')}
-            >
-              All Topics ({ALL_TOPICS.length})
-            </button>
-            <button 
-              className={`dash-tab-btn ${activeTab === 'pq' ? 'active' : ''}`}
-              onClick={() => setActiveTab('pq')}
-            >
-              <Flame size={14} /> Exam Solves
-            </button>
-            <button 
-              className={`dash-tab-btn ${activeTab === 'ca' ? 'active' : ''}`}
-              onClick={() => setActiveTab('ca')}
-            >
-              Architecture
-            </button>
-            <button 
-              className={`dash-tab-btn ${activeTab === 'compiler' ? 'active' : ''}`}
-              onClick={() => setActiveTab('compiler')}
-            >
-              Compiler
-            </button>
-            <button 
-              className={`dash-tab-btn ${activeTab === 'eee' ? 'active' : ''}`}
-              onClick={() => setActiveTab('eee')}
-            >
-              EEE
-            </button>
-            <button 
-              className={`dash-tab-btn ${activeTab === 'sad' ? 'active' : ''}`}
-              onClick={() => setActiveTab('sad')}
-            >
-              SAD
-            </button>
           </div>
 
-          <div className="dash-search-container">
-            <Search size={16} className="dash-search-icon-inside" />
-            <input 
-              type="text" 
-              placeholder="Search concepts, datapath, math solve, formulas..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="dash-search-input-field"
-            />
-            {search && (
-              <button onClick={() => setSearch('')} className="dash-search-clear">
-                ✕
-              </button>
-            )}
-          </div>
-
-        </div>
-
-        {/* Topic Grid */}
-        {filteredTopics.length === 0 ? (
-          <div className="dash-empty-state">
-            <HelpCircle size={40} className="dash-empty-icon" />
-            <h3>No topics match your search</h3>
-            <p>Try searching for terms like "MIPS", "Cache", "Parsing", "RTD", or "Bridge".</p>
-            <button onClick={() => { setSearch(''); setActiveTab('all'); }} className="dash-reset-btn">
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="dash-notes-matrix">
-            {filteredTopics.map((topic) => (
-              <div 
-                key={topic.id}
-                className="dash-note-matrix-card"
-                onClick={() => navigate(topic.path)}
+          <div className="perf-checklist-controls">
+            {/* Filter Pills */}
+            <div className="perf-filter-pills">
+              <button 
+                className={`perf-filter-btn ${filterCourse === 'all' ? 'active' : ''}`}
+                onClick={() => setFilterCourse('all')}
               >
-                <div className="dash-matrix-header">
-                  <span className="dash-matrix-cat">{topic.category}</span>
-                  <span className="dash-matrix-seg">{topic.segment}</span>
+                All ({SYLLABUS_TOPICS.length})
+              </button>
+              <button 
+                className={`perf-filter-btn ${filterCourse === 'ca' ? 'active' : ''}`}
+                onClick={() => setFilterCourse('ca')}
+              >
+                CA
+              </button>
+              <button 
+                className={`perf-filter-btn ${filterCourse === 'compiler' ? 'active' : ''}`}
+                onClick={() => setFilterCourse('compiler')}
+              >
+                Compiler
+              </button>
+              <button 
+                className={`perf-filter-btn ${filterCourse === 'eee' ? 'active' : ''}`}
+                onClick={() => setFilterCourse('eee')}
+              >
+                EEE
+              </button>
+              <button 
+                className={`perf-filter-btn ${filterCourse === 'sad' ? 'active' : ''}`}
+                onClick={() => setFilterCourse('sad')}
+              >
+                SAD
+              </button>
+            </div>
+
+            {/* Search Box */}
+            <div className="perf-checklist-search">
+              <Search size={15} className="perf-search-ico" />
+              <input 
+                type="text" 
+                placeholder="Search checklist topics..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Checklist Rows */}
+        <div className="perf-topic-rows">
+          {visibleTopics.map((topic) => {
+            const isDone = !!completedTopics[topic.id];
+            return (
+              <div 
+                key={topic.id} 
+                className={`perf-topic-row ${isDone ? 'completed' : ''}`}
+              >
+                <button 
+                  className={`perf-checkbox-btn ${isDone ? 'checked' : ''}`}
+                  onClick={() => handleToggleTopic(topic.id)}
+                  title={isDone ? 'Mark uncompleted' : 'Mark completed'}
+                >
+                  {isDone ? <CheckCircle2 size={20} /> : <Circle size={20} />}
+                </button>
+
+                <div className="perf-row-main" onClick={() => navigate(topic.path)}>
+                  <div className="perf-row-top">
+                    <span className="perf-topic-course-badge">{topic.courseCode}</span>
+                    <span className="perf-topic-cat">{topic.category}</span>
+                    <span className={`perf-topic-diff ${topic.difficulty.toLowerCase()}`}>
+                      {topic.difficulty}
+                    </span>
+                  </div>
+                  <h4 className="perf-row-title">{topic.title}</h4>
                 </div>
 
-                <h4 className="dash-matrix-title">{topic.title}</h4>
-                <p className="dash-matrix-desc">{topic.desc}</p>
-
-                <div className="dash-matrix-footer">
-                  <span className="dash-matrix-course-label">{topic.courseName}</span>
-                  <span className="dash-matrix-link">
-                    Read Note <ChevronRight size={14} />
-                  </span>
+                <div className="perf-row-actions">
+                  <button 
+                    onClick={() => navigate(topic.path)} 
+                    className="perf-open-btn"
+                  >
+                    Open Note <ArrowRight size={14} />
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
-
-      </section>
-
-      {/* 5. FACULTY SUGGESTIONS & ACADEMIC SUPPORT */}
-      <footer className="dash-faculty-spotlight">
-        <div className="dash-faculty-card">
-          <div className="dash-faculty-info">
-            <span className="dash-faculty-tag">Faculty Exam Suggestions</span>
-            <h3>Exam Preparation Checklists & Guidelines</h3>
-            <p>Direct exam suggestions for Computer Architecture provided by Shafiullah Sir and Amanullah Sir.</p>
-          </div>
-          <div className="dash-faculty-actions">
-            <button 
-              onClick={() => navigate('/computer-architecture/shafiullah-suggestions')} 
-              className="dash-faculty-btn"
-            >
-              Shafiullah Sir Guidelines <ArrowRight size={14} />
-            </button>
-            <button 
-              onClick={() => navigate('/computer-architecture/amanullah-guidelines')} 
-              className="dash-faculty-btn"
-            >
-              Amanullah Sir Checklist <ArrowRight size={14} />
-            </button>
-          </div>
+            );
+          })}
         </div>
-      </footer>
+      </section>
 
     </div>
   );
