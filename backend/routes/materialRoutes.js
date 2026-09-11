@@ -35,8 +35,8 @@ const upload = multer({
 // GET: Fetch notes/materials
 router.get('/', protect, getMaterials);
 
-// POST: Upload notes/materials (supports multiple images or PDFs)
-router.post('/', protect, upload.array('files', 15), createMaterial);
+// POST: Upload notes/materials (Admin/Moderator only)
+router.post('/', protect, privileged, upload.array('files', 15), createMaterial);
 
 // PUT: Approve / Reject contributions (Admin/Moderator only)
 router.put('/:id/status', protect, privileged, updateMaterialStatus);

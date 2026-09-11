@@ -21,7 +21,6 @@ import {
 import './Dashboard.css';
 import { getApiUrl } from '../config';
 import DynamicNoteCard from '../components/DynamicNoteCard';
-import StudentContributionModal from '../components/StudentContributionModal';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +32,6 @@ const Dashboard = () => {
   const [search, setSearch] = useState('');
   const [courseFilter, setCourseFilter] = useState('all');
   const [segmentFilter, setSegmentFilter] = useState('all');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchApprovedUploads = async () => {
     try {
@@ -163,13 +161,10 @@ const Dashboard = () => {
         </div>
 
         <div className="dash-hero-actions">
-          <button onClick={() => setIsModalOpen(true)} className="dash-btn-cta primary">
-            <Plus size={16} /> Contribute Notes
+          <button onClick={() => navigate('/feed')} className="dash-btn-cta primary">
+            <MessageSquare size={16} /> Community Feed
           </button>
-          <button onClick={() => navigate('/feed')} className="dash-btn-cta secondary">
-            <MessageSquare size={16} /> Feed
-          </button>
-          <button onClick={() => navigate('/profile')} className="dash-btn-cta ghost">
+          <button onClick={() => navigate('/profile')} className="dash-btn-cta secondary">
             <User size={16} /> Profile
           </button>
         </div>
@@ -325,13 +320,9 @@ const Dashboard = () => {
                   <BookOpen size={20} className="dash-hub-icon" /> Shared Resources Hub
                 </h3>
                 <p className="dash-hub-subtitle">
-                  Class notes, slides, and exam preparation guides contributed by peers.
+                  Class notes, slides, and exam preparation guides curated for CSE.
                 </p>
               </div>
-
-              <button onClick={() => setIsModalOpen(true)} className="dash-hub-upload-btn">
-                <Plus size={16} /> Upload Notes
-              </button>
             </div>
 
             {/* Filter Controls */}
@@ -390,9 +381,6 @@ const Dashboard = () => {
                 </div>
                 <h4>No materials found</h4>
                 <p>Try adjusting your search query or filters to discover resources.</p>
-                <button onClick={() => setIsModalOpen(true)} className="dash-empty-btn">
-                  <Plus size={15} /> Contribute First Note
-                </button>
               </div>
             ) : (
               <div className="dash-hub-grid">
@@ -410,15 +398,6 @@ const Dashboard = () => {
         </main>
 
       </div>
-
-      {/* Global Contribution Modal */}
-      <StudentContributionModal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          fetchApprovedUploads();
-        }}
-      />
 
     </div>
   );
