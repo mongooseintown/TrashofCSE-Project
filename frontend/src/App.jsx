@@ -85,6 +85,7 @@ import ModeratorPanel from './pages/ModeratorPanel';
 import DynamicSegmentViewer from './pages/DynamicSegmentViewer';
 import CompilerLocked from './pages/CompilerLocked';
 import CommunityFeed from './pages/CommunityFeed';
+import { getApiUrl } from './config';
 import './App.css';
 
 import { ReactLenis } from 'lenis/react';
@@ -226,6 +227,9 @@ function App() {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+
+    // Pre-warm backend API to eliminate cold-start latency
+    fetch(getApiUrl('/api/health'), { keepalive: true }).catch(() => {});
   }, []);
 
   return (

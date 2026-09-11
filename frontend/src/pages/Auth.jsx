@@ -62,6 +62,9 @@ const AuthPage = () => {
   };
 
   useEffect(() => {
+    // 0. Pre-warm backend API to avoid cold starts
+    fetch(getApiUrl('/api/health'), { keepalive: true }).catch(() => {});
+
     // 1. Check if already logged in
     const token = localStorage.getItem('token');
     if (token) {
@@ -93,15 +96,32 @@ const AuthPage = () => {
 
   const handleGoogleLogin = async () => {
     setError('');
-    setIsRedirecting(true);
     setLoading(true);
 
     try {
-      await signInWithRedirect(auth, googleProvider);
+      // Fastest path: Instant popup without page reload
+      const result = await signInWithPopup(auth, googleProvider);
+      if (result && result.user) {
+        await handleBackendAuth(result.user);
+      }
     } catch (err) {
-      console.error("Google redirect error:", err);
-      setError(err.message || 'Google sign-in redirect failed');
-      setIsRedirecting(false);
+      // If popup blocked, seamlessly fallback to redirect
+      if (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request') {
+        setIsRedirecting(true);
+        try {
+          await signInWithRedirect(auth, googleProvider);
+        } catch (redirectErr) {
+          setError(redirectErr.message || 'Google sign-in redirect failed');
+          setIsRedirecting(false);
+          setLoading(false);
+        }
+        return;
+      }
+      if (err.code === 'auth/popup-closed-by-user') {
+        setLoading(false);
+        return;
+      }
+      setError(err.message || 'Google sign-in failed');
       setLoading(false);
     }
   };
