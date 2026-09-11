@@ -20,12 +20,21 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection
+let mongoConnectionError = null;
 const rawUri = process.env.MONGO_URI || '';
 const mongoUri = rawUri.replace(/\/trashofcse(\?|$)/i, '/TrashofCSE$1');
 
-mongoose.connect(mongoUri)
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+mongoose.connect(mongoUri, {
+  serverSelectionTimeoutMS: 5000,
+})
+.then(() => {
+  mongoConnectionError = null;
+  console.log('MongoDB connected');
+})
+.catch(err => {
+  mongoConnectionError = err.message;
+  console.error('MongoDB connection error:', err);
+});
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
@@ -35,6 +44,18 @@ app.use('/api/materials', require('./routes/materialRoutes'));
 
 app.get('/', (req, res) => {
     res.send('API is running...');
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    mongoStatus: ['disconnected', 'connected', 'connecting', 'disconnecting'][mongoose.connection.readyState],
+    mongoReadyState: mongoose.connection.readyState,
+    mongoConnectionError,
+    hasMongoUri: !!process.env.MONGO_URI,
+    mongoUriPrefix: process.env.MONGO_URI ? process.env.MONGO_URI.substring(0, 25) : 'none',
+    time: new Date().toISOString()
+  });
 });
 
 app.listen(PORT, () => {
