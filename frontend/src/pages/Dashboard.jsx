@@ -16,90 +16,78 @@ import {
   Code2, 
   GraduationCap, 
   Flame, 
-  FileText, 
   X, 
   Terminal, 
   Cpu, 
   Database, 
   Check, 
-  Layers
+  Award,
+  Sparkles
 } from 'lucide-react';
 import './Dashboard.css';
 
-/* ──────────── CURATED CSE COURSES DIVIDED BY MID & FINAL ──────────── */
+/* ──────────── ACTIVE CSE COURSES DIVIDED INTO 3 MID SEGMENTS ──────────── */
 const CSE_COURSE_CATALOG = [
   {
     id: 'cse211',
     code: 'CSE-211',
     title: 'Data Structures & Algorithms',
     semester: '3rd',
-    mid: {
-      scope: 'Asymptotic Complexity, Linked Lists, Stacks, Queues, Recursion',
-      solves: '4 Midterm Question Solves'
-    },
-    final: {
-      scope: 'Trees, BST, AVL, Graphs (BFS/DFS), Dijkstra, DP, Hashing',
-      solves: '6 Final Question Solves'
-    }
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Asymptotic Complexity, Big-O, Array & Linked Lists' },
+      { id: 2, label: 'Seg 2', desc: 'Stack Operations, Queue Applications & Recursion' },
+      { id: 3, label: 'Seg 3', desc: 'Binary Trees, BST Rotations & Mid Exam Solves' }
+    ]
   },
   {
     id: 'cse311',
     code: 'CSE-311',
     title: 'Database Management Systems',
     semester: '5th',
-    mid: {
-      scope: 'Relational Model, ER Diagrams, Relational Algebra, Basic SQL',
-      solves: '3 Midterm Question Solves'
-    },
-    final: {
-      scope: 'Normalization (3NF/BCNF), Transactions, ACID, Concurrency Control',
-      solves: '5 Final Question Solves'
-    }
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Relational Model, ER Diagrams & Schema Mapping' },
+      { id: 2, label: 'Seg 2', desc: 'Relational Algebra Operations, Tuple Calculus' },
+      { id: 3, label: 'Seg 3', desc: 'SQL DDL/DML, Nested Queries & Mid Exam Solves' }
+    ]
   },
   {
     id: 'cse313',
     code: 'CSE-313',
     title: 'Operating Systems & Architecture',
     semester: '5th',
-    mid: {
-      scope: 'Process Lifecycle, PCB Context Switching, IPC, CPU Scheduling',
-      solves: '3 Midterm Question Solves'
-    },
-    final: {
-      scope: 'Deadlock Banker\'s Algo, Virtual Memory, Paging, Page Replacement',
-      solves: '5 Final Question Solves'
-    }
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'OS Structure, System Calls, Process Lifecycle & PCB' },
+      { id: 2, label: 'Seg 2', desc: 'Inter-Process Communication (IPC), POSIX Threads' },
+      { id: 3, label: 'Seg 3', desc: 'CPU Scheduling Algorithms & Mid Exam Solves' }
+    ]
   },
   {
     id: 'cse223',
     code: 'CSE-223',
     title: 'Object Oriented Programming (Java/C++)',
     semester: '4th',
-    mid: {
-      scope: 'OOP Paradigm, Classes, Encapsulation, Inheritance, Polymorphism',
-      solves: '4 Midterm Question Solves'
-    },
-    final: {
-      scope: 'Interfaces, Abstract Classes, Collections Framework, Multithreading',
-      solves: '6 Final Question Solves'
-    }
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'OOP Paradigm, Classes, Objects & Access Modifiers' },
+      { id: 2, label: 'Seg 2', desc: 'Encapsulation, Constructor Overloading, Static' },
+      { id: 3, label: 'Seg 3', desc: 'Inheritance, Polymorphism & Mid Exam Solves' }
+    ]
   }
 ];
 
 /* ──────────── INITIAL ACADEMIC TARGET GOALS ──────────── */
 const INITIAL_GOALS = [
-  { id: 'g1', text: 'Complete Midterm syllabus & past question solves', done: false, tag: 'Midterm' },
-  { id: 'g2', text: 'Solve past 3 years Final Exam question papers', done: false, tag: 'Final Solves' },
-  { id: 'g3', text: 'Complete DBMS Midterm SQL & ER modeling questions', done: false, tag: 'Midterm' },
-  { id: 'g4', text: 'Revise Operating Systems Final Memory Paging & Deadlocks', done: false, tag: 'Final' },
-  { id: 'g5', text: 'Practice OOP Java/C++ Midterm & Final viva questions', done: false, tag: 'Viva/Lab' },
+  { id: 'g1', text: 'Complete Midterm Seg 1 & Seg 2 for all enrolled courses', done: false, tag: 'Midterm' },
+  { id: 'g2', text: 'Solve past 3 years Midterm question papers for Seg 3', done: false, tag: 'Mid Solves' },
+  { id: 'g3', text: 'Complete DBMS Midterm SQL queries & schema design drill', done: false, tag: 'Database' },
+  { id: 'g4', text: 'Revise Operating Systems CPU Scheduling formulas & charts', done: false, tag: 'OS' },
+  { id: 'g5', text: 'Practice OOP Java/C++ Midterm viva & code questions', done: false, tag: 'OOP/Viva' },
 ];
 
 /* ──────────── INITIAL TASKS ──────────── */
 const INITIAL_TASKS = [
-  { id: 't1', title: 'CSE-211: Midterm Question Paper Solve (2023)', date: 'Upcoming', iconType: 'code', dept: 'Midterm' },
-  { id: 't2', title: 'CSE-311: Midterm Schema Design & Query Solve', date: 'Upcoming', iconType: 'database', dept: 'Midterm' },
-  { id: 't3', title: 'CSE-313: Final Exam Banker\'s Algorithm Drill', date: 'Upcoming', iconType: 'cpu', dept: 'Final' },
+  { id: 't1', title: 'CSE-211: Complete Seg 1 & 2 Revision Sheets', date: 'Upcoming', iconType: 'code', dept: 'Seg 1-2' },
+  { id: 't2', title: 'CSE-311: Midterm Seg 3 Query Practice (Past Solves)', date: 'Upcoming', iconType: 'database', dept: 'Seg 3' },
+  { id: 't3', title: 'CSE-313: CPU Scheduling Gantt Chart Problems', date: 'Upcoming', iconType: 'cpu', dept: 'Seg 3' },
 ];
 
 const renderTaskIcon = (type) => {
@@ -122,9 +110,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // Student's real exam prep progress: { "cse211_mid": true, "cse211_final": false, ... }
-  const [examProgress, setExamProgress] = useState(() => {
-    const saved = localStorage.getItem('student_exam_progress');
+  // Student's real tracked Mid segments: { "cse211_seg1": true, "cse211_seg2": false, ... }
+  const [segmentProgress, setSegmentProgress] = useState(() => {
+    const saved = localStorage.getItem('student_mid_segments');
     return saved ? JSON.parse(saved) : {};
   });
 
@@ -168,8 +156,8 @@ const Dashboard = () => {
 
   // Persist progress
   useEffect(() => {
-    localStorage.setItem('student_exam_progress', JSON.stringify(examProgress));
-  }, [examProgress]);
+    localStorage.setItem('student_mid_segments', JSON.stringify(segmentProgress));
+  }, [segmentProgress]);
 
   useEffect(() => {
     localStorage.setItem('student_study_goals', JSON.stringify(goals));
@@ -192,16 +180,32 @@ const Dashboard = () => {
     }));
   };
 
-  // Toggle Mid or Final completion for a course
-  const toggleExamScope = (courseId, type) => {
-    const key = `${courseId}_${type}`;
-    setExamProgress(prev => {
+  // Toggle individual segment (Seg 1, Seg 2, Seg 3)
+  const toggleSegment = (courseId, segId) => {
+    const key = `${courseId}_seg${segId}`;
+    setSegmentProgress(prev => {
       const isNowCompleted = !prev[key];
       if (isNowCompleted) {
         recordStudyAction();
       }
       return { ...prev, [key]: isNowCompleted };
     });
+  };
+
+  // Declare 100% Complete for all 3 segments in a course
+  const declare100Percent = (courseId) => {
+    const s1 = `${courseId}_seg1`;
+    const s2 = `${courseId}_seg2`;
+    const s3 = `${courseId}_seg3`;
+    const allDone = segmentProgress[s1] && segmentProgress[s2] && segmentProgress[s3];
+
+    setSegmentProgress(prev => ({
+      ...prev,
+      [s1]: !allDone,
+      [s2]: !allDone,
+      [s3]: !allDone,
+    }));
+    recordStudyAction();
   };
 
   // Toggle a target goal
@@ -224,7 +228,7 @@ const Dashboard = () => {
       title: newTaskTitle.trim(),
       date: 'Today',
       iconType: 'terminal',
-      dept: 'Exam Prep'
+      dept: 'Mid Prep'
     };
     setTasks([newTask, ...tasks]);
     setNewTaskTitle('');
@@ -237,22 +241,24 @@ const Dashboard = () => {
     setTasks(tasks.filter(t => t.id !== id));
   };
 
-  // Dynamic calculations for Mid & Final
+  // Dynamic calculations for Mid Segments
   const totalCourses = CSE_COURSE_CATALOG.length;
-  const totalExamMilestones = totalCourses * 2; // Mid + Final for each
+  const totalSegmentsCount = totalCourses * 3; // 3 segments per course
 
-  const midReadyCount = useMemo(() => {
-    return CSE_COURSE_CATALOG.filter(c => examProgress[`${c.id}_mid`]).length;
-  }, [examProgress]);
+  const completedSegmentsCount = useMemo(() => {
+    return Object.values(segmentProgress).filter(Boolean).length;
+  }, [segmentProgress]);
 
-  const finalReadyCount = useMemo(() => {
-    return CSE_COURSE_CATALOG.filter(c => examProgress[`${c.id}_final`]).length;
-  }, [examProgress]);
+  const fullyReadyCoursesCount = useMemo(() => {
+    return CSE_COURSE_CATALOG.filter(c => 
+      segmentProgress[`${c.id}_seg1`] && 
+      segmentProgress[`${c.id}_seg2`] && 
+      segmentProgress[`${c.id}_seg3`]
+    ).length;
+  }, [segmentProgress]);
 
-  const totalCompletedMilestones = midReadyCount + finalReadyCount;
-
-  const realCoveragePercentage = totalExamMilestones > 0 
-    ? Math.round((totalCompletedMilestones / totalExamMilestones) * 100) 
+  const realCoveragePercentage = totalSegmentsCount > 0 
+    ? Math.round((completedSegmentsCount / totalSegmentsCount) * 100) 
     : 0;
 
   // Ring stroke offset
@@ -338,10 +344,10 @@ const Dashboard = () => {
       {/* ═══════ ROW 1: THREE REAL ACADEMIC STAT CARDS ═══════ */}
       <div className="idraft-row-3">
 
-        {/* Card 1: CSE Overall Academic Progress (Mid & Final Attainment) */}
+        {/* Card 1: Midterm Segments Progress */}
         <div className="idraft-card overall-card">
           <div className="idraft-card-header">
-            <h3>Exam Preparation Attainment</h3>
+            <h3>Midterm Segment Attainment</h3>
             <div className="idraft-card-actions">
               <span className="live-pulse-dot" title="Live Academic Progress"></span>
             </div>
@@ -349,27 +355,27 @@ const Dashboard = () => {
 
           <div className="overall-big-stats">
             <div className="overall-big-num">
-              <span className="big-number">{midReadyCount}</span>
-              <span className="big-label">Midterm Ready<br/>Courses</span>
+              <span className="big-number">{completedSegmentsCount}</span>
+              <span className="big-label">Segments Done<br/>Across Courses</span>
             </div>
             <div className="overall-big-num">
-              <span className="big-number accent">{finalReadyCount}</span>
-              <span className="big-label">Final Ready<br/>Courses</span>
+              <span className="big-number accent">{fullyReadyCoursesCount}</span>
+              <span className="big-label">Courses 100%<br/>Mid Ready</span>
             </div>
           </div>
 
           <div className="overall-mini-stats">
-            <div className="mini-stat-box" title="Enrolled Core Courses">
+            <div className="mini-stat-box" title="Enrolled Courses">
               <BookOpen size={16} />
               <span className="mini-num">{totalCourses}</span>
-              <span className="mini-label">Core Courses</span>
+              <span className="mini-label">Active Courses</span>
             </div>
-            <div className="mini-stat-box" title="Goals Attained">
-              <CheckCircle2 size={16} />
-              <span className="mini-num">{completedGoalsCount}</span>
-              <span className="mini-label">Goals Done</span>
+            <div className="mini-stat-box" title="Total Mid Segments">
+              <Code2 size={16} />
+              <span className="mini-num">{totalSegmentsCount}</span>
+              <span className="mini-label">Total Segments</span>
             </div>
-            <div className="mini-stat-box" title="Active Deadlines">
+            <div className="mini-stat-box" title="Deadlines">
               <Clock3 size={16} />
               <span className="mini-num">{tasks.length}</span>
               <span className="mini-label">Deadlines</span>
@@ -422,29 +428,29 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Card 3: Semester Exam Readiness Ring */}
+        {/* Card 3: Semester Midterm Readiness Ring */}
         <div className="idraft-card month-card">
           <div className="idraft-card-header">
-            <h3>Semester Exam Readiness</h3>
+            <h3>Midterm Exam Readiness</h3>
             <TrendingUp size={16} />
           </div>
 
           <p className="month-compare">
-            {totalCompletedMilestones === 0 
-              ? 'Mark your Mid & Final course preparation below'
-              : `${totalCompletedMilestones} of ${totalExamMilestones} exam phases prepared`}
+            {completedSegmentsCount === 0 
+              ? 'Click your completed segments below'
+              : `${completedSegmentsCount} of ${totalSegmentsCount} segments prepared`}
           </p>
 
           <div className="month-body">
             <div className="month-legend-list">
               <div className="month-leg-item">
-                <span className="mleg-dot dark"></span> Mid Ready ({midReadyCount}/{totalCourses})
+                <span className="mleg-dot dark"></span> Completed ({completedSegmentsCount})
               </div>
               <div className="month-leg-item">
-                <span className="mleg-dot gray"></span> Final Ready ({finalReadyCount}/{totalCourses})
+                <span className="mleg-dot gray"></span> Pending ({totalSegmentsCount - completedSegmentsCount})
               </div>
               <div className="month-leg-item">
-                <span className="mleg-dot light"></span> Total ({totalCourses} Courses)
+                <span className="mleg-dot light"></span> 100% Ready ({fullyReadyCoursesCount} Courses)
               </div>
             </div>
 
@@ -467,7 +473,7 @@ const Dashboard = () => {
               </svg>
               <div className="month-ring-label">
                 <span className="ring-pct">{realCoveragePercentage}%</span>
-                <span className="ring-sub">Prepared</span>
+                <span className="ring-sub">Mid Ready</span>
               </div>
             </div>
           </div>
@@ -478,7 +484,7 @@ const Dashboard = () => {
             </button>
             <button 
               className="month-download-btn"
-              onClick={() => alert(`Exam readiness: ${realCoveragePercentage}% prepared across Midterm and Final examinations.`)}
+              onClick={() => alert(`Midterm status: ${completedSegmentsCount} of ${totalSegmentsCount} segments prepared across ${totalCourses} courses.`)}
             >
               View Routine <Download size={14} />
             </button>
@@ -492,7 +498,7 @@ const Dashboard = () => {
         {/* Study Goals */}
         <div className="idraft-card goals-card">
           <div className="idraft-card-header">
-            <h3>Exam Preparation Target Goals ({completedGoalsCount}/{goals.length})</h3>
+            <h3>Midterm Target Goals ({completedGoalsCount}/{goals.length})</h3>
             <div className="idraft-card-actions">
               <Clock3 size={15} />
             </div>
@@ -527,7 +533,7 @@ const Dashboard = () => {
             <form onSubmit={handleAddTask} className="task-add-inline-form">
               <input
                 type="text"
-                placeholder="e.g. CSE-311: Midterm Question Solve 2023..."
+                placeholder="e.g. CSE-311: Solve Seg 2 Relational Algebra..."
                 value={newTaskTitle}
                 onChange={(e) => setNewTaskTitle(e.target.value)}
                 autoFocus
@@ -568,13 +574,13 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* ═══════ ROW 3: COURSES STRUCTURED BY MIDTERM & FINAL ═══════ */}
+      {/* ═══════ ROW 3: COURSES DIVIDED INTO 3 MID SEGMENTS ═══════ */}
       <div className="idraft-card projects-section">
         <div className="idraft-card-header projects-header">
           <div>
-            <h3>Active CSE Courses (Midterm & Final Tracks)</h3>
+            <h3>Active CSE Courses (MID Segments)</h3>
             <p className="projects-subtitle">
-              Mark your Midterm and Final exam preparations as you complete past solves and revisions
+              Midterm is divided into 3 Segments (Seg 1, Seg 2, Seg 3). Click any segment to mark completed or declare 100% complete.
             </p>
           </div>
           <div className="projects-controls">
@@ -593,30 +599,40 @@ const Dashboard = () => {
 
         <div className="projects-grid">
           {filteredCourses.map(course => {
-            const isMidDone = !!examProgress[`${course.id}_mid`];
-            const isFinalDone = !!examProgress[`${course.id}_final`];
-            const coursePercent = (isMidDone ? 50 : 0) + (isFinalDone ? 50 : 0);
+            const isSeg1Done = !!segmentProgress[`${course.id}_seg1`];
+            const isSeg2Done = !!segmentProgress[`${course.id}_seg2`];
+            const isSeg3Done = !!segmentProgress[`${course.id}_seg3`];
+            
+            const completedCount = [isSeg1Done, isSeg2Done, isSeg3Done].filter(Boolean).length;
+            const coursePercent = Math.round((completedCount / 3) * 100);
+            const is100Percent = completedCount === 3;
 
             return (
               <div key={course.id} className="project-card-item">
                 <div className="project-item-top">
                   <div className="course-code-badge">{course.code}</div>
-                  <span className="course-sem-badge">{course.semester} Semester</span>
+                  <div className="course-item-top-right">
+                    <span className="course-sem-badge">{course.semester} Semester</span>
+                    <button 
+                      className={`declare-100-btn ${is100Percent ? 'done' : ''}`}
+                      onClick={() => declare100Percent(course.id)}
+                      title={is100Percent ? 'Click to reset segments' : 'Click to declare all 3 segments complete'}
+                    >
+                      {is100Percent ? <Award size={13} /> : <CheckCircle2 size={13} />}
+                      <span>{is100Percent ? '100% Ready' : 'Declare 100%'}</span>
+                    </button>
+                  </div>
                 </div>
                 
                 <h4 className="course-card-title">{course.title}</h4>
                 
-                {/* Real dynamic progress based on Mid & Final */}
+                {/* Real dynamic progress based on Seg 1, 2, 3 */}
                 <div className="course-progress-bar-wrap">
                   <div className="course-progress-label">
                     <span>
-                      {coursePercent === 100 
-                        ? 'Mid & Final Ready' 
-                        : isMidDone 
-                          ? 'Midterm Ready • Final Pending' 
-                          : isFinalDone 
-                            ? 'Final Ready • Midterm Pending' 
-                            : 'Not Started'}
+                      {is100Percent 
+                        ? 'All 3 Segments Done (100%)' 
+                        : `${completedCount} of 3 Segments Complete`}
                     </span>
                     <span>{coursePercent}%</span>
                   </div>
@@ -628,56 +644,36 @@ const Dashboard = () => {
                   </div>
                 </div>
 
-                {/* Divided strictly into Midterm & Final cards */}
-                <div className="course-exam-splits">
-                  
-                  {/* Midterm Split */}
-                  <div 
-                    className={`exam-split-card ${isMidDone ? 'completed' : ''}`}
-                    onClick={() => toggleExamScope(course.id, 'mid')}
-                  >
-                    <div className="exam-split-header">
-                      <div className="exam-split-title-wrap">
-                        <span className="exam-tag mid">Midterm Scope</span>
-                        <span className="exam-solves-sub">{course.mid.solves}</span>
+                {/* 3 MID SEGMENTS (Seg 1, Seg 2, Seg 3) */}
+                <div className="course-mid-segments-row">
+                  {course.segments.map(seg => {
+                    const isDone = !!segmentProgress[`${course.id}_seg${seg.id}`];
+                    return (
+                      <div 
+                        key={seg.id}
+                        className={`mid-seg-card ${isDone ? 'completed' : ''}`}
+                        onClick={() => toggleSegment(course.id, seg.id)}
+                      >
+                        <div className="mid-seg-top">
+                          <span className="mid-seg-badge">{seg.label}</span>
+                          <div className={`mid-seg-check ${isDone ? 'checked' : ''}`}>
+                            {isDone && <Check size={12} />}
+                          </div>
+                        </div>
+                        <p className="mid-seg-desc">{seg.desc}</p>
+                        <div className="mid-seg-status">
+                          {isDone ? '✓ Completed' : 'Click to finish'}
+                        </div>
                       </div>
-                      <div className={`exam-check-box ${isMidDone ? 'checked' : ''}`}>
-                        {isMidDone ? <Check size={13} /> : null}
-                      </div>
-                    </div>
-                    <p className="exam-scope-desc">{course.mid.scope}</p>
-                    <div className="exam-action-hint">
-                      {isMidDone ? '✓ Prepared for Midterm' : 'Click to mark Midterm prepared'}
-                    </div>
-                  </div>
-
-                  {/* Final Split */}
-                  <div 
-                    className={`exam-split-card ${isFinalDone ? 'completed' : ''}`}
-                    onClick={() => toggleExamScope(course.id, 'final')}
-                  >
-                    <div className="exam-split-header">
-                      <div className="exam-split-title-wrap">
-                        <span className="exam-tag final">Final Scope</span>
-                        <span className="exam-solves-sub">{course.final.solves}</span>
-                      </div>
-                      <div className={`exam-check-box ${isFinalDone ? 'checked' : ''}`}>
-                        {isFinalDone ? <Check size={13} /> : null}
-                      </div>
-                    </div>
-                    <p className="exam-scope-desc">{course.final.scope}</p>
-                    <div className="exam-action-hint">
-                      {isFinalDone ? '✓ Prepared for Final Exam' : 'Click to mark Final prepared'}
-                    </div>
-                  </div>
-
+                    );
+                  })}
                 </div>
 
                 <div className="course-card-footer">
                   <span className="course-solves-info">
-                    <CheckCircle2 size={13} /> {coursePercent === 100 ? 'Course Fully Prepared' : `${coursePercent}% Completed`}
+                    <CheckCircle2 size={13} /> {is100Percent ? 'Course 100% Midterm Ready' : `${completedCount}/3 Segments Completed`}
                   </span>
-                  <span className="course-topics-pill">2 Examination Phases</span>
+                  <span className="course-topics-pill">MID Exam</span>
                 </div>
               </div>
             );

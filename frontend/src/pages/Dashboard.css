@@ -913,105 +913,125 @@
   background: #333333;
 }
 
-/* Midterm & Final Examination Split Cards */
-.course-exam-splits {
+/* 3 MID Examination Segments (Seg 1, Seg 2, Seg 3) */
+.course-item-top-right {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  align-items: center;
+  gap: 0.65rem;
 }
 
-.exam-split-card {
-  background: #1c1c1c;
-  border: 1px solid #2a2a2a;
-  border-radius: 12px;
-  padding: 0.85rem 1rem;
+.declare-100-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #222222;
+  border: 1px solid #333333;
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
 }
 
-.exam-split-card:hover {
-  background: #242424;
-  border-color: #383838;
+.declare-100-btn:hover {
+  background: #333333;
+  border-color: #444444;
 }
 
-.exam-split-card.completed {
-  background: rgba(16, 185, 129, 0.08);
-  border-color: rgba(16, 185, 129, 0.35);
-}
-
-.exam-split-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.exam-split-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.exam-tag {
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.2rem 0.55rem;
-  border-radius: 6px;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
-}
-
-.exam-tag.mid {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-.exam-tag.final {
-  background: #7c3aed;
-  color: #ffffff;
-}
-
-.exam-solves-sub {
-  font-size: 0.74rem;
-  color: rgba(255,255,255,0.6);
-  font-weight: 500;
-}
-
-.exam-check-box {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  border: 1.5px solid rgba(255,255,255,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s ease;
-  flex-shrink: 0;
-}
-
-.exam-check-box.checked {
+.declare-100-btn.done {
   background: #10b981;
   border-color: #10b981;
   color: #ffffff;
 }
 
-.exam-scope-desc {
-  font-size: 0.78rem;
+.course-mid-segments-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .course-mid-segments-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mid-seg-card {
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.45rem;
+}
+
+.mid-seg-card:hover {
+  background: #242424;
+  border-color: #383838;
+}
+
+.mid-seg-card.completed {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.mid-seg-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mid-seg-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.mid-seg-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.mid-seg-check.checked {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.mid-seg-desc {
+  font-size: 0.76rem;
   color: rgba(255,255,255,0.7);
-  line-height: 1.4;
+  line-height: 1.35;
   margin: 0;
 }
 
-.exam-action-hint {
+.mid-seg-status {
   font-size: 0.7rem;
   font-weight: 600;
   color: rgba(255,255,255,0.4);
+  margin-top: auto;
 }
 
-.exam-split-card.completed .exam-action-hint {
+.mid-seg-card.completed .mid-seg-status {
   color: #10b981;
 }
 
