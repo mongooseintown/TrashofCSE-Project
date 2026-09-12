@@ -22,12 +22,62 @@ import {
   Database, 
   Check, 
   Award,
-  Sparkles
+  Sparkles,
+  ShieldAlert
 } from 'lucide-react';
 import './Dashboard.css';
 
-/* ──────────── ACTIVE CSE COURSES DIVIDED INTO 3 MID SEGMENTS ──────────── */
+/* ──────────── CURATED CSE COURSES PER SEMESTER (3 MID SEGMENTS EACH) ──────────── */
 const CSE_COURSE_CATALOG = [
+  // 1st Semester
+  {
+    id: 'cse111',
+    code: 'CSE-111',
+    title: 'Structured Programming Language (C)',
+    semester: '1st',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Basic I/O, Data Types, Operators, Conditional Branching' },
+      { id: 2, label: 'Seg 2', desc: 'Loops (for, while), 1D & 2D Array Processing' },
+      { id: 3, label: 'Seg 3', desc: 'User-defined Functions, Pointers & Mid Paper Solves' }
+    ]
+  },
+  {
+    id: 'math111',
+    code: 'MATH-111',
+    title: 'Differential & Integral Calculus',
+    semester: '1st',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Real Functions, Limit Theorems & Continuity' },
+      { id: 2, label: 'Seg 2', desc: 'Derivatives, Chain Rule, Successive Differentiation' },
+      { id: 3, label: 'Seg 3', desc: 'Mean Value Theorem, Maxima/Minima & Mid Solves' }
+    ]
+  },
+
+  // 2nd Semester
+  {
+    id: 'cse121',
+    code: 'CSE-121',
+    title: 'Discrete Mathematics',
+    semester: '2nd',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Propositional & Predicate Logic, Proof Methods' },
+      { id: 2, label: 'Seg 2', desc: 'Set Theory, Relations, Equivalence, Partial Orders' },
+      { id: 3, label: 'Seg 3', desc: 'Recurrence Relations, Graph Basics & Mid Solves' }
+    ]
+  },
+  {
+    id: 'cse123',
+    code: 'CSE-123',
+    title: 'Data Structures Foundation',
+    semester: '2nd',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Dynamic Memory Allocation, Linear Array Operations' },
+      { id: 2, label: 'Seg 2', desc: 'Singly & Doubly Linked Lists Implementations' },
+      { id: 3, label: 'Seg 3', desc: 'Stack Operations, Queue Applications & Mid Solves' }
+    ]
+  },
+
+  // 3rd Semester
   {
     id: 'cse211',
     code: 'CSE-211',
@@ -39,6 +89,65 @@ const CSE_COURSE_CATALOG = [
       { id: 3, label: 'Seg 3', desc: 'Binary Trees, BST Rotations & Mid Exam Solves' }
     ]
   },
+  {
+    id: 'cse213',
+    code: 'CSE-213',
+    title: 'Digital Logic Design',
+    semester: '3rd',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Number Systems, Binary Arithmetic, Boolean Axioms' },
+      { id: 2, label: 'Seg 2', desc: 'Karnaugh Maps (K-Maps), SOP/POS Simplification' },
+      { id: 3, label: 'Seg 3', desc: 'Combinational Logic: Adders, MUX, Decoders & Mid Solves' }
+    ]
+  },
+  {
+    id: 'math211',
+    code: 'MATH-211',
+    title: 'Linear Algebra & ODE',
+    semester: '3rd',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Matrix Operations, Determinants & Inverse Methods' },
+      { id: 2, label: 'Seg 2', desc: 'Vector Spaces, Linear Independence, Rank & Nullity' },
+      { id: 3, label: 'Seg 3', desc: '1st Order ODEs, Exact & Linear Equations, Mid Solves' }
+    ]
+  },
+
+  // 4th Semester
+  {
+    id: 'cse221',
+    code: 'CSE-221',
+    title: 'Algorithms Design & Analysis',
+    semester: '4th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Divide and Conquer, Merge Sort, Quick Sort Analysis' },
+      { id: 2, label: 'Seg 2', desc: 'Greedy Method: Activity Selection, Huffman, Kruskal' },
+      { id: 3, label: 'Seg 3', desc: 'Dynamic Programming: 0/1 Knapsack, LCS & Mid Solves' }
+    ]
+  },
+  {
+    id: 'cse223',
+    code: 'CSE-223',
+    title: 'Object Oriented Programming (Java/C++)',
+    semester: '4th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'OOP Paradigm, Classes, Objects & Access Modifiers' },
+      { id: 2, label: 'Seg 2', desc: 'Encapsulation, Constructor Overloading, Static' },
+      { id: 3, label: 'Seg 3', desc: 'Inheritance, Polymorphism & Mid Exam Solves' }
+    ]
+  },
+  {
+    id: 'cse225',
+    code: 'CSE-225',
+    title: 'Computer Architecture & Org',
+    semester: '4th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'MIPS Instruction Set Architecture & Register Formats' },
+      { id: 2, label: 'Seg 2', desc: 'ALU Design, Datapath & Single-Cycle Processor' },
+      { id: 3, label: 'Seg 3', desc: 'Memory Hierarchy, Direct/Associative Cache & Mid Solves' }
+    ]
+  },
+
+  // 5th Semester
   {
     id: 'cse311',
     code: 'CSE-311',
@@ -62,14 +171,64 @@ const CSE_COURSE_CATALOG = [
     ]
   },
   {
-    id: 'cse223',
-    code: 'CSE-223',
-    title: 'Object Oriented Programming (Java/C++)',
-    semester: '4th',
+    id: 'cse315',
+    code: 'CSE-315',
+    title: 'Theory of Computation',
+    semester: '5th',
     segments: [
-      { id: 1, label: 'Seg 1', desc: 'OOP Paradigm, Classes, Objects & Access Modifiers' },
-      { id: 2, label: 'Seg 2', desc: 'Encapsulation, Constructor Overloading, Static' },
-      { id: 3, label: 'Seg 3', desc: 'Inheritance, Polymorphism & Mid Exam Solves' }
+      { id: 1, label: 'Seg 1', desc: 'DFA, NFA, Regular Expressions & State Minimization' },
+      { id: 2, label: 'Seg 2', desc: 'Pumping Lemma for Regular Languages, Grammars' },
+      { id: 3, label: 'Seg 3', desc: 'Context-Free Languages, Pushdown Automata & Mid Solves' }
+    ]
+  },
+
+  // 6th Semester
+  {
+    id: 'cse321',
+    code: 'CSE-321',
+    title: 'Computer Networks',
+    semester: '6th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'OSI 7-Layer Architecture, Physical & Data Link Layer' },
+      { id: 2, label: 'Seg 2', desc: 'MAC Protocols, Ethernet, Error Detection (CRC)' },
+      { id: 3, label: 'Seg 3', desc: 'IPv4 Subnetting, CIDR, Distance Vector Routing & Mid' }
+    ]
+  },
+  {
+    id: 'cse323',
+    code: 'CSE-323',
+    title: 'Compiler Design',
+    semester: '6th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Phases of Compiler, Lexical Analysis, Regular Definitions' },
+      { id: 2, label: 'Seg 2', desc: 'Context-Free Syntax, Top-Down LL(1) Parsing' },
+      { id: 3, label: 'Seg 3', desc: 'Bottom-Up LR(0)/SLR(1) Parsing Tables & Mid Solves' }
+    ]
+  },
+
+  // 7th Semester
+  {
+    id: 'cse411',
+    code: 'CSE-411',
+    title: 'Artificial Intelligence & ML',
+    semester: '7th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Intelligent Agents, Uninformed & A* Search Strategies' },
+      { id: 2, label: 'Seg 2', desc: 'Adversarial Search, Alpha-Beta Pruning, CSP' },
+      { id: 3, label: 'Seg 3', desc: 'Propositional Inference, First-Order Logic & Mid Solves' }
+    ]
+  },
+
+  // 8th Semester
+  {
+    id: 'cse421',
+    code: 'CSE-421',
+    title: 'Cloud Computing & Systems',
+    semester: '8th',
+    segments: [
+      { id: 1, label: 'Seg 1', desc: 'Cloud Architectures, IaaS, PaaS, SaaS Delivery Models' },
+      { id: 2, label: 'Seg 2', desc: 'Virtualization, Hypervisors, Containerization & Docker' },
+      { id: 3, label: 'Seg 3', desc: 'Cloud Storage S3, Distributed Consensus & Mid Solves' }
     ]
   }
 ];
@@ -78,16 +237,16 @@ const CSE_COURSE_CATALOG = [
 const INITIAL_GOALS = [
   { id: 'g1', text: 'Complete Midterm Seg 1 & Seg 2 for all enrolled courses', done: false, tag: 'Midterm' },
   { id: 'g2', text: 'Solve past 3 years Midterm question papers for Seg 3', done: false, tag: 'Mid Solves' },
-  { id: 'g3', text: 'Complete DBMS Midterm SQL queries & schema design drill', done: false, tag: 'Database' },
-  { id: 'g4', text: 'Revise Operating Systems CPU Scheduling formulas & charts', done: false, tag: 'OS' },
-  { id: 'g5', text: 'Practice OOP Java/C++ Midterm viva & code questions', done: false, tag: 'OOP/Viva' },
+  { id: 'g3', text: 'Revise core theory formulas and diagrams for active semester', done: false, tag: 'Theory' },
+  { id: 'g4', text: 'Practice course code implementations and lab test drills', done: false, tag: 'Lab' },
+  { id: 'g5', text: 'Review Midterm exam routines and schedule allocation', done: false, tag: 'Routine' },
 ];
 
 /* ──────────── INITIAL TASKS ──────────── */
 const INITIAL_TASKS = [
-  { id: 't1', title: 'CSE-211: Complete Seg 1 & 2 Revision Sheets', date: 'Upcoming', iconType: 'code', dept: 'Seg 1-2' },
-  { id: 't2', title: 'CSE-311: Midterm Seg 3 Query Practice (Past Solves)', date: 'Upcoming', iconType: 'database', dept: 'Seg 3' },
-  { id: 't3', title: 'CSE-313: CPU Scheduling Gantt Chart Problems', date: 'Upcoming', iconType: 'cpu', dept: 'Seg 3' },
+  { id: 't1', title: 'Complete Seg 1 Revision & Concept Summaries', date: 'Upcoming', iconType: 'code', dept: 'Seg 1' },
+  { id: 't2', title: 'Practice Seg 2 Numerical Problems & Diagrams', date: 'Upcoming', iconType: 'database', dept: 'Seg 2' },
+  { id: 't3', title: 'Solve Past 3 Years Midterm Papers (Seg 3)', date: 'Upcoming', iconType: 'cpu', dept: 'Seg 3' },
 ];
 
 const renderTaskIcon = (type) => {
@@ -110,7 +269,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // Student's real tracked Mid segments: { "cse211_seg1": true, "cse211_seg2": false, ... }
+  // Student's real tracked Mid segments
   const [segmentProgress, setSegmentProgress] = useState(() => {
     const saved = localStorage.getItem('student_mid_segments');
     return saved ? JSON.parse(saved) : {};
@@ -136,7 +295,6 @@ const Dashboard = () => {
     return { [todayStr]: 1 };
   });
 
-  const [selectedSemester, setSelectedSemester] = useState('All');
   const [showAddTask, setShowAddTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
@@ -241,21 +399,38 @@ const Dashboard = () => {
     setTasks(tasks.filter(t => t.id !== id));
   };
 
-  // Dynamic calculations for Mid Segments
-  const totalCourses = CSE_COURSE_CATALOG.length;
+  // Enrolled semester filter: strictly only show courses for student's current semester
+  const studentSemester = user?.semester || '3rd';
+
+  const enrolledCourses = useMemo(() => {
+    const matched = CSE_COURSE_CATALOG.filter(
+      c => c.semester.toLowerCase() === studentSemester.toLowerCase()
+    );
+    // If no course matches (or semester is newly selected), fallback to 3rd semester courses
+    return matched.length > 0 ? matched : CSE_COURSE_CATALOG.filter(c => c.semester === '3rd');
+  }, [studentSemester]);
+
+  // Dynamic calculations for student's enrolled semester
+  const totalCourses = enrolledCourses.length;
   const totalSegmentsCount = totalCourses * 3; // 3 segments per course
 
   const completedSegmentsCount = useMemo(() => {
-    return Object.values(segmentProgress).filter(Boolean).length;
-  }, [segmentProgress]);
+    return enrolledCourses.reduce((acc, c) => {
+      let count = 0;
+      if (segmentProgress[`${c.id}_seg1`]) count++;
+      if (segmentProgress[`${c.id}_seg2`]) count++;
+      if (segmentProgress[`${c.id}_seg3`]) count++;
+      return acc + count;
+    }, 0);
+  }, [enrolledCourses, segmentProgress]);
 
   const fullyReadyCoursesCount = useMemo(() => {
-    return CSE_COURSE_CATALOG.filter(c => 
+    return enrolledCourses.filter(c => 
       segmentProgress[`${c.id}_seg1`] && 
       segmentProgress[`${c.id}_seg2`] && 
       segmentProgress[`${c.id}_seg3`]
     ).length;
-  }, [segmentProgress]);
+  }, [enrolledCourses, segmentProgress]);
 
   const realCoveragePercentage = totalSegmentsCount > 0 
     ? Math.round((completedSegmentsCount / totalSegmentsCount) * 100) 
@@ -311,10 +486,6 @@ const Dashboard = () => {
   const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
   const completedGoalsCount = goals.filter(g => g.done).length;
 
-  const filteredCourses = selectedSemester === 'All' 
-    ? CSE_COURSE_CATALOG 
-    : CSE_COURSE_CATALOG.filter(c => c.semester === selectedSemester);
-
   return (
     <div className="idraft-root">
 
@@ -324,7 +495,7 @@ const Dashboard = () => {
           <h1 className="idraft-greeting">Hi, {studentName}!</h1>
           <div className="idraft-sub-badge">
             <GraduationCap size={14} />
-            <span>Trash of CSE • {user?.department || 'CSE'} Dept ({user?.semester ? `${user.semester} Sem` : 'Active Track'})</span>
+            <span>Trash of CSE • {user?.department || 'CSE'} Dept • {studentSemester} Semester</span>
           </div>
         </div>
 
@@ -356,7 +527,7 @@ const Dashboard = () => {
           <div className="overall-big-stats">
             <div className="overall-big-num">
               <span className="big-number">{completedSegmentsCount}</span>
-              <span className="big-label">Segments Done<br/>Across Courses</span>
+              <span className="big-label">Segments Done<br/>In {studentSemester} Sem</span>
             </div>
             <div className="overall-big-num">
               <span className="big-number accent">{fullyReadyCoursesCount}</span>
@@ -365,10 +536,10 @@ const Dashboard = () => {
           </div>
 
           <div className="overall-mini-stats">
-            <div className="mini-stat-box" title="Enrolled Courses">
+            <div className="mini-stat-box" title="Enrolled Semester Courses">
               <BookOpen size={16} />
               <span className="mini-num">{totalCourses}</span>
-              <span className="mini-label">Active Courses</span>
+              <span className="mini-label">{studentSemester} Sem Courses</span>
             </div>
             <div className="mini-stat-box" title="Total Mid Segments">
               <Code2 size={16} />
@@ -431,7 +602,7 @@ const Dashboard = () => {
         {/* Card 3: Semester Midterm Readiness Ring */}
         <div className="idraft-card month-card">
           <div className="idraft-card-header">
-            <h3>Midterm Exam Readiness</h3>
+            <h3>{studentSemester} Sem Mid Readiness</h3>
             <TrendingUp size={16} />
           </div>
 
@@ -484,7 +655,7 @@ const Dashboard = () => {
             </button>
             <button 
               className="month-download-btn"
-              onClick={() => alert(`Midterm status: ${completedSegmentsCount} of ${totalSegmentsCount} segments prepared across ${totalCourses} courses.`)}
+              onClick={() => alert(`Midterm status: ${completedSegmentsCount} of ${totalSegmentsCount} segments prepared for ${studentSemester} Semester.`)}
             >
               View Routine <Download size={14} />
             </button>
@@ -533,7 +704,7 @@ const Dashboard = () => {
             <form onSubmit={handleAddTask} className="task-add-inline-form">
               <input
                 type="text"
-                placeholder="e.g. CSE-311: Solve Seg 2 Relational Algebra..."
+                placeholder="e.g. Complete Seg 2 Practice Questions..."
                 value={newTaskTitle}
                 onChange={(e) => setNewTaskTitle(e.target.value)}
                 autoFocus
@@ -574,31 +745,25 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* ═══════ ROW 3: COURSES DIVIDED INTO 3 MID SEGMENTS ═══════ */}
+      {/* ═══════ ROW 3: COURSES STRICTLY FILTERED TO ENROLLED SEMESTER ═══════ */}
       <div className="idraft-card projects-section">
         <div className="idraft-card-header projects-header">
           <div>
-            <h3>Active CSE Courses (MID Segments)</h3>
+            <h3>Active Enrolled Courses (MID Segments)</h3>
             <p className="projects-subtitle">
-              Midterm is divided into 3 Segments (Seg 1, Seg 2, Seg 3). Click any segment to mark completed or declare 100% complete.
+              Displaying active courses for your enrolled semester ({studentSemester} Semester)
             </p>
           </div>
           <div className="projects-controls">
-            <span className="sem-filter-label">Filter:</span>
-            {['All', '3rd', '4th', '5th'].map(sem => (
-              <button 
-                key={sem}
-                className={`sem-filter-btn ${selectedSemester === sem ? 'active' : ''}`}
-                onClick={() => setSelectedSemester(sem)}
-              >
-                {sem}
-              </button>
-            ))}
+            <div className="enrolled-sem-badge">
+              <GraduationCap size={15} />
+              <span>{studentSemester} Semester Enrolled</span>
+            </div>
           </div>
         </div>
 
         <div className="projects-grid">
-          {filteredCourses.map(course => {
+          {enrolledCourses.map(course => {
             const isSeg1Done = !!segmentProgress[`${course.id}_seg1`];
             const isSeg2Done = !!segmentProgress[`${course.id}_seg2`];
             const isSeg3Done = !!segmentProgress[`${course.id}_seg3`];

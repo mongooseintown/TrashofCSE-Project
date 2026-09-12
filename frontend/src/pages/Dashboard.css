@@ -781,34 +781,17 @@
   gap: 0.45rem;
 }
 
-.sem-filter-label {
-  font-size: 0.8rem;
-  color: #6b7280;
-  font-weight: 600;
-  margin-right: 0.25rem;
-}
-
-.sem-filter-btn {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  padding: 0.35rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #4b5563;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.sem-filter-btn:hover {
-  background: #e5e7eb;
-  color: #111111;
-}
-
-.sem-filter-btn.active {
+.enrolled-sem-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   background: #111111;
   color: #ffffff;
-  border-color: #111111;
+  padding: 0.45rem 0.95rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .projects-grid {
