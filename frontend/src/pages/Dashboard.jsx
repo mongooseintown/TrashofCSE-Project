@@ -234,14 +234,7 @@ const CSE_COURSE_CATALOG = [
   }
 ];
 
-/* ──────────── INITIAL ACADEMIC TARGET GOALS ──────────── */
-const INITIAL_GOALS = [
-  { id: 'g1', text: 'Complete Midterm Seg 1 & Seg 2 for all enrolled courses', done: false, tag: 'Midterm' },
-  { id: 'g2', text: 'Solve past 3 years Midterm question papers for Seg 3', done: false, tag: 'Mid Solves' },
-  { id: 'g3', text: 'Revise core theory formulas and diagrams for active semester', done: false, tag: 'Theory' },
-  { id: 'g4', text: 'Practice course code implementations and lab test drills', done: false, tag: 'Lab' },
-  { id: 'g5', text: 'Review Midterm exam routines and schedule allocation', done: false, tag: 'Routine' },
-];
+
 
 /* ──────────── INITIAL TASKS ──────────── */
 const INITIAL_TASKS = [
@@ -276,11 +269,7 @@ const Dashboard = () => {
     return saved ? JSON.parse(saved) : {};
   });
 
-  // Student's real target goals
-  const [goals, setGoals] = useState(() => {
-    const saved = localStorage.getItem('student_study_goals');
-    return saved ? JSON.parse(saved) : INITIAL_GOALS;
-  });
+
 
   // Student's real tasks
   const [tasks, setTasks] = useState(() => {
@@ -369,9 +358,7 @@ const Dashboard = () => {
     localStorage.setItem('student_mid_segments', JSON.stringify(segmentProgress));
   }, [segmentProgress]);
 
-  useEffect(() => {
-    localStorage.setItem('student_study_goals', JSON.stringify(goals));
-  }, [goals]);
+
 
   useEffect(() => {
     localStorage.setItem('student_academic_tasks', JSON.stringify(tasks));
@@ -418,17 +405,7 @@ const Dashboard = () => {
     recordStudyAction();
   };
 
-  // Toggle a target goal
-  const toggleGoal = (id) => {
-    setGoals(prev => prev.map(g => {
-      if (g.id === id) {
-        const isNowDone = !g.done;
-        if (isNowDone) recordStudyAction();
-        return { ...g, done: isNowDone };
-      }
-      return g;
-    }));
-  };
+
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -535,7 +512,24 @@ const Dashboard = () => {
     return streak;
   }, [activityLog]);
 
-  const completedGoalsCount = goals.filter(g => g.done).length;
+  const dynamicGoals = useMemo(() => {
+    const list = [];
+    enrolledCourses.forEach(c => {
+      c.segments.forEach(seg => {
+        list.push({
+          id: `${c.id}_seg${seg.id}`,
+          courseId: c.id,
+          segId: seg.id,
+          text: `${c.code} - ${seg.label}: ${seg.desc}`,
+          done: !!segmentProgress[`${c.id}_seg${seg.id}`],
+          tag: c.code
+        });
+      });
+    });
+    return list;
+  }, [enrolledCourses, segmentProgress]);
+
+  const completedGoalsCount = dynamicGoals.filter(g => g.done).length;
 
   return (
     <div className="idraft-root">
@@ -747,15 +741,15 @@ const Dashboard = () => {
         {/* Study Goals */}
         <div className="idraft-card goals-card">
           <div className="idraft-card-header">
-            <h3>Midterm Target Goals ({completedGoalsCount}/{goals.length})</h3>
+            <h3>Midterm Target Goals ({completedGoalsCount}/{dynamicGoals.length})</h3>
             <div className="idraft-card-actions">
               <Clock3 size={15} />
             </div>
           </div>
 
           <div className="goals-list">
-            {goals.map((goal) => (
-              <div key={goal.id} className="goal-row" onClick={() => toggleGoal(goal.id)}>
+            {dynamicGoals.map((goal) => (
+              <div key={goal.id} className="goal-row" onClick={() => toggleSegment(goal.courseId, goal.segId)}>
                 <div className={`goal-checkbox ${goal.done ? 'checked' : ''}`}>
                   {goal.done && <CheckCircle2 size={18} />}
                   {!goal.done && <Circle size={18} />}
