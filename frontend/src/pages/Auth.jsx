@@ -42,8 +42,9 @@ const AuthPage = () => {
 
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify({
-        fullName: data.fullName,
-        email: data.email,
+        fullName: data.fullName || name,
+        email: data.email || userEmail,
+        photoURL: firebaseUser.photoURL || '',
         semester: data.semester || '',
         department: data.department || '',
         isAdmin: data.isAdmin || false,

@@ -25,6 +25,7 @@ import {
   Sparkles,
   ShieldAlert
 } from 'lucide-react';
+import { getApiUrl } from '../config';
 import './Dashboard.css';
 
 /* ──────────── CURATED CSE COURSES PER SEMESTER (3 MID SEGMENTS EACH) ──────────── */
@@ -298,19 +299,70 @@ const Dashboard = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
+  // Fetch verified user details directly from database
+  const fetchUserProfile = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+      const res = await fetch(getApiUrl('/api/auth/profile'), {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setUser(prev => {
+          const updated = { ...(prev || {}), ...data };
+          localStorage.setItem('user', JSON.stringify({
+            ...(JSON.parse(localStorage.getItem('user') || '{}')),
+            ...data
+          }));
+          return updated;
+        });
+      }
+    } catch (e) {
+      console.error('Failed to sync profile:', e);
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('user');
-    if (!token || !storedUser) {
+    if (!token) {
       navigate('/login');
       return;
     }
-    try {
-      setUser(JSON.parse(storedUser));
-    } catch (e) {
-      setUser(null);
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {}
     }
+    fetchUserProfile();
+
+    const onUpdate = () => fetchUserProfile();
+    window.addEventListener('profile-update', onUpdate);
+    return () => window.removeEventListener('profile-update', onUpdate);
   }, [navigate]);
+
+  const handleQuickSetSemester = async (sem) => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+      const res = await fetch(getApiUrl('/api/auth/profile'), {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ semester: sem })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setUser(prev => ({ ...prev, semester: sem }));
+        const stored = JSON.parse(localStorage.getItem('user') || '{}');
+        localStorage.setItem('user', JSON.stringify({ ...stored, semester: sem }));
+        window.dispatchEvent(new Event('profile-update'));
+      }
+    } catch (e) {}
+  };
 
   // Persist progress
   useEffect(() => {
@@ -483,7 +535,6 @@ const Dashboard = () => {
     return streak;
   }, [activityLog]);
 
-  const studentName = user?.fullName ? user.fullName.split(' ')[0] : 'Engineer';
   const completedGoalsCount = goals.filter(g => g.done).length;
 
   return (
@@ -492,25 +543,52 @@ const Dashboard = () => {
       {/* ═══════ TOP BAR ═══════ */}
       <div className="idraft-topbar">
         <div className="idraft-greeting-group">
-          <h1 className="idraft-greeting">Hi, {studentName}!</h1>
+          <h1 className="idraft-greeting">Hi, {user?.fullName || 'Student'}!</h1>
           <div className="idraft-sub-badge">
             <GraduationCap size={14} />
-            <span>Trash of CSE • {user?.department || 'CSE'} Dept • {studentSemester} Semester</span>
+            <span>
+              Trash of CSE • {user?.email || 'Verified Account'} • {user?.department || 'CSE'} {studentSemester ? `(${studentSemester} Sem)` : ''}
+            </span>
           </div>
         </div>
 
         <div className="idraft-topbar-actions">
           <button className="idraft-create-btn" onClick={() => navigate('/feed')}>
-            <Plus size={16} /> Community Post
+            <Plus size={16} /> Community
           </button>
           <button className="idraft-icon-btn" onClick={() => navigate('/profile')} title="Settings & Profile">
-            <Pencil size={16} />
+            <Pencil size={15} />
           </button>
-          <div className="idraft-avatar-sm" onClick={() => navigate('/profile')}>
-            {studentName.charAt(0).toUpperCase()}
+          <div className="idraft-avatar-sm" onClick={() => navigate('/profile')} title="View Profile">
+            {user?.photoURL ? (
+              <img src={user.photoURL} alt="Avatar" className="idraft-avatar-img" />
+            ) : (
+              (user?.fullName ? user.fullName.charAt(0).toUpperCase() : 'S')
+            )}
           </div>
         </div>
       </div>
+
+      {/* Quick Semester Selector if not yet set */}
+      {!user?.semester && (
+        <div className="semester-prompt-banner">
+          <div className="prompt-banner-left">
+            <GraduationCap size={16} />
+            <span>Select your current academic semester to calibrate courses:</span>
+          </div>
+          <div className="prompt-sem-btns">
+            {['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'].map(sem => (
+              <button 
+                key={sem} 
+                className="prompt-sem-btn"
+                onClick={() => handleQuickSetSemester(sem)}
+              >
+                {sem}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ═══════ ROW 1: THREE REAL ACADEMIC STAT CARDS ═══════ */}
       <div className="idraft-row-3">
