@@ -520,9 +520,9 @@ const Dashboard = () => {
           id: `${c.id}_seg${seg.id}`,
           courseId: c.id,
           segId: seg.id,
-          text: `${c.code} - ${seg.label}: ${seg.desc}`,
+          text: c.title,
           done: !!segmentProgress[`${c.id}_seg${seg.id}`],
-          tag: c.code
+          tag: seg.label
         });
       });
     });
@@ -541,7 +541,7 @@ const Dashboard = () => {
           <div className="idraft-sub-badge">
             <GraduationCap size={14} />
             <span>
-              Trash of CSE • {user?.email || 'Verified Account'} • {user?.department || 'CSE'} {studentSemester ? `(${studentSemester} Sem)` : ''}
+              {user?.department || 'CSE'} Department • {studentSemester} Semester
             </span>
           </div>
         </div>
@@ -568,7 +568,7 @@ const Dashboard = () => {
         <div className="semester-prompt-banner">
           <div className="prompt-banner-left">
             <GraduationCap size={16} />
-            <span>Select your current academic semester to calibrate courses:</span>
+            <span>Select your active semester:</span>
           </div>
           <div className="prompt-sem-btns">
             {['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'].map(sem => (
@@ -599,11 +599,11 @@ const Dashboard = () => {
           <div className="overall-big-stats">
             <div className="overall-big-num">
               <span className="big-number">{completedSegmentsCount}</span>
-              <span className="big-label">Segments Done<br/>In {studentSemester} Sem</span>
+              <span className="big-label">Completed<br/>Segments</span>
             </div>
             <div className="overall-big-num">
               <span className="big-number accent">{fullyReadyCoursesCount}</span>
-              <span className="big-label">Courses 100%<br/>Mid Ready</span>
+              <span className="big-label">Ready<br/>Courses</span>
             </div>
           </div>
 
@@ -616,7 +616,7 @@ const Dashboard = () => {
             <div className="mini-stat-box" title="Total Mid Segments">
               <Code2 size={16} />
               <span className="mini-num">{totalSegmentsCount}</span>
-              <span className="mini-label">Total Segments</span>
+              <span className="mini-label">Segments</span>
             </div>
             <div className="mini-stat-box" title="Deadlines">
               <Clock3 size={16} />
@@ -678,11 +678,7 @@ const Dashboard = () => {
             <TrendingUp size={16} />
           </div>
 
-          <p className="month-compare">
-            {completedSegmentsCount === 0 
-              ? 'Click your completed segments below'
-              : `${completedSegmentsCount} of ${totalSegmentsCount} segments prepared`}
-          </p>
+
 
           <div className="month-body">
             <div className="month-legend-list">
@@ -741,7 +737,7 @@ const Dashboard = () => {
         {/* Study Goals */}
         <div className="idraft-card goals-card">
           <div className="idraft-card-header">
-            <h3>Midterm Target Goals ({completedGoalsCount}/{dynamicGoals.length})</h3>
+            <h3>Target Goals ({completedGoalsCount}/{dynamicGoals.length})</h3>
             <div className="idraft-card-actions">
               <Clock3 size={15} />
             </div>
