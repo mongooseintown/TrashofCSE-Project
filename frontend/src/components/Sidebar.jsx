@@ -10,6 +10,9 @@ import {
   BarChart3,
   LogOut
 } from 'lucide-react';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { getApiUrl } from '../config';
 import './Sidebar.css';
 
 const MENU_ITEMS = [
@@ -73,11 +76,23 @@ const Sidebar = () => {
           </button>
           <button 
             className="ids-nav-item logout" 
-            onClick={() => {
+            onClick={async () => {
+              const token = localStorage.getItem('token');
+              if (token) {
+                try {
+                  await fetch(getApiUrl('/api/auth/logout'), {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+                  });
+                } catch (e) {}
+              }
+              try {
+                await signOut(auth);
+              } catch (e) {}
               localStorage.removeItem('token');
               localStorage.removeItem('user');
               window.dispatchEvent(new Event('profile-update'));
-              navigate('/login');
+              navigate('/login', { replace: true });
             }}
             title="Log Out"
           >

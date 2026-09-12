@@ -69,6 +69,7 @@ const AuthPage = () => {
       return;
     }
 
+    // Check if returning from a mobile redirect flow
     getRedirectResult(auth)
       .then((result) => {
         if (result && result.user) {
@@ -79,14 +80,6 @@ const AuthPage = () => {
         console.error("Redirect auth error:", err);
         setError(err.message);
       });
-
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      if (firebaseUser && !localStorage.getItem('token') && !isProcessingRef.current) {
-        handleBackendAuth(firebaseUser);
-      }
-    });
-
-    return () => unsubscribe();
   }, [navigate]);
 
   const handleGoogleLogin = async () => {
@@ -95,6 +88,7 @@ const AuthPage = () => {
     setError('');
 
     try {
+      googleProvider.setCustomParameters({ prompt: 'select_account' });
       const result = await signInWithPopup(auth, googleProvider);
       await handleBackendAuth(result.user);
     } catch (err) {
